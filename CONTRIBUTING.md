@@ -74,7 +74,7 @@ Before making contributions, set up the monorepo locally:
 4. Make your changes:
 
    - Follow the [Documentation Style Guide](https://github.com/paritytech/documentation-style-guide).
-   - Test your changes locally (see [Run Polkadot Docs Locally](../README.md#run-polkadot-docs-locally)).
+   - Test your changes locally (see [Run the Docs Locally](README.md#run-the-docs-locally)).
 
 5. Create pull request:
 
@@ -87,7 +87,7 @@ Making changes to existing pages is the simplest contribution:
 
 1. **Edit the content**: Make your improvements directly to the existing markdown file.
 2. **Follow style guide**: Ensure your changes maintain proper formatting according to the [Documentation Style Guide](https://github.com/paritytech/documentation-style-guide).
-3. **Test locally**: Verify your changes render correctly by running the Polkadot docs locally. Instructions can be found in the [README](README.md#run-polkadot-docs-locally).
+3. **Test locally**: Verify your changes render correctly by running the Polkadot docs locally. Instructions can be found in the [README](README.md#run-the-docs-locally).
 
 ## Add a New Page
 

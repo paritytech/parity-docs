@@ -1,5 +1,5 @@
 ---
-title: Polkadot Developer Docs
+title: Parity Developer Docs
 description: Explore everything you need to start building on top of Polkadot, a protocol that provides parachains with shared security and interoperability using XCM. 
 social_description: Everything you need to start building on Polkadot.
 hide:

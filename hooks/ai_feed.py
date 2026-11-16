@@ -239,8 +239,8 @@ def on_post_build(config, **kwargs):
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
 
     with open(os.path.join(site_dir, "llms.txt"), "w", encoding="utf-8") as f:
-        f.write("# Polkadot Developer Docs\n\n")
-        f.write("> Developer documentation for Polkadot. Full pre-chunked corpus: "
+        f.write("# Parity Developer Docs\n\n")
+        f.write("> Developer documentation for Parity tools, SDKs, and libraries. Full pre-chunked corpus: "
                 f'{cfg["docs_base_url"]}/ai/llms-full.jsonl — per-page resolved Markdown: '
                 "append .md to any page URL.\n\n## Pages\n\n")
         for title, url in pages:
