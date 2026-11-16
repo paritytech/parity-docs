@@ -163,12 +163,12 @@ plugins:
         home.html:
           - assets/stylesheets/home.css
         main.html:
-          - assets/stylesheets/polkadot.css   
+          - assets/stylesheets/parity.css   
   - page_toggle
   - social:
       enabled: !ENV [SOCIAL_CARDS, True]
       cards_layout_dir: layouts
-      cards_layout: polkadot
+      cards_layout: parity
       cards_layout_options:
         background_image: layouts/og-bg.webp
         background_color: transparent
