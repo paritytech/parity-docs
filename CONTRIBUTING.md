@@ -331,15 +331,15 @@ page_badges:
 ```
 
 - `tutorial_badge` — renders a difficulty badge: `Beginner`, `Intermediate`, `Advanced`. Also used by index tables for the Difficulty column.
-- `test_workflow` — links to a GitHub Actions status badge for the named workflow. Workflows must exist in the [`polkadot-developers/polkadot-cookbook`](https://github.com/polkadot-developers/polkadot-cookbook) repository under `.github/workflows/`.
+- `test_workflow` — links to a GitHub Actions status badge for the named workflow. Workflows must exist under `.github/workflows/` in the tests repository configured as `extra.tests_repo` in `mkdocs.yml`.
 
 ### `page_tests`
 
-Links a test file to the page, displayed as a "View tests" link in the page header. The `path` is relative to the root of the [`polkadot-developers/polkadot-cookbook`](https://github.com/polkadot-developers/polkadot-cookbook) repository.
+Links a test file to the page, displayed as a "View tests" link in the page header. The `path` is relative to the root of the tests repository configured as `extra.tests_repo` in `mkdocs.yml`, on the branch set in `extra.tests_repo_branch`.
 
 ```yaml
 page_tests:
-  path: polkadot-docs/path/to/tests/docs.test.ts
+  path: path/to/tests/docs.test.ts
 ```
 
 ### `toggle`

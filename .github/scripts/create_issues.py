@@ -9,7 +9,7 @@ from functools import lru_cache
 
 # --- Configuration ---
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
-DEFAULT_REPO_NAME = "polkadot-developers/polkadot-docs"
+DEFAULT_REPO_NAME = "paritytech/parity-docs"
 READ_DELAY = 0.25  # Small delay after GET requests in loops to avoid secondary rate limits
 
 def _validate_repo_name(name: str) -> str:
@@ -34,7 +34,7 @@ MAX_DIFF_LINES = 100  # Limit diff output
 MAX_SNIPPETS = 10     # Limit number of snippets
 WRITE_DELAY = 1.5     # Increased slightly for better safety against abuse detection
 IGNORE_LABEL = "ignore-dep-bot"
-USER_AGENT = "polkadot-docs-dep-bot"
+USER_AGENT = "parity-docs-dep-bot"
 
 # Common headers for all API requests
 def get_api_headers():

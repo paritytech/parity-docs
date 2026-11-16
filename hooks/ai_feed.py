@@ -28,7 +28,7 @@ from jinja2 import Environment  # noqa: E402
 from generate_feed import estimate_tokens, merge_toggle_variants, process_page  # noqa: E402
 
 log = logging.getLogger("mkdocs")
-SOURCE_TAG = "polkadot-docs"
+SOURCE_TAG = "parity-docs"
 _CFG = None
 _INCLUDED = None  # {src_uri: abs_path} for pages mkdocs actually builds (post exclude_docs)
 
