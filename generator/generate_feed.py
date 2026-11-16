@@ -444,7 +444,7 @@ if __name__ == "__main__":
     ap.add_argument("--vars", default=os.path.join(root, "docs", "variables.yml"))
     ap.add_argument("--snippets", default=os.path.join(root, "docs", ".snippets"))
     ap.add_argument("--config", default=os.path.join(root, "llms_config.json"))
-    ap.add_argument("--source", default="polkadot-docs")
+    ap.add_argument("--source", default="parity-docs")
     ap.add_argument("--out", default=os.path.join(here, "llms-full.new.jsonl"))
     args = ap.parse_args()
     build(args)

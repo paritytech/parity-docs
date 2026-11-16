@@ -177,10 +177,12 @@ plugins:
 
 # Extra configuration
 extra:
+  # Repository that hosts the tutorial tests behind page_badges.test_workflow
+  # (CI badges) and page_tests.path ("View tests" links).
+  tests_repo: https://github.com/polkadot-developers/polkadot-cookbook
+  tests_repo_branch: master
   # Light logo, shown in the dark scheme (see material-overrides/partials/logo.html)
   logo_dark_scheme: assets/images/parity-logo-light.svg
-  # Docs Assistant chat API endpoint. Empty = widget disabled (ships dark).
-  docs_assistant_api_url: !ENV [DOCS_ASSISTANT_API_URL, '']
   glossary_tooltips:
     exclude_terms:
       - Polkadot

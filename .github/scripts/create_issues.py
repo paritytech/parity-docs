@@ -9,7 +9,7 @@ from functools import lru_cache
 
 # --- Configuration ---
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
-DEFAULT_REPO_NAME = "polkadot-developers/polkadot-docs"
+DEFAULT_REPO_NAME = "paritytech/parity-docs"
 READ_DELAY = 0.25  # Small delay after GET requests in loops to avoid secondary rate limits
 
 def _validate_repo_name(name: str) -> str:

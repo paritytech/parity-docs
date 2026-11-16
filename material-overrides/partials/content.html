@@ -47,8 +47,8 @@
   {% include "partials/tags.html" %}
 {% endif %}
 
-{% from "partials/page-badges.html" import render_badges %}
-{% from "partials/page-tests.html" import render_test_block %}
+{% from "partials/page-badges.html" import render_badges with context %}
+{% from "partials/page-tests.html" import render_test_block with context %}
 
 {# ------------------------------------------------------------------ #}
 {# Content rendering                                                    #}

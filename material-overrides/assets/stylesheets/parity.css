@@ -1661,3 +1661,28 @@ div.mermaid {
 h1.not-found {
   text-align: center;
 }
+
+/* --- 404 page (see material-overrides/404.html) --- */
+.md-typeset .not-found-page {
+  max-width: 40rem;
+  margin: var(--py-8) auto;
+  text-align: center;
+}
+
+.md-typeset .not-found-page .button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: var(--py-8) 0;
+}
+
+.md-typeset .not-found-page .md-button {
+  text-decoration: none;
+}
+
+.md-typeset .not-found-ecosystem {
+  color: var(--color-text-secondary);
+}
+
+.md-typeset .not-found-ecosystem a {
+  text-decoration: underline;
+}

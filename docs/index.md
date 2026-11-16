@@ -1,7 +1,7 @@
 ---
 title: Parity Developer Docs
-description: Explore everything you need to start building on top of Polkadot, a protocol that provides parachains with shared security and interoperability using XCM. 
-social_description: Everything you need to start building on Polkadot.
+description: Developer documentation for the SDKs, libraries, and tools Parity builds for Polkadot, including the Product SDK, PolkaVM smart contracts, and the Polkadot SDK.
+social_description: Build with the SDKs, libraries, and tools Parity creates for Polkadot.
 hide:
 - footer
 - toc
