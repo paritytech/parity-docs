@@ -1,0 +1,55 @@
+<div id="termynal" data-termynal>
+  <span data-ty="input"><span class="file-path"></span>npx tsx index.ts</span>
+  <span data-ty>...</span>
+  <span data-ty>Built transaction: {
+  getPaymentInfo: [AsyncFunction: getPaymentInfo],
+  getEstimatedFees: [AsyncFunction: getEstimatedFees],
+  decodedCall: {
+    type: 'PolkadotXcm',
+    value: {
+      type: 'limited_teleport_assets',
+      value: {
+        dest: {
+          type: 'V5',
+          value: {
+            parents: 1,
+            interior: { type: 'X1', value: { type: 'Parachain', value: 1004 } }
+          }
+        },
+        beneficiary: {
+          type: 'V5',
+          value: {
+            parents: 0,
+            interior: {
+              type: 'X1',
+              value: {
+                type: 'AccountId32',
+                value: {
+                  network: undefined,
+                  id: '0x947969a3f6ef591e0d5aaad926e2662c54d6cc3e5636e1615ee97fd75da6822b'
+                }
+              }
+            }
+          }
+        },
+        assets: {
+          type: 'V5',
+          value: [
+            {
+              id: { parents: 1, interior: { type: 'Here' } },
+              fun: { type: 'Fungible', value: 100000000000n }
+            }
+          ]
+        },
+        fee_asset_item: 0,
+        weight_limit: { type: 'Unlimited' }
+      }
+    }
+  },
+  getEncodedData: [Function: getEncodedData],
+  getBareTx: [Function: getBareTx],
+  create: [Function: create],
+  createSubmitAndWatch: [Function: createSubmitAndWatch],
+  createAndSubmit: [Function: createAndSubmit]
+}</span>
+</div>
