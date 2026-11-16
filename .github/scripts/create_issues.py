@@ -34,7 +34,7 @@ MAX_DIFF_LINES = 100  # Limit diff output
 MAX_SNIPPETS = 10     # Limit number of snippets
 WRITE_DELAY = 1.5     # Increased slightly for better safety against abuse detection
 IGNORE_LABEL = "ignore-dep-bot"
-USER_AGENT = "polkadot-docs-dep-bot"
+USER_AGENT = "parity-docs-dep-bot"
 
 # Common headers for all API requests
 def get_api_headers():
