@@ -1,6 +1,6 @@
-# Contribute to the Polkadot Docs
+# Contribute to the Parity Docs
 
-> **📋 Essential**: All contributions must follow the [Documentation Style Guide](https://github.com/paritytech/documentation-style-guide).
+> **Essential**: All contributions must follow the [Documentation Style Guide](https://github.com/paritytech/documentation-style-guide).
 
 ## Contents
 
@@ -34,7 +34,7 @@ For simple contributions like fixing typos or making small text changes, you can
 ### Making Your Changes
 
 1. Navigate to the file you want to edit on GitHub.
-2. Click the pencil icon (✏️) to edit the file.
+2. Click the pencil icon to edit the file.
 3. Make your changes in the online editor.
 4. Follow the [Documentation Style Guide](https://github.com/paritytech/documentation-style-guide).
 
@@ -56,13 +56,13 @@ For more complex contributions, which involve rendering (e.g., adding a `.nav.ym
 
 Before making contributions, set up the monorepo locally:
 
-1. Fork the [`polkadot-docs`](https://github.com/polkadot-developers/polkadot-docs) repository on GitHub.
+1. Fork the [`parity-docs`](https://github.com/paritytech/parity-docs) repository on GitHub.
 
 2. Clone your fork:
 
    ```bash
-   git clone https://github.com/YOUR_USERNAME/polkadot-docs.git
-   cd polkadot-docs
+   git clone https://github.com/YOUR_USERNAME/parity-docs.git
+   cd parity-docs
    ```
 
 3. Create a branch for your changes:
@@ -74,7 +74,7 @@ Before making contributions, set up the monorepo locally:
 4. Make your changes:
 
    - Follow the [Documentation Style Guide](https://github.com/paritytech/documentation-style-guide).
-   - Test your changes locally (see [Run Polkadot Docs Locally](../README.md#run-polkadot-docs-locally)).
+   - Test your changes locally (see [Run the Docs Locally](README.md#run-the-docs-locally)).
 
 5. Create pull request:
 
@@ -87,7 +87,7 @@ Making changes to existing pages is the simplest contribution:
 
 1. **Edit the content**: Make your improvements directly to the existing markdown file.
 2. **Follow style guide**: Ensure your changes maintain proper formatting according to the [Documentation Style Guide](https://github.com/paritytech/documentation-style-guide).
-3. **Test locally**: Verify your changes render correctly by running the Polkadot docs locally. Instructions can be found in the [README](README.md#run-polkadot-docs-locally).
+3. **Test locally**: Verify your changes render correctly by running the docs locally. Instructions can be found in the [README](README.md#run-the-docs-locally).
 
 ## Add a New Page
 

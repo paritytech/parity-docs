@@ -1,7 +1,8 @@
 # Basic site configurations
-site_name: Polkadot Developer Docs
-site_url: https://docs.polkadot.com/
-edit_uri: https://github.com/polkadot-developers/polkadot-docs/edit/master/docs/
+site_name: Parity Developer Docs
+# TODO: replace with the final production domain once it's confirmed.
+site_url: https://docs.parity.io/
+edit_uri: https://github.com/paritytech/parity-docs/edit/main/docs/
 docs_dir: docs
 copyright: © 2026 Parity Technologies Limited. Documentation content licensed under CC BY 4.0.
 
@@ -41,8 +42,8 @@ exclude_docs: |
 theme:
   name: material
   custom_dir: material-overrides
-  favicon: assets/images/polkadot.png
-  logo: assets/images/polkadot.png
+  favicon: assets/images/parity.png
+  logo: assets/images/parity-logo-dark.svg # Dark logo, shown in the light scheme
   icon:
     admonition:
       code: material/code-tags
@@ -162,20 +163,22 @@ plugins:
         home.html:
           - assets/stylesheets/home.css
         main.html:
-          - assets/stylesheets/polkadot.css   
+          - assets/stylesheets/parity.css   
   - page_toggle
   - social:
       enabled: !ENV [SOCIAL_CARDS, True]
       cards_layout_dir: layouts
-      cards_layout: polkadot
+      cards_layout: parity
       cards_layout_options:
         background_image: layouts/og-bg.webp
         background_color: transparent
         logo: null
-        title: Polkadot Developer Docs
+        title: Parity Developer Docs
 
 # Extra configuration
 extra:
+  # Light logo, shown in the dark scheme (see material-overrides/partials/logo.html)
+  logo_dark_scheme: assets/images/parity-logo-light.svg
   # Docs Assistant chat API endpoint. Empty = widget disabled (ships dark).
   docs_assistant_api_url: !ENV [DOCS_ASSISTANT_API_URL, '']
   glossary_tooltips:
@@ -183,21 +186,12 @@ extra:
       - Polkadot
   generator: False
   social:
-    - icon: fontawesome/brands/discord
-      link: https://polkadot-discord.w3f.tools
-      name: Discord
-    - icon: fontawesome/brands/telegram
-      link: https://t.me/substratedevs
-      name: Telegram  
-    - icon: simple/element
-      link: https://matrix.to/#/#substratedevs:matrix.org
-      name: Matrix  
     - icon: fontawesome/brands/github
-      link: https://github.com/paritytech/polkadot-sdk
+      link: https://github.com/paritytech
       name: GitHub
     - icon: fontawesome/brands/youtube
-      link: https://www.youtube.com/channel/UCB7PbjuZLEba_znc7mEGNgw
+      link: https://www.youtube.com/@paritytech
       name: YouTube
     - icon: fontawesome/brands/x-twitter
-      link: https://x.com/Polkadot
+      link: https://x.com/paritytech
       name: X (formerly Twitter)

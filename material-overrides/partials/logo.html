@@ -1,0 +1,13 @@
+{#-
+  Overrides Material's logo partial to render a scheme-specific logo.
+  theme.logo is shown in the light scheme; extra.logo_dark_scheme in the dark scheme.
+-#}
+{% if config.theme.logo %}
+  <img src="{{ config.theme.logo | url }}" alt="{{ config.site_name }}" class="site-logo site-logo--light-scheme">
+  {% if config.extra.logo_dark_scheme %}
+    <img src="{{ config.extra.logo_dark_scheme | url }}" alt="{{ config.site_name }}" class="site-logo site-logo--dark-scheme">
+  {% endif %}
+{% else %}
+  {% set icon = config.theme.icon.logo or "material/library" %}
+  {% include ".icons/" ~ icon ~ ".svg" %}
+{% endif %}

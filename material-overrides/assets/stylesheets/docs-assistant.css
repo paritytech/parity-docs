@@ -1,5 +1,5 @@
 /* Polkadot Docs Assistant widget.
-   Uses the site's theme variables (see polkadot.css) so the widget follows
+   Uses the site's theme variables (see parity.css) so the widget follows
    light/dark mode automatically. Occupies the slot the kapa.ai button used. */
 
 .da-launcher {
