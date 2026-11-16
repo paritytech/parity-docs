@@ -5,9 +5,7 @@
     "id": "parity",
     "name": "Parity",
     "project_url": "https://www.parity.io/",
-    "docs_base_url": "https://docs.parity.io/",
-    "_mcp_name": "polkadot-docs",
-    "_mcp_url": "https://docs-mcp.polkadot.com"
+    "docs_base_url": "https://docs.parity.io/"
   },
 
   "repository": {
