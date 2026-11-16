@@ -1,6 +1,10 @@
-# AGENTS.md — polkadot-docs
+# AGENTS.md — parity-docs
 
 This file is loaded automatically by coding agents (Claude Code, Cursor, Codex, and any tool that respects the `AGENTS.md` convention) when they open this repository. Read it before generating or editing any documentation.
+
+## Scope
+
+This repository holds the Parity Developer Docs, which cover the tools, SDKs, libraries, and technologies built and maintained by Parity Technologies. Ecosystem-wide Polkadot documentation (docs.polkadot.com) is maintained separately by the Polkadot Community Foundation in [`Polkadot-Community-Foundation/polkadot-docs`](https://github.com/Polkadot-Community-Foundation/polkadot-docs). Do not add general Polkadot ecosystem content here; link to that site instead.
 
 ## Style and authoring rules
 
@@ -36,7 +40,7 @@ These supplement (and where they conflict, override) the canonical styleguide:
 
 When rules conflict:
 
-1. **This file** (`polkadot-docs/AGENTS.md`) — project-specific overrides win.
+1. **This file** (`parity-docs/AGENTS.md`) — project-specific overrides win.
 2. **Canonical Documentation Style Guide** — default.
 3. **Google developer documentation style guide** — fallback for anything the Documentation Style Guide does not cover.
 
