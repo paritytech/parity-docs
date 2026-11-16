@@ -1,0 +1,199 @@
+---
+title: Store Data on Chain
+description: Store and retrieve Bulletin Chain data from a Polkadot Product, covering Hello World, larger files, and renewal.
+categories: Apps
+page_badges:
+  tutorial_badge: Intermediate
+---
+
+# Store Data on Chain
+
+## Introduction
+
+This guide covers the [Bulletin Chain](/reference/apps/infrastructure/bulletin-chain/), Polkadot's content-addressed storage layer for Products. You write data, the chain returns a Content Identifier (CID), and anyone with that CID can fetch the data back from the network. Data is retained for about two weeks by default and can be renewed. Access is gated by a per-account storage authorization, not a token balance. The guide walks through four flows in order of complexity: a Hello World store and retrieve, a larger file upload, long-lived data with renewal, and Preimage submission.
+
+--8<-- 'text/apps/storage-options.md'
+
+!!! note "Network"
+    The flows on this page target Paseo Next, the default environment in [Polkadot Desktop](/reference/apps/hosts/polkadot-desktop/) development builds. If you switched environments during setup, select the matching network from the environment selector in Polkadot Desktop.
+
+## Prerequisites
+
+Before starting, ensure you have:
+
+- Completed the [Install Desktop and Pair](/apps/get-started/) and [Get TestNet Tokens](/apps/get-started/get-testnet-tokens/) guides; your account needs PAS funds and a Bulletin Chain authorization. If you have not obtained a Bulletin Chain authorization yet, request one from the [Bulletin Chain authorization page](https://paritytech.github.io/polkadot-bulletin-chain/authorizations)
+- A Polkadot Product project running locally (see [Set Up Your Project](/apps/build/#set-up-your-project))
+
+## Install the SDK
+
+This guide builds on `createApp`, which only the umbrella package provides, so install the umbrella:
+
+```bash
+npm install @parity/product-sdk
+```
+
+Every snippet imports from `@parity/product-sdk`, including `SignerManager` and `CloudStorageClient`, which the umbrella re-exports from its root, and `parseCid` and `CidCodec`, which it re-exports from its `@parity/product-sdk/cloud-storage` subpath, so no other package is needed. The renewal example is the exception: it also uses `@ipld/dag-pb` to read chunked-upload manifests. See [Umbrella or Individual Packages](/apps/build/#umbrella-or-individual-packages) for how the install styles compare.
+
+## Set Up Your Storage Client
+
+Every snippet in this guide is Product code: modules you place inside the Product running at `localhost:3000` (per [Set Up Your Project](/apps/build/#set-up-your-project)), loaded by Polkadot Desktop. Run nothing from a terminal; the snippets execute in the browser context Polkadot Desktop's localhost bypass loads them into. The signer for every Bulletin transaction comes from the Host (your paired account in Polkadot Desktop); your Product never derives keys.
+
+Create the SDK app and connect the wallet:
+
+```typescript title="setup-app.ts"
+--8<-- "code/apps/build/shared/setup-app.ts"
+```
+
+`createApp()` returns an `App` with `app.wallet`, `app.localStorage`, `app.chain`, and `app.cloudStorage`, the high-level Bulletin Chain API exposing `upload()`, `fetch()`, and `computeCid()`. The exported `app` and `accounts` are reused across the simple sections that follow, and the same setup file is shared with [Publish and Subscribe to Off-Chain Data](/apps/build/pub-sub-off-chain-data/).
+
+!!! warning "The Host supplies your Product's identity"
+    Since `@parity/product-sdk` v0.30.0, `createApp` takes no `name`: it derives the user's account from the product ID the Host loaded your Product under. Releases before v0.30.0 require `name` and derive the account from it instead. If the Host declines to derive an account, `wallet.connect()` resolves with _zero accounts_ rather than failing, so the only symptom is an empty list. Every upload on this page needs a selected account, so guard the list before going further. See [Product SDK](/apps/product-sdk/) for the full `createApp` contract.
+
+## Store a Hello World
+
+The simplest write: a short string, one line.
+
+```typescript title="hello-bulletin.ts"
+--8<-- "code/apps/build/store-data-on-chain/hello-bulletin.ts"
+```
+
+`app.cloudStorage.upload(data)` accepts a string or `Uint8Array`, signs the underlying transaction with your paired account, and resolves with a `Result` whose `value` is the CID, a Blake2b-256 content hash encoded as a CIDv1 string. Internally the SDK uses the chunking pipeline with a DAG-PB manifest, so the same call shape works for any payload size; see [Store a Larger File](#store-a-larger-file) for the chunk-level controls.
+
+You should see something like:
+
+```text
+CID: bafk2bzacea6wlxyalo6gbajlwuubv7w5dvss3vmfqmavlqy63e4vypth2ov6u
+```
+
+## Retrieve Your Data
+
+The Bulletin Chain follows a "write-to-chain, read-from-network" model: the chain holds the storage commitment, and the data itself lives at collator nodes addressable by CID. Reading is permissionless. No authorization, fees, or signature are required. `app.cloudStorage.fetch(cid)` routes through the Host's preimage subscription with caching:
+
+```typescript title="retrieve-data.ts"
+--8<-- "code/apps/build/store-data-on-chain/retrieve-data.ts"
+```
+
+The snippet verifies the bytes by recomputing their CID with `app.cloudStorage.computeCid(bytes)` and comparing to the CID you asked for. If the host returned the wrong bytes, the recomputed CID does not match; that is the integrity property content addressing gives you.
+
+For libp2p / Helia / Smoldot retrieval paths (when you want to fetch outside a Polkadot Desktop container), see [Retrieve Your Data](/chain-interactions/store-data/bulletin-chain/#retrieve-your-data) in the canonical tutorial.
+
+## Store a Larger File
+
+`app.cloudStorage.upload()` chunks transparently above a 2 MiB threshold and stores a DAG-PB manifest that references each chunk's CID, returning the manifest CID. For most Products, that is all you need. Pass any `Uint8Array` to `upload()` and the SDK handles chunking, manifest generation, and the underlying transactions for you.
+
+For finer control, such as custom chunk size, per-chunk progress callbacks, or access to the individual chunk CIDs, drop one level lower to `CloudStorageClient`, which the umbrella re-exports from `@parity/product-sdk-cloud-storage`. This is also the path you use for the next two sections (authorization checks, renewal). `CloudStorageClient` needs a signer, and `App` does not expose the one `createApp` holds, so this setup builds its own with `SignerManager`. Set its `dappName` to the product ID the Host loads your Product under, so it derives the same account as `app.wallet`:
+
+```typescript title="setup-client.ts"
+--8<-- "code/apps/build/store-data-on-chain/setup-client.ts"
+```
+
+`CloudStorageClient.create({ environment: 'paseo', signer })` resolves with `client.store / client.renew / client.checkAuthorization / client.fetchBytes / client.estimateAuthorization` for the high-level operations, plus `client.api` for the typed Bulletin Chain API when you need to drop one level lower still. The exported `client` and `account` are reused by the advanced sections that follow.
+
+The `client.store(...)` builder takes the same chunking pipeline `app.cloudStorage.upload` uses internally, with the controls exposed:
+
+```typescript title="store-large-file.ts"
+--8<-- "code/apps/build/store-data-on-chain/store-large-file.ts"
+```
+
+The returned `StoreResult.cid` is the manifest CID; `StoreResult.chunks.chunkCids` lists each chunk's individual CID. `withCallback()` receives per-chunk progress events as the upload streams. The Bulletin Chain limits each transaction to 2 MiB; see [Size Limits](/reference/polkadot-hub/data-storage/#size-limits). Chunks cannot exceed that.
+
+Chunked uploads are not atomic. Each chunk is a separate transaction, and the manifest is one more on top. If chunk N fails after chunks 0..N-1 have already landed, the earlier chunks remain on chain and consume your authorization. There is no rollback. Inspect the `chunkCids` on the thrown error and either resume from the failed chunk or, if the use case demands it, abandon the partial upload.
+
+## Get Authorization
+
+The Bulletin Chain has no token balance for storage; every account needs an explicit authorization. You should already have one from [Get TestNet Tokens](/apps/get-started/get-testnet-tokens/); if not, request your storage quota directly from the [Bulletin Chain authorization page](https://paritytech.github.io/polkadot-bulletin-chain/authorizations). If a store is rejected, confirm the authorization is on the account that signs: see [uploads are rejected](/apps/troubleshooting/#uploads-are-rejected-or-host-storage-unavailable) in troubleshooting.
+
+!!! note
+    The `authorize_account` extrinsic requires the authorizer origin: Root, or an account or parachain allowed to grant authorizations. You cannot self-authorize programmatically; on Polkadot TestNet, use the [Bulletin Chain authorization page](https://paritytech.github.io/polkadot-bulletin-chain/authorizations) before submitting any `store` extrinsic from your Product.
+
+`CloudStorageClient` (introduced in [Store a Larger File](#store-a-larger-file)) exposes `client.checkAuthorization(address)` as a pre-flight check before submitting a store:
+
+```typescript title="check-authorization.ts"
+--8<-- "code/apps/build/store-data-on-chain/check-authorization.ts"
+```
+
+`checkAuthorization` resolves with a `Result`, not with the status directly. Check `auth.ok` first; the status is on `auth.value`, and reading the fields off the wrapper yields `undefined` and silently takes the failure branch. On success, `auth.value` carries an `AuthorizationStatus`:
+
+- **`authorized`**: `true` when an authorization record exists for the account.
+- **`remainingTransactions`**: Number of `store` calls remaining in the quota.
+- **`remainingBytes`**: Bytes remaining across those calls (`bigint`).
+- **`expiration`**: The block at which any unused quota expires.
+
+`client.estimateAuthorization(dataSize)` returns the `{ transactions, bytes }` you would need to authorize a hypothetical payload of `dataSize` bytes, which is useful before requesting a quota top-up.
+
+## Renew Long-Lived Data
+
+Stored data is retained for roughly two weeks. If your Product needs the data to outlive that window, renew it before it expires.
+
+Renewal identifies the data by its content hash, which is the multihash digest of its CID. What you renew depends on the kind of CID:
+
+- **Single-transaction CID**: The CID codec is raw (`CidCodec.Raw`, and the string starts with `bafk`). Renew that one content hash.
+- **Manifest CID**: The CID codec is DAG-PB (`CidCodec.DagPb`, and the string starts with `bafy`). A chunked upload stores each chunk and the manifest as separate transactions, each with its own retention period, so renew the manifest and every chunk. The manifest lists the chunk CIDs as its links.
+
+The following example takes the CID that an upload returned, collects the content hashes of the manifest and its chunks when the CID is a manifest, and registers a renewal for each one. It reads the manifest with `fetchBytes(cid, { noReassemble: true })` and decodes it with `@ipld/dag-pb`, so install that package too:
+
+```bash
+npm install @ipld/dag-pb
+```
+
+```typescript title="renew-data.ts"
+--8<-- "code/apps/build/store-data-on-chain/renew-data.ts"
+```
+
+If you uploaded with `CloudStorageClient.store(...).send()`, `StoreResult.chunks.chunkCids` already holds the chunk CIDs as `CID` objects, so you can read each content hash from `chunkCid.multihash.digest` without fetching the manifest.
+
+`client.inner.renew(contentHash)` registers a one-time renewal. When the current retention period ends, the chain stores the data again, and it stays available for another full period. The renewal is paid from your authorization when you register it. `client.inner` is the underlying Bulletin SDK client, which `CloudStorageClient` exposes for operations beyond its own surface, and `send()` resolves with a `TransactionReceipt` that includes `blockHash`, `txHash`, and `blockNumber`.
+
+Renewals have their own byte budget. The chain counts renewed bytes separately from stored bytes, and it rejects a renewal when the bytes already renewed under your authorization, plus the size of this data, would exceed the authorization's byte allowance. The `remainingBytes` that `checkAuthorization` reports covers stored bytes only, so it does not predict whether a renewal succeeds.
+
+The underlying client also provides the following alternatives:
+
+- **`client.inner.enableAutoRenew(contentHash)`**: Renews the data at the end of every retention period, until your authorization can no longer cover a renewal.
+- **`client.inner.forceRenew(contentHash)`**: Stores a new copy of the data immediately, with a retention period that starts from the current block.
+- **`client.renew(block, index)`**: Renews by position, using the `blockNumber` and `extrinsicIndex` from a single-transaction `StoreResult`. Despite its name, `extrinsicIndex` holds the index from the `Stored` event, which is the value renewal expects. A position identifies one stored copy and stays valid only until that copy's retention period ends. After `forceRenew`, the original copy keeps its position until then, so renewing that position stores and pays for yet another copy. Prefer the content hash, which always resolves to the latest copy.
+
+The cloud storage client's typed API does not expose `RetentionPeriod`, the `Utility` pallet, or the renewal pre-flight. For those, create a `polkadot-api` client with the `paseo_bulletin` descriptor from `@parity/product-sdk-descriptors/paseo-bulletin`. It provides `query.TransactionStorage.RetentionPeriod`, the `BulletinTransactionStorageApi.can_renew(account, entry)` runtime API, which reports whether a renewal would be accepted, and the `DataRenewal` calls. To register many renewals in one transaction, pass those calls to `batchSubmitAndWatch` from `@parity/product-sdk-tx`, which wraps them in `Utility.batch_all`; see [Transactions](/apps/product-sdk/tx/).
+
+!!! warning
+    Each content hash can have only one registered renewal at a time, across all accounts. Registering a renewal again before the current one takes effect fails with `RenewalAlreadyEnabled`, so register once per retention period. The Bulletin Chain does not notify your Product before data expires: either enable auto-renewal or run your own scheduler (a cron job, queue, or background worker) that registers renewals in time.
+
+## Storage Paths at a Glance
+
+The flows in this guide target the same chain but differ in authorization, atomicity, and consumer access. Use this table to pick the right path before writing.
+
+|              Path               |                    Authorization                     |          Atomicity           |      Retention       |                            Use When                             |
+|:-------------------------------:|:----------------------------------------------------:|:----------------------------:|:--------------------:|:---------------------------------------------------------------:|
+| Bulletin store (small)          | Bulletin authorization                               | Single tx                    | ~2 weeks (renewable) | Most Product writes                                             |
+| Bulletin store (chunked)        | Bulletin authorization                               | Multi-tx + DAG-PB manifest   | ~2 weeks (renewable) | Files larger than 2 MiB                                         |
+
+For deeper comparison and the full pallet reference, see [Data Storage Reference](/reference/polkadot-hub/data-storage/).
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+-   <span class="badge guide">Guide</span> **Publish and Subscribe to Off-Chain Data**
+
+    ---
+
+    Your Product can store durable content; next, add real-time state between users via the Statement Store.
+
+    [:octicons-arrow-right-24: Publish and Subscribe to Off-Chain Data](/apps/build/pub-sub-off-chain-data/)
+
+-   <span class="badge guide">Guide</span> **Read On-Chain Data**
+
+    ---
+
+    Pair Bulletin writes with chain reads via the Host API's PAPI provider.
+
+    [:octicons-arrow-right-24: Read On-Chain Data](/apps/build/read-chain-state/)
+
+-   <span class="badge external">External</span> **Product SDK API Reference**
+
+    ---
+
+    The full `product-sdk` surface beyond this recipe: every package, class, and method.
+
+    [:octicons-arrow-right-24: Visit Site](https://paritytech.github.io/product-sdk/)
+
+</div>

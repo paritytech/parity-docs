@@ -1,0 +1,190 @@
+const provider = window.ethereum;
+const supportedNetworks = {
+  polkadotTestNet: {
+    name: 'Polkadot Hub TestNet',
+    chainId: '0x190f1b41', //Hex value of "420420417"
+    chainName: 'Polkadot Hub TestNet',
+    rpcUrls: ['https://eth-rpc-testnet.polkadot.io/'],
+    blockExplorerUrls: ['https://blockscout-testnet.polkadot.io/', 'https://polkadot.testnet.routescan.io/'],
+    nativeCurrency: {
+      name: 'Paseo Token',
+      symbol: 'PAS',
+      decimals: 18,
+    },
+  },
+  polkadot: {
+    name: 'Polkadot Hub',
+    chainId: '0x190f1b43', //Hex value of "420420419"
+    chainName: 'Polkadot Hub',
+    rpcUrls: ['https://eth-rpc.polkadot.io/'],
+    blockExplorerUrls: ['https://blockscout.polkadot.io/'/* , 'https://polkadot.routescan.io/' */],
+    nativeCurrency: {
+      name: 'Polkadot Token',
+      symbol: 'DOT',
+      decimals: 18,
+    },
+  },
+  kusama: {
+    name: 'Kusama Hub',
+    chainId: '0x190f1b42', //Hex value of "420420418"
+    chainName: 'Kusama Hub',
+    rpcUrls: ['https://eth-rpc-kusama.polkadot.io/'],
+    blockExplorerUrls: ['https://blockscout-kusama.polkadot.io/'/* , 'https://kusama.routescan.io/' */],
+    nativeCurrency: {
+      name: 'Kusama Token',
+      symbol: 'KSM',
+      decimals: 18,
+    },
+  }
+};
+
+/*
+  Add or switch to the specified network, then request accounts
+  NOTE: This calls "eth_requestAccounts" at the end, which prompts for wallet connection
+ */
+const connectNetwork = async (network) => {
+  if (!provider) {
+    handleError('No Ethereum-compatible wallet found. Please install MetaMask.');
+    return;
+  }
+  try {
+    const targetNetwork = { ...supportedNetworks[network] };
+    delete targetNetwork.name;
+
+    // Try to switch first, then add if not available
+    try {
+      await provider.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: targetNetwork.chainId }],
+      });
+    } catch (switchError) {
+      // 4902 = chain not added
+      if (switchError.code === 4902) {
+        await provider.request({
+          method: 'wallet_addEthereumChain',
+          params: [targetNetwork],
+        });
+      } else if (switchError.code !== 4001 && switchError.code !== -32002) {
+        handleError(switchError.message);
+        return;
+      }
+    }
+    // Request accounts after switching/adding
+    await provider.request({ method: 'eth_requestAccounts' });
+  } catch (e) {
+    if (e.code !== 4001 && e.code !== -32002) {
+      handleError(e.message);
+    }
+  }
+};
+
+// Fix for getConnectedNetwork
+const getConnectedNetwork = async () => {
+  const chainId = await provider.request({ method: 'eth_chainId' });
+  const connectedHubEntry = Object.entries(supportedNetworks).find(
+    ([, network]) => network.chainId === chainId
+  );
+  if (connectedHubEntry) {
+    const [networkKey, connectedHubNetwork] = connectedHubEntry;
+    const connectedNetworkButton = document.querySelector(
+      `.connect-metamask[value="${networkKey}"]`
+    );
+    return { connectedNetwork: connectedHubNetwork, connectedNetworkButton };
+  } else {
+    return {
+      connectedNetwork: null,
+      connectedNetworkButton: null,
+    };
+  }
+};
+
+/* Updates the button to show the connected network. */
+const displayConnectedAccount = async (connectedNetwork, networkButton) => {
+  if (!networkButton) return;
+  // eth_accounts does not prompt the wallet; only a button click should
+  const accounts = await provider.request({ method: 'eth_accounts' });
+  if (!accounts || accounts.length === 0) return;
+
+  const shortenedAccount = `${accounts[0].slice(0, 6)}...${accounts[0].slice(
+    -4
+  )}`;
+  networkButton.innerHTML = `Connected to ${connectedNetwork.chainName}: ${shortenedAccount}`;
+  networkButton.disabled = true;
+  networkButton.className += ' disabled-button';
+};
+
+// Displays an error message to the user
+const handleError = (message) => {
+  const errorModalContainer = document.querySelector('.error-modal-container');
+  const errorMessage = document.querySelector('.error-message');
+  errorModalContainer.style.display = 'block';
+  errorMessage.innerHTML = message;
+};
+
+/*
+ Handles the logic for the buttons inside of content pages.
+ Directly connect to the network specified in 'value'
+ */
+const connectMetaMaskBodyButtons =
+  document.querySelectorAll('.connect-metamask');
+connectMetaMaskBodyButtons.forEach((btn) => {
+  btn.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    if (!provider) {
+      handleError(
+        `No Ethereum-compatible wallet found. Please install MetaMask.`
+      );
+      return;
+    }
+
+    const network = btn.getAttribute('value');
+    if (!network || !supportedNetworks[network]) {
+      handleError(`The network "${network}" is not supported or not defined.`);
+      return;
+    }
+
+    await connectNetwork(network);
+    //Update the button to reflect the "connected" state
+    btn.textContent = 'Connected to ' + supportedNetworks[network]['name'];
+    btn.disabled = true;
+    btn.classList.add('disabled-button');
+  });
+});
+
+/* Resets the buttons to their default state. */
+const resetConnectButtons = () => {
+  connectMetaMaskBodyButtons.forEach((btn) => {
+    btn.textContent =
+      'Connect to ' + supportedNetworks[btn.getAttribute('value')]?.name;
+    btn.disabled = false;
+    btn.classList.remove('disabled-button');
+  });
+};
+
+/*
+ Keeps the buttons in sync with the wallet without reloading the page.
+ Some wallets (e.g. Core, Rabby, a locked MetaMask) emit accountsChanged([])
+ or chainChanged as soon as a page subscribes, so reloading here loops forever.
+ */
+const syncConnectButtons = async () => {
+  try {
+    resetConnectButtons();
+    const { connectedNetwork, connectedNetworkButton } =
+      await getConnectedNetwork();
+    if (connectedNetwork) {
+      await displayConnectedAccount(connectedNetwork, connectedNetworkButton);
+    }
+  } catch (e) {
+    // A locked wallet can reject these calls; keep the default buttons
+    console.debug('Could not sync wallet state', e);
+  }
+};
+
+// Loaded on every page, but only pages with buttons need wallet events
+if (provider && connectMetaMaskBodyButtons.length > 0) {
+  provider.on('chainChanged', syncConnectButtons);
+  provider.on('accountsChanged', syncConnectButtons);
+  // Show an existing connection on load; this never prompts the wallet
+  syncConnectButtons();
+}
