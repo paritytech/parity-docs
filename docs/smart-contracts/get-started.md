@@ -23,9 +23,9 @@ extra_rows:
   - title: '[OpenZeppelin Contracts Wizard for Polkadot](https://wizard.openzeppelin.com/polkadot)'
     tools: OpenZeppelin
     description: Generate ERC-20, ERC-721, and other OpenZeppelin-standard contracts without writing code
-  - title: '[Rust for PVM](/smart-contracts/overview.md#pvm)'
-    tools: "LLMs, coding agents"
-    description: Write PVM smart contracts natively in Rust; use AI assistants while native tooling matures
+  - title: '[Rust for PVM](/smart-contracts/rust-contracts.md)'
+    tools: "cargo-pvm-contract, pallet-revive-uapi"
+    description: Write PVM smart contracts natively in Rust and build them into PolkaVM program blobs
 -->
 <!-- INDEX TABLE END -->
 

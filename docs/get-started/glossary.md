@@ -362,7 +362,7 @@ The umbrella project that contains [Substrate](#substrate) (the blockchain frame
 
 ## Polkadot Virtual Machine (PVM)
 
-A custom virtual machine optimized for performance, leveraging a RISC-V-based architecture to support Solidity and any language that compiles to RISC-V. Specifically designed for the Polkadot ecosystem, enabling smart contract deployment and execution.
+A RISC-V-based virtual machine, implemented by PolkaVM, that runs smart contracts on the PVM backend of `pallet-revive`. Contracts reach it from Solidity through `resolc` or from Rust through `cargo-pvm-contract`. See [PolkaVM](/smart-contracts/polkavm.md).
 
 ## Polkadot Web
 

@@ -9,7 +9,7 @@ categories: Smart Contracts, Tooling
 
 ## Introduction
 
-[`resolc`](https://github.com/paritytech/revive) is the Solidity compiler for the PVM execution backend of `pallet-revive`. It compiles Solidity `v0.8` contracts to PolkaVM (PVM) bytecode, which runs on the [RISC-V](https://en.wikipedia.org/wiki/RISC-V)-based [PolkaVM](https://github.com/paritytech/polkavm) virtual machine.
+[`resolc`](https://github.com/paritytech/revive) is the Solidity compiler for the PVM execution backend of `pallet-revive`. It compiles Solidity `v0.8` contracts to PolkaVM (PVM) bytecode, which runs on the [RISC-V](https://en.wikipedia.org/wiki/RISC-V)-based [PolkaVM](/smart-contracts/polkavm.md) virtual machine.
 
 `revive` is the name of the overall compiler project, which includes the Yul parser, the code generation library, and other components. `resolc` is the compiler driver executable that combines those components into a single command-line tool. This page covers how to install `resolc`, compile contracts with it, and configure its PVM-specific settings.
 

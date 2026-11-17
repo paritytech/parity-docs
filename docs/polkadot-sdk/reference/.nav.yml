@@ -8,3 +8,4 @@ nav:
  - 'Cryptography': cryptography.md
  - 'Data Encoding': data-encoding.md
  - 'Chain Data': chain-data.md
+ - 'Governance Pallets': governance-pallets.md

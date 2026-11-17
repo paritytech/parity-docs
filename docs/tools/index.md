@@ -33,4 +33,4 @@ Task-based guides for reading chain state, submitting transactions, storing data
 
 ## Third-Party Tools
 
-Many community and third-party tools also work with Polkadot SDK-based chains, including Polkadot-API, Dedot, polkadot.js, Chopsticks, and ParaSpell. They are documented in the [Polkadot Developer Docs](https://developers.polkadot.com/reference/tools/chopsticks/).
+Many community and third-party tools also work with Polkadot SDK-based chains, including Polkadot-API, Dedot, polkadot.js, Chopsticks, and ParaSpell. See [Works With: Third-Party Tools](third-party-tools.md) for what each one does and where it is documented.

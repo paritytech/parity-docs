@@ -858,6 +858,14 @@ For detailed configuration options, see:
 
     [:octicons-arrow-right-24: Get Started](/polkadot-sdk/testing/zombienet-tests.md)
 
+-   <span class="badge guide">Guide</span> __Connect a Light Client__
+
+    ---
+
+    Connect smoldot or Substrate Connect to a local Zombienet network instead of an RPC node.
+
+    [:octicons-arrow-right-24: Get Started](/tools/light-clients.md#connect-to-a-local-network)
+
 -   <span class="badge external">External</span> __Zombienet Support__
 
     ---

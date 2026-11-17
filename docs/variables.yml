@@ -40,6 +40,20 @@ dependencies:
         rust_toolchain_macos: 1.88-aarch64-apple-darwin
         rust_toolchain_ubuntu: 1.88.0
   crates:
+    cargo_pvm_contract:
+      name: cargo-pvm-contract
+      version: 0.3.0
+    pallet_revive_uapi:
+      name: pallet-revive-uapi
+      version: 0.15.4
+      ignore_updates: true
+    polkavm:
+      name: polkavm
+      version: 0.35.0
+      ignore_updates: true
+    smoldot_light:
+      name: smoldot-light
+      version: 4.0.0
     subxt:
       name: subxt
       version: 0.50.1
@@ -80,6 +94,15 @@ dependencies:
       version: 0.24.0
       ignore_updates: true
   javascript_packages:
+    smoldot:
+      name: smoldot
+      version: 3.8.0
+    substrate_connect:
+      name: '@substrate/connect'
+      version: 2.1.8
+    substrate_connect_known_chains:
+      name: '@substrate/connect-known-chains'
+      version: 1.10.3
     dotns_cli:
       name: '@parity/dotns-cli'
       version: 2.0.0

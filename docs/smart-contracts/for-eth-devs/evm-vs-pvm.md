@@ -9,7 +9,7 @@ categories: Smart Contracts, Protocol Internals
 
 ## Introduction
 
-pallet-revive runs contracts on two backends. REVM executes standard EVM bytecode and is the default choice for existing Solidity projects. PVM runs contracts compiled to PolkaVM with [`resolc`](/smart-contracts/resolc.md); it is newer, and its tooling is still maturing.
+pallet-revive runs contracts on two backends. REVM executes standard EVM bytecode and is the default choice for existing Solidity projects. PVM runs contracts compiled to [PolkaVM](/smart-contracts/polkavm.md) with [`resolc`](/smart-contracts/resolc.md); it is newer, and its tooling is still maturing.
 
 This page covers the PVM backend. While PVM strives for maximum Ethereum compatibility, several fundamental design decisions create necessary divergences from the [EVM](https://ethereum.org/developers/docs/evm/). These differences represent trade-offs that enhance performance and resource management while maintaining accessibility for Solidity developers.
 

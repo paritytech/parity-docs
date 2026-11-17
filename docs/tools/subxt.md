@@ -355,7 +355,7 @@ Each item gives you the key and the value. With a dynamic address, decode them i
 
 ## Light Client Support
 
-Subxt can connect through an embedded [smoldot](light-clients.md) light client instead of an RPC node, using its `lightclient` module. Enable it with the `light-client` Cargo feature (not on by default). See the [`light_client.rs`](https://github.com/paritytech/subxt/blob/v{{ dependencies.crates.subxt.version }}/subxt/examples/light_client.rs) example in the Subxt repository.
+Subxt can connect through an embedded [smoldot](light-clients.md) light client instead of an RPC node, using its `lightclient` module. Enable it with the `light-client` Cargo feature (not on by default). See the [`light_client.rs`](https://github.com/paritytech/subxt/blob/v{{ dependencies.crates.subxt.version }}/subxt/examples/light_client.rs) example in the Subxt repository. To connect to a local network, see [Connect to a Local Network](/tools/light-clients.md#connect-to-a-local-network).
 
 ## Where to Go Next
 

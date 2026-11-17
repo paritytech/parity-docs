@@ -132,7 +132,7 @@ Now submit the new runtime to the chain using the Sudo pallet through Polkadot.j
     ![Sign and submit the transaction](/images/parachains/runtime-maintenance/runtime-upgrades/runtime-upgrade-06.webp)
 
 !!! info
-    On a governed chain, the same call goes through that chain's governance instead of Sudo.
+    On a governed chain, the same call goes through that chain's governance instead of Sudo. For the pallets that provide on-chain governance, see [Governance Pallets](/polkadot-sdk/reference/governance-pallets.md).
 
 After the transaction is included in a block, the runtime upgrade takes effect immediately.
 

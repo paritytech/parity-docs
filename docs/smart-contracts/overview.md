@@ -69,9 +69,9 @@ Both backends share the same Ethereum JSON-RPC interface, account model, and pre
 
 ### PVM
 
-[PolkaVM (PVM)](https://github.com/paritytech/polkavm) is a virtual machine based on the RISC-V instruction set. Solidity contracts run on PVM after you compile them with `resolc`. PVM can offer performance gains for computationally intensive workloads, but some low-level EVM behavior differs, particularly around inline assembly, code introspection, and contract creation. See [EVM vs PVM](/smart-contracts/for-eth-devs/evm-vs-pvm.md) for the full list of differences.
+[PolkaVM (PVM)](/smart-contracts/polkavm.md) is a virtual machine based on the RISC-V instruction set. Solidity contracts run on PVM after you compile them with `resolc`. PVM can offer performance gains for computationally intensive workloads, but some low-level EVM behavior differs, particularly around inline assembly, code introspection, and contract creation. See [EVM vs PVM](/smart-contracts/for-eth-devs/evm-vs-pvm.md) for the full list of differences.
 
-You can also write PVM contracts in Rust, though tooling for that path is limited.
+You can also write PVM contracts in Rust with `cargo-pvm-contract` and `pallet-revive-uapi`. See [Rust Contracts](/smart-contracts/rust-contracts.md); that tooling is still early.
 
 ## The resolc Compiler
 

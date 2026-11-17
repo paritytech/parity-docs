@@ -1,8 +1,10 @@
 nav:
 - 'Overview': overview.md
+- 'PolkaVM': polkavm.md
 - 'Get Started': get-started.md
 - 'Polkadot for Ethereum Developers': for-eth-devs
 - 'The resolc Compiler': resolc.md
+- 'Rust Contracts': rust-contracts.md
 - 'Ethereum JSON-RPC Adapter': eth-rpc-adapter.md
 - 'Cookbook': cookbook
 - 'Precompiles': precompiles
