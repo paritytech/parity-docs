@@ -112,6 +112,24 @@ To resume work after closing your terminal:
 1. Navigate to the repo root.
 2. Run `make serve`.
 
+## Pull Request Previews
+
+Every pull request that changes the docs gets a rendered preview on Cloudflare Pages. A bot comments the link on the pull request, for example `https://pr-12.parity-docs.pages.dev`, and the preview updates on every push.
+
+Previews use two workflows, so that secrets are never exposed to code from a pull request:
+
+- `.github/workflows/docs-preview-build.yml` builds the site on `pull_request`, with no secrets, so it also works for pull requests from forks.
+- `.github/workflows/docs-preview-deploy.yml` deploys the built files to Cloudflare Pages and posts the comment. It never checks out pull request code.
+
+One-time setup for maintainers:
+
+1. Create a Cloudflare API token with the **Cloudflare Pages: Edit** permission. Your account ID is shown in the dashboard, under **Workers & Pages** and on the account home page.
+2. Add the repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
+
+The first preview run creates the Pages project, named `parity-docs`. To use a different name, set the repository variable `CLOUDFLARE_PAGES_PROJECT`.
+
+Until the secrets are set, the deploy workflow skips the deploy with a warning. Production is unaffected: it deploys to GitHub Pages from `main`.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for how to contribute to this repository.
