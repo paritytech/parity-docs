@@ -20,7 +20,7 @@ XCM messages are intent-driven, outlining desired actions for the receiving bloc
 
 ## The Four Principles of XCM
 
-XCM adheres to four guiding principles that ensure robust and reliable communication across consensus systems:
+XCM adheres to four guiding principles for reliable communication across consensus systems:
 
 - **Asynchronous**: XCM messages operate independently of sender acknowledgment, avoiding delays due to blocked processes.
 - **Absolute**: XCM messages are guaranteed to be delivered and interpreted accurately, in order, and timely. Once a message is sent, one can be sure it will be processed as intended.
@@ -33,11 +33,11 @@ These principles guarantee that XCM provides a reliable framework for cross-chai
 
 ![Diagram of the XCM tech stack](/images/parachains/interoperability/get-started/intro-to-xcm-01.webp)
 
-The XCM tech stack is designed to facilitate seamless interoperable communication between chains that reside within the Polkadot ecosystem. XCM can be used to express the meaning of the messages over each of the communication channels.
+The XCM tech stack is designed for communication between chains that reside within the Polkadot ecosystem. XCM can be used to express the meaning of the messages over each of the communication channels.
 
 ## Core Functionalities of XCM
 
-XCM enhances cross-consensus communication by introducing several powerful features:
+XCM enhances cross-consensus communication with the following features:
 
 - **Programmability**: Supports dynamic message handling, allowing for more comprehensive use cases. Includes branching logic, safe dispatches for version checks, and asset operations like NFT management.
 - **Functional Multichain Decomposition**: Enables mechanisms such as remote asset locking, asset namespacing, and inter-chain state referencing, with contextual message identification.
