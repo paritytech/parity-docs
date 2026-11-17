@@ -91,7 +91,7 @@ Each crate in the runtime forwards a `try-runtime` feature to its dependencies. 
     --8<-- 'https://raw.githubusercontent.com/paritytech/polkadot-sdk/refs/tags/{{dependencies.repositories.polkadot_sdk.version}}/templates/parachain/runtime/Cargo.toml:88:92'
     ```
 
-- In the runtime APIs, implement [`frame_try_runtime::TryRuntime`](https://paritytech.github.io/polkadot-sdk/master/frame_try_runtime/trait.TryRuntime.html) behind the feature, delegating to `Executive`:
+- In the runtime APIs, implement [`frame_try_runtime::TryRuntime`](https://paritytech.github.io/polkadot-sdk/master/frame_try_runtime/inner/trait.TryRuntime.html) behind the feature, delegating to `Executive`:
 
     ```rust title="runtime/src/apis.rs"
     --8<-- 'https://raw.githubusercontent.com/paritytech/polkadot-sdk/refs/tags/{{dependencies.repositories.polkadot_sdk.version}}/templates/parachain/runtime/src/apis.rs:240:259'
