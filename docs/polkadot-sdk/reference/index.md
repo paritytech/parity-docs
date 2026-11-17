@@ -8,9 +8,9 @@ categories: Basics, Polkadot SDK
 
 ## Introduction
 
-A Parachain is a specialized blockchain that connects to the Polkadot relay chain, benefiting from shared security, interoperability, and scalability. Parachains are built using the [Polkadot SDK](https://github.com/paritytech/polkadot-sdk), a powerful toolkit written in Rust that provides everything needed to create custom blockchain logic while integrating seamlessly with the Polkadot network.
+A Parachain is a specialized blockchain that connects to the Polkadot relay chain, benefiting from shared security, interoperability, and scalability. Parachains are built using the [Polkadot SDK](https://github.com/paritytech/polkadot-sdk), a Rust toolkit that provides what you need to build custom blockchain logic and connect it to a relay chain.
 
-Unlike standalone blockchains that must bootstrap their own validator sets and security, parachains leverage Polkadot's pooled security model. This allows parachain developers to focus on their application-specific functionality rather than consensus and security infrastructure. Parachains can communicate with each other through Cross-Consensus Messaging (XCM), enabling seamless interoperability across the Polkadot ecosystem.
+Unlike standalone blockchains that must bootstrap their own validator sets and security, parachains use the relay chain's shared security. This allows parachain developers to focus on their application-specific functionality rather than consensus and security infrastructure. Parachains communicate with each other and with the relay chain through Cross-Consensus Messaging (XCM).
 
 Key capabilities that parachains provide include:
 
