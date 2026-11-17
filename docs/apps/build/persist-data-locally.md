@@ -18,7 +18,7 @@ This guide covers the `@parity/product-sdk-local-storage` package, which provide
 
 Before getting started, ensure you have:
 
-- A Polkadot Product project running locally (see [Set Up Your Project](/apps/build/#set-up-your-project))
+- A Polkadot Product project running locally (see [Set Up Your Project](/apps/build/index.md#set-up-your-project))
 - Node.js 20 or later with ESM support (`@parity/product-sdk-local-storage` is ESM only)
 
 ## Install the SDK
@@ -121,7 +121,7 @@ To remove a key, access `app.localStorage` from `useProductSDK()` directly:
 - Storage is not synced across devices. Values written on one Host instance are not visible on another.
 - `app.localStorage` and every `LocalKvStore` are scoped to your Product. You cannot read or modify another Product's keys.
 - React hooks (`useLocalStorage`, `useLocalStorageString`) are only available via the umbrella package `@parity/product-sdk`. The standalone `@parity/product-sdk-local-storage` package exposes no React hooks.
-- `createLocalKvStore()` requires a Host backend. Running outside a host container, it throws `Host storage unavailable`; there is no browser `localStorage` fallback. Run your Product inside [Polkadot Desktop](/reference/apps/hosts/polkadot-desktop/) to use local storage. See [`Host storage unavailable`](/apps/troubleshooting/#uploads-are-rejected-or-host-storage-unavailable) in troubleshooting.
+- `createLocalKvStore()` requires a Host backend. Running outside a host container, it throws `Host storage unavailable`; there is no browser `localStorage` fallback. Run your Product inside [Polkadot Desktop](https://developers.polkadot.com/reference/apps/hosts/polkadot-desktop/) to use local storage. See [`Host storage unavailable`](/apps/troubleshooting.md#uploads-are-rejected-or-host-storage-unavailable) in troubleshooting.
 
 ## Where to Go Next
 
@@ -133,7 +133,7 @@ To remove a key, access `app.localStorage` from `useProductSDK()` directly:
 
     When data must outlive the device and be fetchable by anyone, move it to the Bulletin Chain.
 
-    [:octicons-arrow-right-24: Store Data on Chain](/apps/build/store-data-on-chain/)
+    [:octicons-arrow-right-24: Store Data on Chain](/apps/build/store-data-on-chain.md)
 
 -   <span class="badge guide">Guide</span> **Deploy Your Product**
 
@@ -141,7 +141,7 @@ To remove a key, access `app.localStorage` from `useProductSDK()` directly:
 
     You've covered the capabilities; ship your Product to a live `.dot` name with the Quick Start deploy routes.
 
-    [:octicons-arrow-right-24: Quick Start](/apps/quick-start/)
+    [:octicons-arrow-right-24: Quick Start](/apps/quick-start.md)
 
 -   <span class="badge external">External</span> **Product SDK API Reference**
 

@@ -1,5 +1,0 @@
-nav:
- - 'Overview': index.md
- - 'Authorization': authorization.md
- - 'Chunked Uploads': chunked-upload.md
- - 'Renewal': renewal.md

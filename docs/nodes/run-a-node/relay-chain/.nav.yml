@@ -1,0 +1,4 @@
+nav:
+ - 'Install and Run a Node': full-node.md
+ - 'Set Up a Bootnode': bootnode.md
+ - 'Set Up Secure WebSocket': secure-wss.md

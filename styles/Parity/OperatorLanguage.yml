@@ -1,0 +1,15 @@
+---
+# Local (not vendored): Parity writes software; it does not run, host or
+# operate live networks, endpoints, faucets, directories or app builds.
+# Name the real operator, or describe "a network running <software>", instead.
+# Maintaining or publishing software is fine ("Parity maintains Subxt"), so
+# "maintained by Parity" is not flagged. See "Authors, not operators" in AGENTS.md.
+extends: existence
+message: "Parity is an author, not an operator: '%s'. Name the operator, or describe the software instead."
+level: error
+ignorecase: true
+nonword: true
+tokens:
+  - '\bParity(?: Technologies)?:? (?:runs|hosts|operates|deploys|launches|provides public)\b'
+  - '\bParity(?: Technologies)?[- ](?:hosted|run|operated)\b'
+  - '\b(?:hosted|operated|run|provided) by Parity\b'

@@ -28,16 +28,16 @@ The account has two address forms, both derived from the same public key:
 
 Derivation follows a junction path of `["product", productId, derivationIndex]` applied with sr25519 soft derivation, where `productId` is normally your `.dot` name. Because soft derivation is composable on public keys, the CLI, a web Host, or any external client can compute the same address the mobile wallet derives privately, without ever seeing the secret key.
 
-Your Product obtains this account through the [`signer`](/apps/product-sdk/signer/) package (`getProductAccount`) and signs with it; every approval routes to the user's phone. See [Sign and Submit Transactions](/apps/build/sign-and-submit/) for the working flow.
+Your Product obtains this account through the [`signer`](/apps/product-sdk/signer.md) package (`getProductAccount`) and signs with it; every approval routes to the user's phone. See [Sign and Submit Transactions](/apps/build/sign-and-submit.md) for the working flow.
 
 !!! info "Why per-app derivation"
-    If every Product saw the same account for a user, any two Products could compare accounts and correlate the user across them. Per-Product derivation makes that impossible by default: different Products see different, unlinkable addresses for the same person. Sharing an account across your own Products is possible, but it requires an explicit permission grant; it is never the default. The same reasoning governs the sandbox model in the [TrUAPI reference](/reference/apps/protocol/truapi/sandbox/).
+    If every Product saw the same account for a user, any two Products could compare accounts and correlate the user across them. Per-Product derivation makes that impossible by default: different Products see different, unlinkable addresses for the same person. Sharing an account across your own Products is possible, but it requires an explicit permission grant; it is never the default. The same reasoning governs the sandbox model in the [TrUAPI reference](/apps/reference/protocol/truapi/sandbox.md).
 
 ## Proof of Personhood
 
-[Proof of Personhood](/reference/apps/infrastructure/pop/) is a separate signal that a user is a unique human. It always has a tier and a per-app alias, and it sometimes has an earned name:
+[Proof of Personhood](/apps/reference/infrastructure/pop/index.md) is a separate signal that a user is a unique human. It always has a tier and a per-app alias, and it sometimes has an earned name:
 
-- **A tier**: The strength of the proof, from none, through an attested proof of a unique device, to full personhood, proven in the Polkadot App. The [Proof of Personhood reference](/reference/apps/infrastructure/pop/) names the tiers.
+- **A tier**: The strength of the proof, from none, through an attested proof of a unique device, to full personhood, proven in the Polkadot App. The [Proof of Personhood reference](/apps/reference/infrastructure/pop/index.md) names the tiers.
 - **A per-app alias**: A Ring-VRF-derived identifier that is deterministic for a given user and Product, and unlinkable across Products.
 - **An earned name**: The human-readable name the personhood gateway issues to a user who has proved a tier, such as `joseph.42`.
 
@@ -47,7 +47,7 @@ An alias is never an account address, and — like the per-app account — it is
 
 An earned name is the one part of a user's identity that is human-readable and stable across Products. The personhood gateway issues it rather than the public registration path, which gives it properties a name bought with a deposit does not have: it is soulbound, so it never transfers, and it is not free-form, because the gateway decides the shape it issues.
 
-Read it with `getUserId` from the [`signer`](/apps/product-sdk/signer/) package, which returns it as `primaryUsername`. A user with no personhood tier has no earned name, so treat it as optional and always have a fallback. For the call and its caveats, see [Show a Display Name](/apps/build/sign-and-submit/#show-a-display-name).
+Read it with `getUserId` from the [`signer`](/apps/product-sdk/signer.md) package, which returns it as `primaryUsername`. A user with no personhood tier has no earned name, so treat it as optional and always have a fallback. For the call and its caveats, see [Show a Display Name](/apps/build/sign-and-submit.md#show-a-display-name).
 
 !!! info "One name, several labels"
     These docs call this the **earned name**, the term the dotNS reference uses for a name the gateway grants. A name that identifies a person is a _personhood name_ and one that identifies a proved device is a _device name_; the SDK returns either as `primaryUsername`.
@@ -59,17 +59,17 @@ Read it with `getUserId` from the [`signer`](/apps/product-sdk/signer/) package,
 
 There is no built-in primitive for an in-app username, so most Products need to choose a display identity themselves. Until a primitive exists, the recommended pattern keeps you aligned with the platform's identity model rather than inventing a parallel one:
 
-- **Prefer the earned name where you have it.** When the user holds any personhood tier, read the username the platform already associates with them (through the [`signer`](/apps/product-sdk/signer/) package's `getUserId`) and use it as the display name. This reuses an identity the user already has instead of minting a new one. See [Show a Display Name](/apps/build/sign-and-submit/#show-a-display-name) for the call and its caveats.
-- **Otherwise, let the user set a per-Product display name** and store it in [local storage](/apps/product-sdk/local-storage/) (device-local) or [cloud storage](/apps/product-sdk/cloud-storage/) (shared), keyed to their per-app account. Keep it scoped to your Product so it does not become a cross-Product identifier.
+- **Prefer the earned name where you have it.** When the user holds any personhood tier, read the username the platform already associates with them (through the [`signer`](/apps/product-sdk/signer.md) package's `getUserId`) and use it as the display name. This reuses an identity the user already has instead of minting a new one. See [Show a Display Name](/apps/build/sign-and-submit.md#show-a-display-name) for the call and its caveats.
+- **Otherwise, let the user set a per-Product display name** and store it in [local storage](/apps/product-sdk/local-storage.md) (device-local) or [cloud storage](/apps/product-sdk/cloud-storage.md) (shared), keyed to their per-app account. Keep it scoped to your Product so it does not become a cross-Product identifier.
 - **Do not treat a display name as identity.** Authorization and uniqueness come from the per-app account and Proof of Personhood; a display name is a label on top of them.
 
 Following this pattern means Products converge on the same approach instead of each reinventing usernames, which eases any future migration to a platform primitive.
 
 ## Your Product's `.dot` Address
 
-A [`.dot` name](/apps/register-dot-domain/) is registered with [dotNS](/reference/apps/infrastructure/dotns/) and resolves to a content record: the CID of a published Product bundle. Ownership of a name is held by a Polkadot Hub account, but the name is not an account and cannot sign.
+A [`.dot` name](/apps/register-dot-domain.md) is registered with [dotNS](/apps/reference/infrastructure/dotns/index.md) and resolves to a content record: the CID of a published Product bundle. Ownership of a name is held by a Polkadot Hub account, but the name is not an account and cannot sign.
 
-Transferability depends on how the name was acquired. A name anyone registered by paying the deposit can be transferred. A name earned through the personhood gateway, the route that grants device and personhood names, cannot move: it identifies the person or device that earned it, and it stays with them. Most names point at _content_ rather than at a user, but a gateway name identifies an identity (a personhood name names a person, and a device name names a unique device its holder proved), so a client that needs to tell the kinds apart should read `isPopIssued(label)` on the PoP controller rather than inspect the string. See [PopRules and Pricing](/reference/apps/infrastructure/dotns/poprules-pricing/).
+Transferability depends on how the name was acquired. A name anyone registered by paying the deposit can be transferred. A name earned through the personhood gateway, the route that grants device and personhood names, cannot move: it identifies the person or device that earned it, and it stays with them. Most names point at _content_ rather than at a user, but a gateway name identifies an identity (a personhood name names a person, and a device name names a unique device its holder proved), so a client that needs to tell the kinds apart should read `isPopIssued(label)` on the PoP controller rather than inspect the string. See [PopRules and Pricing](/apps/reference/infrastructure/dotns/poprules-pricing.md).
 
 A name is how users reach your Product; it is not how your Product identifies a user. The confusion is that both live in the same namespace: a name registered by paying the deposit points at content, while a name earned through the gateway points at a person or a device.
 
@@ -91,7 +91,7 @@ None of these reveals the user's root key. The per-app account and the personhoo
 
     Derive and sign with the per-app account in your Product.
 
-    [:octicons-arrow-right-24: Sign and Submit Transactions](/apps/build/sign-and-submit/)
+    [:octicons-arrow-right-24: Sign and Submit Transactions](/apps/build/sign-and-submit.md)
 
 -   <span class="badge learn">Learn</span> **Proof of Personhood**
 
@@ -99,7 +99,7 @@ None of these reveals the user's root key. The per-app account and the personhoo
 
     The Ring-VRF mechanism, tiers, and per-app aliases in depth.
 
-    [:octicons-arrow-right-24: Reference](/reference/apps/infrastructure/pop/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/index.md)
 
 -   <span class="badge learn">Learn</span> **The Sandbox Model**
 
@@ -107,6 +107,6 @@ None of these reveals the user's root key. The per-app account and the personhoo
 
     How the Host isolates each Product and derives its per-domain account.
 
-    [:octicons-arrow-right-24: Reference](/reference/apps/protocol/truapi/sandbox/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/sandbox.md)
 
 </div>

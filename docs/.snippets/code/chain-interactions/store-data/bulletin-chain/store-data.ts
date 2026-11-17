@@ -11,8 +11,11 @@ import { getTxCreator } from 'polkadot-api/tx-creator';
 import { CID } from 'multiformats/cid';
 import { readFile } from 'fs/promises';
 
-// Bulletin Chain Polkadot TestNet RPC endpoint
-const BULLETIN_RPC = 'wss://paseo-bulletin-next-rpc.polkadot.io';
+// WebSocket endpoint of the Bulletin Chain node you connect to
+const BULLETIN_RPC = 'INSERT_BULLETIN_WS_ENDPOINT';
+
+// Base URL of an IPFS gateway that serves Bulletin Chain data
+const IPFS_GATEWAY = 'INSERT_IPFS_GATEWAY_URL';
 
 // Path to the image you want to store
 const FILE_PATH = 'INSERT_IMAGE_PATH';
@@ -24,7 +27,7 @@ async function main() {
   // Get the typed API for the Bulletin Chain
   const api = client.getTypedApi(bulletin);
 
-  console.log('Connected to Bulletin Chain (Polkadot TestNet)');
+  console.log('Connected to Bulletin Chain');
 
   // Derive a signer from a mnemonic
   const miniSecret = entropyToMiniSecret(mnemonicToEntropy(DEV_PHRASE));
@@ -62,7 +65,7 @@ async function main() {
       console.log(`Content hash: ${event.value.value.content_hash}`);
       console.log(`CID: ${cid.toString()}`);
       console.log(`\nRetrieve via IPFS gateway:`);
-      console.log(`https://paseo-bulletin-next-ipfs.polkadot.io/ipfs/${cid.toString()}`);
+      console.log(`${IPFS_GATEWAY}/ipfs/${cid.toString()}`);
     }
   }
 

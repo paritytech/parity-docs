@@ -1,42 +1,29 @@
 ---
 title: Get Started with Smart Contracts
-description: Practical examples for building and deploying smart contracts on Polkadot Hub, from connecting and tooling to deployment, integrations, and precompiles.
+description: Start building smart contracts on pallet-revive with a local development node and Hardhat Polkadot, then connect to a live network when you are ready.
 categories: Basics, Smart Contracts
 ---
 
 # Get Started with Smart Contracts
 
-This resource provides quick-starts for building smart contracts on Polkadot Hub. Use the tables below to jump directly to the tools and workflows you need.
+## Introduction
 
-## Quick Starts
+This page collects the starting points for building smart contracts on [pallet-revive](/smart-contracts/overview.md). Start with a local development environment, then connect to a live network such as Polkadot Hub when you are ready to deploy. To run pallet-revive on your own chain, see [Add pallet-revive to Your Runtime](/polkadot-sdk/customize-runtime/add-pallet-revive.md).
 
-Use these curated links to get connected, get funded, and deploy your first contract.
-
-|                     Quick Start                     |         Tools         |                           Description                           |
-|-----------------------------------------------------|-----------------------|-----------------------------------------------------------------|
-|  [Connect to Polkadot](/smart-contracts/connect/)   | Polkadot.js, MetaMask | Add the network, configure RPC, verify activity in the explorer |
-|     [Get Test Tokens](/smart-contracts/faucet/)     |           -           |    Request test funds to deploy and interact with contracts     |
-| [Explore Transactions](/smart-contracts/explorers/) | BlockScout, Routescan, Subscan | Inspect transactions, logs, token transfers, and contract state |
+pallet-revive runs contracts on two backends. REVM executes standard EVM bytecode and is the default choice for existing Solidity projects. PVM runs contracts compiled to PolkaVM with [`resolc`](/smart-contracts/resolc.md); it is newer, and its tooling is still maturing.
 
 ## Build and Test Locally
 
-Set up local environments and CI-friendly workflows to iterate quickly and validate changes before deploying.
+Run a local chain and iterate on your contracts before deploying anywhere. The local development node serves Ethereum JSON-RPC at `{{ networks.local.eth_rpc_url }}`.
 
 <!-- INDEX TABLE START
 dir: dev-environments
 flat: true
-overrides:
-  remix.md:
-    title: Use Remix for Development
-  hardhat.md:
-    title: Use Hardhat for Development
-  foundry.md:
-    title: Use Foundry for Development
 extra_rows:
-  - title: '[OpenZeppelin Contracts Wizard for Polkadot](https://wizard.openzeppelin.com/polkadot){target=\_blank}'
+  - title: '[OpenZeppelin Contracts Wizard for Polkadot](https://wizard.openzeppelin.com/polkadot)'
     tools: OpenZeppelin
-    description: Generate ERC-20, ERC-721, and other OpenZeppelin-standard contracts for Polkadot Hub without writing code
-  - title: '[Rust for PVM](/smart-contracts/for-eth-devs/dual-vm-stack/#alternative-pvm-backend)'
+    description: Generate ERC-20, ERC-721, and other OpenZeppelin-standard contracts without writing code
+  - title: '[Rust for PVM](/smart-contracts/overview.md#pvm)'
     tools: "LLMs, coding agents"
     description: Write PVM smart contracts natively in Rust; use AI assistants while native tooling matures
 -->
@@ -44,17 +31,21 @@ extra_rows:
 
 ## Ethereum Tool Differences on Polkadot EVM
 
-Tools like **Foundry** and **Hardhat** are built for standard Ethereum nodes. Polkadot EVM networks (such as Polkadot Hub) use the same [Ethereum JSON-RPC](https://ethereum.org/developers/docs/apis/json-rpc/){target=\_blank} interface, but run on a different execution environment (Substrate with REVM or PVM). As a result:
+Tools like Foundry and Hardhat are built for standard Ethereum nodes. A chain running pallet-revive exposes the same [Ethereum JSON-RPC](https://ethereum.org/developers/docs/apis/json-rpc/) interface through the [`eth-rpc` adapter](/smart-contracts/eth-rpc-adapter.md), but executes contracts in a different environment (a Polkadot SDK runtime with the REVM or PVM backend). As a result:
 
-- **Local tests** (e.g., `forge test`, Hardhat's default network) run in the tool's own EVM, not Polkadot's—so behavior can differ from the real chain.
-- **Time and snapshot helpers** (e.g., `evm_increaseTime`, `loadFixture`) are often not supported on Polkadot nodes.
-- **Gas reports** from these tools may not match what you see on-chain.
+- **Local tests** (for example, `forge test` or Hardhat's default network) run in the tool's own EVM, not in pallet-revive, so behavior can differ from the real chain.
+- **Time and snapshot helpers** (for example, `evm_increaseTime` or `loadFixture`) are often not supported by the adapter.
+- **Gas reports** from these tools may not match the gas charged on-chain.
 
-**Recommendation:** To check chain-specific behavior, run your contracts against a [local dev node](/smart-contracts/dev-environments/local-dev-node/) or a TestNet. For more details, see [EVM vs PVM](/smart-contracts/for-eth-devs/evm-vs-pvm/) and [Contract Deployment](/smart-contracts/for-eth-devs/contract-deployment/).
+To check chain-specific behavior, run your contracts against a [local development node](/smart-contracts/dev-environments/local-dev-node.md). For more details, see [EVM vs PVM](/smart-contracts/for-eth-devs/evm-vs-pvm.md), [Gas Model](/smart-contracts/for-eth-devs/gas-model.md), and [Contract Deployment](/smart-contracts/for-eth-devs/contract-deployment.md). Guides for using third-party tools such as Remix, Foundry, and vanilla Hardhat are on the [Polkadot Developer Docs](https://developers.polkadot.com/smart-contracts/overview/).
+
+## Connect to a Network
+
+When you are ready to deploy to a live network, see [Connect to Polkadot](https://developers.polkadot.com/smart-contracts/connect/) on the Polkadot Developer Docs for network details, test tokens, and block explorers.
 
 ## Ethereum Developer Resources
 
-Bridge your Ethereum knowledge with Polkadot Hub specifics: account mapping, fees, JSON-RPC, and deployment.
+Learn how pallet-revive differs from Ethereum: account mapping, gas and fees, JSON-RPC, and deployment.
 
 <!-- INDEX TABLE START
 dir: for-eth-devs
@@ -69,37 +60,23 @@ Follow step-by-step guides that walk through common tasks and complete dApp exam
 
 |                                            Tutorial                                            |        Tools        |                Description                |
 |------------------------------------------------------------------------------------------------|---------------------|-------------------------------------------|
-| [Deploy a Basic Contract](/smart-contracts/cookbook/smart-contracts/deploy-basic/basic-remix/) |        Remix        |      Minimal deployment walkthrough       |
-|    [Deploy an ERC-20](/smart-contracts/cookbook/smart-contracts/deploy-erc20/erc20-remix/)     | Remix, OpenZeppelin | Create, deploy, and mint a fungible token |
-|   [Deploy an NFT (ERC-721)](/smart-contracts/cookbook/smart-contracts/deploy-nft/nft-remix/)   | Remix, OpenZeppelin |    Build and deploy an NFT collection     |
-|                 [Uniswap V2](/smart-contracts/cookbook/eth-dapps/uniswap-v2/)                  |       Hardhat       | Full dApp project: compile, test, deploy  |
-|               [Zero‑to‑Hero dApp](/smart-contracts/cookbook/dapps/zero-to-hero/)               |      Multiple       |  End‑to‑end dApp patterns and practices   |
+| [Deploy a Basic Contract](https://developers.polkadot.com/smart-contracts/cookbook/smart-contracts/deploy-basic/basic-remix/) |        Remix        |      Minimal deployment walkthrough       |
+|    [Deploy an ERC-20](https://developers.polkadot.com/smart-contracts/cookbook/smart-contracts/deploy-erc20/erc20-remix/)     | Remix, OpenZeppelin | Create, deploy, and mint a fungible token |
+|   [Deploy an NFT (ERC-721)](https://developers.polkadot.com/smart-contracts/cookbook/smart-contracts/deploy-nft/nft-remix/)   | Remix, OpenZeppelin |    Build and deploy an NFT collection     |
+|                 [Uniswap V2](https://developers.polkadot.com/smart-contracts/cookbook/eth-dapps/uniswap-v2/)                  |       Hardhat       | Full dApp project: compile, test, deploy  |
+|               [Zero‑to‑Hero dApp](https://developers.polkadot.com/smart-contracts/cookbook/dapps/zero-to-hero/)               |      Multiple       |  End‑to‑end dApp patterns and practices   |
 
 ## Libraries
 
-Choose the client libraries that fit your stack for connecting wallets and calling contracts.
-
-<!-- INDEX TABLE START
-dir: libraries
-flat: true
-columns: [title, description]
--->
-<!-- INDEX TABLE END -->
+pallet-revive exposes the standard Ethereum JSON-RPC API through the [`eth-rpc` adapter](for-eth-devs/json-rpc-apis.md), so Ethereum client libraries such as ethers.js, viem, and wagmi work unchanged. Setup guides for these libraries are in the [Polkadot Developer Docs](https://developers.polkadot.com/smart-contracts/libraries/ethers-js/).
 
 ## Integrations
 
-Integrate essential services like wallets, indexers, and oracles to round out your dApp.
-
-<!-- INDEX TABLE START
-dir: integrations
-flat: true
-columns: [title, description]
--->
-<!-- INDEX TABLE END -->
+Wallets and other integrations for dApps are covered in the [Polkadot Developer Docs](https://developers.polkadot.com/smart-contracts/integrations/wallets/).
 
 ## Precompiles
 
-Discover precompiled system contracts available on the Hub and how to use them.
+Discover the precompiles that pallet-revive implements and how to use them.
 
 <!-- INDEX TABLE START
 dir: precompiles
@@ -108,4 +85,4 @@ columns: [title, description]
 -->
 <!-- INDEX TABLE END -->
 
-From here, follow the quick starts to get connected, iterate locally with your preferred tools, and use the guides, libraries, integrations, and precompiles as you grow into production‑ready dApps. If you get stuck, [open an issue](https://github.com/polkadot-developers/polkadot-docs/issues/new?template=docs-issue.yml){target=\_blank} or reach out in the community channels.
+From here, iterate locally with the development node and Hardhat Polkadot, connect to a network when you are ready, and use the guides, libraries, integrations, and precompiles as you grow into production-ready dApps. If you get stuck, [open an issue](https://github.com/paritytech/parity-docs/issues/new?template=docs-issue.yml) or reach out in the community channels.

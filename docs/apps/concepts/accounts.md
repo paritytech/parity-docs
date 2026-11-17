@@ -34,20 +34,20 @@ A product account is derived deterministically from `["product", productId, deri
 - Inside a Host, your frontend derives its `productId` from where it is loaded: `localhost` maps to `playground.dot`, a `<name>.dot.li` gateway URL maps to `<name>.dot`, and otherwise it falls back to `playground.dot`. The derivation index is `0`.
 - The CLI session derives its own product account from the identifier it was paired under.
 
-The consequence: the account your running frontend signs with, and the account the CLI deployed under, are the **same only if their `productId` and index match**. A Product loaded from `localhost` (deriving under `playground.dot`) uses a different account than the same Product loaded from `my-app.dot.li` (deriving under `my-app.dot`). See [Identity](/apps/concepts/identity/) for the full derivation model.
+The consequence: the account your running frontend signs with, and the account the CLI deployed under, are the **same only if their `productId` and index match**. A Product loaded from `localhost` (deriving under `playground.dot`) uses a different account than the same Product loaded from `my-app.dot.li` (deriving under `my-app.dot`). See [Identity](/apps/concepts/identity.md) for the full derivation model.
 
 ## Why This Causes `no allowance set for account`
 
-Storage and messaging [allowances](/apps/concepts/allowances/) are granted **per account**. A missing allowance is rejected independently of your token balance: even with enough PAS to cover fees, the service rejects the request if the signing account has no allowance.
+Storage and messaging [allowances](/apps/concepts/allowances.md) are granted **per account**. A missing allowance is rejected independently of your token balance: even with enough PAS to cover fees, the service rejects the request if the signing account has no allowance.
 
-So the failure is almost always an account mismatch: you granted the allowance (or storage authorization) to one account, but the account that actually signed was a different one — a dev key instead of the phone account, or a product account derived under a different `productId` than you expected. The fix is to grant the allowance to the account that actually signs, and to keep the `productId` consistent between where you request the allowance and where you sign. See the [troubleshooting entry](/apps/troubleshooting/#no-allowance-set-for-account) for the step-by-step resolution.
+So the failure is almost always an account mismatch: you granted the allowance (or storage authorization) to one account, but the account that actually signed was a different one — a dev key instead of the phone account, or a product account derived under a different `productId` than you expected. The fix is to grant the allowance to the account that actually signs, and to keep the `productId` consistent between where you request the allowance and where you sign. See the [troubleshooting entry](/apps/troubleshooting.md#no-allowance-set-for-account) for the step-by-step resolution.
 
 ## See the Signing Address
 
 Before granting an allowance, confirm which account will sign:
 
 - **From the CLI**: Run `pg status`. It prints the product account paired with your phone in both encodings — the SS58 address and its H160 (EVM) form — along with its PAS and PGAS balances and the state of its Bulletin allowance. It is read-only: it signs nothing and submits no transactions, so it is safe to run at any point. `pg login` prints the same two addresses when a session is established.
-- **In a Host**: A Product running inside Polkadot Desktop or Web can read its product account through the [`signer`](/apps/product-sdk/signer/) package (`getProductAccount`), which returns the account's SS58 address and its H160 (EVM) form. Surfacing that address in your Product's own UI during development is the most reliable way to know what your frontend is signing with.
+- **In a Host**: A Product running inside Polkadot Desktop or Web can read its product account through the [`signer`](/apps/product-sdk/signer.md) package (`getProductAccount`), which returns the account's SS58 address and its H160 (EVM) form. Surfacing that address in your Product's own UI during development is the most reliable way to know what your frontend is signing with.
 
 !!! note "The two addresses are one key"
     `pg status` reports the SS58 and the H160 as separate rows, but they are two encodings of the same product account, not two accounts. Fund and authorize the SS58 form; `pallet-revive` contracts see the H160 form as `caller()`.
@@ -65,7 +65,7 @@ Before granting an allowance, confirm which account will sign:
 
     What an allowance authorizes, and how to grant it to the right account.
 
-    [:octicons-arrow-right-24: Allowances and Permissions](/apps/concepts/allowances/)
+    [:octicons-arrow-right-24: Allowances and Permissions](/apps/concepts/allowances.md)
 
 -   <span class="badge learn">Learn</span> **Identity**
 
@@ -73,7 +73,7 @@ Before granting an allowance, confirm which account will sign:
 
     The per-Product account derivation model and why accounts differ across Products.
 
-    [:octicons-arrow-right-24: Identity](/apps/concepts/identity/)
+    [:octicons-arrow-right-24: Identity](/apps/concepts/identity.md)
 
 -   <span class="badge guide">Guide</span> **Get TestNet Tokens**
 
@@ -81,6 +81,6 @@ Before granting an allowance, confirm which account will sign:
 
     Fund the signing account and grant it the service allowances it needs.
 
-    [:octicons-arrow-right-24: Get TestNet Tokens](/apps/get-started/get-testnet-tokens/)
+    [:octicons-arrow-right-24: Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/)
 
 </div>

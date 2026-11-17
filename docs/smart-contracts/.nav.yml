@@ -1,12 +1,9 @@
 nav:
 - 'Overview': overview.md
 - 'Get Started': get-started.md
-- 'Connect to Polkadot': connect.md
-- 'Explorers': explorers.md
-- 'Faucet': faucet.md
 - 'Polkadot for Ethereum Developers': for-eth-devs
+- 'The resolc Compiler': resolc.md
+- 'Ethereum JSON-RPC Adapter': eth-rpc-adapter.md
 - 'Cookbook': cookbook
 - 'Precompiles': precompiles
 - 'Development Environments': dev-environments
-- 'Libraries': libraries
-- 'Integrations': integrations

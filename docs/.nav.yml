@@ -1,11 +1,11 @@
 nav:
   - 'Home': index.md
-  - 'Apps': apps
+  - 'Get Started': get-started
+  - 'Polkadot SDK': polkadot-sdk
   - 'Smart Contracts': smart-contracts
-  - 'Parachains': parachains
-  - 'Chain Interactions': chain-interactions
-  - 'Node Infrastructure': node-infrastructure
-  - 'Tech Reference': reference
+  - 'Apps': apps
+  - 'Nodes': nodes
+  - 'Tools': tools
   - 'AI Resources': ai-resources.md
   - 'Support': get-support.md
   - 'Policies': policies

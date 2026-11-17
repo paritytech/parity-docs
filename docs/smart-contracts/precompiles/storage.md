@@ -26,7 +26,7 @@ The Storage precompile implements the `IStorage` interface, which is defined in 
 --8<-- "https://raw.githubusercontent.com/paritytech/polkadot-sdk/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi/sol/IStorage.sol"
 ```
 
-For the complete implementation, refer to the [IStorage.sol](https://github.com/paritytech/polkadot-sdk/blob/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi/sol/IStorage.sol){target=\_blank} file in the Polkadot SDK.
+For the complete implementation, refer to the [IStorage.sol](https://github.com/paritytech/polkadot-sdk/blob/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi/sol/IStorage.sol) file in the Polkadot SDK.
 
 ## Reading Storage
 
@@ -233,7 +233,7 @@ if (size > 10000) {
 
 ## Interact with the Storage Precompile
 
-To interact with the Storage precompile in [Remix IDE](/smart-contracts/dev-environments/remix/){target=\_blank}:
+To interact with the Storage precompile in [Remix IDE](https://developers.polkadot.com/smart-contracts/dev-environments/remix/):
 
 1. Create a new file called `IStorage.sol` in Remix.
 2. Copy and paste the `IStorage` interface code into the file.
@@ -259,5 +259,5 @@ Whether you're building custom data structures that require specific storage lay
 
 ## Reference
 
-- [IStorage.sol source code](https://github.com/paritytech/polkadot-sdk/blob/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi/sol/IStorage.sol){target=\_blank}
-- [Revive uapi directory](https://github.com/paritytech/polkadot-sdk/tree/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi){target=\_blank}
+- [IStorage.sol source code](https://github.com/paritytech/polkadot-sdk/blob/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi/sol/IStorage.sol)
+- [Revive uapi directory](https://github.com/paritytech/polkadot-sdk/tree/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi)

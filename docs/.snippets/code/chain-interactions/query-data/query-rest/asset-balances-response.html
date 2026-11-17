@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-  <span data-ty="input"><span class="file-path"></span>curl -s "https://polkadot-asset-hub-public-sidecar.parity-chains.parity.io/accounts/INSERT_ADDRESS/asset-balances?assets[]=1984"</span>
+  <span data-ty="input"><span class="file-path"></span>curl -s "http://127.0.0.1:8080/v1/accounts/INSERT_ADDRESS/asset-balances?assets[]=INSERT_ASSET_ID"</span>
   <pre>
 {
   "at": {
@@ -8,7 +8,7 @@
   },
   "assets": [
     {
-      "assetId": "1984",
+      "assetId": "INSERT_ASSET_ID",
       "balance": "1000000",
       "isFrozen": false,
       "isSufficient": false

@@ -4,7 +4,7 @@ This file is loaded automatically by coding agents (Claude Code, Cursor, Codex, 
 
 ## Scope
 
-This repository holds the Parity Developer Docs, which cover the tools, SDKs, libraries, and technologies built and maintained by Parity Technologies. Ecosystem-wide Polkadot documentation (docs.polkadot.com) is maintained separately by the Polkadot Community Foundation in [`Polkadot-Community-Foundation/polkadot-docs`](https://github.com/Polkadot-Community-Foundation/polkadot-docs). Do not add general Polkadot ecosystem content here; link to that site instead.
+This repository holds the Parity Developer Docs, which cover the tools, SDKs, libraries, and technologies built and maintained by Parity Technologies. Ecosystem-wide Polkadot documentation (developers.polkadot.com) is maintained separately by the Polkadot Community Foundation in [`Polkadot-Community-Foundation/polkadot-docs`](https://github.com/Polkadot-Community-Foundation/polkadot-docs). Do not add general Polkadot ecosystem content here; link to that site instead.
 
 ## Style and authoring rules
 
@@ -18,14 +18,15 @@ Documentation in this repository follows the **Documentation Style Guide**. The 
 
 ## Linting
 
-Vale rules and the style guide vocab are vendored (committed) from the canonical [`paritytech/documentation-style-guide`](https://github.com/paritytech/documentation-style-guide) repo into `styles/StyleGuide/` and `styles/config/vocabularies/StyleGuide/`, so linting needs no external fetch. Project-specific vocab lives in `styles/config/vocabularies/Polkadot/`.
+Vale rules and the style guide vocab are vendored (committed) from the canonical [`paritytech/documentation-style-guide`](https://github.com/paritytech/documentation-style-guide) repo into `styles/StyleGuide/` and `styles/config/vocabularies/StyleGuide/`, so linting needs no external fetch. Project-specific vocab lives in `styles/config/vocabularies/Polkadot/`. Project-specific rules live in `styles/Polkadot/` and `styles/Parity/`.
 
 ```bash
-vale .                                      # lint
-./.github/scripts/sync-styleguide-vale.sh   # refresh vendored rules + vocab from upstream, then commit
+vale .                                                       # lint
+python .github/scripts/check_operator_language.py --all      # list operator-language matches, including snippets
+./.github/scripts/sync-styleguide-vale.sh                    # refresh vendored rules + vocab from upstream, then commit
 ```
 
-CI runs Vale against changed markdown files on every pull request (see `.github/workflows/vale.yml`).
+CI runs Vale against changed markdown files on every pull request (see `.github/workflows/vale.yml`). Vale findings are advisory. The operator-language check in the same workflow is blocking: it fails a pull request that adds a line matching `styles/Parity/OperatorLanguage.yml`. It exists alongside the Vale rule because Vale skips text that Markdown parses as indented code, which includes admonitions, content tabs, and most snippets.
 
 ## Project-specific rules
 
@@ -33,8 +34,11 @@ These supplement (and where they conflict, override) the canonical styleguide:
 
 - **Customer override on heading case**: This site uses Chicago title case per the styleguide default.
 - **External links open in a new tab**: this is handled by the MkDocs plugin configured for this site. Do not add `{target=\_blank}` manually — the canonical styleguide also drops the manual rule.
+- **Internal links point at source files**: Write internal links to the Markdown file, either docs-rooted (`/tools/subxt.md#install`) or relative (`../subxt.md`). Never link to a rendered route such as `/tools/subxt/`: MkDocs resolves file links at build time into relative URLs (`validation.absolute_links: relative_to_docs` in `mkdocs.yml`), which keeps the site working at any base path, while route links break when the site is served under a sub-path such as `*.github.io/parity-docs/` or a PR preview. Use docs-rooted links in snippets, because snippets are included into pages at different depths.
 - **Snippet includes**: Reusable code lives in `docs/.snippets/code/` and is included via `--8<-- 'code/path/to/file.ext'`. Do not inline code that already exists as a snippet.
 - **Variables**: `docs/variables.yml` holds shared version pins and identifiers. Reference via `{{ variable_name }}`.
+- **Authors, not operators**: Parity writes software; it does not run, host, or operate networks, endpoints, faucets, directories, or app builds (see `docs/what-parity-builds.md` and the shared statement in `docs/.snippets/text/parity-role.md`). Never write that Parity runs, hosts, operates, deploys, or provides a live service. Name the actual operator, or describe "a network running <software>" instead.
+- **Software, not networks**: Document the software (for example, `pallet-revive` or "a chain running `pallet-revive`"), not a specific live network. Tutorials should run against a local node by default. Take RPC URLs, chain IDs, and faucets from the `networks:` block in `docs/variables.yml` (for example, `{{ networks.local.ws_url }}`) instead of inlining them, and link to [developers.polkadot.com](https://developers.polkadot.com/) for network-specific details.
 
 ## Precedence
 

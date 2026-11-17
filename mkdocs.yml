@@ -27,7 +27,10 @@ extra_css:
 
 # Diagnostic messages when validating links to documents
 validation:
-  absolute_links: ignore
+  # Links starting with / are resolved relative to docs/ (write /tools/subxt.md,
+  # not /tools/subxt/), checked at build time, and rendered as relative URLs, so
+  # the site works at any base path (custom domain, *.github.io/parity-docs/, PR previews).
+  absolute_links: relative_to_docs
   unrecognized_links: ignore
   omitted_files: ignore
 

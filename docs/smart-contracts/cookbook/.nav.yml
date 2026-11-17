@@ -1,6 +1,3 @@
 nav:
 - 'Overview': index.md 
-- 'Get Tokens from the Faucet': /smart-contracts/faucet/ 
 - 'Build Smart Contracts': smart-contracts
-- 'Create a DApp': dapps
-- 'Port Ethereum DApps': eth-dapps
