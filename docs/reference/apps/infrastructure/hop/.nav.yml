@@ -1,5 +1,0 @@
-nav:
- - 'Overview': index.md
- - 'How It Works': how-it-works.md
- - 'Sender Journey': sender.md
- - 'Recipient Journey': recipient.md

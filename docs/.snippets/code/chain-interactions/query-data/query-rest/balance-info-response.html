@@ -1,5 +1,5 @@
 <div id="termynal" data-termynal>
-  <span data-ty="input"><span class="file-path"></span>curl -s "https://polkadot-asset-hub-public-sidecar.parity-chains.parity.io/accounts/INSERT_ADDRESS/balance-info"</span>
+  <span data-ty="input"><span class="file-path"></span>curl -s "http://127.0.0.1:8080/v1/accounts/INSERT_ADDRESS/balance-info"</span>
   <pre>
 {
   "at": {
@@ -7,9 +7,11 @@
     "height": "10646569"
   },
   "nonce": "0",
-  "tokenSymbol": "DOT",
+  "tokenSymbol": "UNIT",
   "free": "10000000000",
   "reserved": "0",
+  "miscFrozen": "miscFrozen does not exist for this runtime",
+  "feeFrozen": "feeFrozen does not exist for this runtime",
   "frozen": "0",
   "transferable": "10000000000",
   "locks": []

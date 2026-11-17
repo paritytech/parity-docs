@@ -1,21 +1,29 @@
-# Polkadot Developer Documentation
+# Parity Developer Documentation
 
-This repository is the monorepo for the [Polkadot developer documentation](https://docs.polkadot.com). It contains both the documentation content and the MkDocs configuration used to build and serve the site.
+This repository is the monorepo for the Parity developer documentation, which covers the tools, SDKs, libraries, and technologies built and maintained by [Parity Technologies](https://www.parity.io/). It contains both the documentation content and the MkDocs configuration used to build and serve the site.
 
 The documentation source files are written in [Markdown](https://daringfireball.net/projects/markdown) and generally follow the [Documentation Style Guide](https://github.com/paritytech/documentation-style-guide/blob/main/style-guide.md).
+
+## About This Repository
+
+This repository started as Parity's fork of the Polkadot developer documentation and keeps its full Git history. The [Polkadot Developer Docs](https://developers.polkadot.com) are now maintained by the [Polkadot Community Foundation](https://github.com/Polkadot-Community-Foundation/polkadot-docs). For ecosystem-wide Polkadot documentation, refer to that site.
+
+This repository focuses only on Parity's own tools and technologies. Content inherited from the Polkadot docs is being reviewed and refocused accordingly.
 
 ## Repository Structure
 
 ```
-polkadot-docs/
+parity-docs/
 ├── docs/                   # Documentation content (Markdown, images, snippets)
-│   ├── apps/
-│   ├── chain-interactions/
+│   ├── get-started/        # What Parity builds, glossary
+│   ├── polkadot-sdk/       # Build chains with the Polkadot SDK
+│   ├── smart-contracts/    # pallet-revive contract stack
+│   ├── apps/               # Product SDK and its reference
+│   ├── nodes/              # Run the node binaries
+│   ├── tools/              # Client libraries and developer tools
 │   ├── images/
-│   ├── parachains/
-│   ├── reference/
-│   ├── smart-contracts/
-│   └── ...
+│   ├── .snippets/          # Reusable code and text includes
+│   └── variables.yml       # Shared versions and network values
 ├── hooks/                  # MkDocs hooks (Python)
 ├── layouts/                # Social card layouts
 ├── material-overrides/     # Theme overrides and custom CSS
@@ -25,15 +33,15 @@ polkadot-docs/
 └── requirements.txt        # Python dependencies
 ```
 
-## Run Polkadot Docs Locally
+## Run the Docs Locally
 
 Follow these steps to run the documentation site locally and preview your changes.
 
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/polkadot-developers/polkadot-docs.git
-cd polkadot-docs
+git clone https://github.com/paritytech/parity-docs.git
+cd parity-docs
 ```
 
 > **Contributing?** If you plan to [contribute](CONTRIBUTING.md), fork this repository first and clone your fork instead.
@@ -87,7 +95,7 @@ Makefile.bat serve "--watch-theme"
 > **_NOTE:_** To improve build times, you can:
 >
 > - Disable the git revision plugin: `export ENABLED_GIT_REVISION_DATE=false`
-> - Disable the LLM file plugins: `export ENABLED_LLMS_PLUGINS=false`
+> - Disable social card generation: `export SOCIAL_CARDS=false`
 
 ### Build and Validate
 
@@ -104,11 +112,29 @@ To resume work after closing your terminal:
 1. Navigate to the repo root.
 2. Run `make serve`.
 
+## Pull Request Previews
+
+Every pull request that changes the docs gets a rendered preview on Cloudflare Pages. A bot comments the link on the pull request, for example `https://pr-12.parity-docs.pages.dev`, and the preview updates on every push.
+
+Previews use two workflows, so that secrets are never exposed to code from a pull request:
+
+- `.github/workflows/docs-preview-build.yml` builds the site on `pull_request`, with no secrets, so it also works for pull requests from forks.
+- `.github/workflows/docs-preview-deploy.yml` deploys the built files to Cloudflare Pages and posts the comment. It never checks out pull request code.
+
+One-time setup for maintainers:
+
+1. Create a Cloudflare API token with the **Cloudflare Pages: Edit** permission. Your account ID is shown in the dashboard, under **Workers & Pages** and on the account home page.
+2. Add the repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
+
+The first preview run creates the Pages project, named `parity-docs`. To use a different name, set the repository variable `CLOUDFLARE_PAGES_PROJECT`.
+
+Until the secrets are set, the deploy workflow skips the deploy with a warning. Production is unaffected: it deploys to GitHub Pages from `main`.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for how to contribute to this repository.
 
-We're excited to have you contribute to the Polkadot docs and help improve our ecosystem! Every contribution, whether it's fixing a typo, improving documentation, or adding new content, helps make Polkadot more accessible to developers worldwide. Thank you for being part of our community!
+Every contribution, whether it's fixing a typo, improving documentation, or adding new content, helps developers get the most out of Parity's tools. Thank you for contributing!
 
 ## Disclaimer
 

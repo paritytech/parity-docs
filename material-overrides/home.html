@@ -1,7 +1,7 @@
 {% extends "main.html" %}
 
 {% block htmltitle %}
-  <title>Polkadot Developer Docs</title>
+  <title>{{ config.site_name }}</title>
 {% endblock %}
 
 {% block styles %}
@@ -16,18 +16,18 @@
       <section class="hero-section">
         <canvas id="grain-canvas" class="grain-canvas"></canvas>
         <div class="hero-content">
-          <h1>Polkadot Documentation</h1>
-          <p class="tagline">Everything you need to start building on Polkadot.</p>
+          <h1>Parity Developer Docs</h1>
+          <p class="tagline">Build with the SDKs, libraries, and tools Parity creates for Polkadot.</p>
           <div class="button-wrapper">
-            <a href="apps/">
-              <button class="md-button">Install the Polkadot App
+            <a href="{{ 'apps/quick-start/' | url }}">
+              <button class="md-button">Build an App
                 <span class="twemoji">
                   {% include ".icons/material/arrow-right.svg" %}
                 </span>
               </button>
             </a>
-            <a href="apps/quick-start/">
-              <button class="md-button secondary">Start Building
+            <a href="{{ 'polkadot-sdk/install-polkadot-sdk/' | url }}">
+              <button class="md-button secondary">Install the Polkadot SDK
                 <span class="twemoji">
                   {% include ".icons/material/arrow-right.svg" %}
                 </span>
@@ -41,81 +41,174 @@
         <div class="feature-section">
           <div class="featured-content row">
             <div class="card column">
-              <h3>Apps</h3>
-              <a href="/apps/quick-start/">
-                Create a Product quick start
+              <h3>Apps and Product SDK</h3>
+              <a href="{{ 'apps/quick-start/' | url }}">
+                Create an app with the CLI
                 <span class="twemoji">
-                  {% include ".icons/material/arrow-right.svg" %} 
+                  {% include ".icons/material/arrow-right.svg" %}
                 </span>
               </a>
-              <a href="/apps/get-started/">
-                Set up your app dev environment
+              <a href="{{ 'apps/product-sdk/' | url }}">
+                Explore the Product SDK
                 <span class="twemoji">
-                  {% include ".icons/material/arrow-right.svg" %} 
+                  {% include ".icons/material/arrow-right.svg" %}
                 </span>
               </a>
-              <a href="/apps/build/">
+              <a href="{{ 'apps/build/' | url }}">
                 Build an app locally
                 <span class="twemoji">
-                  {% include ".icons/material/arrow-right.svg" %} 
+                  {% include ".icons/material/arrow-right.svg" %}
                 </span>
               </a>
-              <a href="/apps/deploy-your-app/">
+              <a href="{{ 'apps/deploy-your-app/' | url }}">
                 Deploy and publish an app
                 <span class="twemoji">
-                  {% include ".icons/material/arrow-right.svg" %} 
+                  {% include ".icons/material/arrow-right.svg" %}
                 </span>
               </a>
             </div>
             <div class="card column">
               <h3>Smart Contracts</h3>
-              <a href="/smart-contracts/connect/">
-                Connect to Polkadot
+              <a href="{{ 'smart-contracts/overview/' | url }}">
+                Learn how contracts run on PolkaVM
                 <span class="twemoji">
-                  {% include ".icons/material/arrow-right.svg" %} 
+                  {% include ".icons/material/arrow-right.svg" %}
                 </span>
               </a>
-              <a href="/smart-contracts/cookbook/smart-contracts/deploy-basic/basic-remix/">
-                Deploy a contract
+              <a href="{{ 'smart-contracts/get-started/' | url }}">
+                Deploy your first contract
                 <span class="twemoji">
-                  {% include ".icons/material/arrow-right.svg" %} 
+                  {% include ".icons/material/arrow-right.svg" %}
                 </span>
               </a>
-              <a href="/smart-contracts/precompiles/">
-                Leverage precompiled contracts
+              <a href="{{ 'smart-contracts/dev-environments/hardhat-polkadot/' | url }}">
+                Develop with Hardhat Polkadot
                 <span class="twemoji">
-                  {% include ".icons/material/arrow-right.svg" %} 
+                  {% include ".icons/material/arrow-right.svg" %}
+                </span>
+              </a>
+              <a href="{{ 'smart-contracts/precompiles/' | url }}">
+                Use precompiled contracts
+                <span class="twemoji">
+                  {% include ".icons/material/arrow-right.svg" %}
                 </span>
               </a>
             </div>
             <div class="card column">
-              <h3>Blockchains</h3>
-              <a href="/parachains/install-polkadot-sdk/">
+              <h3>Polkadot SDK</h3>
+              <a href="{{ 'polkadot-sdk/install-polkadot-sdk/' | url }}">
                 Install the Polkadot SDK
                 <span class="twemoji">
-                  {% include ".icons/material/arrow-right.svg" %} 
+                  {% include ".icons/material/arrow-right.svg" %}
                 </span>
               </a>
-              <a href="/parachains/launch-a-parachain/set-up-the-parachain-template/">
-                Launch a simple blockchain
+              <a href="{{ 'polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/' | url }}">
+                Launch a parachain from a template
                 <span class="twemoji">
-                  {% include ".icons/material/arrow-right.svg" %} 
+                  {% include ".icons/material/arrow-right.svg" %}
                 </span>
               </a>
-              <a href="/parachains/customize-runtime/">
-                Customize your chain
+              <a href="{{ 'polkadot-sdk/customize-runtime/' | url }}">
+                Customize your runtime
                 <span class="twemoji">
-                  {% include ".icons/material/arrow-right.svg" %} 
+                  {% include ".icons/material/arrow-right.svg" %}
                 </span>
               </a>
-              <a href="/parachains/runtime-maintenance/runtime-upgrades/">
-                Upgrade your chain
+              <a href="{{ 'polkadot-sdk/runtime-maintenance/runtime-upgrades/' | url }}">
+                Upgrade your runtime
                 <span class="twemoji">
-                  {% include ".icons/material/arrow-right.svg" %} 
+                  {% include ".icons/material/arrow-right.svg" %}
                 </span>
               </a>
             </div>
           </div>
+          <div class="featured-content row">
+            <div class="card column">
+              <h3>Nodes</h3>
+              <a href="{{ 'nodes/run-a-node/relay-chain/full-node/' | url }}">
+                Install and run a node
+                <span class="twemoji">
+                  {% include ".icons/material/arrow-right.svg" %}
+                </span>
+              </a>
+              <a href="{{ 'nodes/run-a-node/parachain-rpc/' | url }}">
+                Run a parachain RPC node
+                <span class="twemoji">
+                  {% include ".icons/material/arrow-right.svg" %}
+                </span>
+              </a>
+              <a href="{{ 'nodes/run-a-collator/' | url }}">
+                Run a collator
+                <span class="twemoji">
+                  {% include ".icons/material/arrow-right.svg" %}
+                </span>
+              </a>
+              <a href="{{ 'nodes/monitor-and-harden/' | url }}">
+                Monitor and harden a node
+                <span class="twemoji">
+                  {% include ".icons/material/arrow-right.svg" %}
+                </span>
+              </a>
+            </div>
+            <div class="card column">
+              <h3>Clients and Tools</h3>
+              <a href="{{ 'tools/subxt/' | url }}">
+                Query and submit with Subxt
+                <span class="twemoji">
+                  {% include ".icons/material/arrow-right.svg" %}
+                </span>
+              </a>
+              <a href="{{ 'tools/zombienet/' | url }}">
+                Spin up a local network with Zombienet
+                <span class="twemoji">
+                  {% include ".icons/material/arrow-right.svg" %}
+                </span>
+              </a>
+              <a href="{{ 'tools/chain-spec-builder/' | url }}">
+                Generate chain specifications
+                <span class="twemoji">
+                  {% include ".icons/material/arrow-right.svg" %}
+                </span>
+              </a>
+              <a href="{{ 'tools/polkadot-rest-api/' | url }}">
+                Serve chain data over REST
+                <span class="twemoji">
+                  {% include ".icons/material/arrow-right.svg" %}
+                </span>
+              </a>
+            </div>
+            <div class="card column">
+              <h3>Get Started</h3>
+              <a href="{{ 'get-started/' | url }}">
+                Learn what Parity builds
+                <span class="twemoji">
+                  {% include ".icons/material/arrow-right.svg" %}
+                </span>
+              </a>
+              <a href="{{ 'get-started/glossary/' | url }}">
+                Browse the glossary
+                <span class="twemoji">
+                  {% include ".icons/material/arrow-right.svg" %}
+                </span>
+              </a>
+              <a href="{{ 'ai-resources/' | url }}">
+                Use the docs with AI tools
+                <span class="twemoji">
+                  {% include ".icons/material/arrow-right.svg" %}
+                </span>
+              </a>
+              <a href="{{ 'get-support/' | url }}">
+                Get developer support
+                <span class="twemoji">
+                  {% include ".icons/material/arrow-right.svg" %}
+                </span>
+              </a>
+            </div>
+          </div>
+          <p class="ecosystem-note">
+            Looking for general Polkadot ecosystem documentation? Visit the
+            <a href="https://developers.polkadot.com/">Polkadot Developer Docs</a>.
+          </p>
         </div>
       </div>
 

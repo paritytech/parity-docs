@@ -1,12 +1,12 @@
 """MkDocs hook: adds glossary definitions as paragraph tooltips.
 
-Glossary terms are maintained in ``reference/glossary.md``. During the build,
+Glossary terms are maintained in ``get-started/glossary.md``. During the build,
 this hook reads the glossary, turns headings and definitions into a term map,
 applies exclusions from ``mkdocs.yml``, and annotates matching terms after
 MkDocs has rendered each page to HTML.
 
 This hook:
-  1. Reads ``reference/glossary.md`` from the configured MkDocs docs_dir.
+  1. Reads ``get-started/glossary.md`` from the configured MkDocs docs_dir.
   2. Parses second- and third-level glossary headings with their definitions.
   3. Builds an in-memory term map, for example:
      ``{"Runtime": "The runtime represents..."}``
@@ -85,7 +85,7 @@ def _load_terms(
     config,
     excluded_terms: frozenset[str],
 ) -> tuple[dict[str, str], Pattern[str] | None]:
-    glossary_path = Path(config["docs_dir"]) / "reference" / "glossary.md"
+    glossary_path = Path(config["docs_dir"]) / "get-started" / "glossary.md"
 
     try:
         mtime = glossary_path.stat().st_mtime

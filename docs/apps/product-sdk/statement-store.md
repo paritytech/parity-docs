@@ -8,7 +8,7 @@ categories: Apps
 
 ## Introduction
 
-[`@parity/product-sdk-statement-store`](https://paritytech.github.io/product-sdk/api/statement-store/) is a publish/subscribe client over the [Statement Store](/reference/apps/infrastructure/statement-store/): signed, short-lived messages gossiped between instances of your Product, off-chain and with no fee per message. On top of raw pub/sub it adds an optional last-write-wins channel abstraction for per-key shared state.
+[`@parity/product-sdk-statement-store`](https://paritytech.github.io/product-sdk/api/statement-store/) is a publish/subscribe client over the [Statement Store](/apps/reference/infrastructure/statement-store/index.md): signed, short-lived messages gossiped between instances of your Product, off-chain and with no fee per message. On top of raw pub/sub it adds an optional last-write-wins channel abstraction for per-key shared state.
 
 Reach for it when your Product needs real-time state between users: presence, typing indicators, multiplayer cursors, or announcing where the latest snapshot of shared content lives.
 
@@ -17,7 +17,7 @@ Reach for it when your Product needs real-time state between users: presence, ty
 - For ephemeral, signed, topic-routed messaging between app instances: presence, signaling, and transient state (`publish` / `subscribe`).
 - For last-write-wins per-key state where the newest value for a key wins (`ChannelStore`).
 - For tests without a Host or network, using the in-memory transport from the `/testing` subpath.
-- Not for durable storage or large payloads: statements expire (default 30 seconds) and are capped at 512 bytes. Pair it with [Cloud Storage](/apps/product-sdk/cloud-storage/) when you need to keep the content.
+- Not for durable storage or large payloads: statements expire (default 30 seconds) and are capped at 512 bytes. Pair it with [Cloud Storage](/apps/product-sdk/cloud-storage.md) when you need to keep the content.
 
 ## Core Concepts
 
@@ -87,7 +87,7 @@ await channels.write('presence', { status: 'online', timestamp: Date.now() });
 
     The task-focused recipe: topics, channels, TTLs, and allowances, step by step.
 
-    [:octicons-arrow-right-24: Publish and Subscribe to Off-Chain Data](/apps/build/pub-sub-off-chain-data/)
+    [:octicons-arrow-right-24: Publish and Subscribe to Off-Chain Data](/apps/build/pub-sub-off-chain-data.md)
 
 -   <span class="badge guide">Guide</span> **Build a Shared Todo App**
 
@@ -95,7 +95,7 @@ await channels.write('presence', { status: 'online', timestamp: Date.now() });
 
     A full tutorial that composes the statement store with cloud storage and local persistence.
 
-    [:octicons-arrow-right-24: Build a Shared Todo App](/apps/tutorials/shared-todo-app/)
+    [:octicons-arrow-right-24: Build a Shared Todo App](/apps/tutorials/shared-todo-app.md)
 
 -   <span class="badge external">External</span> **API Reference**
 

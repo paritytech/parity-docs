@@ -10,10 +10,10 @@ categories: Apps
 
 [`@parity/product-sdk-auth`](https://paritytech.github.io/product-sdk/api/auth/) is the sign-in flow for a Polkadot product CLI, with no interface attached. It wraps QR pairing, session discovery, session signing, resource allocation, and sign-out behind one object, `AuthClient`, and leaves every rendering decision to you.
 
-It sits one level above [Terminal](/apps/product-sdk/terminal/): where that package gives you an adapter and the primitives, this one composes them into the login, logout, and allowance steps a CLI actually performs, parameterized by an `AuthConfig` so the same code serves any product. Terminal-rendering helpers live behind a separate `./ui` entry point, so a headless consumer never pulls them in.
+It sits one level above [Terminal](/apps/product-sdk/terminal.md): where that package gives you an adapter and the primitives, this one composes them into the login, logout, and allowance steps a CLI actually performs, parameterized by an `AuthConfig` so the same code serves any product. Terminal-rendering helpers live behind a separate `./ui` entry point, so a headless consumer never pulls them in.
 
 !!! note "Not for Products"
-    Like [Terminal](/apps/product-sdk/terminal/), this is CLI infrastructure. A Product runs inside a Host that already owns pairing and signing, so it uses [Signer](/apps/product-sdk/signer/) instead.
+    Like [Terminal](/apps/product-sdk/terminal.md), this is CLI infrastructure. A Product runs inside a Host that already owns pairing and signing, so it uses [Signer](/apps/product-sdk/signer.md) instead.
 
 ## When to Use It
 
@@ -21,14 +21,14 @@ It sits one level above [Terminal](/apps/product-sdk/terminal/): where that pack
 - To resolve a signer from mixed sources — a paired phone session, a dev `--suri`, or a named dev account — behind one call (`resolveSigner`).
 - To request the resource allowances a fresh session needs before it can sign anything (`requestResourceAllocation`).
 - When you want the flow without the terminal rendering: import from the package root and supply your own interface.
-- Not inside a Product, and not when [Terminal](/apps/product-sdk/terminal/)'s lower-level primitives are all you need.
+- Not inside a Product, and not when [Terminal](/apps/product-sdk/terminal.md)'s lower-level primitives are all you need.
 
 ## Core Concepts
 
 - **`createAuthClient(config)`**: Builds a client bound to one product's `AuthConfig`. Every adapter, derivation, and storage path reads from that config, which is what makes the package product-agnostic.
 - **`AuthConfig`**: Four fields. `dappId` scopes the on-disk session namespace (`~/.polkadot-apps/{dappId}_*`) and the pairing, so each product gets an independently revocable session; `productId` and `derivationIndex` derive the product account; `peopleEndpoints` are the RPC endpoints the adapter connects to.
 - **`connect()` returns one of two shapes**: `{ kind: 'existing' }` when a session is already on disk, or `{ kind: 'qr', qrCode, login }` when the user has to scan. Print the QR _before_ mounting any interface, then await `waitForLogin(handle, onStatus)`.
-- **Three addresses, one key**: `SessionAddresses` carries `rootAddress` (the wallet root, the right input for `lookupUsername` in [Individuality](/apps/product-sdk/individuality/)), `productAddress` (the product account that actually signs), and `productH160` (the same product key as an EVM address). The last two are the same public key in two encodings.
+- **Three addresses, one key**: `SessionAddresses` carries `rootAddress` (the wallet root, the right input for `lookupUsername` in [Individuality](/apps/product-sdk/individuality.md)), `productAddress` (the product account that actually signs), and `productH160` (the same product key as an EVM address). The last two are the same public key in two encodings.
 - **`SessionHandle.destroy()` is mandatory**: The signer depends on a long-lived adapter whose WebSocket keeps the Node event loop alive. Not calling `destroy()` means your CLI hangs on exit.
 - **Allocation before signing**: A freshly paired session cannot sign until the user grants resource allowances. `requestAllocation` requests `DEFAULT_RESOURCES` through the client's own `productId`, and `summarizeOutcomes` sorts the results into `granted`, `rejected`, and `unavailable` buckets by pairing each outcome with the resource at the same index.
 
@@ -85,10 +85,10 @@ if (rejected.length || unavailable.length) {
 }
 ```
 
-`DEFAULT_RESOURCES` covers what a CLI product account normally needs: `BulletInAllowance`, `StatementStoreAllowance`, and `SmartContractAllowance` for derivation index `0`. `summarizeOutcomes` buckets the results into `granted`, `rejected`, and `unavailable` — it is order-sensitive, so pass the same resource array you requested. Treat anything other than granted as a capability being unavailable rather than a fatal error, so a declined grant degrades gracefully. See [Allowances and Permissions](/apps/concepts/allowances/) for what each resource authorizes.
+`DEFAULT_RESOURCES` covers what a CLI product account normally needs: `BulletInAllowance`, `StatementStoreAllowance`, and `SmartContractAllowance` for derivation index `0`. `summarizeOutcomes` buckets the results into `granted`, `rejected`, and `unavailable` — it is order-sensitive, so pass the same resource array you requested. Treat anything other than granted as a capability being unavailable rather than a fatal error, so a declined grant degrades gracefully. See [Allowances and Permissions](/apps/concepts/allowances.md) for what each resource authorizes.
 
 !!! warning "These outcomes are tagged objects, not strings"
-    An allocation outcome here is `{ tag: 'Allocated' | 'Rejected' | 'NotAvailable', ... }`, so compare `outcome.tag`, not `outcome`. The same concept in [`host`](/apps/product-sdk/host/) is a bare string union, and a comparison written for one silently never matches on the other.
+    An allocation outcome here is `{ tag: 'Allocated' | 'Rejected' | 'NotAvailable', ... }`, so compare `outcome.tag`, not `outcome`. The same concept in [`host`](/apps/product-sdk/host.md) is a bare string union, and a comparison written for one silently never matches on the other.
 
 The standalone `requestResourceAllocation(session, productId, resources?, onExisting?)` is there when you are not holding an `AuthClient`. It throws on transport failures; per-resource refusals come back as outcomes rather than exceptions.
 
@@ -122,7 +122,7 @@ try {
 
 ## Limitations
 
-- Node only, like [Terminal](/apps/product-sdk/terminal/), and subject to the same Node 21 requirement through it.
+- Node only, like [Terminal](/apps/product-sdk/terminal.md), and subject to the same Node 21 requirement through it.
 - Failures are thrown, not returned on a `Result` channel. `resolveSigner` raises `SignerNotAvailableError`; other steps surface their own errors.
 - `SessionHandle.destroy()` must be called or the process will not exit.
 - `AuthConfig` has no defaults — `dappId`, `productId`, `derivationIndex`, and `peopleEndpoints` are all required, because the values are per product and per network.
@@ -138,7 +138,7 @@ try {
 
     The layer below: the adapter, QR rendering, and allowance signers this package composes.
 
-    [:octicons-arrow-right-24: Terminal](/apps/product-sdk/terminal/)
+    [:octicons-arrow-right-24: Terminal](/apps/product-sdk/terminal.md)
 
 -   <span class="badge learn">Learn</span> **Allowances and Permissions**
 
@@ -146,7 +146,7 @@ try {
 
     What each resource allowance authorizes, its scope and lifetime, and how re-approval works.
 
-    [:octicons-arrow-right-24: Allowances](/apps/concepts/allowances/)
+    [:octicons-arrow-right-24: Allowances](/apps/concepts/allowances.md)
 
 -   <span class="badge external">External</span> **API Reference**
 

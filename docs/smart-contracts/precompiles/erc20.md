@@ -1,7 +1,7 @@
 ---
-title: Interact with the ERC20 Precompile
-description: Learn how to use the ERC20 precompile to interact with assets from the assets pallet using standard ERC20 token interfaces in your smart contracts.
-short_description: Interact with Assets pallet assets using standard ERC20 interfaces.
+title: Interact with the ERC-20 Precompile
+description: Learn how to use the ERC-20 precompile to interact with assets from the assets pallet using standard ERC-20 token interfaces in your smart contracts.
+short_description: Interact with Assets pallet assets using standard ERC-20 interfaces.
 categories: Smart Contracts
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/@polkadot/util@14.0.1/bundle-polkadot-util.js
@@ -11,15 +11,15 @@ extra_css:
   - /assets/stylesheets/erc20-asset-converter.css
 ---
 
-# ERC20 Precompile
+# ERC-20 Precompile
 
 --8<-- 'code/smart-contracts/precompiles/erc20/erc20-converter.html'
 
 ## Introduction
 
-The ERC20 precompile provides a standard ERC20 token interface for interacting with assets managed by the [Assets pallet](https://paritytech.github.io/polkadot-sdk/master/pallet_assets/index.html){target=\_blank}, helping smart contracts to interact with native Polkadot assets (such as USDT, USDC, and other tokens) using familiar Ethereum-style ERC20 calls. Polkadot Hub runs three instances of the Assets pallet — Trust-Backed Assets, Foreign Assets, and Pool Assets — each mapped to a distinct ERC20 precompile address suffix.
+The ERC-20 precompile provides a standard ERC-20 token interface for interacting with assets managed by the [Assets pallet](https://paritytech.github.io/polkadot-sdk/master/pallet_assets/index.html), helping smart contracts on chains running `pallet-revive` interact with native assets using familiar Ethereum-style ERC-20 calls. A runtime can register one ERC-20 precompile per Assets pallet instance, each with its own address suffix.
 
-Each asset is mapped to a unique precompile address based on its asset ID or foreign asset index. The precompile implements core ERC20 functionality:
+Each asset is mapped to a unique precompile address based on its asset ID or foreign asset index. The precompile implements core ERC-20 functionality:
 
 - **Token transfers**: Send assets between accounts using standard `transfer` and `transferFrom` methods.
 - **Approvals and allowances**: Manage spending permissions with `approve` and `allowance`.
@@ -27,11 +27,11 @@ Each asset is mapped to a unique precompile address based on its asset ID or for
 
 ## Supported Asset Types
 
-The ERC20 precompile supports three categories of assets, each with its own address suffix.
+The address suffixes on this page (`01200000`, `02200000`, and `03200000`) are runtime configuration: each runtime chooses which Assets pallet instances get an ERC-20 precompile and which suffix each one uses. The following sections describe the three asset categories and suffixes used by the Polkadot Hub runtime. For the asset IDs registered on Polkadot Hub, see the [ERC-20 precompile page on developers.polkadot.com](https://developers.polkadot.com/smart-contracts/precompiles/erc20/).
 
 ### Trust-Backed Assets
 
-Trust-Backed Assets are created directly in the Assets pallet on Polkadot Hub and assigned a u32 asset ID.
+Trust-Backed Assets are created directly in the Assets pallet and assigned a u32 asset ID.
 
 - **Address suffix**: `01200000`
 - **Address format**: `0x` + assetId (8 hex digits, zero-padded) + 24 zero digits + `01200000`
@@ -39,7 +39,7 @@ Trust-Backed Assets are created directly in the Assets pallet on Polkadot Hub an
 
 ### Foreign Assets
 
-Foreign Assets originate from other chains and are identified on-chain by their XCM Location. The ERC20 precompile uses a u32 index—not the XCM Location directly—to derive the precompile address.
+Foreign Assets originate from other chains and are identified on-chain by their XCM Location. The ERC-20 precompile uses a u32 index, not the XCM Location directly, to derive the precompile address.
 
 - **Address suffix**: `02200000`
 - **Address format**: `0x` + foreignAssetIndex (8 hex digits, zero-padded) + 24 zero digits + `02200000`
@@ -47,10 +47,10 @@ Foreign Assets originate from other chains and are identified on-chain by their 
 
 #### Deriving the Foreign Asset Index
 
-Since foreign asset IDs are XCM Locations (not simple integers), the runtime assigns each foreign asset a sequential u32 index when it is registered. To derive the ERC20 precompile address for a foreign asset, follow these steps:
+Since foreign asset IDs are XCM Locations (not simple integers), the runtime assigns each foreign asset a sequential u32 index when it is registered. To derive the ERC-20 precompile address for a foreign asset, follow these steps:
 
 1. Get the XCM location of the foreign asset (for example, `{ parents: 1, interior: X1(Parachain(2313)) }`).
-2. Query the index in [Polkadot.js Apps](https://polkadot.js.org/apps/){target=\_blank}:
+2. Query the index in [Polkadot.js Apps](https://polkadot.js.org/apps/):
 
     1. Navigate to **Developer > Chain State**.
     2. Select **assetsPrecompiles** from the module dropdown.
@@ -59,11 +59,11 @@ Since foreign asset IDs are XCM Locations (not simple integers), the runtime ass
 
     ![](/images/smart-contracts/precompiles/erc20/erc20-01.webp)
 
-3. Enter that u32 index into the Foreign Asset mode of the converter above to derive the ERC20 precompile address.
+3. Enter that u32 index into the Foreign Asset mode of the converter above to derive the ERC-20 precompile address.
 
 ### Pool Assets
 
-Pool Assets are created by liquidity pool operations on Polkadot Hub and assigned a u32 asset ID.
+Pool Assets are created by liquidity pool operations and assigned a u32 asset ID.
 
 - **Address suffix**: `03200000`
 - **Address format**: `0x` + assetId (8 hex digits, zero-padded) + 24 zero digits + `03200000`
@@ -71,7 +71,7 @@ Pool Assets are created by liquidity pool operations on Polkadot Hub and assigne
 
 ## Precompile Interface
 
-The ERC20 precompile implements a subset of the standard ERC20 interface. The following functions are available:
+The ERC-20 precompile implements a subset of the standard ERC-20 interface. The following functions are available:
 
 ```solidity title="IERC20-precompile.sol"
 // SPDX-License-Identifier: MIT
@@ -89,7 +89,7 @@ interface IERC20 {
 ```
 
 !!!warning "Metadata Functions Not Available"
-    The optional ERC20 metadata functions (`name()`, `symbol()`, `decimals()`) are **not implemented** in this precompile. These functions are only available through the Assets pallet's storage, not via the ERC20 interface.
+    The optional ERC-20 metadata functions (`name()`, `symbol()`, `decimals()`) are **not implemented** in this precompile. These functions are only available through the Assets pallet's storage, not via the ERC-20 interface.
 
 ## Query Functions
 
@@ -253,23 +253,11 @@ bool success = token.transferFrom(owner, recipient, amount);
 require(success, "Transfer from failed");
 ```
 
-For the complete implementation, refer to the [ERC20 precompile source code](https://github.com/paritytech/polkadot-sdk/blob/11be995be95ac1e25a5b2a6dd941006e7097bffc/substrate/frame/assets/precompiles/src/lib.rs){target=\_blank} in the Polkadot SDK.
+For the complete implementation, refer to the [ERC-20 precompile source code](https://github.com/paritytech/polkadot-sdk/blob/{{dependencies.repositories.polkadot_sdk.version}}/substrate/frame/assets/precompiles/src/lib.rs) in the Polkadot SDK.
 
-## Common Trust-Backed Asset IDs
+## Interact with the ERC-20 Precompile
 
-The following well-known Trust-Backed Assets are registered on Polkadot Hub and accessible via the ERC20 precompile:
-
-| Asset ID | Symbol | Name | Decimals | ERC20 Precompile Address |
-|:---:|:---:|:---:|:---:|:---:|
-| 1984 | USDt | Tether USD | 6 | `0x000007C000000000000000000000000001200000` |
-| 1337 | USDC | USD Coin | 6 | `0x0000053900000000000000000000000001200000` |
-
-!!! note
-    The on-chain symbol for Tether on Polkadot Hub is `USDt`, which is commonly referred to as "USDT" on exchanges and in wallets.
-
-## Interact with the ERC20 Precompile
-
-To interact with the ERC20 precompile in [Remix IDE](/smart-contracts/dev-environments/remix/){target=\_blank}:
+To interact with the ERC-20 precompile in [Remix IDE](https://developers.polkadot.com/smart-contracts/dev-environments/remix/):
 
 1. Create a new file called `IERC20-precompile.sol` in Remix
 2. Copy and paste the `IERC20` interface code shown above into the file
@@ -277,9 +265,9 @@ To interact with the ERC20 precompile in [Remix IDE](/smart-contracts/dev-enviro
     ![](/images/smart-contracts/precompiles/erc20/erc20-02.webp)
 
 3. Compile the interface by selecting the compile button or using **Ctrl + S**
-4. Calculate the ERC20 precompile address for your asset using the converter above. Select the appropriate asset type (Trust-Backed, Foreign, or Pool), then enter the asset ID or foreign asset index.
+4. Calculate the ERC-20 precompile address for your asset using the converter above. Select the appropriate asset type (Trust-Backed, Foreign, or Pool), then enter the asset ID or foreign asset index.
 
-    - **Trust-Backed example**: Asset ID `1984` (USDt) → `0x000007C000000000000000000000000001200000`
+    - **Trust-Backed example**: Asset ID `1984` → `0x000007C000000000000000000000000001200000`
     - **Foreign Asset example**: Foreign Asset Index `0` → `0x0000000000000000000000000000000002200000`
 
 5. In the **Deploy & Run Transactions** tab, select the `IERC20` interface from the contract dropdown
@@ -288,18 +276,18 @@ To interact with the ERC20 precompile in [Remix IDE](/smart-contracts/dev-enviro
 
     ![](/images/smart-contracts/precompiles/erc20/erc20-03.webp)
 
-Once connected, you can interact with any of the ERC20 precompile functions directly through the Remix interface.
+Once connected, you can interact with any of the ERC-20 precompile functions directly through the Remix interface.
 
 ![](/images/smart-contracts/precompiles/erc20/erc20-04.webp)
 
 ## Conclusion
 
-The ERC20 precompile provides seamless integration between Polkadot's native asset management and Ethereum's familiar token standard. By mapping asset IDs to deterministic precompile addresses, developers can interact with native Polkadot assets using standard ERC20 interfaces.
+The ERC-20 precompile connects native asset management in the Assets pallet with Ethereum's familiar token standard. By mapping asset IDs to deterministic precompile addresses, developers can interact with native Polkadot assets using standard ERC-20 interfaces.
 
-Whether you're building DeFi protocols, token swaps, or any application requiring asset interactions, the ERC20 precompile enables you to leverage Polkadot's rich asset ecosystem with the same tools and patterns used in Ethereum development.
+Whether you're building DeFi protocols, token swaps, or any application requiring asset interactions, the ERC-20 precompile lets you work with native assets using the same tools and patterns as in Ethereum development.
 
 ## Reference
 
-- [ERC20 precompile source code](https://github.com/paritytech/polkadot-sdk/blob/11be995be95ac1e25a5b2a6dd941006e7097bffc/substrate/frame/assets/precompiles/src/lib.rs){target=\_blank}
-- [Assets pallet documentation](https://paritytech.github.io/polkadot-sdk/master/pallet_assets/index.html){target=\_blank}
-- [EIP-20: Token Standard](https://eips.ethereum.org/EIPS/eip-20){target=\_blank}
+- [ERC-20 precompile source code](https://github.com/paritytech/polkadot-sdk/blob/{{dependencies.repositories.polkadot_sdk.version}}/substrate/frame/assets/precompiles/src/lib.rs)
+- [Assets pallet documentation](https://paritytech.github.io/polkadot-sdk/master/pallet_assets/index.html)
+- [EIP-20: Token Standard](https://eips.ethereum.org/EIPS/eip-20)

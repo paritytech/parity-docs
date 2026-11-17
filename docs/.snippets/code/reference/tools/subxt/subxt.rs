@@ -1,7 +1,7 @@
 use std::str::FromStr;
 use subxt::utils::AccountId32;
 use subxt::{OnlineClient, PolkadotConfig};
-use subxt_signer::{bip39::Mnemonic,sr25519::Keypair};
+use subxt_signer::sr25519::dev;
 
 // Generate an interface that we can use from the node's metadata.
 #[subxt::subxt(runtime_metadata_path = "./polkadot_metadata.scale")]
@@ -9,8 +9,8 @@ pub mod polkadot {}
 
 #[tokio::main(flavor = "current_thread")]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // Define the node URL.
-    const NODE_URL: &str = "INSERT_NODE_URL";
+    // Define the node URL (a local development node by default).
+    const NODE_URL: &str = "ws://127.0.0.1:9944";
 
     // Initialize the Subxt client to interact with the blockchain.
     let api = OnlineClient::<PolkadotConfig>::from_url(NODE_URL).await?;
@@ -43,22 +43,20 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     println!("Account info: {:?}", result);
 
-    // Define the recipient address and transfer amount.
-    const DEST_ADDRESS: &str = "INSERT_DEST_ADDRESS";
-    const AMOUNT: u128 = INSERT_AMOUNT;
+    // Use the Bob development account as the recipient.
+    let dest = dev::bob().public_key();
 
-    // Convert the recipient address into an `AccountId32`.
-    let dest = AccountId32::from_str(DEST_ADDRESS).unwrap();
+    // Define the transfer amount.
+    const AMOUNT: u128 = INSERT_AMOUNT;
 
     // Build the balance transfer extrinsic.
     let balance_transfer_tx = polkadot::transactions()
         .balances()
         .transfer_allow_death(dest.into(), AMOUNT);
 
-    // Load the sender's keypair from a mnemonic phrase.
-    const SECRET_PHRASE: &str = "INSERT_SECRET_PHRASE";
-    let mnemonic = Mnemonic::parse(SECRET_PHRASE).unwrap();
-    let sender_keypair = Keypair::from_phrase(&mnemonic, None).unwrap();
+    // Sign with the Alice development account. Its secret key is public,
+    // so only use it on local development chains.
+    let sender_keypair = dev::alice();
 
     // Sign and submit the extrinsic, then wait for it to be finalized.
     let events = at_block

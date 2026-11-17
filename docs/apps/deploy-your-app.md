@@ -1,6 +1,6 @@
 ---
 title: Deploy Your App
-description: Deploy your Polkadot Product to the playground using the playground CLI — build, upload, and publish your app on-chain and register a dotNS name.
+description: Deploy your Polkadot Product with the playground CLI by building the bundle, uploading it to the Bulletin Chain, and registering a dotNS name on the target environment.
 categories: Apps
 page_badges:
   tutorial_badge: Intermediate
@@ -10,25 +10,25 @@ page_badges:
 
 ## Introduction
 
-This page covers how to take a finished Polkadot Product live with the `playground` CLI. By the end, your app bundle will be uploaded to the Bulletin Chain, registered under a dotNS name, and, if you choose, discoverable in the Polkadot Playground.
+This page covers how to deploy a finished Polkadot Product with the `playground` CLI to the environment it targets. By the end, your app bundle will be uploaded to the Bulletin Chain and bound to a dotNS name, and, if you choose, listed in that environment's Playground directory.
 
 --8<-- 'text/apps/network-tld.md'
 
 A deploy is really four stages, and `playground deploy` walks you through all of them in one flow:
 
 - **Build**: Compile your Product into a static bundle of files (HTML, JS, CSS, assets) with `playground build`.
-- **Register**: Reserve a dotNS name for your Product through the on-chain name service. This is the address people use to reach it. See [Register a `.dot` Domain](/apps/register-dot-domain/).
-- **Publish**: Optionally list your Product in the public Playground directory so others can discover it. Deploying without publishing keeps it reachable at its dotNS address but unlisted. See [List Your App](/apps/list-your-app/).
+- **Register**: Reserve a dotNS name for your Product through the on-chain name service. This is the address people use to reach it. See [Register a `.dot` Domain](/apps/register-dot-domain.md).
+- **Publish**: Optionally list your Product in the target environment's Playground directory. Deploying without publishing keeps it reachable at its dotNS address but unlisted. For listing and discovery, see [List Your App](https://developers.polkadot.com/apps/list-your-app/) on developers.polkadot.com.
 - **Deploy**: Upload the bundle to the Bulletin Chain and bind it to your name, so any Host can fetch and verify it directly.
 
-If your Product includes a [smart contract](/apps/build/deploy-a-smart-contract/), the deploy flow can redeploy that too, covered in the contract prompt below.
+If your Product includes a [smart contract](/apps/build/deploy-a-smart-contract.md), the deploy flow can redeploy that too, covered in the contract prompt below.
 
 ## Prerequisites
 
 Before deploying, ensure you have:
 
-- Complete [Install Desktop and Pair](/apps/get-started/) and [Get TestNet Tokens](/apps/get-started/get-testnet-tokens/); your account needs PAS funds and a Bulletin Chain authorization. If you have not obtained a Bulletin Chain authorization yet, request one from the [Bulletin Chain authorization page](https://paritytech.github.io/polkadot-bulletin-chain/authorizations)
-- A Polkadot Product project running locally. See [Set Up Your Project](/apps/build/#set-up-your-project)
+- Completed [Run a Host for Local Development](/apps/get-started/index.md). The signing account needs funds on the target environment and a [Bulletin Chain storage authorization](/apps/reference/infrastructure/bulletin-chain/authorization.md); for TestNet funds and authorizations, see [Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/) on developers.polkadot.com
+- A Polkadot Product project running locally. See [Set Up Your Project](/apps/build/index.md#set-up-your-project)
 
 ## Build Your App Bundle
 
@@ -51,11 +51,11 @@ Run `playground deploy` to start the interactive deploy flow. The CLI walks you 
   <span data-ty="input"><span class="file-path"></span>playground deploy</span>
 </div>
 
-The CLI presents the following prompts in order:
+The CLI presents the following prompts in order. To skip them in a script or CI job, pass `-y` with the equivalent flags; see the [`deploy` flags in the `playground` CLI reference](/apps/playground-cli.md#deploy).
 
 1. **Review app detail page**: A reminder that your `README.md` becomes your app's detail page on the playground. Make sure it's up to date, then press ++enter++ to continue (or ++esc++ to exit and edit it first).
 
-2. **Redeploy contracts if changed**: Smart contracts hold your app's on-chain logic and data, and deploy separately from your website. Choose **no** if you only changed the website. Choose **yes** if you changed contract code in this project. The CLI then redeploys and reinstalls the contracts and rebuilds the site to match. See [Add a Smart Contract to Your Product](/apps/build/deploy-a-smart-contract/) for the contract workflow in depth.
+2. **Redeploy contracts if changed**: Smart contracts hold your app's on-chain logic and data, and deploy separately from your website. Choose **no** if you only changed the website. Choose **yes** if you changed contract code in this project. The CLI then redeploys and reinstalls the contracts and rebuilds the site to match. See [Add a Smart Contract to Your Product](/apps/build/deploy-a-smart-contract.md) for the contract workflow in depth.
 
     <div class="termynal" data-termynal>
     <span data-ty><pre>  did you change your smart contracts?
@@ -80,7 +80,7 @@ The CLI presents the following prompts in order:
     </div>
 
     !!! note "Your phone will prompt — check it"
-        With the phone signer, each step waits for you to approve it in the Polkadot App, and there is no push notification announcing that a prompt is waiting. If the deploy appears to stall — including a deliberate pause while your name is registered — open the app and look for a pending approval. See the troubleshooting entries for [an unanswered phone prompt](/apps/troubleshooting/#the-app-seems-frozen-after-an-action) and [the registration pause](/apps/troubleshooting/#the-deploy-pauses-for-about-a-minute), and [Accounts and Signing](/apps/concepts/accounts/) for which account the phone signer uses.
+        With the phone signer, each step waits for you to approve it in the Polkadot App, and there is no push notification announcing that a prompt is waiting. If the deploy appears to stall — including a deliberate pause while your name is registered — open the app and look for a pending approval. See the troubleshooting entries for [an unanswered phone prompt](/apps/troubleshooting.md#the-app-seems-frozen-after-an-action) and [the registration pause](/apps/troubleshooting.md#the-deploy-pauses-for-about-a-minute), and [Accounts and Signing](/apps/concepts/accounts.md) for which account the phone signer uses.
 
 5. **Choose a default build directory**:  The folder holding your built site (the files that get uploaded). The default `dist` fits most projects. This example uses `.next` for a Next.js app.
 
@@ -89,22 +89,16 @@ The CLI presents the following prompts in order:
       › .next█</pre></span>
     </div>
 
-6. **Choose a domain name**: Pick the address people will use to reach your app. Enter the bare label, such as `myproject57`; the CLI appends the environment's TLD, so on Paseo Next v2 that becomes `myproject57.paseo`. Which names you may register depends on the label's length, counted as written. Digits count like any other character:
-
-    | Length                 | Requirement                                              |
-    |------------------------|----------------------------------------------------------|
-    | 9 characters or longer | Open to everyone, with no personhood check               |
-    | 6 to 8 characters      | Not sold on this path; earned in the Polkadot App        |
-    | 5 characters or fewer  | Reserved for governance, not sold on this path           |
+6. **Choose a domain name**: Pick the address people will use to reach your app. Enter the bare label, such as `myproject57`; the CLI appends the environment's TLD, so on Paseo Next v2 that becomes `myproject57.paseo`. Which names you may register depends on the label's length and the target dotNS configuration; see [Name Length](/apps/register-dot-domain.md#name-length).
 
     <div class="termynal" data-termynal>
     <span data-ty><pre>  domain
       › myproject57█</pre></span>
     </div>
 
-    The label also has to be 3 to 63 lowercase characters (`a-z`, `0-9`, `-`), with no leading or trailing dash. Digits are allowed anywhere and in any quantity. If registration is rejected, the name may already be [taken](/apps/troubleshooting/#the-name-is-already-registered) or [too short to buy](/apps/troubleshooting/#short-names-are-not-for-sale). See [Register a `.dot` Domain](/apps/register-dot-domain/#choose-a-name) for the full name rules.
+    The label also has to be 3 to 63 lowercase characters (`a-z`, `0-9`, `-`), with no leading or trailing dash. Digits are allowed anywhere and in any quantity. If registration is rejected, the name may already be [taken](/apps/troubleshooting.md#the-name-is-already-registered) or [too short to buy](/apps/troubleshooting.md#short-names-are-not-for-sale). See [Register a `.dot` Domain](/apps/register-dot-domain.md#choose-a-name) for the full name rules.
 
-7. **Publish to the playground**: Choose **yes** to list your app in the public Polkadot Playground so others can find and open it. Choose **no** to still deploy it to your dotNS address, but keep it unlisted.
+7. **Publish to the playground**: Choose **yes** to list your app in the target environment's Playground directory. Choose **no** to still deploy it to your dotNS address, but keep it unlisted.
 
     <div class="termynal" data-termynal>
     <span data-ty><pre>  publish to the playground?
@@ -112,7 +106,7 @@ The CLI presents the following prompts in order:
         no  ·  deploy to my .paseo address only</pre></span>
     </div>
 
-8. **Review confirmation summary**: The CLI shows a summary of your choices before uploading. Review it, then press ++enter++ to deploy (or ++esc++ to cancel). With the dev signer, no phone taps are needed and `phone approvals` reads `none`.
+8. **Review confirmation summary**: The CLI shows a summary of your choices before uploading. The header names the domain, the target environment (`paseo next v2` here), and the CLI version. Review it, then press ++enter++ to deploy (or ++esc++ to cancel). With the dev signer, no phone taps are needed and `phone approvals` reads `none`.
 
     <div class="termynal" data-termynal>
     <span data-ty><pre>  playground deploy  ·  myproject57.paseo  ·  paseo next v2        v0.47.0
@@ -150,7 +144,7 @@ Once the deploy completes, the CLI prints the URLs for your app. Regardless of w
 https://myproject57.paseo.li
 ```
 
-You can also navigate directly by entering your name in the [Polkadot Desktop](/reference/apps/hosts/polkadot-desktop/) browser address bar:
+You can also navigate directly by entering your name in the [Polkadot Desktop](https://developers.polkadot.com/reference/apps/hosts/polkadot-desktop/) browser address bar:
 
 ```text
 myproject57.paseo
@@ -160,28 +154,33 @@ myproject57.paseo
 
 Either way, the app loads directly from the Bulletin Chain — no central server involved.
 
-If you chose **yes** at the `publish to the playground?` prompt, your app is also listed in the public playground directory. Open `playground.dot` in Polkadot Desktop browser and your app appears under your name, so others can find and open it. If you chose **no** (`dotNS only`, as in this example), the app is still fully deployed and reachable at the URLs above, only unlisted in the directory.
+If you chose **yes** at the `publish to the playground?` prompt, your app is also listed in the target environment's Playground directory, which opens at `playground.dot` in Polkadot Desktop. If you chose **no** (`dotNS only`, as in this example), the app is still fully deployed and reachable at the URLs above, only unlisted in the directory.
 
 !!! tip
-    If your app does not appear immediately, wait a few seconds and refresh. On-chain state propagation can take a short time after the deploy transaction finalizes, and the web gateway resolves your name through an in-browser light client. A `curl` or script against the gateway URL returns a generic gateway shell rather than your app — open it in a real browser. If it still does not resolve, see [Troubleshooting](/apps/troubleshooting/#the-app-does-not-appear-right-after-deploy).
+    If your app does not appear immediately, wait a few seconds and refresh. On-chain state propagation can take a short time after the deploy transaction finalizes, and the web gateway resolves your name through an in-browser light client. A `curl` or script against the gateway URL returns a generic gateway shell rather than your app — open it in a real browser. If it still does not resolve, see [Troubleshooting](/apps/troubleshooting.md#the-app-does-not-appear-right-after-deploy).
 
 ## Keep Your App Available
 
-Data published to the Bulletin Chain, including your app bundle, is retained for about two weeks by default and must be renewed to persist beyond that. The exact retention window is still being finalized, so treat "about two weeks" as provisional. Renewal is a separate transaction that keeps the data available for another retention window without changing its CID.
+Data published to the Bulletin Chain, including your app bundle, is retained for about two weeks by default and must be renewed to persist beyond that.
+
+!!! warning "Provisional"
+    The exact retention window is not final, so treat "about two weeks" as an estimate.
+
+Renewal is a separate transaction that keeps the data available for another retention window without changing its CID.
 
 Renewal identifies each stored record by its content hash, which you can derive from the record's CID. Your app bundle is stored as several chunks, each in its own transaction, plus a manifest that lists them, so keeping the bundle available means renewing the manifest and every chunk.
 
 !!! warning "The CLI deploy does not renew your bundle"
-    `playground deploy` does not renew the data it uploads. The `app cid` it prints is the bundle's manifest, and its links are the chunk CIDs, so you can renew the whole bundle from that one CID without uploading it again. The [renewal example in Store Data on Chain](/apps/build/store-data-on-chain/#renew-long-lived-data) reads the manifest and renews the manifest and every chunk. See the [Bulletin Chain renewal reference](/reference/apps/infrastructure/bulletin-chain/renewal/) for the mechanics.
+    `playground deploy` does not renew the data it uploads. The `app cid` it prints is the bundle's manifest, and its links are the chunk CIDs, so you can renew the whole bundle from that one CID without uploading it again. The [renewal example in Store Data on Chain](/apps/build/store-data-on-chain.md#renew-long-lived-data) reads the manifest and renews the manifest and every chunk. See the [Bulletin Chain renewal reference](/apps/reference/infrastructure/bulletin-chain/renewal.md) for the mechanics.
 
 ## If a Deploy Fails
 
-Deploy-time issues have named fixes in [Troubleshooting](/apps/troubleshooting/):
+Deploy-time issues have named fixes in [Troubleshooting](/apps/troubleshooting.md):
 
-- [The deploy pauses for about a minute](/apps/troubleshooting/#the-deploy-pauses-for-about-a-minute): the tooling waiting out the dotNS commit-reveal handshake, not a hang.
-- [The name is already registered](/apps/troubleshooting/#the-name-is-already-registered) or is [too short to buy](/apps/troubleshooting/#short-names-are-not-for-sale): choose a different or longer name.
-- [`no allowance set for account`](/apps/troubleshooting/#no-allowance-set-for-account) or [uploads are rejected](/apps/troubleshooting/#uploads-are-rejected-or-host-storage-unavailable): the signing account is missing PAS or a storage authorization.
-- [The app does not appear right after deploy](/apps/troubleshooting/#the-app-does-not-appear-right-after-deploy): on-chain propagation and gateway resolution take a moment.
+- [The deploy pauses for about a minute](/apps/troubleshooting.md#the-deploy-pauses-for-about-a-minute): the tooling waiting out the dotNS commit-reveal handshake, not a hang.
+- [The name is already registered](/apps/troubleshooting.md#the-name-is-already-registered) or is [too short to buy](/apps/troubleshooting.md#short-names-are-not-for-sale): choose a different or longer name.
+- [`no allowance set for account`](/apps/troubleshooting.md#no-allowance-set-for-account) or [uploads are rejected](/apps/troubleshooting.md#uploads-are-rejected-or-host-storage-unavailable): the signing account is missing PAS or a storage authorization.
+- [The app does not appear right after deploy](/apps/troubleshooting.md#the-app-does-not-appear-right-after-deploy): on-chain propagation and gateway resolution take a moment.
 
 ## Where to Go Next
 
@@ -193,15 +192,15 @@ Deploy-time issues have named fixes in [Troubleshooting](/apps/troubleshooting/)
 
     The naming step in depth: availability rules, the commit-reveal flow, and managing your name.
 
-    [:octicons-arrow-right-24: Register a `.dot` Domain](/apps/register-dot-domain/)
+    [:octicons-arrow-right-24: Register a `.dot` Domain](/apps/register-dot-domain.md)
 
--   <span class="badge guide">Guide</span> **List Your App**
+-   <span class="badge external">External</span> **List Your App**
 
     ---
 
-    Make your Product discoverable in the Playground and Browse directories.
+    Listing and discovery in the Playground and Browse directories, on developers.polkadot.com.
 
-    [:octicons-arrow-right-24: List Your App](/apps/list-your-app/)
+    [:octicons-arrow-right-24: List Your App](https://developers.polkadot.com/apps/list-your-app/)
 
 -   <span class="badge guide">Guide</span> **Store Data on Chain**
 
@@ -209,6 +208,6 @@ Deploy-time issues have named fixes in [Troubleshooting](/apps/troubleshooting/)
 
     The store receipt, chunking, authorization, and renewal in full.
 
-    [:octicons-arrow-right-24: Store Data on Chain](/apps/build/store-data-on-chain/)
+    [:octicons-arrow-right-24: Store Data on Chain](/apps/build/store-data-on-chain.md)
 
 </div>

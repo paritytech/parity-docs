@@ -2,9 +2,8 @@ name: Deploy docs to GitHub Pages
 
 on:
   push:
-    branches: [parity-deploy]
+    branches: [main]
   workflow_dispatch:
-  workflow_call:   # invoked by sync-upstream.yml after a clean auto-sync
 
 permissions:
   contents: read
@@ -24,13 +23,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: parity-deploy   # always build the deploy branch tip (correct for push, dispatch, and workflow_call)
           fetch-depth: 0       # full history for git-revision-date-localized under --strict
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.txt
 
       - name: Install imaging libs (social cards)
         run: |
@@ -50,16 +50,13 @@ jobs:
           python -m pip install -r requirements.txt
 
       - name: Build site
-        env:
-          # chat widget endpoint; unset => widget hidden
-          DOCS_ASSISTANT_API_URL: ${{ vars.DOCS_ASSISTANT_API_URL }}
         run: mkdocs build --strict -d site
 
       - name: Generate client-side redirect stubs (GH Pages has no server-side 301s)
         run: python scripts/gen_redirects.py --site-dir site --redirects redirects.json
 
       # Custom domain is opt-in: set the repo variable CUSTOM_DOMAIN
-      # (e.g. docs.polkadot.com) to publish under it. Left unset, the site
+      # (e.g. docs.parity.io) to publish under it. Left unset, the site
       # deploys to the *.github.io URL — useful for testing without claiming
       # the production domain.
       - name: Set custom domain

@@ -20,11 +20,6 @@ dependencies:
     open_zeppelin_contracts:
       repository_url: https://github.com/OpenZeppelin/openzeppelin-contracts
       version: v5.6.1
-    polkadot_sdk_contracts_node:
-      repository_url: https://github.com/paritytech/polkadot-sdk
-      version: polkadot-stable2503-6
-      commit_dev_node: 8e2b6f742a38bb13688e12abacded0aab2dbbb23
-      ignore_updates: true
     polkadot_sdk_parachain_template:
       repository_url: https://github.com/paritytech/polkadot-sdk-parachain-template
       version: v0.0.5
@@ -52,6 +47,9 @@ dependencies:
       name: tokio
       version: 1.44.2
       ignore_updates: true
+    polkadot_rest_api:
+      name: polkadot-rest-api
+      version: 0.3.3
     polkadot_omni_node:
       name: polkadot-omni-node
       # Matches the crate version shipped in polkadot_sdk.version; update it with the SDK.
@@ -109,3 +107,47 @@ dependencies:
       name: '@polkadot/keyring'
       version: 14.0.3
 #   python_packages:
+
+# Network values used in examples. Keep every RPC URL, chain ID and faucet here
+# instead of inlining them in pages, and reference them as
+# {{ networks.local.ws_url }}, {{ networks.polkadot_hub_testnet.eth_rpc_url }}, etc.
+#
+# Parity writes the software; these networks and endpoints are run by others.
+# Examples should default to `local`. Use a live network only where a page is
+# explicitly about connecting to one, and link to developers.polkadot.com for details.
+networks:
+  local:
+    name: Local development node
+    ws_url: ws://127.0.0.1:9944
+    eth_rpc_url: http://127.0.0.1:8545
+  polkadot_hub_testnet:
+    name: Polkadot Hub TestNet
+    currency: PAS
+    chain_id: 420420417
+    eth_rpc_url: https://eth-rpc-testnet.polkadot.io
+    ws_url: wss://asset-hub-paseo.dotters.network
+    explorer_url: https://blockscout-testnet.polkadot.io
+    faucet_url: https://faucet.polkadot.io
+  polkadot_hub:
+    name: Polkadot Hub
+    currency: DOT
+    chain_id: 420420419
+    eth_rpc_url: https://eth-rpc.polkadot.io
+    ws_url: wss://polkadot-asset-hub-rpc.polkadot.io
+    explorer_url: https://blockscout.polkadot.io
+  kusama_hub:
+    name: Kusama Hub
+    currency: KSM
+    chain_id: 420420418
+    eth_rpc_url: https://eth-rpc-kusama.polkadot.io
+    ws_url: wss://kusama-asset-hub-rpc.polkadot.io
+    explorer_url: https://blockscout-kusama.polkadot.io
+  polkadot:
+    name: Polkadot relay chain
+    ws_url: wss://rpc.polkadot.io
+  kusama:
+    name: Kusama relay chain
+    ws_url: wss://kusama-rpc.polkadot.io
+  paseo:
+    name: Paseo relay chain
+    ws_url: wss://paseo.dotters.network

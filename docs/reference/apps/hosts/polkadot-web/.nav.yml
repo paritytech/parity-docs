@@ -1,6 +1,0 @@
-nav:
- - 'Overview': index.md
- - 'Visiting a Product': visiting.md
- - 'Shield States': shield-states.md
- - 'Host API': host-api.md
- - 'On-Chain polkadot.com': onchain-polkadot-com.md

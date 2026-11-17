@@ -17,7 +17,7 @@ Reach for it when your Product needs its own keys — for encrypting local data,
 - To derive app-private encryption or signing keys deterministically from a one-time user signature (`KeyManager.fromSignature`), so the app scopes its own keys without asking for a mnemonic.
 - To keep a persistent session or burner signer that survives reloads by storing its mnemonic in a local store (`SessionKeyManager`).
 - To compute the public address of a Host-derived product account off-device, from a parent public key (`deriveProductAccountPublicKey`).
-- Not for signing real transactions with the user's wallet accounts; use the [Signer](/apps/product-sdk/signer/) package for that. This package manages app-derived and session keys.
+- Not for signing real transactions with the user's wallet accounts; use the [Signer](/apps/product-sdk/signer.md) package for that. This package manages app-derived and session keys.
 
 ## Core Concepts
 
@@ -73,7 +73,7 @@ const { encryption, signing } = keys.deriveKeypairs();
 
     For signing with the user's wallet accounts and deriving Host product accounts.
 
-    [:octicons-arrow-right-24: Signer](/apps/product-sdk/signer/)
+    [:octicons-arrow-right-24: Signer](/apps/product-sdk/signer.md)
 
 -   <span class="badge learn">Learn</span> **Local Storage**
 
@@ -81,7 +81,7 @@ const { encryption, signing } = keys.deriveKeypairs();
 
     The store the session-key manager persists its mnemonic to.
 
-    [:octicons-arrow-right-24: Local Storage](/apps/product-sdk/local-storage/)
+    [:octicons-arrow-right-24: Local Storage](/apps/product-sdk/local-storage.md)
 
 -   <span class="badge external">External</span> **API Reference**
 

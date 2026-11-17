@@ -1,4 +1,4 @@
-name: 📚 Report a documentation issue
+name: Report a documentation issue
 description: Found a typo, broken link, or unclear section? Let us know.
 title: "[Docs] "
 labels: []
@@ -13,7 +13,7 @@ body:
     attributes:
       label: Page URL
       description: Link to the page where the issue appears
-      placeholder: https://docs.polkadot.com/...
+      placeholder: https://docs.parity.io/...
     validations:
       required: true
 
@@ -22,7 +22,7 @@ body:
     attributes:
       label: What’s the issue?
       description: Describe what you found confusing, incorrect or broken
-      placeholder: The section on staking is unclear because...
+      placeholder: The installation steps for the SDK are unclear because...
     validations:
       required: true
 
@@ -31,6 +31,6 @@ body:
     attributes:
       label: Suggested improvement
       description: How could we improve this part?
-      placeholder: Maybe add a diagram, or explain the term 'nominator' earlier...
+      placeholder: Maybe add a diagram, or explain the term 'runtime' earlier...
     validations:
       required: false

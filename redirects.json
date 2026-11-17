@@ -6,27 +6,27 @@
     },
     {
       "key": "/apps/quick-start-revx/",
-      "value": "/apps/quick-start/"
+      "value": "https://developers.polkadot.com/apps/quick-start-revx/"
     },
     {
       "key": "/chain-interactions/accounts/",
-      "value": "/chain-interactions/accounts/create-account/"
+      "value": "/tools/chain-interactions/accounts/create-account/"
     },
     {
       "key": "/chain-interactions/query-data/",
-      "value": "/chain-interactions/query-data/query-sdks/"
+      "value": "/tools/chain-interactions/query-data/query-sdks/"
     },
     {
       "key": "/chain-interactions/send-transactions/",
-      "value": "/chain-interactions/send-transactions/with-sdks/"
+      "value": "/tools/chain-interactions/send-transactions/with-sdks/"
     },
     {
       "key": "/chain-interactions/send-transactions/interoperability/",
-      "value": "/chain-interactions/send-transactions/interoperability/transfer-assets-parachains/"
+      "value": "https://developers.polkadot.com/chain-interactions/send-transactions/interoperability/transfer-assets-parachains/"
     },
     {
       "key": "/chain-interactions/token-operations/",
-      "value": "/chain-interactions/token-operations/register-local-asset/"
+      "value": "https://developers.polkadot.com/chain-interactions/token-operations/register-local-asset/"
     },
     {
       "key": "/develop/",
@@ -38,15 +38,15 @@
     },
     {
       "key": "/develop/interoperability/intro-to-xcm/",
-      "value": "/parachains/interoperability/get-started/"
+      "value": "/polkadot-sdk/interoperability/get-started/"
     },
     {
       "key": "/develop/interoperability/send-messages/",
-      "value": "/chain-interactions/send-transactions/interoperability/transfer-assets-parachains/"
+      "value": "https://developers.polkadot.com/chain-interactions/send-transactions/interoperability/transfer-assets-parachains/"
     },
     {
       "key": "/develop/interoperability/test-and-debug/",
-      "value": "/chain-interactions/send-transactions/interoperability/debug-and-preview-xcms/"
+      "value": "https://developers.polkadot.com/chain-interactions/send-transactions/interoperability/debug-and-preview-xcms/"
     },
     {
       "key": "/develop/interoperability/versions/",
@@ -82,11 +82,11 @@
     },
     {
       "key": "/develop/interoperability/xcm-channels/",
-      "value": "/parachains/interoperability/get-started/"
+      "value": "/polkadot-sdk/interoperability/get-started/"
     },
     {
       "key": "/develop/interoperability/xcm-config/",
-      "value": "/parachains/interoperability/get-started/"
+      "value": "/polkadot-sdk/interoperability/get-started/"
     },
     {
       "key": "/develop/interoperability/xcm-guides/",
@@ -110,119 +110,119 @@
     },
     {
       "key": "/develop/interoperability/xcm-guides/from-apps/transfers/",
-      "value": "/chain-interactions/send-transactions/interoperability/transfer-assets-parachains/"
+      "value": "https://developers.polkadot.com/chain-interactions/send-transactions/interoperability/transfer-assets-parachains/"
     },
     {
       "key": "/develop/interoperability/xcm-runtime-apis/",
-      "value": "/chain-interactions/send-transactions/interoperability/debug-and-preview-xcms/"
+      "value": "https://developers.polkadot.com/chain-interactions/send-transactions/interoperability/debug-and-preview-xcms/"
     },
     {
       "key": "/develop/networks/",
-      "value": "/smart-contracts/connect/"
+      "value": "https://developers.polkadot.com/smart-contracts/connect/"
     },
     {
       "key": "/develop/parachains/",
-      "value": "/parachains/get-started/"
+      "value": "/polkadot-sdk/get-started/"
     },
     {
       "key": "/develop/parachains/customize-parachain/",
-      "value": "/parachains/customize-runtime/"
+      "value": "/polkadot-sdk/customize-runtime/"
     },
     {
       "key": "/develop/parachains/customize-parachain/add-existing-pallets/",
-      "value": "/parachains/customize-runtime/add-existing-pallets/"
+      "value": "/polkadot-sdk/customize-runtime/add-existing-pallets/"
     },
     {
       "key": "/develop/parachains/customize-parachain/add-pallet-instances/",
-      "value": "/parachains/customize-runtime/add-pallet-instances/"
+      "value": "/polkadot-sdk/customize-runtime/add-pallet-instances/"
     },
     {
       "key": "/develop/parachains/customize-parachain/add-smart-contract-functionality/",
-      "value": "/parachains/customize-runtime/add-smart-contract-functionality/"
+      "value": "/polkadot-sdk/customize-runtime/add-smart-contract-functionality/"
     },
     {
       "key": "/develop/parachains/customize-parachain/make-custom-pallet/",
-      "value": "/parachains/customize-runtime/pallet-development/create-a-pallet/"
+      "value": "/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet/"
     },
     {
       "key": "/develop/parachains/customize-parachain/overview/",
-      "value": "/parachains/customize-runtime/"
+      "value": "/polkadot-sdk/customize-runtime/"
     },
     {
       "key": "/develop/parachains/deployment/",
-      "value": "/parachains/launch-a-parachain/deploy-to-polkadot/"
+      "value": "https://developers.polkadot.com/parachains/launch-a-parachain/deploy-to-polkadot/"
     },
     {
       "key": "/develop/parachains/deployment/build-deterministic-runtime/",
-      "value": "/parachains/customize-runtime/"
+      "value": "/polkadot-sdk/customize-runtime/"
     },
     {
       "key": "/develop/parachains/deployment/coretime-renewal/",
-      "value": "/parachains/launch-a-parachain/obtain-coretime/"
+      "value": "https://developers.polkadot.com/parachains/launch-a-parachain/obtain-coretime/"
     },
     {
       "key": "/develop/parachains/deployment/generate-chain-specs/",
-      "value": "/parachains/launch-a-parachain/deploy-to-polkadot/"
+      "value": "https://developers.polkadot.com/parachains/launch-a-parachain/deploy-to-polkadot/"
     },
     {
       "key": "/develop/parachains/deployment/manage-coretime/",
-      "value": "/parachains/launch-a-parachain/obtain-coretime/"
+      "value": "https://developers.polkadot.com/parachains/launch-a-parachain/obtain-coretime/"
     },
     {
       "key": "/develop/parachains/deployment/obtain-coretime/",
-      "value": "/parachains/launch-a-parachain/obtain-coretime/"
+      "value": "https://developers.polkadot.com/parachains/launch-a-parachain/obtain-coretime/"
     },
     {
       "key": "/develop/parachains/install-polkadot-sdk/",
-      "value": "/parachains/install-polkadot-sdk/"
+      "value": "/polkadot-sdk/install-polkadot-sdk/"
     },
     {
       "key": "/develop/parachains/intro-polkadot-sdk/",
-      "value": "/reference/parachains/"
+      "value": "/polkadot-sdk/reference/"
     },
     {
       "key": "/develop/parachains/maintenance/",
-      "value": "/parachains/runtime-maintenance/runtime-upgrades/"
+      "value": "/polkadot-sdk/runtime-maintenance/runtime-upgrades/"
     },
     {
       "key": "/develop/parachains/maintenance/configure-asynchronous-backing/",
-      "value": "/reference/parachains/consensus/async-backing/"
+      "value": "/polkadot-sdk/reference/consensus/async-backing/"
     },
     {
       "key": "/develop/parachains/maintenance/runtime-metrics-monitoring/",
-      "value": "/parachains/runtime-maintenance/runtime-upgrades/"
+      "value": "/polkadot-sdk/runtime-maintenance/runtime-upgrades/"
     },
     {
       "key": "/develop/parachains/maintenance/runtime-upgrades/",
-      "value": "/parachains/runtime-maintenance/runtime-upgrades/"
+      "value": "/polkadot-sdk/runtime-maintenance/runtime-upgrades/"
     },
     {
       "key": "/develop/parachains/maintenance/storage-migrations/",
-      "value": "/parachains/runtime-maintenance/storage-migrations/"
+      "value": "/polkadot-sdk/runtime-maintenance/storage-migrations/"
     },
     {
       "key": "/develop/parachains/maintenance/unlock-parachain/",
-      "value": "/parachains/runtime-maintenance/unlock-parachains/"
+      "value": "https://developers.polkadot.com/parachains/runtime-maintenance/unlock-parachains/"
     },
     {
       "key": "/develop/parachains/testing/",
-      "value": "/parachains/customize-runtime/pallet-development/pallet-testing/"
+      "value": "/polkadot-sdk/customize-runtime/pallet-development/pallet-testing/"
     },
     {
       "key": "/develop/parachains/testing/benchmarking/",
-      "value": "/parachains/customize-runtime/pallet-development/benchmark-pallet/"
+      "value": "/polkadot-sdk/customize-runtime/pallet-development/benchmark-pallet/"
     },
     {
       "key": "/develop/parachains/testing/mock-runtime/",
-      "value": "/parachains/customize-runtime/pallet-development/mock-runtime/"
+      "value": "/polkadot-sdk/customize-runtime/pallet-development/mock-runtime/"
     },
     {
       "key": "/develop/parachains/testing/pallet-testing/",
-      "value": "/parachains/customize-runtime/pallet-development/pallet-testing/"
+      "value": "/polkadot-sdk/customize-runtime/pallet-development/pallet-testing/"
     },
     {
       "key": "/develop/parachains/testing/setup/",
-      "value": "/parachains/customize-runtime/pallet-development/pallet-testing/"
+      "value": "/polkadot-sdk/customize-runtime/pallet-development/pallet-testing/"
     },
     {
       "key": "/develop/smart-contracts/",
@@ -230,15 +230,15 @@
     },
     {
       "key": "/develop/smart-contracts/block-explorers/",
-      "value": "/smart-contracts/explorers/"
+      "value": "https://developers.polkadot.com/smart-contracts/explorers/"
     },
     {
       "key": "/develop/smart-contracts/connect-to-kusama/",
-      "value": "/smart-contracts/connect/"
+      "value": "https://developers.polkadot.com/smart-contracts/connect/"
     },
     {
       "key": "/develop/smart-contracts/connect-to-polkadot/",
-      "value": "/smart-contracts/connect/"
+      "value": "https://developers.polkadot.com/smart-contracts/connect/"
     },
     {
       "key": "/develop/smart-contracts/dev-environments/",
@@ -246,15 +246,15 @@
     },
     {
       "key": "/develop/smart-contracts/dev-environments/foundry/",
-      "value": "/smart-contracts/dev-environments/foundry/"
+      "value": "https://developers.polkadot.com/smart-contracts/dev-environments/foundry/"
     },
     {
       "key": "/develop/smart-contracts/dev-environments/hardhat/",
-      "value": "/smart-contracts/dev-environments/hardhat/"
+      "value": "https://developers.polkadot.com/smart-contracts/dev-environments/hardhat/"
     },
     {
       "key": "/develop/smart-contracts/dev-environments/remix/",
-      "value": "/smart-contracts/dev-environments/remix/"
+      "value": "https://developers.polkadot.com/smart-contracts/dev-environments/remix/"
     },
     {
       "key": "/develop/smart-contracts/evm/",
@@ -278,27 +278,27 @@
     },
     {
       "key": "/develop/smart-contracts/libraries/",
-      "value": "/smart-contracts/libraries/ethers-js/"
+      "value": "https://developers.polkadot.com/smart-contracts/libraries/ethers-js/"
     },
     {
       "key": "/develop/smart-contracts/libraries/ethers-js/",
-      "value": "/smart-contracts/libraries/ethers-js/"
+      "value": "https://developers.polkadot.com/smart-contracts/libraries/ethers-js/"
     },
     {
       "key": "/develop/smart-contracts/libraries/viem/",
-      "value": "/smart-contracts/libraries/viem/"
+      "value": "https://developers.polkadot.com/smart-contracts/libraries/viem/"
     },
     {
       "key": "/develop/smart-contracts/libraries/wagmi/",
-      "value": "/smart-contracts/libraries/wagmi/"
+      "value": "https://developers.polkadot.com/smart-contracts/libraries/wagmi/"
     },
     {
       "key": "/develop/smart-contracts/libraries/web3-js/",
-      "value": "/smart-contracts/libraries/web3-js/"
+      "value": "https://developers.polkadot.com/smart-contracts/libraries/ethers-js/"
     },
     {
       "key": "/develop/smart-contracts/libraries/web3-py/",
-      "value": "/smart-contracts/libraries/web3-py/"
+      "value": "https://developers.polkadot.com/smart-contracts/libraries/web3-py/"
     },
     {
       "key": "/develop/smart-contracts/local-development-node/",
@@ -322,7 +322,7 @@
     },
     {
       "key": "/develop/smart-contracts/wallets/",
-      "value": "/smart-contracts/integrations/wallets/"
+      "value": "https://developers.polkadot.com/smart-contracts/integrations/wallets/"
     },
     {
       "key": "/develop/smart-contracts/wasm-ink/",
@@ -330,155 +330,155 @@
     },
     {
       "key": "/develop/toolkit/",
-      "value": "/reference/tools/zombienet/"
+      "value": "/tools/zombienet/"
     },
     {
       "key": "/develop/toolkit/api-libraries/",
-      "value": "/chain-interactions/"
+      "value": "/tools/chain-interactions/"
     },
     {
       "key": "/develop/toolkit/api-libraries/dedot/",
-      "value": "/reference/tools/dedot/"
+      "value": "https://developers.polkadot.com/reference/tools/dedot/"
     },
     {
       "key": "/develop/toolkit/api-libraries/papi/",
-      "value": "/reference/tools/papi/"
+      "value": "https://developers.polkadot.com/reference/tools/papi/"
     },
     {
       "key": "/develop/toolkit/api-libraries/polkadart/",
-      "value": "/reference/tools/polkadart/"
+      "value": "https://developers.polkadot.com/reference/tools/polkadart/"
     },
     {
       "key": "/develop/toolkit/api-libraries/polkadot-js-api/",
-      "value": "/reference/tools/polkadot-js-api/"
+      "value": "https://developers.polkadot.com/reference/tools/polkadot-js-api/"
     },
     {
       "key": "/develop/toolkit/api-libraries/py-substrate-interface/",
-      "value": "/reference/tools/py-substrate-interface/"
+      "value": "https://developers.polkadot.com/reference/tools/py-substrate-interface/"
     },
     {
       "key": "/develop/toolkit/api-libraries/sidecar/",
-      "value": "/reference/tools/sidecar/"
+      "value": "/tools/polkadot-rest-api/"
     },
     {
       "key": "/develop/toolkit/api-libraries/subxt/",
-      "value": "/reference/tools/subxt/"
+      "value": "/tools/subxt/"
     },
     {
       "key": "/develop/toolkit/integrations/",
-      "value": "/parachains/integrations/wallets/"
+      "value": "https://developers.polkadot.com/parachains/integrations/wallets/"
     },
     {
       "key": "/develop/toolkit/integrations/indexers/",
-      "value": "/parachains/integrations/indexers/"
+      "value": "https://developers.polkadot.com/parachains/integrations/indexers/"
     },
     {
       "key": "/develop/toolkit/integrations/oracles/",
-      "value": "/parachains/integrations/oracles/"
+      "value": "https://developers.polkadot.com/parachains/integrations/oracles/"
     },
     {
       "key": "/develop/toolkit/integrations/storage/",
-      "value": "/parachains/integrations/wallets/"
+      "value": "https://developers.polkadot.com/parachains/integrations/wallets/"
     },
     {
       "key": "/develop/toolkit/integrations/transaction-construction/",
-      "value": "/chain-interactions/send-transactions/with-sdks/"
+      "value": "/tools/chain-interactions/send-transactions/with-sdks/"
     },
     {
       "key": "/develop/toolkit/integrations/wallets/",
-      "value": "/parachains/integrations/wallets/"
+      "value": "https://developers.polkadot.com/parachains/integrations/wallets/"
     },
     {
       "key": "/develop/toolkit/interoperability/",
-      "value": "/reference/tools/xcm-tools/"
+      "value": "https://developers.polkadot.com/reference/tools/xcm-tools/"
     },
     {
       "key": "/develop/toolkit/interoperability/asset-transfer-api/",
-      "value": "/reference/tools/paraspell/"
+      "value": "https://developers.polkadot.com/reference/tools/paraspell/"
     },
     {
       "key": "/develop/toolkit/interoperability/asset-transfer-api/overview/",
-      "value": "/reference/tools/paraspell/"
+      "value": "https://developers.polkadot.com/reference/tools/paraspell/"
     },
     {
       "key": "/develop/toolkit/interoperability/asset-transfer-api/reference/",
-      "value": "/reference/tools/paraspell/"
+      "value": "https://developers.polkadot.com/reference/tools/paraspell/"
     },
     {
       "key": "/develop/toolkit/interoperability/paraspell-xcm-sdk/",
-      "value": "/reference/tools/paraspell/"
+      "value": "https://developers.polkadot.com/reference/tools/paraspell/"
     },
     {
       "key": "/develop/toolkit/interoperability/paraspell-xcm-sdk/transfer-tokens-between-parachains/",
-      "value": "/chain-interactions/send-transactions/interoperability/transfer-assets-parachains/"
+      "value": "https://developers.polkadot.com/chain-interactions/send-transactions/interoperability/transfer-assets-parachains/"
     },
     {
       "key": "/develop/toolkit/interoperability/xcm-tools/",
-      "value": "/reference/tools/xcm-tools/"
+      "value": "https://developers.polkadot.com/reference/tools/xcm-tools/"
     },
     {
       "key": "/develop/toolkit/parachains/",
-      "value": "/reference/tools/zombienet/"
+      "value": "/tools/zombienet/"
     },
     {
       "key": "/develop/toolkit/parachains/e2e-testing/",
-      "value": "/reference/tools/moonwall/"
+      "value": "https://developers.polkadot.com/reference/tools/moonwall/"
     },
     {
       "key": "/develop/toolkit/parachains/e2e-testing/moonwall/",
-      "value": "/reference/tools/moonwall/"
+      "value": "https://developers.polkadot.com/reference/tools/moonwall/"
     },
     {
       "key": "/develop/toolkit/parachains/fork-chains/",
-      "value": "/reference/tools/chopsticks/"
+      "value": "https://developers.polkadot.com/reference/tools/chopsticks/"
     },
     {
       "key": "/develop/toolkit/parachains/fork-chains/chopsticks/",
-      "value": "/reference/tools/chopsticks/"
+      "value": "https://developers.polkadot.com/reference/tools/chopsticks/"
     },
     {
       "key": "/develop/toolkit/parachains/fork-chains/chopsticks/get-started/",
-      "value": "/parachains/testing/fork-a-parachain/"
+      "value": "https://developers.polkadot.com/parachains/testing/fork-a-parachain/"
     },
     {
       "key": "/develop/toolkit/parachains/light-clients/",
-      "value": "/reference/tools/light-clients/"
+      "value": "/tools/light-clients/"
     },
     {
       "key": "/develop/toolkit/parachains/polkadot-omni-node/",
-      "value": "/reference/tools/omninode/"
+      "value": "/tools/omninode/"
     },
     {
       "key": "/develop/toolkit/parachains/quickstart/",
-      "value": "/reference/tools/zombienet/"
+      "value": "/tools/zombienet/"
     },
     {
       "key": "/develop/toolkit/parachains/quickstart/pop-cli/",
-      "value": "/reference/tools/zombienet/"
+      "value": "/tools/zombienet/"
     },
     {
       "key": "/develop/toolkit/parachains/remote-proxies/",
-      "value": "/parachains/get-started/"
+      "value": "/polkadot-sdk/get-started/"
     },
     {
       "key": "/develop/toolkit/parachains/rpc-calls/",
-      "value": "/reference/parachains/chain-data/"
+      "value": "/polkadot-sdk/reference/chain-data/"
     },
     {
       "key": "/develop/toolkit/parachains/spawn-chains/",
-      "value": "/reference/tools/zombienet/"
+      "value": "/tools/zombienet/"
     },
     {
       "key": "/develop/toolkit/parachains/spawn-chains/zombienet/",
-      "value": "/reference/tools/zombienet/"
+      "value": "/tools/zombienet/"
     },
     {
       "key": "/develop/toolkit/parachains/spawn-chains/zombienet/get-started/",
-      "value": "/parachains/testing/run-a-parachain-network/"
+      "value": "/polkadot-sdk/testing/run-a-parachain-network/"
     },
     {
       "key": "/develop/toolkit/parachains/spawn-chains/zombienet/write-tests/",
-      "value": "/parachains/testing/run-a-parachain-network/"
+      "value": "/polkadot-sdk/testing/run-a-parachain-network/"
     },
     {
       "key": "/ai-chatbot-policy/",
@@ -502,135 +502,135 @@
     },
     {
       "key": "/infrastructure/",
-      "value": "/node-infrastructure/"
+      "value": "/nodes/"
     },
     {
       "key": "/infrastructure/running-a-node/",
-      "value": "/node-infrastructure/run-a-node/parachain-rpc/"
+      "value": "/nodes/run-a-node/parachain-rpc/"
     },
     {
       "key": "/infrastructure/running-a-node/setup-bootnode/",
-      "value": "/node-infrastructure/run-a-node/relay-chain/bootnode/"
+      "value": "/nodes/run-a-node/relay-chain/bootnode/"
     },
     {
       "key": "/infrastructure/running-a-node/setup-full-node/",
-      "value": "/node-infrastructure/run-a-node/relay-chain/full-node/"
+      "value": "/nodes/run-a-node/relay-chain/full-node/"
     },
     {
       "key": "/infrastructure/running-a-node/setup-secure-wss/",
-      "value": "/node-infrastructure/run-a-node/relay-chain/secure-wss/"
+      "value": "/nodes/run-a-node/relay-chain/secure-wss/"
     },
     {
       "key": "/infrastructure/running-a-validator/",
-      "value": "/node-infrastructure/run-a-validator/requirements/"
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/requirements/"
     },
     {
       "key": "/infrastructure/running-a-validator/onboarding-and-offboarding/",
-      "value": "/node-infrastructure/run-a-validator/onboarding-and-offboarding/set-up-validator/"
+      "value": "/nodes/run-a-node/relay-chain/full-node/"
     },
     {
       "key": "/infrastructure/running-a-validator/onboarding-and-offboarding/key-management/",
-      "value": "/node-infrastructure/run-a-validator/onboarding-and-offboarding/key-management/"
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/onboarding-and-offboarding/key-management/"
     },
     {
       "key": "/infrastructure/running-a-validator/onboarding-and-offboarding/set-up-validator/",
-      "value": "/node-infrastructure/run-a-validator/onboarding-and-offboarding/set-up-validator/"
+      "value": "/nodes/run-a-node/relay-chain/full-node/"
     },
     {
       "key": "/infrastructure/running-a-validator/onboarding-and-offboarding/start-validating/",
-      "value": "/node-infrastructure/run-a-validator/onboarding-and-offboarding/start-validating/"
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/onboarding-and-offboarding/start-validating/"
     },
     {
       "key": "/infrastructure/running-a-validator/onboarding-and-offboarding/stop-validating/",
-      "value": "/node-infrastructure/run-a-validator/onboarding-and-offboarding/stop-validating/"
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/onboarding-and-offboarding/stop-validating/"
     },
     {
       "key": "/infrastructure/running-a-validator/operational-tasks/",
-      "value": "/node-infrastructure/run-a-validator/operational-tasks/general-management/"
+      "value": "/nodes/monitor-and-harden/"
     },
     {
       "key": "/infrastructure/running-a-validator/operational-tasks/general-management/",
-      "value": "/node-infrastructure/run-a-validator/operational-tasks/general-management/"
+      "value": "/nodes/monitor-and-harden/"
     },
     {
       "key": "/infrastructure/running-a-validator/operational-tasks/pause-validating/",
-      "value": "/node-infrastructure/run-a-validator/operational-tasks/pause-validating/"
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/operational-tasks/pause-validating/"
     },
     {
       "key": "/infrastructure/running-a-validator/operational-tasks/upgrade-your-node/",
-      "value": "/node-infrastructure/run-a-validator/operational-tasks/upgrade-your-node/"
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/operational-tasks/upgrade-your-node/"
     },
     {
       "key": "/infrastructure/running-a-validator/requirements/",
-      "value": "/node-infrastructure/run-a-validator/requirements/"
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/requirements/"
     },
     {
       "key": "/infrastructure/staking-mechanics/",
-      "value": "/node-infrastructure/run-a-validator/staking-mechanics/rewards/"
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/staking-mechanics/rewards/"
     },
     {
       "key": "/infrastructure/staking-mechanics/offenses-and-slashes/",
-      "value": "/node-infrastructure/run-a-validator/staking-mechanics/offenses-and-slashes/"
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/staking-mechanics/offenses-and-slashes/"
     },
     {
       "key": "/infrastructure/staking-mechanics/rewards-payout/",
-      "value": "/node-infrastructure/run-a-validator/staking-mechanics/rewards/"
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/staking-mechanics/rewards/"
     },
     {
       "key": "/node-infrastructure/run-a-node/polkadot-hub-rpc/",
-      "value": "/node-infrastructure/run-a-node/parachain-rpc/"
+      "value": "/nodes/run-a-node/parachain-rpc/"
     },
     {
       "key": "/node-infrastructure/run-a-node/relay-chain/",
-      "value": "/node-infrastructure/run-a-node/relay-chain/full-node/"
+      "value": "/nodes/run-a-node/relay-chain/full-node/"
     },
     {
       "key": "/node-infrastructure/run-a-validator/",
-      "value": "/node-infrastructure/run-a-validator/requirements/"
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/requirements/"
     },
     {
       "key": "/node-infrastructure/run-a-validator/onboarding-and-offboarding/",
-      "value": "/node-infrastructure/run-a-validator/onboarding-and-offboarding/set-up-validator/"
+      "value": "/nodes/run-a-node/relay-chain/full-node/"
     },
     {
       "key": "/node-infrastructure/run-a-validator/operational-tasks/",
-      "value": "/node-infrastructure/run-a-validator/operational-tasks/general-management/"
+      "value": "/nodes/monitor-and-harden/"
     },
     {
       "key": "/node-infrastructure/run-a-validator/staking-mechanics/",
-      "value": "/node-infrastructure/run-a-validator/staking-mechanics/rewards/"
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/staking-mechanics/rewards/"
     },
     {
       "key": "/nodes-and-validators/run-a-node/",
-      "value": "/node-infrastructure/run-a-node/parachain-rpc/"
+      "value": "/nodes/run-a-node/parachain-rpc/"
     },
     {
       "key": "/parachains/",
-      "value": "/parachains/get-started/"
+      "value": "/polkadot-sdk/get-started/"
     },
     {
       "key": "/parachains/customize-runtime/pallet-development/",
-      "value": "/parachains/customize-runtime/pallet-development/create-a-pallet/"
+      "value": "/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet/"
     },
     {
       "key": "/parachains/integrations/",
-      "value": "/parachains/integrations/wallets/"
+      "value": "https://developers.polkadot.com/parachains/integrations/wallets/"
     },
     {
       "key": "/parachains/interoperability/",
-      "value": "/parachains/interoperability/get-started/"
+      "value": "/polkadot-sdk/interoperability/get-started/"
     },
     {
       "key": "/parachains/launch-a-parachain/",
-      "value": "/parachains/launch-a-parachain/set-up-the-parachain-template/"
+      "value": "/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/"
     },
     {
       "key": "/parachains/runtime-maintenance/",
-      "value": "/parachains/runtime-maintenance/runtime-upgrades/"
+      "value": "/polkadot-sdk/runtime-maintenance/runtime-upgrades/"
     },
     {
       "key": "/parachains/testing/",
-      "value": "/parachains/testing/fork-a-parachain/"
+      "value": "https://developers.polkadot.com/parachains/testing/fork-a-parachain/"
     },
     {
       "key": "/privacy-policy/",
@@ -653,192 +653,188 @@
       "value": "/"
     },
     {
-      "key": "/policies/terms-of-use/",
-      "value": "/"
-    },
-    {
       "key": "/polkadot-protocol/",
-      "value": "/reference/"
+      "value": "/get-started/"
     },
     {
       "key": "/polkadot-protocol/architecture/",
-      "value": "/reference/"
+      "value": "/get-started/"
     },
     {
       "key": "/polkadot-protocol/architecture/parachains/",
-      "value": "/reference/parachains/"
+      "value": "/polkadot-sdk/reference/"
     },
     {
       "key": "/polkadot-protocol/architecture/parachains/consensus/",
-      "value": "/reference/parachains/consensus/"
+      "value": "/polkadot-sdk/reference/consensus/"
     },
     {
       "key": "/polkadot-protocol/architecture/parachains/overview/",
-      "value": "/reference/parachains/"
+      "value": "/polkadot-sdk/reference/"
     },
     {
       "key": "/polkadot-protocol/architecture/polkadot-chain/",
-      "value": "/reference/polkadot-hub/"
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/"
     },
     {
       "key": "/polkadot-protocol/architecture/polkadot-chain/agile-coretime/",
-      "value": "/reference/polkadot-hub/consensus-and-security/agile-coretime/"
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/consensus-and-security/agile-coretime/"
     },
     {
       "key": "/polkadot-protocol/architecture/polkadot-chain/elastic-scaling/",
-      "value": "/reference/parachains/consensus/elastic-scaling/"
+      "value": "/polkadot-sdk/reference/consensus/elastic-scaling/"
     },
     {
       "key": "/polkadot-protocol/architecture/polkadot-chain/overview/",
-      "value": "/reference/polkadot-hub/consensus-and-security/relay-chain/"
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/consensus-and-security/relay-chain/"
     },
     {
       "key": "/polkadot-protocol/architecture/polkadot-chain/pos-consensus/",
-      "value": "/reference/polkadot-hub/consensus-and-security/pos-consensus/"
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/consensus-and-security/pos-consensus/"
     },
     {
       "key": "/polkadot-protocol/architecture/system-chains/",
-      "value": "/reference/polkadot-hub/"
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/"
     },
     {
       "key": "/polkadot-protocol/architecture/system-chains/asset-hub/",
-      "value": "/reference/polkadot-hub/assets/"
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/assets/"
     },
     {
       "key": "/polkadot-protocol/architecture/system-chains/bridge-hub/",
-      "value": "/reference/polkadot-hub/bridging/"
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/bridging/"
     },
     {
       "key": "/polkadot-protocol/architecture/system-chains/collectives/",
-      "value": "/reference/polkadot-hub/collectives-and-daos/"
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/collectives-and-daos/"
     },
     {
       "key": "/polkadot-protocol/architecture/system-chains/coretime/",
-      "value": "/reference/polkadot-hub/consensus-and-security/agile-coretime/"
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/consensus-and-security/agile-coretime/"
     },
     {
       "key": "/polkadot-protocol/architecture/system-chains/overview/",
-      "value": "/reference/polkadot-hub/"
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/"
     },
     {
       "key": "/polkadot-protocol/architecture/system-chains/people/",
-      "value": "/reference/polkadot-hub/people-and-identity/"
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/people-and-identity/"
     },
     {
       "key": "/polkadot-protocol/basics/",
-      "value": "/reference/parachains/"
+      "value": "/polkadot-sdk/reference/"
     },
     {
       "key": "/polkadot-protocol/basics/accounts/",
-      "value": "/reference/parachains/accounts/"
+      "value": "/polkadot-sdk/reference/accounts/"
     },
     {
       "key": "/polkadot-protocol/basics/blocks-transactions-fees/",
-      "value": "/reference/parachains/blocks-transactions-fees/blocks/"
+      "value": "/polkadot-sdk/reference/blocks-transactions-fees/blocks/"
     },
     {
       "key": "/polkadot-protocol/basics/blocks-transactions-fees/blocks/",
-      "value": "/reference/parachains/blocks-transactions-fees/blocks/"
+      "value": "/polkadot-sdk/reference/blocks-transactions-fees/blocks/"
     },
     {
       "key": "/polkadot-protocol/basics/blocks-transactions-fees/fees/",
-      "value": "/reference/parachains/blocks-transactions-fees/fees/"
+      "value": "/polkadot-sdk/reference/blocks-transactions-fees/fees/"
     },
     {
       "key": "/polkadot-protocol/basics/blocks-transactions-fees/transactions/",
-      "value": "/reference/parachains/blocks-transactions-fees/transactions/"
+      "value": "/polkadot-sdk/reference/blocks-transactions-fees/transactions/"
     },
     {
       "key": "/polkadot-protocol/basics/chain-data/",
-      "value": "/reference/parachains/chain-data/"
+      "value": "/polkadot-sdk/reference/chain-data/"
     },
     {
       "key": "/polkadot-protocol/basics/cryptography/",
-      "value": "/reference/parachains/cryptography/"
+      "value": "/polkadot-sdk/reference/cryptography/"
     },
     {
       "key": "/polkadot-protocol/basics/data-encoding/",
-      "value": "/reference/parachains/data-encoding/"
+      "value": "/polkadot-sdk/reference/data-encoding/"
     },
     {
       "key": "/polkadot-protocol/basics/interoperability/",
-      "value": "/reference/parachains/interoperability/"
+      "value": "/polkadot-sdk/interoperability/get-started/"
     },
     {
       "key": "/polkadot-protocol/basics/networks/",
-      "value": "/reference/parachains/networks/"
+      "value": "https://developers.polkadot.com/reference/parachains/networks/"
     },
     {
       "key": "/polkadot-protocol/basics/randomness/",
-      "value": "/reference/parachains/randomness/"
+      "value": "/polkadot-sdk/reference/randomness/"
     },
     {
       "key": "/polkadot-protocol/glossary/",
-      "value": "/reference/glossary/"
+      "value": "/get-started/glossary/"
     },
     {
       "key": "/polkadot-protocol/onchain-governance/",
-      "value": "/reference/governance/"
+      "value": "https://developers.polkadot.com/reference/governance/"
     },
     {
       "key": "/polkadot-protocol/onchain-governance/origins-tracks/",
-      "value": "/reference/governance/origins-tracks/"
+      "value": "https://developers.polkadot.com/reference/governance/origins-tracks/"
     },
     {
       "key": "/polkadot-protocol/onchain-governance/overview/",
-      "value": "/reference/governance/"
+      "value": "https://developers.polkadot.com/reference/governance/"
     },
     {
       "key": "/polkadot-protocol/parachain-basics/",
-      "value": "/reference/parachains/"
+      "value": "/polkadot-sdk/reference/"
     },
     {
       "key": "/polkadot-protocol/parachain-basics/accounts/",
-      "value": "/reference/parachains/accounts/"
+      "value": "/polkadot-sdk/reference/accounts/"
     },
     {
       "key": "/polkadot-protocol/parachain-basics/blocks-transactions-fees/",
-      "value": "/reference/parachains/blocks-transactions-fees/blocks/"
+      "value": "/polkadot-sdk/reference/blocks-transactions-fees/blocks/"
     },
     {
       "key": "/polkadot-protocol/parachain-basics/blocks-transactions-fees/blocks/",
-      "value": "/reference/parachains/blocks-transactions-fees/blocks/"
+      "value": "/polkadot-sdk/reference/blocks-transactions-fees/blocks/"
     },
     {
       "key": "/polkadot-protocol/parachain-basics/blocks-transactions-fees/fees/",
-      "value": "/reference/parachains/blocks-transactions-fees/fees/"
+      "value": "/polkadot-sdk/reference/blocks-transactions-fees/fees/"
     },
     {
       "key": "/polkadot-protocol/parachain-basics/blocks-transactions-fees/transactions/",
-      "value": "/reference/parachains/blocks-transactions-fees/transactions/"
+      "value": "/polkadot-sdk/reference/blocks-transactions-fees/transactions/"
     },
     {
       "key": "/polkadot-protocol/parachain-basics/chain-data/",
-      "value": "/reference/parachains/chain-data/"
+      "value": "/polkadot-sdk/reference/chain-data/"
     },
     {
       "key": "/polkadot-protocol/parachain-basics/cryptography/",
-      "value": "/reference/parachains/cryptography/"
+      "value": "/polkadot-sdk/reference/cryptography/"
     },
     {
       "key": "/polkadot-protocol/parachain-basics/data-encoding/",
-      "value": "/reference/parachains/data-encoding/"
+      "value": "/polkadot-sdk/reference/data-encoding/"
     },
     {
       "key": "/polkadot-protocol/parachain-basics/interoperability/",
-      "value": "/reference/parachains/interoperability/"
+      "value": "/polkadot-sdk/interoperability/get-started/"
     },
     {
       "key": "/polkadot-protocol/parachain-basics/networks/",
-      "value": "/reference/parachains/networks/"
+      "value": "https://developers.polkadot.com/reference/parachains/networks/"
     },
     {
       "key": "/polkadot-protocol/parachain-basics/node-and-runtime/",
-      "value": "/reference/parachains/node-and-runtime/"
+      "value": "/polkadot-sdk/reference/node-and-runtime/"
     },
     {
       "key": "/polkadot-protocol/parachain-basics/randomness/",
-      "value": "/reference/parachains/randomness/"
+      "value": "/polkadot-sdk/reference/randomness/"
     },
     {
       "key": "/polkadot-protocol/smart-contract-basics/",
@@ -850,15 +846,15 @@
     },
     {
       "key": "/polkadot-protocol/smart-contract-basics/blocks-transactions-fees/",
-      "value": "/smart-contracts/for-eth-devs/blocks-transactions-fees/"
+      "value": "/smart-contracts/for-eth-devs/gas-model/"
     },
     {
       "key": "/polkadot-protocol/smart-contract-basics/evm-vs-polkavm/",
-      "value": "/reference/polkadot-hub/smart-contracts/"
+      "value": "/smart-contracts/overview/"
     },
     {
       "key": "/polkadot-protocol/smart-contract-basics/networks/",
-      "value": "/smart-contracts/connect/"
+      "value": "https://developers.polkadot.com/smart-contracts/connect/"
     },
     {
       "key": "/polkadot-protocol/smart-contract-basics/overview/",
@@ -866,19 +862,19 @@
     },
     {
       "key": "/polkadot-protocol/smart-contract-basics/polkavm-design/",
-      "value": "/reference/polkadot-hub/smart-contracts/"
+      "value": "/smart-contracts/overview/"
     },
     {
       "key": "/reference/parachains/blocks-transactions-fees/",
-      "value": "/reference/parachains/blocks-transactions-fees/blocks/"
+      "value": "/polkadot-sdk/reference/blocks-transactions-fees/blocks/"
     },
     {
       "key": "/reference/polkadot-hub/consensus-and-security/",
-      "value": "/reference/polkadot-hub/consensus-and-security/relay-chain/"
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/consensus-and-security/relay-chain/"
     },
     {
       "key": "/reference/tools/",
-      "value": "/reference/tools/zombienet/"
+      "value": "/tools/zombienet/"
     },
     {
       "key": "/smart-contracts/",
@@ -886,35 +882,31 @@
     },
     {
       "key": "/smart-contracts/cookbook/dapps/",
-      "value": "/smart-contracts/cookbook/dapps/zero-to-hero/"
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/dapps/zero-to-hero/"
     },
     {
       "key": "/smart-contracts/cookbook/eth-dapps/",
-      "value": "/smart-contracts/cookbook/eth-dapps/uniswap-v2/"
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/eth-dapps/uniswap-v2/"
     },
     {
       "key": "/smart-contracts/cookbook/smart-contracts/",
-      "value": "/smart-contracts/cookbook/smart-contracts/deploy-basic/basic-remix/"
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/smart-contracts/deploy-basic/basic-remix/"
     },
     {
       "key": "/smart-contracts/cookbook/smart-contracts/deploy-basic/",
-      "value": "/smart-contracts/cookbook/smart-contracts/deploy-basic/basic-remix/"
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/smart-contracts/deploy-basic/basic-remix/"
     },
     {
       "key": "/smart-contracts/cookbook/smart-contracts/deploy-erc20/",
-      "value": "/smart-contracts/cookbook/smart-contracts/deploy-erc20/erc20-remix/"
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/smart-contracts/deploy-erc20/erc20-remix/"
     },
     {
       "key": "/smart-contracts/cookbook/smart-contracts/deploy-nft/",
-      "value": "/smart-contracts/cookbook/smart-contracts/deploy-nft/nft-remix/"
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/smart-contracts/deploy-nft/nft-remix/"
     },
     {
       "key": "/smart-contracts/dev-environments/",
       "value": "/smart-contracts/dev-environments/local-dev-node/"
-    },
-    {
-      "key": "/smart-contracts/dev-environments/hardhat-polkadot/",
-      "value": "/smart-contracts/dev-environments/hardhat/"
     },
     {
       "key": "/smart-contracts/for-eth-devs/",
@@ -922,11 +914,11 @@
     },
     {
       "key": "/smart-contracts/integrations/",
-      "value": "/smart-contracts/integrations/wallets/"
+      "value": "https://developers.polkadot.com/smart-contracts/integrations/wallets/"
     },
     {
       "key": "/smart-contracts/libraries/",
-      "value": "/smart-contracts/libraries/ethers-js/"
+      "value": "https://developers.polkadot.com/smart-contracts/libraries/ethers-js/"
     },
     {
       "key": "/terms-of-use/",
@@ -938,131 +930,131 @@
     },
     {
       "key": "/tutorials/dapps/",
-      "value": "/chain-interactions/"
+      "value": "/tools/chain-interactions/"
     },
     {
       "key": "/tutorials/dapps/remark-tutorial/",
-      "value": "/chain-interactions/"
+      "value": "/tools/chain-interactions/"
     },
     {
       "key": "/tutorials/interoperability/",
-      "value": "/chain-interactions/send-transactions/interoperability/transfer-assets-parachains/"
+      "value": "https://developers.polkadot.com/chain-interactions/send-transactions/interoperability/transfer-assets-parachains/"
     },
     {
       "key": "/tutorials/interoperability/replay-and-dry-run-xcms/",
-      "value": "/chain-interactions/send-transactions/interoperability/debug-and-preview-xcms/"
+      "value": "https://developers.polkadot.com/chain-interactions/send-transactions/interoperability/debug-and-preview-xcms/"
     },
     {
       "key": "/tutorials/interoperability/xcm-channels/",
-      "value": "/parachains/interoperability/channels-between-parachains/"
+      "value": "https://developers.polkadot.com/parachains/interoperability/channels-between-parachains/"
     },
     {
       "key": "/tutorials/interoperability/xcm-channels/para-to-para/",
-      "value": "/parachains/interoperability/channels-between-parachains/"
+      "value": "https://developers.polkadot.com/parachains/interoperability/channels-between-parachains/"
     },
     {
       "key": "/tutorials/interoperability/xcm-channels/para-to-system/",
-      "value": "/parachains/interoperability/channels-with-system-parachains/"
+      "value": "https://developers.polkadot.com/parachains/interoperability/channels-with-system-parachains/"
     },
     {
       "key": "/tutorials/interoperability/xcm-fee-estimation/",
-      "value": "/chain-interactions/send-transactions/interoperability/estimate-xcm-fees/"
+      "value": "/tools/chain-interactions/send-transactions/interoperability/estimate-xcm-fees/"
     },
     {
       "key": "/tutorials/interoperability/xcm-transfers/",
-      "value": "/chain-interactions/send-transactions/interoperability/transfer-assets-parachains/"
+      "value": "https://developers.polkadot.com/chain-interactions/send-transactions/interoperability/transfer-assets-parachains/"
     },
     {
       "key": "/tutorials/interoperability/xcm-transfers/from-relaychain-to-parachain/",
-      "value": "/chain-interactions/send-transactions/interoperability/transfer-assets-parachains/"
+      "value": "https://developers.polkadot.com/chain-interactions/send-transactions/interoperability/transfer-assets-parachains/"
     },
     {
       "key": "/tutorials/onchain-governance/",
-      "value": "/reference/governance/"
+      "value": "https://developers.polkadot.com/reference/governance/"
     },
     {
       "key": "/tutorials/onchain-governance/fast-track-gov-proposal/",
-      "value": "/reference/governance/"
+      "value": "https://developers.polkadot.com/reference/governance/"
     },
     {
       "key": "/tutorials/polkadot-sdk/",
-      "value": "/parachains/get-started/"
+      "value": "/polkadot-sdk/get-started/"
     },
     {
       "key": "/tutorials/polkadot-sdk/parachains/",
-      "value": "/parachains/get-started/"
+      "value": "/polkadot-sdk/get-started/"
     },
     {
       "key": "/tutorials/polkadot-sdk/parachains/zero-to-hero/",
-      "value": "/parachains/launch-a-parachain/set-up-the-parachain-template/"
+      "value": "/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/"
     },
     {
       "key": "/tutorials/polkadot-sdk/parachains/zero-to-hero/add-pallets-to-runtime/",
-      "value": "/parachains/customize-runtime/add-existing-pallets/"
+      "value": "/polkadot-sdk/customize-runtime/add-existing-pallets/"
     },
     {
       "key": "/tutorials/polkadot-sdk/parachains/zero-to-hero/build-custom-pallet/",
-      "value": "/parachains/customize-runtime/pallet-development/create-a-pallet/"
+      "value": "/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet/"
     },
     {
       "key": "/tutorials/polkadot-sdk/parachains/zero-to-hero/deploy-to-testnet/",
-      "value": "/parachains/launch-a-parachain/deploy-to-polkadot/"
+      "value": "https://developers.polkadot.com/parachains/launch-a-parachain/deploy-to-polkadot/"
     },
     {
       "key": "/tutorials/polkadot-sdk/parachains/zero-to-hero/obtain-coretime/",
-      "value": "/parachains/launch-a-parachain/obtain-coretime/"
+      "value": "https://developers.polkadot.com/parachains/launch-a-parachain/obtain-coretime/"
     },
     {
       "key": "/tutorials/polkadot-sdk/parachains/zero-to-hero/pallet-benchmarking/",
-      "value": "/parachains/customize-runtime/pallet-development/benchmark-pallet/"
+      "value": "/polkadot-sdk/customize-runtime/pallet-development/benchmark-pallet/"
     },
     {
       "key": "/tutorials/polkadot-sdk/parachains/zero-to-hero/pallet-unit-testing/",
-      "value": "/parachains/customize-runtime/pallet-development/pallet-testing/"
+      "value": "/polkadot-sdk/customize-runtime/pallet-development/pallet-testing/"
     },
     {
       "key": "/tutorials/polkadot-sdk/parachains/zero-to-hero/runtime-upgrade/",
-      "value": "/parachains/runtime-maintenance/runtime-upgrades/"
+      "value": "/polkadot-sdk/runtime-maintenance/runtime-upgrades/"
     },
     {
       "key": "/tutorials/polkadot-sdk/parachains/zero-to-hero/set-up-a-template/",
-      "value": "/parachains/launch-a-parachain/set-up-the-parachain-template/"
+      "value": "/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/"
     },
     {
       "key": "/tutorials/polkadot-sdk/system-chains/",
-      "value": "/chain-interactions/token-operations/register-local-asset/"
+      "value": "https://developers.polkadot.com/chain-interactions/token-operations/register-local-asset/"
     },
     {
       "key": "/tutorials/polkadot-sdk/system-chains/asset-hub/",
-      "value": "/chain-interactions/token-operations/register-local-asset/"
+      "value": "https://developers.polkadot.com/chain-interactions/token-operations/register-local-asset/"
     },
     {
       "key": "/tutorials/polkadot-sdk/system-chains/asset-hub/asset-conversion/",
-      "value": "/chain-interactions/token-operations/convert-assets/"
+      "value": "https://developers.polkadot.com/chain-interactions/token-operations/convert-assets/"
     },
     {
       "key": "/tutorials/polkadot-sdk/system-chains/asset-hub/register-foreign-asset/",
-      "value": "/chain-interactions/token-operations/register-foreign-asset/"
+      "value": "https://developers.polkadot.com/chain-interactions/token-operations/register-foreign-asset/"
     },
     {
       "key": "/tutorials/polkadot-sdk/system-chains/asset-hub/register-local-asset/",
-      "value": "/chain-interactions/token-operations/register-local-asset/"
+      "value": "https://developers.polkadot.com/chain-interactions/token-operations/register-local-asset/"
     },
     {
       "key": "/tutorials/polkadot-sdk/system-chains/asset-hub/send-a-tx-paying-fee-different-token/",
-      "value": "/chain-interactions/send-transactions/pay-fees-with-different-tokens/"
+      "value": "/tools/chain-interactions/send-transactions/pay-fees-with-different-tokens/"
     },
     {
       "key": "/tutorials/polkadot-sdk/testing/",
-      "value": "/parachains/testing/fork-a-parachain/"
+      "value": "https://developers.polkadot.com/parachains/testing/fork-a-parachain/"
     },
     {
       "key": "/tutorials/polkadot-sdk/testing/fork-live-chains/",
-      "value": "/parachains/testing/fork-a-parachain/"
+      "value": "https://developers.polkadot.com/parachains/testing/fork-a-parachain/"
     },
     {
       "key": "/tutorials/polkadot-sdk/testing/spawn-basic-chain/",
-      "value": "/parachains/testing/run-a-parachain-network/"
+      "value": "/polkadot-sdk/testing/run-a-parachain-network/"
     },
     {
       "key": "/tutorials/smart-contracts/",
@@ -1070,39 +1062,919 @@
     },
     {
       "key": "/tutorials/smart-contracts/demo-aplications/",
-      "value": "/smart-contracts/cookbook/eth-dapps/uniswap-v2/"
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/eth-dapps/uniswap-v2/"
     },
     {
       "key": "/tutorials/smart-contracts/demo-aplications/deploying-uniswap-v2/",
-      "value": "/smart-contracts/cookbook/eth-dapps/uniswap-v2/"
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/eth-dapps/uniswap-v2/"
     },
     {
       "key": "/tutorials/smart-contracts/deploy-erc20/",
-      "value": "/smart-contracts/cookbook/smart-contracts/deploy-erc20/erc20-remix/"
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/smart-contracts/deploy-erc20/erc20-remix/"
     },
     {
       "key": "/tutorials/smart-contracts/deploy-nft/",
-      "value": "/smart-contracts/cookbook/smart-contracts/deploy-nft/nft-remix/"
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/smart-contracts/deploy-nft/nft-remix/"
     },
     {
       "key": "/tutorials/smart-contracts/launch-your-first-project/",
-      "value": "/smart-contracts/cookbook/dapps/zero-to-hero/"
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/dapps/zero-to-hero/"
     },
     {
       "key": "/tutorials/smart-contracts/launch-your-first-project/create-contracts/",
-      "value": "/smart-contracts/cookbook/smart-contracts/deploy-basic/basic-remix/"
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/smart-contracts/deploy-basic/basic-remix/"
     },
     {
       "key": "/tutorials/smart-contracts/launch-your-first-project/create-dapp-ethers-js/",
-      "value": "/smart-contracts/cookbook/dapps/zero-to-hero/"
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/dapps/zero-to-hero/"
     },
     {
       "key": "/tutorials/smart-contracts/launch-your-first-project/create-dapp-viem/",
-      "value": "/smart-contracts/cookbook/dapps/zero-to-hero/"
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/dapps/zero-to-hero/"
     },
     {
       "key": "/tutorials/smart-contracts/launch-your-first-project/test-and-deploy-with-hardhat/",
-      "value": "/smart-contracts/cookbook/dapps/zero-to-hero/"
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/dapps/zero-to-hero/"
+    },
+    {
+      "key": "/apps/list-your-app/",
+      "value": "https://developers.polkadot.com/apps/list-your-app/"
+    },
+    {
+      "key": "/apps/get-started/get-testnet-tokens/",
+      "value": "https://developers.polkadot.com/apps/get-started/get-testnet-tokens/"
+    },
+    {
+      "key": "/apps/concepts/networks/",
+      "value": "https://developers.polkadot.com/apps/concepts/networks/"
+    },
+    {
+      "key": "/chain-interactions/token-operations/convert-assets/",
+      "value": "https://developers.polkadot.com/chain-interactions/token-operations/convert-assets/"
+    },
+    {
+      "key": "/chain-interactions/token-operations/register-foreign-asset/",
+      "value": "https://developers.polkadot.com/chain-interactions/token-operations/register-foreign-asset/"
+    },
+    {
+      "key": "/chain-interactions/token-operations/register-local-asset/",
+      "value": "https://developers.polkadot.com/chain-interactions/token-operations/register-local-asset/"
+    },
+    {
+      "key": "/chain-interactions/send-transactions/interoperability/debug-and-preview-xcms/",
+      "value": "https://developers.polkadot.com/chain-interactions/send-transactions/interoperability/debug-and-preview-xcms/"
+    },
+    {
+      "key": "/chain-interactions/send-transactions/interoperability/transfer-assets-into-polkadot/",
+      "value": "https://developers.polkadot.com/chain-interactions/send-transactions/interoperability/transfer-assets-into-polkadot/"
+    },
+    {
+      "key": "/chain-interactions/send-transactions/interoperability/transfer-assets-parachains/",
+      "value": "https://developers.polkadot.com/chain-interactions/send-transactions/interoperability/transfer-assets-parachains/"
+    },
+    {
+      "key": "/reference/tools/chopsticks/",
+      "value": "https://developers.polkadot.com/reference/tools/chopsticks/"
+    },
+    {
+      "key": "/reference/tools/dedot/",
+      "value": "https://developers.polkadot.com/reference/tools/dedot/"
+    },
+    {
+      "key": "/reference/tools/moonwall/",
+      "value": "https://developers.polkadot.com/reference/tools/moonwall/"
+    },
+    {
+      "key": "/reference/tools/papi/",
+      "value": "https://developers.polkadot.com/reference/tools/papi/"
+    },
+    {
+      "key": "/reference/tools/paraspell/",
+      "value": "https://developers.polkadot.com/reference/tools/paraspell/"
+    },
+    {
+      "key": "/reference/tools/polkadart/",
+      "value": "https://developers.polkadot.com/reference/tools/polkadart/"
+    },
+    {
+      "key": "/reference/tools/polkadot-js-api/",
+      "value": "https://developers.polkadot.com/reference/tools/polkadot-js-api/"
+    },
+    {
+      "key": "/reference/tools/pop-cli/",
+      "value": "https://developers.polkadot.com/reference/tools/pop-cli/"
+    },
+    {
+      "key": "/reference/tools/py-substrate-interface/",
+      "value": "https://developers.polkadot.com/reference/tools/py-substrate-interface/"
+    },
+    {
+      "key": "/reference/tools/xcm-tools/",
+      "value": "https://developers.polkadot.com/reference/tools/xcm-tools/"
+    },
+    {
+      "key": "/reference/governance/",
+      "value": "https://developers.polkadot.com/reference/governance/"
+    },
+    {
+      "key": "/reference/governance/origins-tracks/",
+      "value": "https://developers.polkadot.com/reference/governance/origins-tracks/"
+    },
+    {
+      "key": "/parachains/launch-a-parachain/deploy-to-polkadot/",
+      "value": "https://developers.polkadot.com/parachains/launch-a-parachain/deploy-to-polkadot/"
+    },
+    {
+      "key": "/parachains/launch-a-parachain/obtain-coretime/",
+      "value": "https://developers.polkadot.com/parachains/launch-a-parachain/obtain-coretime/"
+    },
+    {
+      "key": "/parachains/testing/fork-a-parachain/",
+      "value": "https://developers.polkadot.com/parachains/testing/fork-a-parachain/"
+    },
+    {
+      "key": "/parachains/runtime-maintenance/coretime-renewal/",
+      "value": "https://developers.polkadot.com/parachains/runtime-maintenance/coretime-renewal/"
+    },
+    {
+      "key": "/parachains/runtime-maintenance/unlock-parachains/",
+      "value": "https://developers.polkadot.com/parachains/runtime-maintenance/unlock-parachains/"
+    },
+    {
+      "key": "/parachains/interoperability/channels-between-parachains/",
+      "value": "https://developers.polkadot.com/parachains/interoperability/channels-between-parachains/"
+    },
+    {
+      "key": "/parachains/interoperability/channels-with-system-parachains/",
+      "value": "https://developers.polkadot.com/parachains/interoperability/channels-with-system-parachains/"
+    },
+    {
+      "key": "/parachains/integrations/wallets/",
+      "value": "https://developers.polkadot.com/parachains/integrations/wallets/"
+    },
+    {
+      "key": "/parachains/integrations/indexers/",
+      "value": "https://developers.polkadot.com/parachains/integrations/indexers/"
+    },
+    {
+      "key": "/parachains/integrations/oracles/",
+      "value": "https://developers.polkadot.com/parachains/integrations/oracles/"
+    },
+    {
+      "key": "/reference/parachains/networks/",
+      "value": "https://developers.polkadot.com/reference/parachains/networks/"
+    },
+    {
+      "key": "/node-infrastructure/run-a-metanode/",
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-metanode/"
+    },
+    {
+      "key": "/node-infrastructure/run-a-validator/requirements/",
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/requirements/"
+    },
+    {
+      "key": "/node-infrastructure/run-a-validator/onboarding-and-offboarding/key-management/",
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/onboarding-and-offboarding/key-management/"
+    },
+    {
+      "key": "/node-infrastructure/run-a-validator/onboarding-and-offboarding/start-validating/",
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/onboarding-and-offboarding/start-validating/"
+    },
+    {
+      "key": "/node-infrastructure/run-a-validator/onboarding-and-offboarding/stop-validating/",
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/onboarding-and-offboarding/stop-validating/"
+    },
+    {
+      "key": "/node-infrastructure/run-a-validator/operational-tasks/pause-validating/",
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/operational-tasks/pause-validating/"
+    },
+    {
+      "key": "/node-infrastructure/run-a-validator/operational-tasks/staking-operator-proxy/",
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/operational-tasks/staking-operator-proxy/"
+    },
+    {
+      "key": "/node-infrastructure/run-a-validator/operational-tasks/upgrade-your-node/",
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/operational-tasks/upgrade-your-node/"
+    },
+    {
+      "key": "/node-infrastructure/run-a-validator/staking-mechanics/offenses-and-slashes/",
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/staking-mechanics/offenses-and-slashes/"
+    },
+    {
+      "key": "/node-infrastructure/run-a-validator/staking-mechanics/rewards/",
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/staking-mechanics/rewards/"
+    },
+    {
+      "key": "/reference/apps/hosts/polkadot-app/",
+      "value": "https://developers.polkadot.com/reference/apps/hosts/polkadot-app/"
+    },
+    {
+      "key": "/reference/apps/hosts/polkadot-app/chat/",
+      "value": "https://developers.polkadot.com/reference/apps/hosts/polkadot-app/chat/"
+    },
+    {
+      "key": "/reference/apps/hosts/polkadot-app/coinage/",
+      "value": "https://developers.polkadot.com/reference/apps/hosts/polkadot-app/coinage/"
+    },
+    {
+      "key": "/reference/apps/hosts/polkadot-app/pop/",
+      "value": "https://developers.polkadot.com/reference/apps/hosts/polkadot-app/pop/"
+    },
+    {
+      "key": "/reference/apps/hosts/polkadot-app/sign-in/",
+      "value": "https://developers.polkadot.com/reference/apps/hosts/polkadot-app/sign-in/"
+    },
+    {
+      "key": "/reference/apps/hosts/polkadot-web/",
+      "value": "https://developers.polkadot.com/reference/apps/hosts/polkadot-web/"
+    },
+    {
+      "key": "/reference/apps/hosts/polkadot-web/onchain-polkadot-com/",
+      "value": "https://developers.polkadot.com/reference/apps/hosts/polkadot-web/onchain-polkadot-com/"
+    },
+    {
+      "key": "/reference/apps/hosts/polkadot-web/shield-states/",
+      "value": "https://developers.polkadot.com/reference/apps/hosts/polkadot-web/shield-states/"
+    },
+    {
+      "key": "/reference/apps/hosts/polkadot-web/visiting/",
+      "value": "https://developers.polkadot.com/reference/apps/hosts/polkadot-web/visiting/"
+    },
+    {
+      "key": "/reference/apps/hosts/polkadot-desktop/",
+      "value": "https://developers.polkadot.com/reference/apps/hosts/polkadot-desktop/"
+    },
+    {
+      "key": "/reference/apps/hosts/polkadot-desktop/pocket/",
+      "value": "https://developers.polkadot.com/reference/apps/hosts/polkadot-desktop/pocket/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/dotns/mainnet-contracts/",
+      "value": "https://developers.polkadot.com/reference/apps/infrastructure/dotns/mainnet-contracts/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/dotns/testnet-contracts/",
+      "value": "https://developers.polkadot.com/reference/apps/infrastructure/dotns/testnet-contracts/"
+    },
+    {
+      "key": "/smart-contracts/connect/",
+      "value": "https://developers.polkadot.com/smart-contracts/connect/"
+    },
+    {
+      "key": "/smart-contracts/explorers/",
+      "value": "https://developers.polkadot.com/smart-contracts/explorers/"
+    },
+    {
+      "key": "/smart-contracts/faucet/",
+      "value": "https://developers.polkadot.com/smart-contracts/faucet/"
+    },
+    {
+      "key": "/smart-contracts/dev-environments/hardhat/",
+      "value": "https://developers.polkadot.com/smart-contracts/dev-environments/hardhat/"
+    },
+    {
+      "key": "/smart-contracts/dev-environments/foundry/",
+      "value": "https://developers.polkadot.com/smart-contracts/dev-environments/foundry/"
+    },
+    {
+      "key": "/smart-contracts/dev-environments/remix/",
+      "value": "https://developers.polkadot.com/smart-contracts/dev-environments/remix/"
+    },
+    {
+      "key": "/smart-contracts/libraries/ethers-js/",
+      "value": "https://developers.polkadot.com/smart-contracts/libraries/ethers-js/"
+    },
+    {
+      "key": "/smart-contracts/libraries/viem/",
+      "value": "https://developers.polkadot.com/smart-contracts/libraries/viem/"
+    },
+    {
+      "key": "/smart-contracts/libraries/wagmi/",
+      "value": "https://developers.polkadot.com/smart-contracts/libraries/wagmi/"
+    },
+    {
+      "key": "/smart-contracts/libraries/web3-py/",
+      "value": "https://developers.polkadot.com/smart-contracts/libraries/web3-py/"
+    },
+    {
+      "key": "/smart-contracts/integrations/wallets/",
+      "value": "https://developers.polkadot.com/smart-contracts/integrations/wallets/"
+    },
+    {
+      "key": "/smart-contracts/cookbook/smart-contracts/deploy-basic/basic-remix/",
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/smart-contracts/deploy-basic/basic-remix/"
+    },
+    {
+      "key": "/smart-contracts/cookbook/smart-contracts/deploy-erc20/erc20-remix/",
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/smart-contracts/deploy-erc20/erc20-remix/"
+    },
+    {
+      "key": "/smart-contracts/cookbook/smart-contracts/deploy-erc20/erc20-hardhat/",
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/smart-contracts/deploy-erc20/erc20-hardhat/"
+    },
+    {
+      "key": "/smart-contracts/cookbook/smart-contracts/deploy-nft/nft-remix/",
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/smart-contracts/deploy-nft/nft-remix/"
+    },
+    {
+      "key": "/smart-contracts/cookbook/smart-contracts/deploy-nft/nft-hardhat/",
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/smart-contracts/deploy-nft/nft-hardhat/"
+    },
+    {
+      "key": "/smart-contracts/cookbook/dapps/zero-to-hero/",
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/dapps/zero-to-hero/"
+    },
+    {
+      "key": "/smart-contracts/cookbook/eth-dapps/uniswap-v2/",
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/eth-dapps/uniswap-v2/"
+    },
+    {
+      "key": "/smart-contracts/cookbook/eth-dapps/uniswap-v2/core-v2/",
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/eth-dapps/uniswap-v2/core-v2/"
+    },
+    {
+      "key": "/smart-contracts/cookbook/eth-dapps/uniswap-v2/periphery-v2/",
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/eth-dapps/uniswap-v2/periphery-v2/"
+    },
+    {
+      "key": "/smart-contracts/cookbook/eth-dapps/uniswap-v3/",
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/eth-dapps/uniswap-v3/"
+    },
+    {
+      "key": "/smart-contracts/cookbook/eth-dapps/uniswap-v3/core-v3/",
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/eth-dapps/uniswap-v3/core-v3/"
+    },
+    {
+      "key": "/smart-contracts/cookbook/eth-dapps/uniswap-v3/periphery-v3/",
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/eth-dapps/uniswap-v3/periphery-v3/"
+    },
+    {
+      "key": "/reference/polkadot-hub/",
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/"
+    },
+    {
+      "key": "/reference/polkadot-hub/assets/",
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/assets/"
+    },
+    {
+      "key": "/reference/polkadot-hub/bridging/",
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/bridging/"
+    },
+    {
+      "key": "/reference/polkadot-hub/collectives-and-daos/",
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/collectives-and-daos/"
+    },
+    {
+      "key": "/reference/polkadot-hub/people-and-identity/",
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/people-and-identity/"
+    },
+    {
+      "key": "/reference/polkadot-hub/consensus-and-security/agile-coretime/",
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/consensus-and-security/agile-coretime/"
+    },
+    {
+      "key": "/reference/polkadot-hub/consensus-and-security/pos-consensus/",
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/consensus-and-security/pos-consensus/"
+    },
+    {
+      "key": "/reference/polkadot-hub/consensus-and-security/relay-chain/",
+      "value": "https://developers.polkadot.com/reference/polkadot-hub/consensus-and-security/relay-chain/"
+    },
+    {
+      "key": "/smart-contracts/cookbook/eth-dapps/uniswap-v2/core-v2-pvm/",
+      "value": "https://developers.polkadot.com/smart-contracts/cookbook/eth-dapps/uniswap-v2/core-v2/"
+    },
+    {
+      "key": "/reference/tools/omninode/",
+      "value": "/tools/omninode/"
+    },
+    {
+      "key": "/tools/",
+      "value": "/tools/utilities/"
+    },
+    {
+      "key": "/reference/tools/sidecar/",
+      "value": "/tools/polkadot-rest-api/"
+    },
+    {
+      "key": "/reference/tools/subxt/",
+      "value": "/tools/subxt/"
+    },
+    {
+      "key": "/reference/tools/zombienet/",
+      "value": "/tools/zombienet/"
+    },
+    {
+      "key": "/reference/tools/light-clients/",
+      "value": "/tools/light-clients/"
+    },
+    {
+      "key": "/chain-interactions/",
+      "value": "/tools/chain-interactions/"
+    },
+    {
+      "key": "/chain-interactions/query-data/runtime-api-calls/",
+      "value": "/tools/chain-interactions/query-data/runtime-api-calls/"
+    },
+    {
+      "key": "/chain-interactions/query-data/query-sdks/",
+      "value": "/tools/chain-interactions/query-data/query-sdks/"
+    },
+    {
+      "key": "/chain-interactions/query-data/query-rest/",
+      "value": "/tools/chain-interactions/query-data/query-rest/"
+    },
+    {
+      "key": "/chain-interactions/store-data/bulletin-chain/",
+      "value": "/tools/chain-interactions/store-data/bulletin-chain/"
+    },
+    {
+      "key": "/chain-interactions/accounts/query-accounts/",
+      "value": "/tools/chain-interactions/query-data/query-sdks/"
+    },
+    {
+      "key": "/chain-interactions/accounts/create-account/",
+      "value": "/tools/chain-interactions/accounts/create-account/"
+    },
+    {
+      "key": "/chain-interactions/send-transactions/pay-fees-with-different-tokens/",
+      "value": "/tools/chain-interactions/send-transactions/pay-fees-with-different-tokens/"
+    },
+    {
+      "key": "/chain-interactions/send-transactions/with-sdks/",
+      "value": "/tools/chain-interactions/send-transactions/with-sdks/"
+    },
+    {
+      "key": "/chain-interactions/send-transactions/calculate-transaction-fees/",
+      "value": "/tools/chain-interactions/send-transactions/calculate-transaction-fees/"
+    },
+    {
+      "key": "/chain-interactions/send-transactions/interoperability/estimate-xcm-fees/",
+      "value": "/tools/chain-interactions/send-transactions/interoperability/estimate-xcm-fees/"
+    },
+    {
+      "key": "/node-infrastructure/run-a-collator/",
+      "value": "/nodes/run-a-collator/"
+    },
+    {
+      "key": "/node-infrastructure/",
+      "value": "/nodes/"
+    },
+    {
+      "key": "/node-infrastructure/run-a-node/parachain-rpc/",
+      "value": "/nodes/run-a-node/parachain-rpc/"
+    },
+    {
+      "key": "/node-infrastructure/run-a-node/relay-chain/bootnode/",
+      "value": "/nodes/run-a-node/relay-chain/bootnode/"
+    },
+    {
+      "key": "/node-infrastructure/run-a-node/relay-chain/secure-wss/",
+      "value": "/nodes/run-a-node/relay-chain/secure-wss/"
+    },
+    {
+      "key": "/node-infrastructure/run-a-node/relay-chain/full-node/",
+      "value": "/nodes/run-a-node/relay-chain/full-node/"
+    },
+    {
+      "key": "/node-infrastructure/run-a-validator/operational-tasks/general-management/",
+      "value": "/nodes/monitor-and-harden/"
+    },
+    {
+      "key": "/node-infrastructure/run-a-validator/onboarding-and-offboarding/set-up-validator/",
+      "value": "/nodes/run-a-node/relay-chain/full-node/"
+    },
+    {
+      "key": "/parachains/install-polkadot-sdk/",
+      "value": "/polkadot-sdk/install-polkadot-sdk/"
+    },
+    {
+      "key": "/parachains/get-started/",
+      "value": "/polkadot-sdk/get-started/"
+    },
+    {
+      "key": "/parachains/customize-runtime/add-pallet-instances/",
+      "value": "/polkadot-sdk/customize-runtime/add-pallet-instances/"
+    },
+    {
+      "key": "/parachains/customize-runtime/add-smart-contract-functionality/",
+      "value": "/polkadot-sdk/customize-runtime/add-smart-contract-functionality/"
+    },
+    {
+      "key": "/parachains/customize-runtime/",
+      "value": "/polkadot-sdk/customize-runtime/"
+    },
+    {
+      "key": "/parachains/customize-runtime/add-existing-pallets/",
+      "value": "/polkadot-sdk/customize-runtime/add-existing-pallets/"
+    },
+    {
+      "key": "/parachains/customize-runtime/pallet-development/benchmark-pallet/",
+      "value": "/polkadot-sdk/customize-runtime/pallet-development/benchmark-pallet/"
+    },
+    {
+      "key": "/parachains/customize-runtime/pallet-development/pallet-testing/",
+      "value": "/polkadot-sdk/customize-runtime/pallet-development/pallet-testing/"
+    },
+    {
+      "key": "/parachains/customize-runtime/pallet-development/create-a-pallet/",
+      "value": "/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet/"
+    },
+    {
+      "key": "/parachains/customize-runtime/pallet-development/mock-runtime/",
+      "value": "/polkadot-sdk/customize-runtime/pallet-development/mock-runtime/"
+    },
+    {
+      "key": "/parachains/interoperability/get-started/",
+      "value": "/polkadot-sdk/interoperability/get-started/"
+    },
+    {
+      "key": "/parachains/runtime-maintenance/runtime-upgrades/",
+      "value": "/polkadot-sdk/runtime-maintenance/runtime-upgrades/"
+    },
+    {
+      "key": "/parachains/runtime-maintenance/storage-migrations/",
+      "value": "/polkadot-sdk/runtime-maintenance/storage-migrations/"
+    },
+    {
+      "key": "/parachains/testing/run-a-parachain-network/",
+      "value": "/polkadot-sdk/testing/run-a-parachain-network/"
+    },
+    {
+      "key": "/parachains/launch-a-parachain/set-up-the-parachain-template/",
+      "value": "/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/"
+    },
+    {
+      "key": "/reference/parachains/cryptography/",
+      "value": "/polkadot-sdk/reference/cryptography/"
+    },
+    {
+      "key": "/reference/parachains/chain-data/",
+      "value": "/polkadot-sdk/reference/chain-data/"
+    },
+    {
+      "key": "/reference/parachains/interoperability/",
+      "value": "/polkadot-sdk/interoperability/get-started/"
+    },
+    {
+      "key": "/reference/parachains/accounts/",
+      "value": "/polkadot-sdk/reference/accounts/"
+    },
+    {
+      "key": "/reference/parachains/node-and-runtime/",
+      "value": "/polkadot-sdk/reference/node-and-runtime/"
+    },
+    {
+      "key": "/reference/parachains/",
+      "value": "/polkadot-sdk/reference/"
+    },
+    {
+      "key": "/reference/parachains/data-encoding/",
+      "value": "/polkadot-sdk/reference/data-encoding/"
+    },
+    {
+      "key": "/reference/parachains/randomness/",
+      "value": "/polkadot-sdk/reference/randomness/"
+    },
+    {
+      "key": "/reference/parachains/consensus/inclusion-pipeline/",
+      "value": "/polkadot-sdk/reference/consensus/#inclusion-pipeline"
+    },
+    {
+      "key": "/reference/parachains/consensus/elastic-scaling/",
+      "value": "/polkadot-sdk/reference/consensus/elastic-scaling/"
+    },
+    {
+      "key": "/reference/parachains/consensus/async-backing/",
+      "value": "/polkadot-sdk/reference/consensus/async-backing/"
+    },
+    {
+      "key": "/reference/parachains/consensus/",
+      "value": "/polkadot-sdk/reference/consensus/"
+    },
+    {
+      "key": "/reference/parachains/blocks-transactions-fees/blocks/",
+      "value": "/polkadot-sdk/reference/blocks-transactions-fees/blocks/"
+    },
+    {
+      "key": "/reference/parachains/blocks-transactions-fees/fees/",
+      "value": "/polkadot-sdk/reference/blocks-transactions-fees/fees/"
+    },
+    {
+      "key": "/reference/parachains/blocks-transactions-fees/transactions/",
+      "value": "/polkadot-sdk/reference/blocks-transactions-fees/transactions/"
+    },
+    {
+      "key": "/reference/apps/skills/",
+      "value": "/apps/get-started/set-up-your-ai-agent/#install-the-skills"
+    },
+    {
+      "key": "/reference/apps/",
+      "value": "/apps/reference/"
+    },
+    {
+      "key": "/reference/apps/protocol/truapi/account-management/",
+      "value": "/apps/reference/protocol/truapi/account-management/"
+    },
+    {
+      "key": "/reference/apps/protocol/truapi/versioning/",
+      "value": "/apps/reference/protocol/truapi/versioning/"
+    },
+    {
+      "key": "/reference/apps/protocol/truapi/permissions/",
+      "value": "/apps/reference/protocol/truapi/permissions/"
+    },
+    {
+      "key": "/reference/apps/protocol/truapi/statement-store/",
+      "value": "/apps/reference/protocol/truapi/statement-store/"
+    },
+    {
+      "key": "/reference/apps/protocol/truapi/sandbox/",
+      "value": "/apps/reference/protocol/truapi/sandbox/"
+    },
+    {
+      "key": "/reference/apps/protocol/truapi/local-storage/",
+      "value": "/apps/reference/protocol/truapi/local-storage/"
+    },
+    {
+      "key": "/reference/apps/protocol/truapi/chat/",
+      "value": "/apps/reference/protocol/truapi/chat/"
+    },
+    {
+      "key": "/reference/apps/protocol/truapi/entropy/",
+      "value": "/apps/reference/protocol/truapi/entropy/"
+    },
+    {
+      "key": "/reference/apps/protocol/truapi/payment/",
+      "value": "/apps/reference/protocol/truapi/payment/"
+    },
+    {
+      "key": "/reference/apps/protocol/truapi/chain-interaction/",
+      "value": "/apps/reference/protocol/truapi/chain-interaction/"
+    },
+    {
+      "key": "/reference/apps/protocol/truapi/calls/",
+      "value": "/apps/reference/protocol/truapi/calls/"
+    },
+    {
+      "key": "/reference/apps/protocol/truapi/",
+      "value": "/apps/reference/protocol/truapi/"
+    },
+    {
+      "key": "/reference/apps/protocol/truapi/signing/",
+      "value": "/apps/reference/protocol/truapi/signing/"
+    },
+    {
+      "key": "/reference/apps/protocol/truapi/packages/",
+      "value": "/apps/reference/protocol/truapi/packages/"
+    },
+    {
+      "key": "/reference/apps/protocol/truapi/preimage/",
+      "value": "/apps/reference/protocol/truapi/preimage/"
+    },
+    {
+      "key": "/reference/apps/hosts/polkadot-app/pocket/",
+      "value": "/apps/reference/protocol/truapi/payment/"
+    },
+    {
+      "key": "/reference/apps/hosts/polkadot-web/host-api/",
+      "value": "/apps/reference/protocol/truapi/#host-implementation-notes"
+    },
+    {
+      "key": "/reference/apps/hosts/polkadot-desktop/permissions/",
+      "value": "/apps/reference/protocol/truapi/permissions/"
+    },
+    {
+      "key": "/reference/apps/hosts/polkadot-desktop/statement-store/",
+      "value": "/apps/reference/protocol/truapi/statement-store/"
+    },
+    {
+      "key": "/reference/apps/hosts/polkadot-desktop/signing/",
+      "value": "/apps/reference/protocol/truapi/signing/"
+    },
+    {
+      "key": "/reference/apps/hosts/polkadot-desktop/preimage/",
+      "value": "/apps/reference/protocol/truapi/preimage/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/pop/pallet-people/",
+      "value": "/apps/reference/infrastructure/pop/pallet-people/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/pop/pallet-game/",
+      "value": "/apps/reference/infrastructure/pop/pallet-game/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/pop/pallet-score/",
+      "value": "/apps/reference/infrastructure/pop/pallet-score/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/pop/pallet-identity/",
+      "value": "/apps/reference/infrastructure/pop/pallet-identity/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/pop/pallet-coinage/",
+      "value": "/apps/reference/infrastructure/pop/pallet-coinage/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/pop/",
+      "value": "/apps/reference/infrastructure/pop/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/pop/pallet-ubc/",
+      "value": "/apps/reference/infrastructure/pop/pallet-ubc/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/pop/ring-vrf-and-aliases/",
+      "value": "/apps/reference/infrastructure/pop/ring-vrf-and-aliases/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/hop/how-it-works/",
+      "value": "/apps/reference/infrastructure/hop/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/hop/",
+      "value": "/apps/reference/infrastructure/hop/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/hop/sender/",
+      "value": "/apps/reference/infrastructure/hop/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/hop/recipient/",
+      "value": "/apps/reference/infrastructure/hop/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/statement-store/lifecycle/",
+      "value": "/apps/reference/infrastructure/statement-store/lifecycle/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/statement-store/allowance/",
+      "value": "/apps/reference/infrastructure/statement-store/allowance/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/statement-store/channels/",
+      "value": "/apps/reference/infrastructure/statement-store/channels/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/statement-store/",
+      "value": "/apps/reference/infrastructure/statement-store/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/statement-store/subscriptions/",
+      "value": "/apps/reference/infrastructure/statement-store/subscriptions/"
+    },
+    {
+      "key": "/reference/polkadot-hub/data-storage/",
+      "value": "/apps/reference/infrastructure/bulletin-chain/data-storage/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/bulletin-chain/authorization/",
+      "value": "/apps/reference/infrastructure/bulletin-chain/authorization/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/bulletin-chain/",
+      "value": "/apps/reference/infrastructure/bulletin-chain/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/bulletin-chain/renewal/",
+      "value": "/apps/reference/infrastructure/bulletin-chain/renewal/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/bulletin-chain/chunked-upload/",
+      "value": "/apps/reference/infrastructure/bulletin-chain/chunked-upload/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/dotns/architecture/",
+      "value": "/apps/reference/infrastructure/dotns/architecture/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/dotns/transfer/",
+      "value": "/apps/reference/infrastructure/dotns/transfer/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/dotns/name-mechanism/",
+      "value": "/apps/reference/infrastructure/dotns/name-mechanism/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/dotns/cli/",
+      "value": "/apps/reference/infrastructure/dotns/cli/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/dotns/escrow/",
+      "value": "/apps/reference/infrastructure/dotns/escrow/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/dotns/",
+      "value": "/apps/reference/infrastructure/dotns/"
+    },
+    {
+      "key": "/reference/apps/infrastructure/dotns/poprules-pricing/",
+      "value": "/apps/reference/infrastructure/dotns/poprules-pricing/"
+    },
+    {
+      "key": "/reference/glossary/",
+      "value": "/get-started/glossary/"
+    },
+    {
+      "key": "/what-parity-builds/",
+      "value": "/get-started/"
+    },
+    {
+      "key": "/reference/",
+      "value": "/get-started/"
+    },
+    {
+      "key": "/reference/polkadot-hub/smart-contracts/",
+      "value": "/smart-contracts/overview/"
+    },
+    {
+      "key": "/apps/reference/hosts/polkadot-desktop/permissions/",
+      "value": "/apps/reference/protocol/truapi/permissions/"
+    },
+    {
+      "key": "/apps/reference/hosts/polkadot-desktop/signing/",
+      "value": "/apps/reference/protocol/truapi/signing/"
+    },
+    {
+      "key": "/apps/reference/hosts/polkadot-desktop/statement-store/",
+      "value": "/apps/reference/protocol/truapi/statement-store/"
+    },
+    {
+      "key": "/apps/reference/hosts/polkadot-desktop/preimage/",
+      "value": "/apps/reference/protocol/truapi/preimage/"
+    },
+    {
+      "key": "/apps/reference/hosts/polkadot-web/host-api/",
+      "value": "/apps/reference/protocol/truapi/#host-implementation-notes"
+    },
+    {
+      "key": "/apps/reference/hosts/polkadot-app/pocket/",
+      "value": "/apps/reference/protocol/truapi/payment/"
+    },
+    {
+      "key": "/apps/reference/infrastructure/hop/how-it-works/",
+      "value": "/apps/reference/infrastructure/hop/"
+    },
+    {
+      "key": "/apps/reference/infrastructure/hop/sender/",
+      "value": "/apps/reference/infrastructure/hop/"
+    },
+    {
+      "key": "/apps/reference/infrastructure/hop/recipient/",
+      "value": "/apps/reference/infrastructure/hop/"
+    },
+    {
+      "key": "/apps/reference/skills/",
+      "value": "/apps/get-started/set-up-your-ai-agent/#install-the-skills"
+    },
+    {
+      "key": "/smart-contracts/for-eth-devs/dual-vm-stack/",
+      "value": "/smart-contracts/overview/"
+    },
+    {
+      "key": "/smart-contracts/for-eth-devs/blocks-transactions-fees/",
+      "value": "/smart-contracts/for-eth-devs/gas-model/"
+    },
+    {
+      "key": "/smart-contracts/libraries/web3-js/",
+      "value": "https://developers.polkadot.com/smart-contracts/libraries/ethers-js/"
+    },
+    {
+      "key": "/polkadot-sdk/reference/consensus/inclusion-pipeline/",
+      "value": "/polkadot-sdk/reference/consensus/#inclusion-pipeline"
+    },
+    {
+      "key": "/polkadot-sdk/reference/interoperability/",
+      "value": "/polkadot-sdk/interoperability/get-started/"
+    },
+    {
+      "key": "/nodes/run-a-validator/operational-tasks/general-management/",
+      "value": "/nodes/monitor-and-harden/"
+    },
+    {
+      "key": "/nodes/run-a-validator/onboarding-and-offboarding/set-up-validator/",
+      "value": "/nodes/run-a-node/relay-chain/full-node/"
+    },
+    {
+      "key": "/nodes/run-a-validator/",
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/requirements/"
+    },
+    {
+      "key": "/nodes/run-a-validator/onboarding-and-offboarding/",
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/requirements/"
+    },
+    {
+      "key": "/nodes/run-a-validator/operational-tasks/",
+      "value": "https://developers.polkadot.com/node-infrastructure/run-a-validator/requirements/"
+    },
+    {
+      "key": "/tools/chain-interactions/accounts/query-accounts/",
+      "value": "/tools/chain-interactions/query-data/query-sdks/"
+    },
+    {
+      "key": "/tools/sidecar/",
+      "value": "/tools/polkadot-rest-api/"
     }
   ]
 }

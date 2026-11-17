@@ -25,7 +25,7 @@
 #   - `REPO`: GitHub repository name                                                #
 #                                                                                   #
 # Example usage:                                                                    #
-#   python scripts/update_redirects.py 42 polkadot-developers polkadot-docs         #
+#   python scripts/update_redirects.py 42 paritytech parity-docs                    #
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 
 

@@ -4,30 +4,31 @@ use subxt::utils::AccountId32;
 use subxt::{OnlineClient, PolkadotConfig};
 
 // Generate an interface from the node's metadata
-#[subxt::subxt(runtime_metadata_path = "polkadot_testnet_metadata.scale")]
-pub mod polkadot_testnet {}
+#[subxt::subxt(runtime_metadata_path = "metadata.scale")]
+pub mod runtime {}
 
-const POLKADOT_TESTNET_RPC: &str = "INSERT_WS_ENDPOINT";
+// WebSocket endpoint of your local development node
+const NODE_URL: &str = "ws://127.0.0.1:9944";
 
-// Example address to query
-const ADDRESS: &str = "INSERT_ADDRESS";
+// Address to query (Alice's development account by default)
+const ADDRESS: &str = "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY";
 
 #[tokio::main(flavor = "current_thread")]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Initialize the Subxt client
-    let api = OnlineClient::<PolkadotConfig>::from_url(POLKADOT_TESTNET_RPC).await?;
+    let api = OnlineClient::<PolkadotConfig>::from_url(NODE_URL).await?;
 
     // Anchor to the current block
     let at_block = api.at_current_block().await?;
 
-    println!("Connected to Polkadot Hub TestNet");
+    println!("Connected to {}", NODE_URL);
     println!("Querying runtime APIs for: {}\n", ADDRESS);
 
     // Parse the address
     let account = AccountId32::from_str(ADDRESS)?;
 
     // Call AccountNonceApi using static interface
-    let nonce_call = polkadot_testnet::runtime_apis()
+    let nonce_call = runtime::runtime_apis()
         .account_nonce_api()
         .account_nonce(account.clone());
     let nonce = at_block.runtime_apis().call(nonce_call).await?;

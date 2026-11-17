@@ -58,9 +58,13 @@ jobs:
           exclude_loopback = false
           exclude_private = false
           exclude_link_local = false
+          # Only these URLs are checked. developers.polkadot.com is included so
+          # that handed-off pages linked from this site (and the redirects to
+          # them) fail the check if PCF moves or removes them.
           include = [
             '^http://localhost:8000',
-            '^http://127\.0\.0\.1:8000'
+            '^http://127\.0\.0\.1:8000',
+            '^https://developers\.polkadot\.com/'
           ]
           TOML
           echo "cfg=/tmp/lychee.ci.toml" >> "$GITHUB_OUTPUT"
@@ -78,7 +82,8 @@ jobs:
           # --retry-wait-time 10: Wait period for exponential backoff
           ARGS="--config ${{ steps.lychee_cfg.outputs.cfg }} --root-dir $ABS_SITE_PATH --verbose --no-progress --accept 429,403 --max-retries 3 --retry-wait-time 10"
 
-          BASE_URL="$(echo "https://docs.polkadot.com" | sed 's/\/$//')"
+          # This site's own URL (keep in sync with site_url in mkdocs.yml).
+          BASE_URL="$(echo "https://docs.parity.io" | sed 's/\/$//')"
           ARGS="$ARGS --remap \"$BASE_URL/ $LOCAL_SERVER/\" --remap \"$BASE_URL $LOCAL_SERVER\""
 
           URLIGNORE_PATH="$(pwd)/.urlignore"

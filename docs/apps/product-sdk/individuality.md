@@ -10,7 +10,7 @@ categories: Apps
 
 [`@parity/product-sdk-individuality`](https://github.com/paritytech/product-sdk/tree/main/product-sdk/packages/individuality) reads a person's standing on the Individuality chain and lets your Product act as that person on it. It is the typed way to answer "is this a verified human, and how far along are they?" without learning who they are.
 
-The package has two halves. The _read_ half works in both directions: given a `.dot` username or an account, what is that person's [Proof of Personhood](/reference/apps/infrastructure/pop/) state; and given an account, which usernames does it hold. The _write_ half is a single function, `withAsPerson`, which wraps a signer so a transaction dispatches under a _person_ origin instead of an account origin.
+The package has two halves. The _read_ half works in both directions: given a `.dot` username or an account, what is that person's [Proof of Personhood](/apps/reference/infrastructure/pop/index.md) state; and given an account, which usernames does it hold. The _write_ half is a single function, `withAsPerson`, which wraps a signer so a transaction dispatches under a _person_ origin instead of an account origin.
 
 Reads return a typed `Result`, so you check `.ok` before reading `.value`. A username nobody owns is not a failure: it arrives on the success channel as a `UsernameUnowned` result.
 
@@ -92,7 +92,7 @@ A `null` value means the account has no record at all, which is an answer rather
 
 ## Act Under a Person Origin
 
-`withAsPerson` wraps a `PolkadotSigner` so the call dispatches as a person. It returns a signer, so submission stays with [Transactions](/apps/product-sdk/tx/):
+`withAsPerson` wraps a `PolkadotSigner` so the call dispatches as a person. It returns a signer, so submission stays with [Transactions](/apps/product-sdk/tx.md):
 
 ```typescript
 import { submitAndWatch } from '@parity/product-sdk-tx';
@@ -125,7 +125,7 @@ Two details shape how you use it: `claim_airdrop` has six gates and only two con
 - Reads return a `Result` carrying `ProductIndividualityError`; `withAsPerson` throws `AsPersonError` instead.
 - `readPersonhoodState` pins one finalized block. Treat the state as a snapshot with an `at`, not a live value, and re-read rather than caching across sessions.
 - The `AliasWithProof` variant is rejected on the Individuality runtime Paseo runs today, however correct the bytes are. It becomes reachable after the network upgrades, with no change needed here.
-- A personhood tier is obtained in the [Polkadot App](/reference/apps/hosts/polkadot-app/); nothing in this package grants or raises one.
+- A personhood tier is obtained in the [Polkadot App](https://developers.polkadot.com/reference/apps/hosts/polkadot-app/); nothing in this package grants or raises one.
 
 ## Where to Go Next
 
@@ -137,7 +137,7 @@ Two details shape how you use it: `claim_airdrop` has six gates and only two con
 
     How a user's per-app account and Proof of Personhood stay separate, and why.
 
-    [:octicons-arrow-right-24: Identity](/apps/concepts/identity/)
+    [:octicons-arrow-right-24: Identity](/apps/concepts/identity.md)
 
 -   <span class="badge learn">Learn</span> **Proof of Personhood**
 
@@ -145,7 +145,7 @@ Two details shape how you use it: `claim_airdrop` has six gates and only two con
 
     The Ring-VRF mechanism, the tiers this package reads, and per-app aliases in depth.
 
-    [:octicons-arrow-right-24: Reference](/reference/apps/infrastructure/pop/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/index.md)
 
 -   <span class="badge external">External</span> **Package Source**
 

@@ -130,7 +130,9 @@
 
 /*--- Feature section ---*/
 .feature-section {
-  gap: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .featured-content {
@@ -156,6 +158,17 @@
 .md-typeset .card h3 {
   margin-top: 0;
   margin-bottom: var(--py-3);
+}
+
+.md-typeset .ecosystem-note {
+  margin: 0;
+  padding: 0 32px;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.md-typeset .ecosystem-note a {
+  text-decoration: underline;
 }
 
 .md-typeset .card a .twemoji {
