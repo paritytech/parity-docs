@@ -121,8 +121,9 @@ The CLI presents the following prompts in order. To skip them in a script or CI 
       enter to deploy  ·  esc to cancel</pre></span>
     </div>
 
-    Press ++enter++ to confirm. The CLI then runs the upload and on-chain registration steps. If you chose the **phone signer**, each step triggers an approval prompt in the Polkadot mobile app — open the app and approve when prompted. With the **dev signer** selected here, the upload and dotNS registration run automatically with no phone prompts, and the deploy finalizes:
+    Press ++enter++ to confirm. The CLI then runs the upload and on-chain registration steps. If you chose the **phone signer**, each step triggers an approval prompt in the Polkadot mobile app; open the app and approve when prompted. With the **dev signer** selected here, the upload and dotNS registration run automatically with no phone prompts, and the deploy finalizes:
 
+    <!-- vale StyleGuide.NoEmoji = NO -->
     <div class="termynal" data-termynal>
     <span data-ty><pre>  playground deploy  ·  myproject57.paseo  ·  paseo next v2        v0.47.0
       ────────────────────────────────────────────────────────────────────────<br>
@@ -135,6 +136,7 @@ The CLI presents the following prompts in order. To skip them in a script or CI 
       app cid       bafybeihvru3e6ojhopxj7xxwtafrpyvsha6kylzklryon5k67u4clr26re
       ipfs cid      bafybeigr2liqwftbmily4sdxvo7mq4atgboqsrpdadypmsbpkn7c25cwja</pre></span>
     </div>
+    <!-- vale StyleGuide.NoEmoji = YES -->
 
 ## Open Your App
 
