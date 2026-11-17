@@ -10,7 +10,7 @@ categories: Apps
 
 Some capabilities let your Product act on chain on the user's behalf, so the user has to grant them first. Your Product requests these grants — _allowances_, or resource allocations — from the Host, and the user approves them. A prompt such as "sign and submit on-chain transactions on your behalf" is one of these grants.
 
-Allowances are granted **per account**. This is why they are closely tied to [Accounts and Signing](/apps/concepts/accounts/): granting an allowance to one account does nothing for a different one, and a misdirected grant surfaces as [`no allowance set for account`](/apps/troubleshooting/#no-allowance-set-for-account).
+Allowances are granted **per account**. This is why they are closely tied to [Accounts and Signing](/apps/concepts/accounts.md): granting an allowance to one account does nothing for a different one, and a misdirected grant surfaces as [`no allowance set for account`](/apps/troubleshooting.md#no-allowance-set-for-account).
 
 ## What Your Product Can Request
 
@@ -18,9 +18,9 @@ Your Product requests allowances through the SDK, typically once on connect. The
 
 | Resource                  | What it authorizes                                                                 |
 |---------------------------|------------------------------------------------------------------------------------|
-| `StatementStoreAllowance` | Publishing to the [Statement Store](/apps/product-sdk/statement-store/).           |
-| `BulletinAllowance`       | Storing data on the [Bulletin Chain](/apps/product-sdk/cloud-storage/).            |
-| `SmartContractAllowance`  | Sponsoring transactions for a product account, keyed by its derivation index, for [contract](/apps/product-sdk/contracts/) calls. |
+| `StatementStoreAllowance` | Publishing to the [Statement Store](/apps/product-sdk/statement-store.md).           |
+| `BulletinAllowance`       | Storing data on the [Bulletin Chain](/apps/product-sdk/cloud-storage.md).            |
+| `SmartContractAllowance`  | Sponsoring transactions for a product account, keyed by its derivation index, for [contract](/apps/product-sdk/contracts.md) calls. |
 | `AutoSigning`             | Signing and submitting transactions on the user's behalf without a per-action prompt. |
 
 !!! note "Tag spelling differs by toolchain"
@@ -28,7 +28,7 @@ Your Product requests allowances through the SDK, typically once on connect. The
 
 ## Requesting an Allowance
 
-The [`signer`](/apps/product-sdk/signer/) package requests allocations through its `onConnect` hook, which fires once per connection. Each request resolves to an outcome:
+The [`signer`](/apps/product-sdk/signer.md) package requests allocations through its `onConnect` hook, which fires once per connection. Each request resolves to an outcome:
 
 - **`Allocated`**: The user granted it.
 - **`Rejected`**: The user declined it.
@@ -71,7 +71,7 @@ Design for re-approval: make requesting allowances idempotent, and do not treat 
 
     Allowances are per account; make sure you grant them to the account that signs.
 
-    [:octicons-arrow-right-24: Accounts and Signing](/apps/concepts/accounts/)
+    [:octicons-arrow-right-24: Accounts and Signing](/apps/concepts/accounts.md)
 
 -   <span class="badge guide">Guide</span> **Get TestNet Tokens**
 
@@ -79,7 +79,7 @@ Design for re-approval: make requesting allowances idempotent, and do not treat 
 
     Grant your account the Bulletin storage authorization and other service allowances.
 
-    [:octicons-arrow-right-24: Get TestNet Tokens](/apps/get-started/get-testnet-tokens/)
+    [:octicons-arrow-right-24: Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/)
 
 -   <span class="badge learn">Learn</span> **Permissions Reference**
 
@@ -87,6 +87,6 @@ Design for re-approval: make requesting allowances idempotent, and do not treat 
 
     The Host-to-Product permission model at the protocol level.
 
-    [:octicons-arrow-right-24: Reference](/reference/apps/protocol/truapi/permissions/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/permissions.md)
 
 </div>

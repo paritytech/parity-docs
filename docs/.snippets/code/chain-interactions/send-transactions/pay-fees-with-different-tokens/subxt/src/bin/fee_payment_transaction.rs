@@ -1,21 +1,21 @@
-use std::str::FromStr;
 use subxt::config::{Config, DefaultExtrinsicParamsBuilder, DefaultTransactionExtensions, PolkadotConfig};
 use subxt::utils::AccountId32;
 use subxt::{OnlineClient, SubstrateConfig};
+use subxt_signer::sr25519::dev;
 
-// Generate types from the Polkadot Hub metadata with Location trait derives
+// Generate types from the chain metadata with Location trait derives
 #[subxt::subxt(
-    runtime_metadata_path = "metadata/asset_hub.scale",
+    runtime_metadata_path = "metadata/runtime.scale",
     derive_for_type(
         path = "staging_xcm::v5::location::Location",
         derive = "Clone, Eq, PartialEq, codec::Encode",
         recursive
     )
 )]
-pub mod asset_hub {}
+pub mod runtime {}
 
 // Import XCM location types from the generated metadata module
-use asset_hub::runtime_types::staging_xcm::v5::{
+use runtime::runtime_types::staging_xcm::v5::{
     junction::Junction,
     junctions::Junctions,
     location::Location,
@@ -23,53 +23,57 @@ use asset_hub::runtime_types::staging_xcm::v5::{
 
 // Define a custom config where AssetId is an XCM Location
 #[derive(Debug, Default, Clone)]
-pub struct AssetHubConfig;
+pub struct AssetPaymentConfig;
 
-impl Config for AssetHubConfig {
+impl Config for AssetPaymentConfig {
     type AccountId = <PolkadotConfig as Config>::AccountId;
     type Address = <PolkadotConfig as Config>::Address;
     type Signature = <PolkadotConfig as Config>::Signature;
     type Hasher = <PolkadotConfig as Config>::Hasher;
     type Header = <SubstrateConfig as Config>::Header;
-    type TransactionExtensions = DefaultTransactionExtensions<AssetHubConfig>;
+    type TransactionExtensions = DefaultTransactionExtensions<AssetPaymentConfig>;
     type AssetId = Location;
 }
 
-const POLKADOT_HUB_RPC: &str = "ws://localhost:8000";
-const TARGET_ADDRESS: &str = "14E5nqKAp3oAJcmzgZhUD2RcptBeUBScxKHgJKU4HPNcKVf3";
-const TRANSFER_AMOUNT: u128 = 3_000_000_000; // 3 DOT
-const USDT_ASSET_ID: u128 = 1984;
+// WebSocket endpoint of the node (the Chopsticks fork in this tutorial)
+const NODE_URL: &str = "ws://localhost:8000";
+// Amount to transfer, in the chain's smallest unit
+const TRANSFER_AMOUNT: u128 = 3_000_000_000;
+// Index of the Assets pallet in the runtime
+const ASSETS_PALLET_INDEX: u8 = 50;
+// ID of the asset used to pay fees (an asset Alice holds in the Chopsticks config)
+const FEE_ASSET_ID: u128 = 1984;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // Connect to the local Chopsticks Polkadot Hub fork
-    let api = OnlineClient::<AssetHubConfig>::from_url(POLKADOT_HUB_RPC).await?;
-    println!("Connected to Polkadot Hub (Chopsticks fork)");
+    // Connect to the node
+    let api = OnlineClient::<AssetPaymentConfig>::from_url(NODE_URL).await?;
+    println!("Connected to {}", NODE_URL);
 
     // Anchor to the current block
     let at_block = api.at_current_block().await?;
 
     // Create Alice's dev keypair
-    let alice = subxt_signer::sr25519::dev::alice();
+    let alice = dev::alice();
     println!("Sender (Alice): {}", AccountId32::from(alice.public_key()));
 
-    // Create the balance transfer transaction
-    let dest = AccountId32::from_str(TARGET_ADDRESS)?;
-    let tx = asset_hub::transactions()
+    // Create the balance transfer transaction to Bob
+    let dest = AccountId32::from(dev::bob().public_key());
+    let tx = runtime::transactions()
         .balances()
         .transfer_keep_alive(dest.into(), TRANSFER_AMOUNT);
 
-    // Define the USDT asset location in XCM format
+    // Define the fee asset location in XCM format
     let asset_location = Location {
         parents: 0,
         interior: Junctions::X2([
-            Junction::PalletInstance(50),
-            Junction::GeneralIndex(USDT_ASSET_ID),
+            Junction::PalletInstance(ASSETS_PALLET_INDEX),
+            Junction::GeneralIndex(FEE_ASSET_ID),
         ]),
     };
 
     // Build transaction params to pay fees with the alternative asset
-    let tx_params = DefaultExtrinsicParamsBuilder::<AssetHubConfig>::new()
+    let tx_params = DefaultExtrinsicParamsBuilder::<AssetPaymentConfig>::new()
         .tip_of(0, asset_location)
         .build();
 

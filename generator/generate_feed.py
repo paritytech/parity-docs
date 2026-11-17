@@ -415,7 +415,7 @@ def build(args):
     excl = cfg.get("content", {}).get("exclusions", {})
     skip_base = set(excl.get("skip_basenames", [])) | DEFAULT_EXCLUDE_BASENAMES
     skip_paths = excl.get("skip_paths", [])
-    docs_base_url = cfg.get("project", {}).get("docs_base_url", "https://docs.polkadot.com/")
+    docs_base_url = cfg.get("project", {}).get("docs_base_url", "https://docs.parity.io/")
 
     processed = []
     for path in iter_markdown(args.docs):
@@ -444,7 +444,7 @@ if __name__ == "__main__":
     ap.add_argument("--vars", default=os.path.join(root, "docs", "variables.yml"))
     ap.add_argument("--snippets", default=os.path.join(root, "docs", ".snippets"))
     ap.add_argument("--config", default=os.path.join(root, "llms_config.json"))
-    ap.add_argument("--source", default="polkadot-docs")
+    ap.add_argument("--source", default="parity-docs")
     ap.add_argument("--out", default=os.path.join(here, "llms-full.new.jsonl"))
     args = ap.parse_args()
     build(args)

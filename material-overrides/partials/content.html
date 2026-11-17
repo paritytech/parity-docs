@@ -29,7 +29,9 @@
 {% if page.meta.extra_css %}
   {% for css in page.meta.extra_css %}
     {% if css is string and is_safe_url(css) | trim == 'true' %}
-      <link rel="stylesheet" href="{{ css | e }}">
+      {#- Local paths (with or without a leading /) are made relative to the page so they work at any base path. -#}
+      {%- set href = css if css.startswith(('http://', 'https://')) else (css.lstrip('/') | url) %}
+      <link rel="stylesheet" href="{{ href | e }}">
     {% endif %}
   {% endfor %}
 {% endif %}
@@ -38,7 +40,8 @@
 {% if page.meta.extra_javascript %}
   {% for script in page.meta.extra_javascript %}
     {% if script is string and is_safe_url(script) | trim == 'true' %}
-      <script src="{{ script | e }}"></script>
+      {%- set src = script if script.startswith(('http://', 'https://')) else (script.lstrip('/') | url) %}
+      <script src="{{ src | e }}"></script>
     {% endif %}
   {% endfor %}
 {% endif %}
@@ -47,8 +50,8 @@
   {% include "partials/tags.html" %}
 {% endif %}
 
-{% from "partials/page-badges.html" import render_badges %}
-{% from "partials/page-tests.html" import render_test_block %}
+{% from "partials/page-badges.html" import render_badges with context %}
+{% from "partials/page-tests.html" import render_test_block with context %}
 
 {# ------------------------------------------------------------------ #}
 {# Content rendering                                                    #}

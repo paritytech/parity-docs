@@ -6,7 +6,7 @@ categories: Apps
 
 # Concepts
 
-The [Build guides](/apps/build/) and [Deploy Your App](/apps/deploy-your-app/) walk you through tasks. This section explains the ideas underneath them.
+The [Build guides](/apps/build/index.md) and [Deploy Your App](/apps/deploy-your-app.md) walk you through tasks. This section explains the ideas underneath them.
 
 <div class="grid cards" markdown>
 
@@ -16,7 +16,7 @@ The [Build guides](/apps/build/) and [Deploy Your App](/apps/deploy-your-app/) w
 
     The per-app account and Proof of Personhood as a user's two identities, and why your Product's own `.dot` address is not one of them.
 
-    [:octicons-arrow-right-24: Identity](/apps/concepts/identity/)
+    [:octicons-arrow-right-24: Identity](/apps/concepts/identity.md)
 
 -   <span class="badge learn">Learn</span> **Accounts and Signing**
 
@@ -24,7 +24,7 @@ The [Build guides](/apps/build/) and [Deploy Your App](/apps/deploy-your-app/) w
 
     Which component holds which account — phone, Host, and CLI — and why an allowance can land on the wrong one.
 
-    [:octicons-arrow-right-24: Accounts and Signing](/apps/concepts/accounts/)
+    [:octicons-arrow-right-24: Accounts and Signing](/apps/concepts/accounts.md)
 
 -   <span class="badge learn">Learn</span> **Allowances and Permissions**
 
@@ -32,7 +32,7 @@ The [Build guides](/apps/build/) and [Deploy Your App](/apps/deploy-your-app/) w
 
     What the grants your Product requests authorize, their scope and lifetime, and how re-approval works.
 
-    [:octicons-arrow-right-24: Allowances and Permissions](/apps/concepts/allowances/)
+    [:octicons-arrow-right-24: Allowances and Permissions](/apps/concepts/allowances.md)
 
 -   <span class="badge learn">Learn</span> **Where to Store Data**
 
@@ -40,7 +40,7 @@ The [Build guides](/apps/build/) and [Deploy Your App](/apps/deploy-your-app/) w
 
     A decision guide across contract storage, cloud storage, the statement store, and local storage.
 
-    [:octicons-arrow-right-24: Where to Store Data](/apps/concepts/data-placement/)
+    [:octicons-arrow-right-24: Where to Store Data](/apps/concepts/data-placement.md)
 
 -   <span class="badge learn">Learn</span> **Networks**
 
@@ -48,6 +48,6 @@ The [Build guides](/apps/build/) and [Deploy Your App](/apps/deploy-your-app/) w
 
     Paseo Next v2 and Products Devnet: how they relate and the differences that affect your app.
 
-    [:octicons-arrow-right-24: Networks](/apps/concepts/networks/)
+    [:octicons-arrow-right-24: Networks](https://developers.polkadot.com/apps/concepts/networks/)
 
 </div>

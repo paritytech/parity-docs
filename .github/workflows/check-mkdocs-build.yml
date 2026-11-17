@@ -32,8 +32,10 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
+      # --strict matches the production deploy (deploy-pages.yml), so a warning
+      # that would break the deploy fails the pull request instead.
       - name: Build MkDocs site
-        run: mkdocs build -d site
+        run: mkdocs build --strict -d site
 
       - name: Check the AI corpus feed
         # Validates the real deploy artifact — the feed hooks/ai_feed.py just wrote via
@@ -42,5 +44,5 @@ jobs:
         # shape, this resolves every chunk url and anchor against the built HTML, which
         # is what catches anchors slugified differently than mkdocs' toc does and pages
         # a plugin removed after the feed was written. Runs locally the same way:
-        #   mkdocs build -d site && python scripts/check_ai_feed.py site
+        #   mkdocs build --strict -d site && python scripts/check_ai_feed.py site
         run: python scripts/check_ai_feed.py site

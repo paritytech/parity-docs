@@ -10,21 +10,21 @@ page_badges:
 
 ## Introduction
 
-Every published Polkadot Product is reached by a dotNS name, such as `awesome.dot`. That name is registered with [dotNS](/reference/apps/infrastructure/dotns/), Polkadot's decentralized, on-chain name service. dotNS turns a human-readable name into the Product bundle it points at, and it is the lookup every Host runs when a user navigates to it.
+Every published Polkadot Product is reached by a dotNS name, such as `awesome.dot`. That name is registered with [dotNS](/apps/reference/infrastructure/dotns/index.md), Polkadot's decentralized, on-chain name service. dotNS turns a human-readable name into the Product bundle it points at, and it is the lookup every Host runs when a user navigates to it.
 
 --8<-- 'text/apps/network-tld.md'
 
 The registry (names, owners, and the content record each name points at) lives as contract state on Polkadot Hub. Resolution runs `name → namehash → contenthash → CID`: the name hashes to a deterministic key, the record's `contenthash` points at your bundle's CID, and the Host fetches and content-verifies the bundle before loading it.
 
-Registration happens on chain, so the name rules below hold whichever tool you use. Three CLIs can register a name: the [`playground` CLI](/apps/quick-start/) folds it into a deploy, `pad` publishes a built bundle and registers its name in one command, and the [dotNS CLI](/reference/apps/infrastructure/dotns/cli/) drives the registry directly. This guide explains how to choose a name your account is allowed to register, which path to take, and how to manage the name afterward.
+Registration happens on chain, so the name rules below hold whichever tool you use. Three CLIs can register a name: the [`playground` CLI](/apps/quick-start.md) folds it into a deploy, `pad` publishes a built bundle and registers its name in one command, and the [dotNS CLI](/apps/reference/infrastructure/dotns/cli.md) drives the registry directly. This guide explains how to choose a name your account is allowed to register, which path to take, and how to manage the name afterward.
 
 ## Prerequisites
 
 Before registering, ensure you have:
 
-- Completed [Install Desktop and Pair](/apps/get-started/) and [Get TestNet Tokens](/apps/get-started/get-testnet-tokens/); your account needs PAS to pay fees and any name deposit.
+- Completed [Run a Host for Local Development](/apps/get-started/index.md). Your account needs funds on the target environment to pay fees and any name deposit; for TestNet funds, see [Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/) on developers.polkadot.com.
 - One of the CLIs in [Ways to Register](#ways-to-register) installed. On the `playground` path that means `pg login` has paired it with your signer.
-- A Product project ready to deploy, if you are registering as part of a deploy with `playground` or `pad`. Registering with the dotNS CLI needs no bundle. See [Deploy Your App](/apps/deploy-your-app/).
+- A Product project ready to deploy, if you are registering as part of a deploy with `playground` or `pad`. Registering with the dotNS CLI needs no bundle. See [Deploy Your App](/apps/deploy-your-app.md).
 
 ## Choose a Name
 
@@ -42,24 +42,9 @@ A label must satisfy all of these, or registration is rejected before anything i
 !!! note "Out-of-date tooling is stricter"
     Releases built against the previous label rules cap a trailing run of digits at two and reject a longer one, which the chain no longer does. `@parity/dotns-cli` lifted the cap in `0.9.0`. If a label with three or more trailing digits is refused before anything is submitted on chain, update your tooling rather than changing the name.
 
-### Length Bands
+### Name Length
 
-Which band a name falls into depends on its length, counted as written. Digits count like any other character:
-
-| Length                 | Requirement                                              |
-|------------------------|----------------------------------------------------------|
-| 9 characters or longer | Open to everyone, with no personhood check               |
-| 6 to 8 characters      | Not sold on this path; earned in the Polkadot App        |
-| 5 characters or fewer  | Reserved for governance, not sold on this path           |
-
-So `johnsmith57` is open to anyone because it is 11 characters, and so is `johnsmith` at exactly nine. `johnny` and `johnny01`, at six and eight characters, cannot be registered on this path whatever personhood status the account holds, and neither can `john` at four. `johnny` can still be earned as a personhood name in the Polkadot App. `johnny01` cannot be earned there either, because a gateway name never carries digits without a separator. Adding digits no longer lowers the tier a name demands: it only makes the name longer, which can move it into the open band.
-
-The six-to-eight band is closed on this path by a governance switch in `PopRules`, which is off by default. While it is off, registering a name of that length fails with `Short names are not for sale`.
-
-Every name this path admits pays the same refundable deposit, whatever its length. See the [PopRules and Pricing reference](/reference/apps/infrastructure/dotns/poprules-pricing/) for the bands and the deposit.
-
-!!! note "Personhood and the network"
-    Proof of Personhood is obtained in the Polkadot App on your device; there is no CLI path to a tier. On this path, pick a name of nine characters or more, which registers with no personhood check. A name of six to eight characters is available only as a device or personhood name, such as `johnny.42` or `johnny`, which is earned through the personhood gateway rather than registered here. See [Get TestNet Tokens](/apps/get-started/get-testnet-tokens/) for how names, deposits, and personhood interact on TestNet.
+Which names an account may register, and the deposit it pays, depend on the label's length (counted as written, digits included) and on the `PopRules` configuration of the dotNS deployment you target. On the configuration these guides target, a label of nine characters or more, such as `johnsmith57`, registers with no personhood check; shorter labels fail with [`Short names are not for sale`](/apps/troubleshooting.md#short-names-are-not-for-sale). Proof of Personhood is obtained in the Polkadot App, not through any of these CLIs. See the [PopRules and Pricing reference](/apps/reference/infrastructure/dotns/poprules-pricing.md) for the length bands, the deposit, and personhood names.
 
 ## Ways to Register
 
@@ -67,9 +52,9 @@ All three CLIs write to the same registry, so the name rules above apply identic
 
 |                 Tool                  |                    Best for                     |                                      What it does                                       |
 |:-------------------------------------:|:-----------------------------------------------:|:---------------------------------------------------------------------------------------:|
-| [`playground`](/apps/quick-start/)    | A first Product, and hackathons                  | Registers the name as one step of an interactive `playground deploy`                     |
+| [`playground`](/apps/quick-start.md)    | A first Product, and hackathons                  | Registers the name as one step of an interactive `playground deploy`                     |
 | `pad`                                 | Scripted or CI deploys of a built bundle         | Uploads the bundle, registers the name if needed, and writes the content record in one command |
-| [`dotns`](/reference/apps/infrastructure/dotns/cli/) | Managing names on their own, with no deploy | Registration, lookups, content records, transfers, subnames, and escrow                  |
+| [`dotns`](/apps/reference/infrastructure/dotns/cli.md) | Managing names on their own, with no deploy | Registration, lookups, content records, transfers, subnames, and escrow                  |
 
 The choice is not permanent. A name registered by any of them is an ordinary name owned by your account, and the others operate on it afterward.
 
@@ -81,6 +66,8 @@ When you run `playground deploy` and reach the `domain` prompt, enter the name y
 <span data-ty><pre>  domain
     › johnsmith57█</pre></span>
 </div>
+
+In a scripted deploy, pass the same bare label with `--domain` instead, as in `pg deploy -y --signer dev --suri //Alice --domain johnsmith57`. See the [`playground` CLI reference](/apps/playground-cli.md#deploy) for the deploy flags.
 
 From there, the CLI registers the name on chain. If you deploy with the phone signer, each on-chain step is a separate approval in the Polkadot App, in this order:
 
@@ -94,9 +81,12 @@ From there, the CLI registers the name on chain. If you deploy with the phone si
 !!! note "An abandoned commitment expires after a day"
     A commitment is valid for one day. If a deploy fails between reserve and finalize and you come back later than that, the commitment is no longer claimable and the handshake starts over from the beginning.
 
-Names are first come, first served. If the CLI reports that a name is [already registered](/apps/troubleshooting/#the-name-is-already-registered), choose another; if it reports that [short names are not for sale](/apps/troubleshooting/#short-names-are-not-for-sale), pick a name of nine characters or more. With the dev signer, these steps run without phone prompts; the deployed name is owned by the shared dev account rather than by you.
+Names are first come, first served. If the CLI reports that a name is [already registered](/apps/troubleshooting.md#the-name-is-already-registered), choose another; if it reports that [short names are not for sale](/apps/troubleshooting.md#short-names-are-not-for-sale), pick a longer name. With the dev signer, these steps run without phone prompts; the deployed name is owned by the shared dev account rather than by you.
 
 ## Register with `pad`
+
+!!! warning "Provisional"
+    Ownership of `pad` is not settled in these docs: this page installs `@parity/polkadot-app-deploy`, while PCF also publishes `pad` tooling that publishes to Browse. Confirm which build you installed with `pad --help` before scripting around it.
 
 [`polkadot-app-deploy`](https://github.com/paritytech/polkadot-app-deploy) publishes a built bundle and registers its name in a single command, which suits a scripted or CI deploy:
 
@@ -105,7 +95,7 @@ npm i -g @parity/polkadot-app-deploy
 pad ./dist johnsmith57.paseo --mnemonic "$MNEMONIC"
 ```
 
-`pad` uploads the bundle to the Bulletin Chain, skipping unchanged blocks on repeat deploys, registers the name if you do not already own it, and writes the content record on Polkadot Hub. It also has a `login` mode: on TestNet a local worker registers the name and then transfers it to the signed-in account, so the deploy runs without phone taps unless you pass `--no-transfer-to-signedin-user`. `pad` does not read the dotNS keystore, so supply the key explicitly when you are not using `login`.
+`pad` uploads the bundle to the Bulletin Chain, skipping unchanged blocks on repeat deploys, registers the name if you do not already own it, and writes the content record on Polkadot Hub. It also has a `login` mode: on TestNet, a local worker registers the name and then transfers it to the signed-in account, so the deploy runs without phone taps unless you pass `--no-transfer-to-signedin-user`. `pad` does not read the dotNS keystore, so supply the key explicitly when you are not using `login`.
 
 !!! warning "Keep the mnemonic out of your shell history"
     Pass the phrase through an environment variable, never as a literal on the command line, and never commit it. A deploy key that registers names controls them.
@@ -115,7 +105,7 @@ pad ./dist johnsmith57.paseo --mnemonic "$MNEMONIC"
 
 ## Register with the dotNS CLI
 
-The [dotNS CLI](/reference/apps/infrastructure/dotns/cli/) registers a name on its own, with no bundle and no deploy involved. Reach for it when you want to hold a name before the Product is ready, script a batch of names, or debug a registration that failed.
+The [dotNS CLI](/apps/reference/infrastructure/dotns/cli.md) registers a name on its own, with no bundle and no deploy involved. Reach for it when you want to hold a name before the Product is ready, script a batch of names, or debug a registration that failed.
 
 From `1.0.0`, the CLI targets Polkadot by default, where a registration spends DOT. To register on the TestNet this guide uses, set `DOTNS_ENV=paseo-v2` or pass `--env paseo-v2` on each command:
 
@@ -127,8 +117,8 @@ dotns register domain --help
 
 Registration runs the same commit-reveal handshake described above, so expect a comparable pause whichever tool drives it. The CLI can also preview `PopRules` eligibility for a proposed name and account, showing the band and the deposit before you submit.
 
-!!! warning "Check the flags against your version"
-    The dotNS CLI's per-command flags are still being confirmed against the published package, which is why the [CLI reference](/reference/apps/infrastructure/dotns/cli/) lists command families rather than a flag table. Run `--help` on the version you installed rather than copying flags from elsewhere; the PCF publishes its own build of this tool under a different scope, and the two are not interchangeable.
+!!! warning "Provisional"
+    The dotNS CLI's per-command flags are still being confirmed against the published package, which is why the [CLI reference](/apps/reference/infrastructure/dotns/cli.md) lists command families rather than a flag table. Run `--help` on the version you installed rather than copying flags from elsewhere; the PCF publishes its own build of this tool under a different scope, and the two are not interchangeable.
 
 ## Update the Bundle a Name Points At
 
@@ -142,13 +132,13 @@ Because a name's content record is mutable and the owner can transfer or repoint
 
 ## Manage Your Name
 
-Everything past registration is the [dotNS CLI](/reference/apps/infrastructure/dotns/cli/)'s job. A deploy tool repoints the one name it just published; `dotns` operates on any name your account owns:
+Everything past registration is the [dotNS CLI](/apps/reference/infrastructure/dotns/cli.md)'s job. A deploy tool repoints only the name it published; `dotns` operates on any name your account owns:
 
-- **Transfer**: A name registered on this path is owned by a Polkadot Hub account and can be transferred to another account. A transfer changes only the owner; the name and its current content record are unchanged, so users keep seeing the same bundle until the new owner updates it. Proof of Personhood status and reservations do not transfer with the name. A device or personhood name cannot be transferred at all, and some moves carry a fee. See the [transfer reference](/reference/apps/infrastructure/dotns/transfer/).
+- **Transfer**: A name registered on this path is owned by a Polkadot Hub account and can be transferred to another account. A transfer changes only the owner; the name and its current content record are unchanged, so users keep seeing the same bundle until the new owner updates it. Proof of Personhood status and reservations do not transfer with the name. A device or personhood name cannot be transferred at all, and some moves carry a fee. See the [transfer reference](/apps/reference/infrastructure/dotns/transfer.md).
 - **Subnames**: The dotNS CLI can register subnames under a name you own.
 - **Content records**: The dotNS CLI can view and set a name's content record outside a deploy.
 
-!!! warning "These CLIs are still moving"
+!!! warning "Provisional"
     `@parity/dotns-cli` is in active development with breaking changes expected between versions, and `pad` describes itself as a prototype reference implementation. Both work today; treat the commands here as a snapshot and confirm them with `--help` before depending on them in a pipeline.
 
 ## Where to Go Next
@@ -161,15 +151,15 @@ Everything past registration is the [dotNS CLI](/reference/apps/infrastructure/d
 
     The full deploy flow that registers your name and uploads your bundle in one pass.
 
-    [:octicons-arrow-right-24: Deploy Your App](/apps/deploy-your-app/)
+    [:octicons-arrow-right-24: Deploy Your App](/apps/deploy-your-app.md)
 
--   <span class="badge guide">Guide</span> **List Your App**
+-   <span class="badge guide">Guide</span> **Store Data on Chain**
 
     ---
 
-    Once your name resolves, list your Product so others can discover it.
+    Keep the bundle your name points at available by renewing it on the Bulletin Chain.
 
-    [:octicons-arrow-right-24: List Your App](/apps/list-your-app/)
+    [:octicons-arrow-right-24: Store Data on Chain](/apps/build/store-data-on-chain.md)
 
 -   <span class="badge learn">Learn</span> **dotNS Reference**
 
@@ -177,6 +167,6 @@ Everything past registration is the [dotNS CLI](/reference/apps/infrastructure/d
 
     The name mechanism, PopRules pricing, contract architecture, and transfer model in depth.
 
-    [:octicons-arrow-right-24: Reference](/reference/apps/infrastructure/dotns/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/dotns/index.md)
 
 </div>

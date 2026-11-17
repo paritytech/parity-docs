@@ -10,10 +10,10 @@ categories: Apps
 
 [`@parity/product-sdk-terminal`](https://paritytech.github.io/product-sdk/api/terminal/) brings the Polkadot App pairing flow to command-line tools. It prints a QR code, waits for the user to scan it with their phone, and hands back a `PolkadotSigner` that routes every signature to that phone, exactly as a Host does for a Product in a browser.
 
-This is the package the [`playground` CLI](/apps/quick-start/) is built on. `pg login` is `createTerminalAdapter` plus a QR render plus `authenticate()`; `pg deploy`'s Bulletin uploads are signed by `getBulletinSigner`.
+This is the package the [`playground` CLI](/apps/quick-start.md) is built on. `pg login` is `createTerminalAdapter` plus a QR render plus `authenticate()`; `pg deploy`'s Bulletin uploads are signed by `getBulletinSigner`.
 
 !!! note "Not for Products"
-    A Polkadot Product runs inside a Host, which already owns the pairing and the signing route, so a Product uses [Signer](/apps/product-sdk/signer/) instead. Reach for this package when you are writing a Node CLI _alongside_ your Product — a deploy script, a migration tool, a CI job that has to sign as you.
+    A Polkadot Product runs inside a Host, which already owns the pairing and the signing route, so a Product uses [Signer](/apps/product-sdk/signer.md) instead. Reach for this package when you are writing a Node CLI _alongside_ your Product — a deploy script, a migration tool, a CI job that has to sign as you.
 
 ## When to Use It
 
@@ -118,7 +118,7 @@ Both helpers default `sessionId` to the only paired session. With zero or more t
 
     The runtime-agnostic core beneath this package, if you want the sign-in flow without the terminal rendering.
 
-    [:octicons-arrow-right-24: Auth](/apps/product-sdk/auth/)
+    [:octicons-arrow-right-24: Auth](/apps/product-sdk/auth.md)
 
 -   <span class="badge learn">Learn</span> **Signer**
 
@@ -126,7 +126,7 @@ Both helpers default `sessionId` to the only paired session. With zero or more t
 
     The equivalent for a Product running inside a Host, where pairing is already handled for you.
 
-    [:octicons-arrow-right-24: Signer](/apps/product-sdk/signer/)
+    [:octicons-arrow-right-24: Signer](/apps/product-sdk/signer.md)
 
 -   <span class="badge external">External</span> **API Reference**
 

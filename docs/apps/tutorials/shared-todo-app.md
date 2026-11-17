@@ -10,7 +10,7 @@ page_badges:
 
 ## Introduction
 
-Each [Build guide](/apps/build/) takes one `product-sdk` capability from zero to working code. This tutorial is the capstone: it combines four of them into one product, a Shared Todo Board where every participant sees changes live and the board survives durably on chain.
+Each [Build guide](/apps/build/index.md) takes one `product-sdk` capability from zero to working code. This tutorial is the capstone: it combines four of them into one product, a Shared Todo Board where every participant sees changes live and the board survives durably on chain.
 
 What you will build, and which package carries each part:
 
@@ -19,11 +19,11 @@ What you will build, and which package carries each part:
 | Identity and signing | `signer` (via the umbrella's `wallet` API) | Connect to the Host and get the account that authors and signs everything                                               |
 | Local persistence    | `local-storage`                            | The board renders instantly from the device's last known state                                                          |
 | Real-time sharing    | `statement-store`                          | Every mutation gossips to other participants as a signed statement                                                      |
-| Durable storage      | `cloud-storage`                            | Snapshots of the board live on the [Bulletin Chain](/reference/apps/infrastructure/bulletin-chain/), addressable by CID |
+| Durable storage      | `cloud-storage`                            | Snapshots of the board live on the [Bulletin Chain](/apps/reference/infrastructure/bulletin-chain/index.md), addressable by CID |
 
 ![The Shared Todo Board running inside Polkadot Desktop, with the connected account in the header, a synced todo list, and the latest snapshot CID in the footer](/images/apps/tutorials/shared-todo-app/shared-todo-app-01.webp)
 
-The guides cover the individual calls. This tutorial focuses on how the layers compose. Statements are capped at 512 bytes and expire after 30 seconds, so they carry individual mutations, not the whole board. The Bulletin Chain holds full snapshots, and a last-write-wins channel announces the latest snapshot's CID. This is the same split [Polkadot App](/reference/apps/hosts/polkadot-app/)'s Chat uses: gossip for signaling, Bulletin for content.
+The guides cover the individual calls. This tutorial focuses on how the layers compose. Statements are capped at 512 bytes and expire after 30 seconds, so they carry individual mutations, not the whole board. The Bulletin Chain holds full snapshots, and a last-write-wins channel announces the latest snapshot's CID. This is the same split [Polkadot App](https://developers.polkadot.com/reference/apps/hosts/polkadot-app/)'s Chat uses: gossip for signaling, Bulletin for content.
 
 The code here targets `@parity/product-sdk` v0.30.0. It was written against `@parity/product-sdk-statement-store` v0.6.7 and `@parity/product-sdk-cloud-storage` v0.11.1, and every symbol it imports from them is still exported in v0.6.12 and v0.12.2. It needs at least `product-sdk` v0.30.0, the release that takes the Product's identity from the Host, and `statement-store` v0.5.0, which introduced the sponsored host-signing path.
 
@@ -35,9 +35,9 @@ The code here targets `@parity/product-sdk` v0.30.0. It was written against `@pa
 Before starting, ensure you have:
 
 - Node.js 20 or later.
-- Polkadot Desktop installed and paired. See [Install Desktop and Pair](/apps/get-started/).
-- A statement allowance and a Bulletin Chain storage authorization for your wallet account. See [Get TestNet Tokens](/apps/get-started/get-testnet-tokens/) and the [Bulletin Chain authorizations](https://paritytech.github.io/polkadot-bulletin-chain/authorizations) reference. Without the storage authorization, snapshot uploads are rejected.
-- The individual [Build guides](/apps/build/) are optional but helpful because they cover each capability in more depth.
+- Polkadot Desktop installed and paired. See [Run a Host for Local Development](/apps/get-started/index.md).
+- A statement allowance and a Bulletin Chain storage authorization for your wallet account. See [Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/) and the [Bulletin Chain authorizations](/apps/reference/infrastructure/bulletin-chain/authorization.md) reference. Without the storage authorization, snapshot uploads are rejected.
+- The individual [Build guides](/apps/build/index.md) are optional but helpful because they cover each capability in more depth.
 
 ## Scaffold the Project
 
@@ -51,7 +51,7 @@ npm install @parity/product-sdk @parity/product-sdk-statement-store @parity/prod
 
 Three dependencies, for three reasons:
 
-- **`@parity/product-sdk`**: The umbrella package. It re-exports the wallet, local-storage, and cloud-storage capabilities this app uses, plus the React provider. See [Umbrella or Individual Packages](/apps/build/#umbrella-or-individual-packages) if you would rather install per-capability packages.
+- **`@parity/product-sdk`**: The umbrella package. It re-exports the wallet, local-storage, and cloud-storage capabilities this app uses, plus the React provider. See [Two Ways to Use the SDK](/apps/product-sdk/index.md#two-ways-to-use-the-sdk) if you would rather install per-capability packages.
 - **`@parity/product-sdk-statement-store`**: The pub/sub client. It is not re-exported by the umbrella, so it is always its own dependency.
 - **`@parity/product-sdk-cloud-storage`**: Installed explicitly because the app imports `CloudStorageClient` and `getBulletinAllowanceStatus` directly for its allowance pre-flight; relying on the umbrella's transitive copy would depend on npm hoisting.
 
@@ -84,10 +84,10 @@ The app publishes todos, statements, and snapshots, and each item is attributed 
 --8<-- "code/apps/tutorials/shared-todo-app/signer.ts"
 ```
 
-The product account is a per-Product, privacy-preserving identity derived by the Host. See [Sign and Submit Transactions](/apps/build/sign-and-submit/) for how derivation and approval routing work. Outside a host container, `connect()` fails, which the page surfaces as an error banner; there is deliberately no fallback path here because every later capability needs the Host anyway.
+The product account is a per-Product, privacy-preserving identity derived by the Host. See [Sign and Submit Transactions](/apps/build/sign-and-submit.md) for how derivation and approval routing work. Outside a host container, `connect()` fails, which the page surfaces as an error banner; there is deliberately no fallback path here because every later capability needs the Host anyway.
 
 !!! note "If Connect reports no accounts"
-    `connectIdentity` throws `No accounts available from the host` when `connect()` succeeds but hands back an empty list. That is a real outcome, not a bug: the Host derives the account from the product ID it loaded the app under, and if it declines to derive one (for example, because you are signed out of Polkadot Desktop), you get zero accounts and no error. See [A Minimal Product](/apps/product-sdk/#a-minimal-product) for the same trap on the `createApp` path.
+    `connectIdentity` throws `No accounts available from the host` when `connect()` succeeds but hands back an empty list. That is a real outcome, not a bug: the Host derives the account from the product ID it loaded the app under, and if it declines to derive one (for example, because you are signed out of Polkadot Desktop), you get zero accounts and no error. See [A Minimal Product](/apps/product-sdk/index.md#a-minimal-product) for the same trap on the `createApp` path.
 
 ## Keep State on the Device
 
@@ -97,13 +97,13 @@ The board should render instantly on launch before the Host connection and befor
 --8<-- "code/apps/tutorials/shared-todo-app/board.ts"
 ```
 
-The `getJSON` and `setJSON` helpers handle serialization, and the SDK namespaces keys per Product automatically, so no prefixing is needed. The store is backed by the Host — there is no browser `localStorage` fallback, so these calls only work inside a container. See [Persist Data Locally](/apps/build/persist-data-locally/).
+The `getJSON` and `setJSON` helpers handle serialization, and the SDK namespaces keys per Product automatically, so no prefixing is needed. The store is backed by the Host — there is no browser `localStorage` fallback, so these calls only work inside a container. See [Persist Data Locally](/apps/build/persist-data-locally.md).
 
 Note what this file _does not_ contain: mutation logic. Adding, toggling, and deleting todos are defined in the next section as events, so that a change made locally and a change arriving from the network flow through identical code.
 
 ## Share the Board in Real Time
 
-The [Statement Store](/reference/apps/infrastructure/statement-store/) gossips small signed payloads between instances of your Product. See [Publish and Subscribe to Off-Chain Data](/apps/build/pub-sub-off-chain-data/) for the full model. Two of its limits shape this app's protocol:
+The [Statement Store](/apps/reference/infrastructure/statement-store/index.md) gossips small signed payloads between instances of your Product. See [Publish and Subscribe to Off-Chain Data](/apps/build/pub-sub-off-chain-data.md) for the full model. Two of its limits shape this app's protocol:
 
 - The whole board does not fit inside the 512-byte statement cap, so each statement carries one mutation: an upsert of a single todo, or a deletion.
 - Statements have a 30-second TTL. They are signaling, not storage. A participant who joins late sees nothing until the next mutation; that gap is closed by the durable snapshots in the next section.
@@ -122,7 +122,7 @@ The pieces:
 
 ## Make the Board Durable
 
-Statements vanish after 30 seconds; the board should not. The [Bulletin Chain](/reference/apps/infrastructure/bulletin-chain/) stores content-addressed data on chain: upload bytes, get back a CID, and fetch by CID from anywhere. The app uploads the whole board as a JSON snapshot, then announces the CID on a last-write-wins channel so every participant knows where the freshest snapshot lives. Announcements are published with a one-hour TTL because the default 30 seconds would make the board undiscoverable almost immediately. A participant who joins within that window receives the latest live announcement on subscribe and loads the board from the Bulletin Chain; beyond it, the board appears once any participant saves again:
+Statements vanish after 30 seconds; the board should not. The [Bulletin Chain](/apps/reference/infrastructure/bulletin-chain/index.md) stores content-addressed data on chain: upload bytes, get back a CID, and fetch by CID from anywhere. The app uploads the whole board as a JSON snapshot, then announces the CID on a last-write-wins channel so every participant knows where the freshest snapshot lives. Announcements are published with a one-hour TTL because the default 30 seconds would make the board undiscoverable almost immediately. A participant who joins within that window receives the latest live announcement on subscribe and loads the board from the Bulletin Chain; beyond it, the board appears once any participant saves again:
 
 ??? code "lib/snapshot.ts"
     ```typescript title="lib/snapshot.ts"
@@ -131,8 +131,8 @@ Statements vanish after 30 seconds; the board should not. The [Bulletin Chain](/
 
 The pieces:
 
-- **`uploadSnapshot` / `fetchSnapshot`**: Use `app.cloudStorage` from the umbrella. `upload` signs and submits the storage transaction through the Host and resolves with the CID; `fetch` is permissionless. [Store Data on Chain](/apps/build/store-data-on-chain/) covers chunking, renewal, and the lower-level client.
-- **`ensureAuthorized`**: A pre-flight that runs before every upload, turning a missing [storage allowance](https://paritytech.github.io/polkadot-bulletin-chain/authorizations) into an actionable error instead of a bare on-chain rejection. It uses `getBulletinAllowanceStatus`, which costs one extra block read over `checkAuthorization` and derives `usable` — authorized, unexpired, and with quota left. Checking `authorized` alone would wave through an expired or exhausted allowance. Because `usable` does not know your payload size, the function also compares `remainingBytes` against the encoded snapshot.
+- **`uploadSnapshot` / `fetchSnapshot`**: Use `app.cloudStorage` from the umbrella. `upload` signs and submits the storage transaction through the Host and resolves with the CID; `fetch` is permissionless. [Store Data on Chain](/apps/build/store-data-on-chain.md) covers chunking, renewal, and the lower-level client.
+- **`ensureAuthorized`**: A pre-flight that runs before every upload, turning a missing [storage allowance](/apps/reference/infrastructure/bulletin-chain/authorization.md) into an actionable error instead of a bare on-chain rejection. It uses `getBulletinAllowanceStatus`, which costs one extra block read over `checkAuthorization` and derives `usable` — authorized, unexpired, and with quota left. Checking `authorized` alone would wave through an expired or exhausted allowance. Because `usable` does not know your payload size, the function also compares `remainingBytes` against the encoded snapshot.
 - **`announceSnapshot` / `onSnapshotAnnounced`**: Use the statement store's channel mechanism. Each channel keeps only its latest value per signer (one live announcement per account; `receiveSnapshot` reconciles announcements from different participants by `updatedAt`). Publishing goes through `client.publish` directly rather than `ChannelStore.write` so the statement can carry the long TTL; receiving still uses `ChannelStore`, which replays the latest live value to new subscribers. The announcement is `{ cid, updatedAt }`, comfortably inside the 512-byte cap. This is the composition the platform recommends: the channel is the index, the Bulletin Chain is the data.
 - **`mergeBoards`**: Folds a fetched snapshot into local state with the same per-todo last-write-wins rule as live sync.
 
@@ -147,7 +147,7 @@ The UI is a single client component. All the SDK behavior you have built lives i
 
 ## Run It
 
-Start the dev server and load the Product in Polkadot Desktop (per [Set Up Your Project](/apps/build/#set-up-your-project)):
+Start the dev server and load the Product in Polkadot Desktop (per [Set Up Your Project](/apps/build/index.md#set-up-your-project)):
 
 ```bash
 npm run dev
@@ -162,7 +162,7 @@ Then walk the same checks this tutorial's reference app was verified with:
 
 ## Ship It
 
-The board runs from `localhost` inside your host container. The remaining step is making it a real, discoverable Product. [Deploy Your App](/apps/deploy-your-app/) walks through bundling, publishing, and registering a dotNS name for it. Once it is live, the same bundle opens in Polkadot Desktop and on [Polkadot Web](/reference/apps/hosts/polkadot-web/) at `https://<name>.paseo.li` in any browser.
+The board runs from `localhost` inside your host container. The remaining step is making it a real, discoverable Product. [Deploy Your App](/apps/deploy-your-app.md) walks through bundling, publishing, and registering a dotNS name for it. Once it is live, the same bundle opens in Polkadot Desktop and on [Polkadot Web](https://developers.polkadot.com/reference/apps/hosts/polkadot-web/) at `https://<name>.paseo.li` in any browser.
 
 ## Where to Go Next
 
@@ -176,7 +176,7 @@ Each capability this tutorial composed has a guide that owns the depth:
 
     Product accounts, raw-byte signing, full transaction submission, and error handling.
 
-    [:octicons-arrow-right-24: Get Started](/apps/build/sign-and-submit/)
+    [:octicons-arrow-right-24: Get Started](/apps/build/sign-and-submit.md)
 
 -   <span class="badge guide">Guide</span> **Persist Data Locally**
 
@@ -184,7 +184,7 @@ Each capability this tutorial composed has a guide that owns the depth:
 
     The local key-value store in depth: JSON helpers, React hooks, prefixes.
 
-    [:octicons-arrow-right-24: Get Started](/apps/build/persist-data-locally/)
+    [:octicons-arrow-right-24: Get Started](/apps/build/persist-data-locally.md)
 
 -   <span class="badge guide">Guide</span> **Publish and Subscribe to Off-Chain Data**
 
@@ -192,7 +192,7 @@ Each capability this tutorial composed has a guide that owns the depth:
 
     Statement Store internals: topics, channels, TTLs, and allowances.
 
-    [:octicons-arrow-right-24: Get Started](/apps/build/pub-sub-off-chain-data/)
+    [:octicons-arrow-right-24: Get Started](/apps/build/pub-sub-off-chain-data.md)
 
 -   <span class="badge guide">Guide</span> **Store Data on Chain**
 
@@ -200,7 +200,7 @@ Each capability this tutorial composed has a guide that owns the depth:
 
     Bulletin Chain in depth: chunking, authorization, and renewal.
 
-    [:octicons-arrow-right-24: Get Started](/apps/build/store-data-on-chain/)
+    [:octicons-arrow-right-24: Get Started](/apps/build/store-data-on-chain.md)
 
 -   <span class="badge guide">Guide</span> **Read On-Chain Data**
 
@@ -208,6 +208,6 @@ Each capability this tutorial composed has a guide that owns the depth:
 
     The one capability this app did not need: typed, host-routed chain reads.
 
-    [:octicons-arrow-right-24: Get Started](/apps/build/read-chain-state/)
+    [:octicons-arrow-right-24: Get Started](/apps/build/read-chain-state.md)
 
 </div>

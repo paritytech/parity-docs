@@ -3,13 +3,14 @@ use subxt::utils::AccountId32;
 use subxt::{OnlineClient, PolkadotConfig};
 
 // Generate an interface from the node's metadata
-#[subxt::subxt(runtime_metadata_path = "asset_hub_metadata.scale")]
-pub mod asset_hub {}
+#[subxt::subxt(runtime_metadata_path = "metadata.scale")]
+pub mod runtime {}
 
-const ASSET_HUB_RPC: &str = "INSERT_WS_ENDPOINT";
+// WebSocket endpoint of your local development node
+const NODE_URL: &str = "ws://127.0.0.1:9944";
 
-// USDT on Polkadot Hub
-const USDT_ASSET_ID: u32 = 1984;
+// ID of an asset created with the Assets pallet on your chain
+const ASSET_ID: u32 = INSERT_ASSET_ID;
 
 // Example address to query asset balance
 const ADDRESS: &str = "INSERT_ADDRESS";
@@ -17,20 +18,20 @@ const ADDRESS: &str = "INSERT_ADDRESS";
 #[tokio::main(flavor = "current_thread")]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Initialize the Subxt client
-    let api = OnlineClient::<PolkadotConfig>::from_url(ASSET_HUB_RPC).await?;
+    let api = OnlineClient::<PolkadotConfig>::from_url(NODE_URL).await?;
 
     // Anchor to the current block
     let at_block = api.at_current_block().await?;
 
-    println!("Connected to Polkadot Hub");
-    println!("Querying asset ID: {}\n", USDT_ASSET_ID);
+    println!("Connected to {}", NODE_URL);
+    println!("Querying asset ID: {}\n", ASSET_ID);
 
     // Query asset metadata
     let metadata_storage = at_block
         .storage()
-        .entry(asset_hub::storage().assets().metadata())?;
+        .entry(runtime::storage().assets().metadata())?;
     let meta = metadata_storage
-        .fetch((USDT_ASSET_ID,))
+        .fetch((ASSET_ID,))
         .await?
         .decode()?;
 
@@ -48,9 +49,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Query asset details
     let asset_storage = at_block
         .storage()
-        .entry(asset_hub::storage().assets().asset())?;
+        .entry(runtime::storage().assets().asset())?;
     let details = asset_storage
-        .fetch((USDT_ASSET_ID,))
+        .fetch((ASSET_ID,))
         .await?
         .decode()?;
 
@@ -66,9 +67,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let account_storage = at_block
         .storage()
-        .entry(asset_hub::storage().assets().account())?;
+        .entry(runtime::storage().assets().account())?;
     let asset_account = account_storage
-        .fetch((USDT_ASSET_ID, account))
+        .fetch((ASSET_ID, account))
         .await?
         .decode()?;
 

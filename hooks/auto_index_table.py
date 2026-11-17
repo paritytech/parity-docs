@@ -318,12 +318,10 @@ def _resolve(base_dir, path, docs_dir):
 
 
 def _to_site_path(abs_path, docs_dir):
+    # Docs-rooted path to the source file (for example /tools/subxt.md). MkDocs
+    # resolves these (validation.absolute_links: relative_to_docs) into relative
+    # URLs, so the generated links work at any base path.
     rel = os.path.relpath(abs_path, docs_dir).replace('\\', '/')
-    if rel.endswith('.md'):
-        rel = rel[:-3]
-        if rel.endswith('/index') or rel == 'index':
-            return '/' + rel[:-len('index')]
-        return '/' + rel + '/'
     return '/' + rel
 
 

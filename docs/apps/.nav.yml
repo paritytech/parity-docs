@@ -6,7 +6,8 @@ nav:
  - 'Build': build
  - 'Deploy Your App': deploy-your-app.md
  - 'Register a .dot Domain': register-dot-domain.md
- - 'List Your App': list-your-app.md
+ - 'playground CLI Reference': playground-cli.md
  - 'Product SDK': product-sdk
  - 'Tutorials': tutorials
  - 'Troubleshooting': troubleshooting.md
+ - 'Reference': reference

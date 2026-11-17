@@ -17,7 +17,7 @@ Because the Host owns the connection, your Product never picks an RPC endpoint o
 - Whenever your Product needs to read on-chain storage, constants, or account state, or to build a transaction to submit later.
 - Use `getChainAPI` for the zero-config path: pass an environment name and get the preset chains back with no descriptor imports.
 - Use `createChainClient` when you want to bring your own descriptors: a custom chain, a pre-release runtime, or only a subset of chains.
-- Do not reach for it to submit or sign; pair it with [Signer](/apps/product-sdk/signer/) and [Transactions](/apps/product-sdk/tx/) for that. There is no direct-WebSocket fallback, so it requires a Host.
+- Do not reach for it to submit or sign; pair it with [Signer](/apps/product-sdk/signer.md) and [Transactions](/apps/product-sdk/tx.md) for that. There is no direct-WebSocket fallback, so it requires a Host.
 
 ## Core Concepts
 
@@ -78,7 +78,7 @@ client.destroy();
 
     The task-focused recipe: set up the client and read balances and storage step by step.
 
-    [:octicons-arrow-right-24: Read On-Chain Data](/apps/build/read-chain-state/)
+    [:octicons-arrow-right-24: Read On-Chain Data](/apps/build/read-chain-state.md)
 
 -   <span class="badge learn">Learn</span> **Signer**
 
@@ -86,7 +86,7 @@ client.destroy();
 
     Get an account and a signer to pair with the client when you need to submit, not just read.
 
-    [:octicons-arrow-right-24: Signer](/apps/product-sdk/signer/)
+    [:octicons-arrow-right-24: Signer](/apps/product-sdk/signer.md)
 
 -   <span class="badge external">External</span> **API Reference**
 

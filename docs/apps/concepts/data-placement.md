@@ -21,23 +21,23 @@ A Polkadot Product has four places to keep data, and choosing the wrong one is a
 
 ## Contract Storage
 
-Use a [smart contract](/apps/product-sdk/contracts/) when data is _logic that must be enforced for everyone_: ownership records, a leaderboard's rules, an escrow's state, a registry. Contract storage is permanent and its rules are trustless, but on-chain storage is expensive per byte and every write is a transaction.
+Use a [smart contract](/apps/product-sdk/contracts.md) when data is _logic that must be enforced for everyone_: ownership records, a leaderboard's rules, an escrow's state, a registry. Contract storage is permanent and its rules are trustless, but on-chain storage is expensive per byte and every write is a transaction.
 
 Do not put bulk data in a contract — file contents, images, long text, or anything that grows. Store the bytes in cloud storage and keep only the CID (a short content hash) in the contract if the contract needs to reference them. This keeps the contract small and cheap while the heavy data lives in the layer built for it.
 
 ## Cloud Storage (Bulletin Chain)
 
-Use [cloud storage](/apps/product-sdk/cloud-storage/) for content that outlives a session: profile photos, uploads, published posts, snapshots of app state. You upload bytes and get back a CID; anyone with the CID can fetch and verify the bytes.
+Use [cloud storage](/apps/product-sdk/cloud-storage.md) for content that outlives a session: profile photos, uploads, published posts, snapshots of app state. You upload bytes and get back a CID; anyone with the CID can fetch and verify the bytes.
 
-The key tradeoff is **retention**. Stored data is kept for about two weeks by default and must be renewed to persist beyond that. Renewal works from a CID. A chunked upload is renewed chunk by chunk, and its manifest CID lists the chunk CIDs. Plan for renewal from the start; see [Store Data on Chain](/apps/build/store-data-on-chain/#renew-long-lived-data) for how to renew, and [Deploy Your App](/apps/deploy-your-app/#keep-your-app-available) for keeping a deployed app available.
+The key tradeoff is **retention**. Stored data is kept for about two weeks by default and must be renewed to persist beyond that. Renewal works from a CID. A chunked upload is renewed chunk by chunk, and its manifest CID lists the chunk CIDs. Plan for renewal from the start; see [Store Data on Chain](/apps/build/store-data-on-chain.md#renew-long-lived-data) for how to renew, and [Deploy Your App](/apps/deploy-your-app.md#keep-your-app-available) for keeping a deployed app available.
 
 ## Statement Store
 
-Use the [statement store](/apps/product-sdk/statement-store/) for real-time state between users: presence, typing indicators, cursors, and announcing where a fresh snapshot lives. Statements are signed, capped at 512 bytes, and expire in seconds. They are signaling, not storage — pair them with cloud storage when the content needs to survive.
+Use the [statement store](/apps/product-sdk/statement-store.md) for real-time state between users: presence, typing indicators, cursors, and announcing where a fresh snapshot lives. Statements are signed, capped at 512 bytes, and expire in seconds. They are signaling, not storage — pair them with cloud storage when the content needs to survive.
 
 ## Local Storage
 
-Use [local storage](/apps/product-sdk/local-storage/) for state that belongs to one device: preferences, drafts, and cached values. It is private to the device and instant to read, but it is not shared, not durable across devices, and not a source of truth.
+Use [local storage](/apps/product-sdk/local-storage.md) for state that belongs to one device: preferences, drafts, and cached values. It is private to the device and instant to read, but it is not shared, not durable across devices, and not a source of truth.
 
 ## A Common Pattern
 
@@ -48,7 +48,7 @@ Many Products combine layers rather than choosing one:
 - A **contract** or the announcement carries the CID so others know where to look.
 - **Local storage** renders instantly from the device's last known state while the rest loads.
 
-The [Shared Todo App tutorial](/apps/tutorials/shared-todo-app/) builds exactly this composition end to end.
+The [Shared Todo App tutorial](/apps/tutorials/shared-todo-app.md) builds exactly this composition end to end.
 
 ## Where to Go Next
 
@@ -60,7 +60,7 @@ The [Shared Todo App tutorial](/apps/tutorials/shared-todo-app/) builds exactly 
 
     Upload to the Bulletin Chain and fetch by CID, with authorization and renewal.
 
-    [:octicons-arrow-right-24: Store Data on Chain](/apps/build/store-data-on-chain/)
+    [:octicons-arrow-right-24: Store Data on Chain](/apps/build/store-data-on-chain.md)
 
 -   <span class="badge guide">Guide</span> **Add a Smart Contract to Your Product**
 
@@ -68,7 +68,7 @@ The [Shared Todo App tutorial](/apps/tutorials/shared-todo-app/) builds exactly 
 
     Put enforced shared state in a contract, and keep bulk data out of it.
 
-    [:octicons-arrow-right-24: Add a Smart Contract to Your Product](/apps/build/deploy-a-smart-contract/)
+    [:octicons-arrow-right-24: Add a Smart Contract to Your Product](/apps/build/deploy-a-smart-contract.md)
 
 -   <span class="badge guide">Guide</span> **Build a Shared Todo App**
 
@@ -76,6 +76,6 @@ The [Shared Todo App tutorial](/apps/tutorials/shared-todo-app/) builds exactly 
 
     A tutorial that composes all four layers into one Product.
 
-    [:octicons-arrow-right-24: Build a Shared Todo App](/apps/tutorials/shared-todo-app/)
+    [:octicons-arrow-right-24: Build a Shared Todo App](/apps/tutorials/shared-todo-app.md)
 
 </div>

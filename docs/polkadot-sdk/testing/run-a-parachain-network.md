@@ -1,0 +1,213 @@
+---
+title: Run a Parachain Network
+description: Learn how to deploy a local parachain test network using Zombienet, including building a custom collator and verifying block production.
+short_description: Launch a complete parachain test network with Zombienet.
+categories: Polkadot SDK, Tooling
+page_badges:
+  tutorial_badge: Intermediate
+  test_workflow: polkadot-docs-run-a-parachain-network
+page_tests:
+  path: polkadot-docs/networks/run-a-parachain-network/tests/docs.test.ts
+---
+
+# Run a Parachain Network Using Zombienet
+
+## Introduction
+
+[Zombienet](https://github.com/paritytech/zombienet) is a testing framework designed for Polkadot SDK-based blockchain networks. It enables developers to efficiently deploy and test ephemeral blockchain environments using a simple CLI.
+
+This tutorial walks you through spawning a local parachain test network using Zombienet's native provider. You will build a custom parachain binary from the [Polkadot SDK parachain template]({{ dependencies.repositories.polkadot_sdk_parachain_template.repository_url }}), download the relay chain binaries, configure a network with two relay chain validators and a parachain collator, and verify that the network produces blocks.
+
+For detailed information about Zombienet installation methods, providers, CLI commands, and configuration options, refer to the [Zombienet reference page](/tools/zombienet.md).
+
+## Prerequisites
+
+Before starting, ensure you have the following installed:
+
+- [Rust](https://rust-lang.org/tools/install/) and Cargo
+- The `wasm32-unknown-unknown` target. Add it with:
+
+    ```bash
+    rustup target add wasm32-unknown-unknown
+    ```
+
+- [Zombienet](/tools/zombienet.md#install-zombienet) - see the reference page for installation instructions
+- [Git](https://git-scm.com/downloads)
+
+## Set Up the Parachain Template
+
+Clone and build the Polkadot SDK parachain template:
+
+1. Clone the repository:
+
+    ```bash
+    git clone --branch {{ dependencies.repositories.polkadot_sdk_parachain_template.version }} \
+      {{ dependencies.repositories.polkadot_sdk_parachain_template.repository_url }} \
+    && cd polkadot-sdk-parachain-template
+    ```
+
+2. Build the parachain node binary:
+
+    ```bash
+    cargo build --release
+    ```
+
+    This compiles the `parachain-template-node` binary to `target/release/`.
+
+3. Add the binary to your PATH:
+
+    ```bash
+    export PATH=$PATH:$(pwd)/target/release
+    ```
+
+## Download Relay Chain Binaries
+
+You need the Polkadot relay chain binaries (`polkadot`, `polkadot-prepare-worker`, and `polkadot-execute-worker`) to run the relay chain validators.
+
+!!! note
+    When using the parachain template {{ dependencies.repositories.polkadot_sdk_parachain_template.version }}, ensure you use a compatible relay chain binary. The recommended version is `{{ dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.polkadot_sdk_version }}`, which you can download from the [Polkadot SDK releases](https://github.com/paritytech/polkadot-sdk/releases/tag/{{ dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.polkadot_sdk_version }}).
+
+Download the binaries for your platform and make them executable:
+
+```bash
+mkdir -p bin
+curl -L -o bin/polkadot \
+  https://github.com/paritytech/polkadot-sdk/releases/download/{{ dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.polkadot_sdk_version }}/polkadot
+curl -L -o bin/polkadot-prepare-worker \
+  https://github.com/paritytech/polkadot-sdk/releases/download/{{ dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.polkadot_sdk_version }}/polkadot-prepare-worker
+curl -L -o bin/polkadot-execute-worker \
+  https://github.com/paritytech/polkadot-sdk/releases/download/{{ dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.polkadot_sdk_version }}/polkadot-execute-worker
+chmod +x bin/polkadot bin/polkadot-prepare-worker bin/polkadot-execute-worker
+```
+
+Alternatively, you can use Zombienet's setup command:
+
+```bash
+zombienet setup polkadot polkadot-parachain
+```
+
+## Generate a Paseo Local Chain Spec
+
+To run a local Paseo-based relay chain, you need to generate a chain spec using [`chain-spec-builder`](/tools/chain-spec-builder.md) and the Paseo runtime. This creates a local testnet chain spec with development accounts (Alice, Bob) as validators.
+
+1. Download `chain-spec-builder` from the [Polkadot SDK releases](https://github.com/paritytech/polkadot-sdk/releases/tag/{{ dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.polkadot_sdk_version }}):
+
+    ```bash
+    curl -L -o bin/chain-spec-builder \
+      https://github.com/paritytech/polkadot-sdk/releases/download/{{ dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.polkadot_sdk_version }}/chain-spec-builder
+    chmod +x bin/chain-spec-builder
+    ```
+
+2. Download the Paseo runtime Wasm from the [Paseo runtimes releases](https://github.com/paseo-network/runtimes/releases):
+
+    ```bash
+    curl -L -o bin/paseo_runtime.compressed.wasm \
+      https://github.com/paseo-network/runtimes/releases/download/INSERT_PASEO_RUNTIME_VERSION/paseo_runtime.compressed.wasm
+    ```
+
+3. Generate the local testnet chain spec:
+
+    ```bash
+    bin/chain-spec-builder -c configs/paseo-local.json \
+      create -r bin/paseo_runtime.compressed.wasm named-preset local_testnet
+    ```
+
+    This creates a `configs/paseo-local.json` chain spec with the `local_testnet` preset, which includes Alice and Bob as validators.
+
+!!! note
+    The relay chain spec is a configurable input. This guide builds one from the Paseo runtime, but Zombienet accepts any relay chain spec through the `chain_spec_path` or `chain` settings in the `[relaychain]` section. Whichever relay chain you run, make sure the `--relay-chain` value in your parachain's chain spec matches it. See the [relay chain configuration reference](/tools/zombienet.md#relay-chain-configuration) for the available settings.
+
+## Configure the Network
+
+Create a `network.toml` file that defines the network topology. This configuration sets up a relay chain with two validators and a parachain with one collator, using the Paseo local chain spec generated in the previous step:
+
+```toml title="network.toml"
+[settings]
+timeout = 1000
+provider = "native"
+
+[relaychain]
+chain_spec_path = "./configs/paseo-local.json"
+default_command = "./bin/polkadot"
+
+[[relaychain.nodes]]
+name = "alice"
+validator = true
+rpc_port = 9944
+
+[[relaychain.nodes]]
+name = "bob"
+validator = true
+rpc_port = 9945
+
+[[parachains]]
+id = 1000
+
+[[parachains.collators]]
+name = "collator01"
+command = "./polkadot-sdk-parachain-template/target/release/parachain-template-node"
+rpc_port = 9988
+```
+
+For a full reference of all available configuration options, see the [Zombienet configuration reference](/tools/zombienet.md#settings).
+
+## Spawn the Network
+
+Launch the network using Zombienet:
+
+```bash
+zombienet spawn network.toml --provider native
+```
+
+Zombienet will:
+
+1. Generate chain specifications.
+2. Start relay chain validators (Alice and Bob).
+3. Register and start the parachain collator.
+4. Display connection endpoints and logs.
+
+Wait for the output to confirm the network has launched. You'll see RPC endpoints for each node.
+
+## Verify the Network
+
+Once the network is running, verify that the relay chain is producing blocks by querying the RPC endpoint:
+
+```bash
+curl -s -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"chain_getHeader","params":[],"id":1}' \
+  http://127.0.0.1:9944
+```
+
+The response should include a `number` field showing the current block number, confirming the relay chain is producing blocks.
+
+You can also check the parachain collator:
+
+```bash
+curl -s -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"chain_getHeader","params":[],"id":1}' \
+  http://127.0.0.1:9988
+```
+
+To stop the network, press **Ctrl + C** in the terminal where Zombienet is running.
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+-   __Zombienet Reference__
+
+    ---
+
+    Explore the full Zombienet configuration reference, including all settings, relay chain, parachain, and collator options.
+
+    [:octicons-arrow-right-24: Zombienet Reference](/tools/zombienet.md)
+
+-  <span class="badge external">External</span> __Zombienet Repository__
+
+    ---
+
+    Browse the Zombienet source code, example network configurations, and issue tracker.
+
+    [:octicons-arrow-right-24: Zombienet repository](https://github.com/paritytech/zombienet)
+
+</div>

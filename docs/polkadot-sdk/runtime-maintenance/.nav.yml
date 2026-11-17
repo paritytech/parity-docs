@@ -1,0 +1,3 @@
+nav:
+ - 'Runtime Upgrades': runtime-upgrades.md
+ - 'Storage Migrations': storage-migrations.md

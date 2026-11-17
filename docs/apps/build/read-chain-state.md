@@ -16,9 +16,9 @@ This guide covers the `@parity/product-sdk-chain-client` package, which gives yo
 
 Before starting, ensure you have:
 
-- A Polkadot Product project running locally (see [Set Up Your Project](/apps/build/#set-up-your-project)) with a TypeScript toolchain
+- A Polkadot Product project running locally (see [Set Up Your Project](/apps/build/index.md#set-up-your-project)) with a TypeScript toolchain
 - Node.js 20 or later with ESM support (`@parity/product-sdk-chain-client` is ESM only)
-- [Polkadot Desktop](/reference/apps/hosts/polkadot-desktop/) to run your Product inside a host container (see [Install Desktop and Pair](/apps/get-started/))
+- [Polkadot Desktop](https://developers.polkadot.com/reference/apps/hosts/polkadot-desktop/) to run your Product inside a host container (see [Run a Host for Local Development](/apps/get-started/index.md))
 
 !!! note
     You do not need funded accounts to read chain state. Reads are unsigned and require only a running host container.
@@ -210,7 +210,7 @@ Use `client.destroy()` for normal cleanup and reserve `destroyAll()` for full-pr
 - The `paseo`, `previewnet`, and `devnet` environments are the presets with all three chains live. `polkadot` and `kusama` are reserved and throw at runtime.
 - The package is ESM only; your Product's build pipeline must support ESM imports.
 - Descriptors are imported by subpath (`@parity/product-sdk-descriptors/paseo-bulletin`), not from the package root. Bundlers that do not honor `exports` subpaths will fail to resolve them.
-- Host-routed reads require a host container; there is no direct-WebSocket fallback, so outside a Host the client [throws](/apps/troubleshooting/#connecting-to-a-chain-throws-outside-a-host). For out-of-Host development, use the SDK's testing fakes.
+- Host-routed reads require a host container; there is no direct-WebSocket fallback, so outside a Host the client [throws](/apps/troubleshooting.md#connecting-to-a-chain-throws-outside-a-host). For out-of-Host development, use the SDK's testing fakes.
 - Reactive subscriptions (watching a storage item over time) are not covered on this page. A dedicated page on subscriptions will follow.
 
 ## Where to Go Next
@@ -223,7 +223,7 @@ Use `client.destroy()` for normal cleanup and reserve `destroyAll()` for full-pr
 
     Your Product can read the chain; next, let it act on the user's behalf, with every approval on their phone.
 
-    [:octicons-arrow-right-24: Sign and Submit Transactions](/apps/build/sign-and-submit/)
+    [:octicons-arrow-right-24: Sign and Submit Transactions](/apps/build/sign-and-submit.md)
 
 -   <span class="badge external">External</span> **polkadot-api Docs**
 

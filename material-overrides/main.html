@@ -2,7 +2,7 @@
 
 {% block styles %}
 	{{ super() }}
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/polkadot.css' | url }}">
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/parity.css' | url }}">
 {% endblock %}
 
 {% block site_meta %}
@@ -122,18 +122,6 @@
    empty for no banner. (Wrapping the block in an HTML comment does NOT hide
    it — Jinja still processes the block tag.) #}
 {% block announce %}{% endblock %}
-
-{# Docs Assistant — self-hosted chat over the docs corpus. The API endpoint comes
-   from extra.docs_assistant_api_url (env DOCS_ASSISTANT_API_URL); when unset, the
-   widget renders nothing. #}
-{% block libs %}
-  {{ super() }}
-  <link rel="stylesheet" href="{{ 'assets/stylesheets/docs-assistant.css' | url }}">
-  <script defer
-    src="{{ 'js/docs-assistant.js' | url }}"
-    data-api-url="{{ config.extra.docs_assistant_api_url | default('') }}"
-  ></script>
-{% endblock %}
 
 {% block site_nav %} 
 {#- Navigation (left menu) -#} 
