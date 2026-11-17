@@ -16,7 +16,7 @@ page_tests:
 
 Testing is a critical part of pallet development. Before integrating your pallet into a full runtime, you need a way to test its functionality in isolation. A mock runtime provides a minimal, simulated blockchain environment where you can verify your pallet's logic without the overhead of running a full node.
 
-In this guide, you'll learn how to create a mock runtime for the custom counter pallet built in the [Make a Custom Pallet](/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet/) guide. This mock runtime will enable you to write comprehensive unit tests that verify:
+In this guide, you'll learn how to create a mock runtime for the custom counter pallet built in the [Make a Custom Pallet](/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet.md) guide. This mock runtime will enable you to write comprehensive unit tests that verify:
 
 - Dispatchable function behavior.
 - Storage state changes.
@@ -29,7 +29,7 @@ In this guide, you'll learn how to create a mock runtime for the custom counter 
 
 Before you begin, ensure you have:
 
-- Completed the [Make a Custom Pallet](/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet/) guide.
+- Completed the [Make a Custom Pallet](/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet.md) guide.
 - The custom counter pallet from the Make a Custom Pallet guide. Available in `pallets/pallet-custom`.
 - Basic understanding of [Rust testing](https://doc.rust-lang.org/book/ch11-00-testing.html).
 
@@ -183,6 +183,6 @@ The mock runtime with a genesis configuration is essential for test-driven devel
 
     Learn to write comprehensive unit tests for your pallet using the mock runtime you just created.
 
-    [:octicons-arrow-right-24: Continue](/polkadot-sdk/customize-runtime/pallet-development/pallet-testing/)
+    [:octicons-arrow-right-24: Continue](/polkadot-sdk/customize-runtime/pallet-development/pallet-testing.md)
 
 </div>

@@ -13,14 +13,14 @@ page_badges:
 
 Sending transactions on Polkadot SDK-based blockchains involves constructing an extrinsic (transaction), signing it with your account's private key, and submitting it to the network.
 
-This guide uses [Subxt](/tools/subxt/), Parity's Rust library for Polkadot SDK-based chains, to send a balance transfer on a local development node. The example signs with the `//Alice` development account and sends funds to `//Bob`, so you do not need to fund an account first.
+This guide uses [Subxt](/tools/subxt.md), Parity's Rust library for Polkadot SDK-based chains, to send a balance transfer on a local development node. The example signs with the `//Alice` development account and sends funds to `//Bob`, so you do not need to fund an account first.
 
 The same transaction flow works with third-party client libraries, for example [Polkadot API (PAPI)](https://developers.polkadot.com/reference/tools/papi/), [Dedot](https://developers.polkadot.com/reference/tools/dedot/), [Polkadot.js API](https://developers.polkadot.com/reference/tools/polkadot-js-api/), and [Python Substrate Interface](https://developers.polkadot.com/reference/tools/py-substrate-interface/).
 
 ## Prerequisites
 
 - [Rust](https://rustup.rs/) toolchain (latest stable) and Cargo.
-- A local development node listening on `{{ networks.local.ws_url }}`, for example the parachain template node described in [Run the Node Locally](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/#run-the-node-locally). The template's `development` preset funds the well-known development accounts, such as Alice and Bob, as defined in its [genesis config presets](https://github.com/paritytech/polkadot-sdk-parachain-template/blob/v0.0.5/runtime/src/genesis_config_presets.rs).
+- A local development node listening on `{{ networks.local.ws_url }}`, for example the parachain template node described in [Run the Node Locally](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template.md#run-the-node-locally). The template's `development` preset funds the well-known development accounts, such as Alice and Bob, as defined in its [genesis config presets](https://github.com/paritytech/polkadot-sdk-parachain-template/blob/v0.0.5/runtime/src/genesis_config_presets.rs).
 
 ## Set Up the Project
 
@@ -85,7 +85,7 @@ The script prints the sender and recipient addresses, the sender's free balance,
 
     Learn how to query storage and runtime data with Subxt.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/query-sdks/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/query-sdks.md)
 
 - <span class="badge guide">Guide</span> **Calculate Transaction Fees**
 
@@ -93,6 +93,6 @@ The script prints the sender and recipient addresses, the sender's free balance,
 
     Estimate fees before sending transactions.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/calculate-transaction-fees/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/calculate-transaction-fees.md)
 
 </div>

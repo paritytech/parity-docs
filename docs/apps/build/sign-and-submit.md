@@ -16,9 +16,9 @@ This guide covers the `@parity/product-sdk-signer` package, which gives your Pro
 
 Before starting, ensure you have:
 
-- A Polkadot Product project running locally (see [Set Up Your Project](/apps/build/#set-up-your-project)) with a TypeScript toolchain
+- A Polkadot Product project running locally (see [Set Up Your Project](/apps/build/index.md#set-up-your-project)) with a TypeScript toolchain
 - Node.js 20 or later with ESM support (`@parity/product-sdk-signer` is ESM only)
-- Polkadot Desktop to run your Product inside a host container (see [Run a Host for Local Development](/apps/get-started/))
+- Polkadot Desktop to run your Product inside a host container (see [Run a Host for Local Development](/apps/get-started/index.md))
 
 !!! note
     To test signing without a host container, use `manager.connect('dev')`. This loads the standard Substrate dev accounts (Alice, Bob, and others) locally and does not require Polkadot Desktop. See [Test Without a Host](#test-without-a-host).
@@ -92,7 +92,7 @@ const manager = new SignerManager({
 - **`ctx.signal`**: Aborts if the user disconnects while the request is in flight. Check it before acting on the outcomes.
 
 !!! note "`AutoSigning` is not grantable yet"
-    It is the resource most worth requesting and the one you cannot depend on: both the Android and iOS wallets return `NotAvailable` for it today. Keep per-transaction signing as the real path. See [Allowances and Permissions](/apps/concepts/allowances/).
+    It is the resource most worth requesting and the one you cannot depend on: both the Android and iOS wallets return `NotAvailable` for it today. Keep per-transaction signing as the real path. See [Allowances and Permissions](/apps/concepts/allowances.md).
 
 ## Connect to the Host
 
@@ -157,7 +157,7 @@ The returned `SignerAccount` exposes:
 
 ## Show a Display Name
 
-There is no built-in primitive for an in-app username, so most Products need to choose a display identity themselves. [Usernames in Your Product](/apps/concepts/identity/#usernames-in-your-product) covers the pattern to follow; this section covers the call it depends on.
+There is no built-in primitive for an in-app username, so most Products need to choose a display identity themselves. [Usernames in Your Product](/apps/concepts/identity.md#usernames-in-your-product) covers the pattern to follow; this section covers the call it depends on.
 
 When the user holds a personhood tier, the platform already associates an earned name with their account. Read it with `getUserId`:
 
@@ -172,7 +172,7 @@ async function loadDisplayName() {
 }
 ```
 
-When there is no earned name to read, fall back to a per-Product display name the user sets, stored in [local storage](/apps/product-sdk/local-storage/) (device-local) or [cloud storage](/apps/product-sdk/cloud-storage/) (shared) and keyed to their per-app account. Either way, treat the result as a label rather than as identity: authorization and uniqueness come from the per-app account and Proof of Personhood.
+When there is no earned name to read, fall back to a per-Product display name the user sets, stored in [local storage](/apps/product-sdk/local-storage.md) (device-local) or [cloud storage](/apps/product-sdk/cloud-storage.md) (shared) and keyed to their per-app account. Either way, treat the result as a label rather than as identity: authorization and uniqueness come from the per-app account and Proof of Personhood.
 
 !!! warning "`getUserId` is host-only and prompts the user"
     `getUserId` returns `HostUnavailableError` when the active provider is `'dev'`, so a Product that renders a display name works in a Host and fails under the dev provider. It also triggers a host identity-permission prompt on first use. If your Product has its own display-name chain and does not need the platform name, skip the call rather than requesting a permission you will not use.
@@ -208,7 +208,7 @@ async function signMessage() {
 
 ## Sign and Submit a Transaction
 
-To submit a transaction, combine three packages: the [chain client](/apps/product-sdk/chain-client/) builds the transaction from a typed API, `SignerManager` supplies a `PolkadotSigner` for the selected account, and [`tx`](/apps/product-sdk/tx/) signs, broadcasts, and follows it. The Host owns the chain connection, so your Product never opens a WebSocket or picks an RPC endpoint. The signing request routes to Desktop, which renders a signing modal and forwards it to the [Polkadot App](https://developers.polkadot.com/reference/apps/hosts/polkadot-app/).
+To submit a transaction, combine three packages: the [chain client](/apps/product-sdk/chain-client.md) builds the transaction from a typed API, `SignerManager` supplies a `PolkadotSigner` for the selected account, and [`tx`](/apps/product-sdk/tx.md) signs, broadcasts, and follows it. The Host owns the chain connection, so your Product never opens a WebSocket or picks an RPC endpoint. The signing request routes to Desktop, which renders a signing modal and forwards it to the [Polkadot App](https://developers.polkadot.com/reference/apps/hosts/polkadot-app/).
 
 Install the two extra packages. `tx` has no umbrella subpath, so install it on its own even if you use the umbrella package:
 
@@ -265,10 +265,10 @@ async function postRemark() {
 - **The user declines**: The user dismissed the signing prompt on the Polkadot App, reported as `TxSigningRejectedError`. Return the user to a stable state and let them retry.
 - **The submission times out**: The transaction did not reach the requested state in time, reported as `TxTimeoutError`. The default timeout is 300 seconds.
 
-A dispatch that fails on chain arrives as `TxDispatchError`, and a transaction rejected before inclusion as `TxValidityError`. All of them extend `TxError`; see [Transactions](/apps/product-sdk/tx/) for the full hierarchy.
+A dispatch that fails on chain arrives as `TxDispatchError`, and a transaction rejected before inclusion as `TxValidityError`. All of them extend `TxError`; see [Transactions](/apps/product-sdk/tx.md) for the full hierarchy.
 
 !!! tip "Design for async latency"
-    Signing is asynchronous because the Polkadot App runs on a separate device. Show a non-blocking pending state rather than freezing the interface, and make sure your retry path is idempotent in case the user attempts the same action twice. There is no push notification when the phone is waiting, so a stalled-looking action is often an [unanswered prompt](/apps/troubleshooting/#the-app-seems-frozen-after-an-action).
+    Signing is asynchronous because the Polkadot App runs on a separate device. Show a non-blocking pending state rather than freezing the interface, and make sure your retry path is idempotent in case the user attempts the same action twice. There is no push notification when the phone is waiting, so a stalled-looking action is often an [unanswered prompt](/apps/troubleshooting.md#the-app-seems-frozen-after-an-action).
 
 ## Test Without a Host
 
@@ -311,7 +311,7 @@ async function devSignRaw() {
 
     Your Product can sign; next, use that signer to store content on the Bulletin Chain and fetch it from anywhere by CID.
 
-    [:octicons-arrow-right-24: Store Data on Chain](/apps/build/store-data-on-chain/)
+    [:octicons-arrow-right-24: Store Data on Chain](/apps/build/store-data-on-chain.md)
 
 -   <span class="badge external">External</span> **PAPI Docs**
 

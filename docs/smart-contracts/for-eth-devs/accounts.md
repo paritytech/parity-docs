@@ -41,7 +41,7 @@ This dual-format approach lets a chain running pallet-revive maintain compatibil
 The platform handles two distinct address formats:
 
 - [Ethereum-style addresses (20 bytes)](https://ethereum.org/developers/docs/accounts/#account-creation)
-- [Polkadot native account IDs (32 bytes)](/polkadot-sdk/reference/accounts/)
+- [Polkadot native account IDs (32 bytes)](/polkadot-sdk/reference/accounts.md)
 
 ### Ethereum to Polkadot Mapping
 

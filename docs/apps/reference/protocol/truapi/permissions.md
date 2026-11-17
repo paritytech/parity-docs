@@ -24,9 +24,9 @@ Requested with `requestRemotePermission`. Each value is a tagged `RemotePermissi
 |:-----------------:|:----------------------------------------------------------------------------------------------------------:|
 | `Remote`          | Outbound HTTP and WebSocket access to a listed set of domains (`{ domains: string[] }`).                   |
 | `WebRtc`          | WebRTC peer connections. Camera and microphone capture are gated separately by device permissions.         |
-| `ChainSubmit`     | Requesting that the Host submit transactions on the user's behalf. See [Signing](/apps/reference/protocol/truapi/signing/). |
-| `PreimageSubmit`  | Submitting preimages on the user's behalf. See [Preimage](/apps/reference/protocol/truapi/preimage/).     |
-| `StatementSubmit` | Submitting statements on the user's behalf. See [Statement Store](/apps/reference/protocol/truapi/statement-store/). |
+| `ChainSubmit`     | Requesting that the Host submit transactions on the user's behalf. See [Signing](/apps/reference/protocol/truapi/signing.md). |
+| `PreimageSubmit`  | Submitting preimages on the user's behalf. See [Preimage](/apps/reference/protocol/truapi/preimage.md).     |
+| `StatementSubmit` | Submitting statements on the user's behalf. See [Statement Store](/apps/reference/protocol/truapi/statement-store.md). |
 
 `ChainSubmit`, `PreimageSubmit`, and `StatementSubmit` are also triggered implicitly by the corresponding business calls when they have not been granted yet.
 
@@ -34,11 +34,11 @@ Requested with `requestRemotePermission`. Each value is a tagged `RemotePermissi
 
 Requested with `requestDevicePermission`. The value is one of `Notifications`, `Camera`, `Microphone`, `Bluetooth`, `NFC`, `Location`, `Clipboard`, `OpenUrl`, or `Biometrics`. `OpenUrl` covers external navigation, which is not part of the `Remote` permission.
 
-Both calls return a `granted` flag. Resource allocations such as `AutoSigning` and the storage allowances are a separate axis, requested through resource allocation rather than this group. See [Allowances and Permissions](/apps/concepts/allowances/).
+Both calls return a `granted` flag. Resource allocations such as `AutoSigning` and the storage allowances are a separate axis, requested through resource allocation rather than this group. See [Allowances and Permissions](/apps/concepts/allowances.md).
 
 ## Requesting Permissions From a Product
 
-The [`host`](/apps/product-sdk/host/) package wraps both calls as `requestPermission` and `requestDevicePermission`. Each returns a `Result<boolean>`: `ok(true)` when granted, `ok(false)` when denied, and an error when the Host is unavailable or the call fails.
+The [`host`](/apps/product-sdk/host.md) package wraps both calls as `requestPermission` and `requestDevicePermission`. Each returns a `Result<boolean>`: `ok(true)` when granted, `ok(false)` when denied, and an error when the Host is unavailable or the call fails.
 
 ```typescript
 import { requestPermission } from '@parity/product-sdk-host';
@@ -49,7 +49,7 @@ if (!result.ok || !result.value) {
 }
 ```
 
-The [`signer`](/apps/product-sdk/signer/) package requests `ChainSubmit` for you after a successful `connect()`, so most Products never request it by hand.
+The [`signer`](/apps/product-sdk/signer.md) package requests `ChainSubmit` for you after a successful `connect()`, so most Products never request it by hand.
 
 Treat a denied permission as normal control flow. A capability called without its permission returns `PermissionDenied`; show the user why the feature cannot proceed and how to enable it, rather than failing hard.
 
@@ -67,7 +67,7 @@ A Host implementing this method group must:
 - **Respect the operating system grant**: A device permission resolves only while both the stored grant and the underlying OS or browser grant allow it. A stored grant whose OS grant was revoked answers `granted: false` without a prompt.
 - **Offer a way back**: When a permission is denied, show the user where they can re-enable it in the Host's settings.
 
-Hosts that run Products in a browser have extra constraints. See [Host Implementation Notes](/apps/reference/protocol/truapi/#host-implementation-notes).
+Hosts that run Products in a browser have extra constraints. See [Host Implementation Notes](/apps/reference/protocol/truapi/index.md#host-implementation-notes).
 
 !!! note "Host-specific aliases"
     Some Host documentation uses friendly names for spec values. Polkadot Desktop calls the `Remote` permission `ExternalRequest` and describes its scope as a URL pattern. Older SDK releases used `TransactionSubmit` for `ChainSubmit`; the `signer` option `requestTransactionSubmitPermission` remains as a deprecated alias of `requestChainSubmitPermission`.
@@ -82,7 +82,7 @@ Hosts that run Products in a browser have extra constraints. See [Host Implement
 
     The signing model that `ChainSubmit` gates: what the permission grants and what it does not.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/signing/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/signing.md)
 
 - <span class="badge learn">Learn</span> **Allowances and Permissions**
 
@@ -90,6 +90,6 @@ Hosts that run Products in a browser have extra constraints. See [Host Implement
 
     The resource allocations, including `AutoSigning`, that sit alongside permissions.
 
-    [:octicons-arrow-right-24: Learn](/apps/concepts/allowances/)
+    [:octicons-arrow-right-24: Learn](/apps/concepts/allowances.md)
 
 </div>

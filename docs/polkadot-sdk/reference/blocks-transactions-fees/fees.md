@@ -219,7 +219,7 @@ The following example illustrates how to customize your inclusion fee. You must 
 
 You now know the weight system, how it affects transaction fee computation, and how to specify weights for your dispatchable calls. The next step is determining the correct weight for your dispatchable operations. You can use Substrate benchmarking functions and frame-benchmarking calls to test your functions with different parameters and empirically determine the proper weight in their worst-case scenarios.
 
-- [Benchmark](/polkadot-sdk/customize-runtime/pallet-development/benchmark-pallet/)
+- [Benchmark](/polkadot-sdk/customize-runtime/pallet-development/benchmark-pallet.md)
 - [`TransactionExtension`](https://paritytech.github.io/polkadot-sdk/master/sp_runtime/traits/transaction_extension/trait.TransactionExtension.html)
 - [Custom weights for the Example pallet](https://github.com/paritytech/polkadot-sdk/blob/{{dependencies.repositories.polkadot_sdk.version}}/substrate/frame/examples/basic/src/weights.rs)
 - [Polkadot wiki](https://wiki.polkadot.com/learn/learn-transactions/#fee-multiplier)

@@ -13,14 +13,14 @@ page_badges:
 
 Polkadot SDK-based blockchains store data in a key-value database that external applications can query. This on-chain state includes account information, balances, asset information, and any other data the runtime manages.
 
-This guide uses [Subxt](/tools/subxt/), Parity's Rust library for Polkadot SDK-based chains, to query a local development node for account information and asset data. Subxt generates type-safe interfaces from chain metadata, so storage queries are checked at compile time.
+This guide uses [Subxt](/tools/subxt.md), Parity's Rust library for Polkadot SDK-based chains, to query a local development node for account information and asset data. Subxt generates type-safe interfaces from chain metadata, so storage queries are checked at compile time.
 
 The same storage queries work with third-party client libraries, for example [Polkadot API (PAPI)](https://developers.polkadot.com/reference/tools/papi/), [Dedot](https://developers.polkadot.com/reference/tools/dedot/), [Polkadot.js API](https://developers.polkadot.com/reference/tools/polkadot-js-api/), and [Python Substrate Interface](https://developers.polkadot.com/reference/tools/py-substrate-interface/).
 
 ## Prerequisites
 
 - [Rust](https://rustup.rs/) toolchain (latest stable) and Cargo.
-- A local development node listening on `{{ networks.local.ws_url }}`, for example the parachain template node described in [Run the Node Locally](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/#run-the-node-locally).
+- A local development node listening on `{{ networks.local.ws_url }}`, for example the parachain template node described in [Run the Node Locally](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template.md#run-the-node-locally).
 
 ## Set Up the Project
 
@@ -84,7 +84,7 @@ The total balance is the sum of the free and reserved balances. Balances are ret
 
 ## Query Asset Information
 
-The following example queries the `Assets` pallet to retrieve metadata, details, and an account's balance for a single asset. It requires a runtime that includes the [Assets pallet](https://paritytech.github.io/polkadot-sdk/master/pallet_assets/index.html) and an asset that already exists on your chain. To add the pallet to your own runtime, see [Add Existing Pallets to the Runtime](/polkadot-sdk/customize-runtime/add-existing-pallets/).
+The following example queries the `Assets` pallet to retrieve metadata, details, and an account's balance for a single asset. It requires a runtime that includes the [Assets pallet](https://paritytech.github.io/polkadot-sdk/master/pallet_assets/index.html) and an asset that already exists on your chain. To add the pallet to your own runtime, see [Add Existing Pallets to the Runtime](/polkadot-sdk/customize-runtime/add-existing-pallets.md).
 
 Create a file at `src/bin/query_asset.rs` and add the following code to it:
 
@@ -110,7 +110,7 @@ The script prints the asset's name, symbol, and decimals, followed by its owner,
 
     Execute runtime APIs for specialized queries.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/runtime-api-calls/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/runtime-api-calls.md)
 
 - <span class="badge guide">Guide</span> **Send Transactions**
 
@@ -118,6 +118,6 @@ The script prints the asset's name, symbol, and decimals, followed by its owner,
 
     Learn how to construct and submit transactions.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/with-sdks/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/with-sdks.md)
 
 </div>

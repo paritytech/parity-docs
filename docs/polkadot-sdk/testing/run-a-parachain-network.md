@@ -18,7 +18,7 @@ page_tests:
 
 This tutorial walks you through spawning a local parachain test network using Zombienet's native provider. You will build a custom parachain binary from the [Polkadot SDK parachain template]({{ dependencies.repositories.polkadot_sdk_parachain_template.repository_url }}), download the relay chain binaries, configure a network with two relay chain validators and a parachain collator, and verify that the network produces blocks.
 
-For detailed information about Zombienet installation methods, providers, CLI commands, and configuration options, refer to the [Zombienet reference page](/tools/zombienet/).
+For detailed information about Zombienet installation methods, providers, CLI commands, and configuration options, refer to the [Zombienet reference page](/tools/zombienet.md).
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ Before starting, ensure you have the following installed:
     rustup target add wasm32-unknown-unknown
     ```
 
-- [Zombienet](/tools/zombienet/#install-zombienet) - see the reference page for installation instructions
+- [Zombienet](/tools/zombienet.md#install-zombienet) - see the reference page for installation instructions
 - [Git](https://git-scm.com/downloads)
 
 ## Set Up the Parachain Template
@@ -88,7 +88,7 @@ zombienet setup polkadot polkadot-parachain
 
 ## Generate a Paseo Local Chain Spec
 
-To run a local Paseo-based relay chain, you need to generate a chain spec using [`chain-spec-builder`](/tools/chain-spec-builder/) and the Paseo runtime. This creates a local testnet chain spec with development accounts (Alice, Bob) as validators.
+To run a local Paseo-based relay chain, you need to generate a chain spec using [`chain-spec-builder`](/tools/chain-spec-builder.md) and the Paseo runtime. This creates a local testnet chain spec with development accounts (Alice, Bob) as validators.
 
 1. Download `chain-spec-builder` from the [Polkadot SDK releases](https://github.com/paritytech/polkadot-sdk/releases/tag/{{ dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.polkadot_sdk_version }}):
 
@@ -115,7 +115,7 @@ To run a local Paseo-based relay chain, you need to generate a chain spec using 
     This creates a `configs/paseo-local.json` chain spec with the `local_testnet` preset, which includes Alice and Bob as validators.
 
 !!! note
-    The relay chain spec is a configurable input. This guide builds one from the Paseo runtime, but Zombienet accepts any relay chain spec through the `chain_spec_path` or `chain` settings in the `[relaychain]` section. Whichever relay chain you run, make sure the `--relay-chain` value in your parachain's chain spec matches it. See the [relay chain configuration reference](/tools/zombienet/#relay-chain-configuration) for the available settings.
+    The relay chain spec is a configurable input. This guide builds one from the Paseo runtime, but Zombienet accepts any relay chain spec through the `chain_spec_path` or `chain` settings in the `[relaychain]` section. Whichever relay chain you run, make sure the `--relay-chain` value in your parachain's chain spec matches it. See the [relay chain configuration reference](/tools/zombienet.md#relay-chain-configuration) for the available settings.
 
 ## Configure the Network
 
@@ -149,7 +149,7 @@ command = "./polkadot-sdk-parachain-template/target/release/parachain-template-n
 rpc_port = 9988
 ```
 
-For a full reference of all available configuration options, see the [Zombienet configuration reference](/tools/zombienet/#settings).
+For a full reference of all available configuration options, see the [Zombienet configuration reference](/tools/zombienet.md#settings).
 
 ## Spawn the Network
 
@@ -200,7 +200,7 @@ To stop the network, press **Ctrl + C** in the terminal where Zombienet is runni
 
     Explore the full Zombienet configuration reference, including all settings, relay chain, parachain, and collator options.
 
-    [:octicons-arrow-right-24: Zombienet Reference](/tools/zombienet/)
+    [:octicons-arrow-right-24: Zombienet Reference](/tools/zombienet.md)
 
 -  <span class="badge external">External</span> __Zombienet Repository__
 

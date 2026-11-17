@@ -10,7 +10,7 @@ categories: Apps, Reference
 
 The Bulletin Chain has no token balance for storage. You cannot "pay for storage" the way you pay a transaction fee on a typical chain. Instead, every account that wants to write to Bulletin needs an explicit authorization: an on-chain record that grants a quota of transactions and bytes, with an expiration block.
 
-A write attempted without authorization is rejected at the boundary. Authorizations are granted by an origin that holds the authorizer role; see [Who Grants Authorization](/apps/reference/infrastructure/bulletin-chain/data-storage/#who-grants-authorization). This page is the reference for how authorizations are shaped, how they are checked, and what happens when they expire.
+A write attempted without authorization is rejected at the boundary. Authorizations are granted by an origin that holds the authorizer role; see [Who Grants Authorization](/apps/reference/infrastructure/bulletin-chain/data-storage.md#who-grants-authorization). This page is the reference for how authorizations are shaped, how they are checked, and what happens when they expire.
 
 ## What an Authorization Records
 
@@ -54,7 +54,7 @@ To get a storage authorization on TestNet, see [Get TestNet Tokens](https://deve
 
     What happens when an authorization or a stored item approaches expiration, and the mechanics of keeping data alive.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/bulletin-chain/renewal/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/bulletin-chain/renewal.md)
 
 - <span class="badge guide">Guide</span> **Get TestNet Funds**
 

@@ -26,11 +26,11 @@ Readers retrieving the manifest CID get back the manifest first, then issue para
 
 ## What This Costs
 
-Chunked uploads cost more than single-transaction uploads because each chunk consumes one transaction from the [authorization](/apps/reference/infrastructure/bulletin-chain/authorization/) quota. A Product uploading large payloads on behalf of many users should budget transaction quota accordingly — running out of transactions even with plenty of bytes remaining is a realistic failure mode.
+Chunked uploads cost more than single-transaction uploads because each chunk consumes one transaction from the [authorization](/apps/reference/infrastructure/bulletin-chain/authorization.md) quota. A Product uploading large payloads on behalf of many users should budget transaction quota accordingly — running out of transactions even with plenty of bytes remaining is a realistic failure mode.
 
 The manifest itself counts as one additional transaction on top of the chunk count.
 
-The current per-transaction limit (2 MiB), the Bulletin SDKs' default chunk size (1 MiB), and the maximum size of a single chunking operation (64 MiB) are listed in [Size Limits](/apps/reference/infrastructure/bulletin-chain/data-storage/#size-limits).
+The current per-transaction limit (2 MiB), the Bulletin SDKs' default chunk size (1 MiB), and the maximum size of a single chunking operation (64 MiB) are listed in [Size Limits](/apps/reference/infrastructure/bulletin-chain/data-storage.md#size-limits).
 
 !!! warning "Provisional"
     These values and the tunables exposed for advanced flows may change before they are final. The conceptual pipeline above is stable.
@@ -43,7 +43,7 @@ A Product calling `app.cloudStorage.upload(bytes)` sees the same shape regardles
 - The call decremented the account's authorization quota by the appropriate amount (1 + chunk count for a chunked upload, 1 for a single-transaction upload).
 - A subsequent `app.cloudStorage.fetch(cid)` retrieves the original payload.
 
-The chunking is an implementation detail of the upload pipeline, not part of the surface a Product needs to manage. For Products that want explicit control (custom chunk size, parallelism limits, progress reporting on large uploads), the [Store Data on Chain](/apps/build/store-data-on-chain/) guide covers the lower-level `CloudStorageClient` and the chunk-level controls it exposes.
+The chunking is an implementation detail of the upload pipeline, not part of the surface a Product needs to manage. For Products that want explicit control (custom chunk size, parallelism limits, progress reporting on large uploads), the [Store Data on Chain](/apps/build/store-data-on-chain.md) guide covers the lower-level `CloudStorageClient` and the chunk-level controls it exposes.
 
 ## Where to Go Next
 
@@ -55,7 +55,7 @@ The chunking is an implementation detail of the upload pipeline, not part of the
 
     The quota model that chunked uploads consume — why transaction count, not only byte count, matters when uploading large files.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/bulletin-chain/authorization/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/bulletin-chain/authorization.md)
 
 - <span class="badge guide">Guide</span> **Store Data on Chain**
 
@@ -63,5 +63,5 @@ The chunking is an implementation detail of the upload pipeline, not part of the
 
     The Product-side how-to: small writes, larger files with chunking, and the lower-level `CloudStorageClient` surface for advanced control.
 
-    [:octicons-arrow-right-24: Get Started](/apps/build/store-data-on-chain/)
+    [:octicons-arrow-right-24: Get Started](/apps/build/store-data-on-chain.md)
 </div>

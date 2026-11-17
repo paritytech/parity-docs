@@ -10,7 +10,7 @@ categories: Apps, Reference
 
 The Chat method group lets a Product take part in a Host's chat surface: it can create rooms, register as a bot, publish typed messages, and render its own custom message types inline. The underlying transport composes the Statement Store for signaling with the Bulletin Chain for content that has to outlive the gossip time to live (TTL). The Chat group exposes a higher-level surface on top of that pattern.
 
-The Product SDK reaches this group through `getChatManager()` in [`@parity/product-sdk-host`](/apps/product-sdk/host/).
+The Product SDK reaches this group through `getChatManager()` in [`@parity/product-sdk-host`](/apps/product-sdk/host.md).
 
 ## Conceptual Contract
 
@@ -49,7 +49,7 @@ A rejection reports `MessageTooLarge` when the body or custom payload is over bu
 
     The signaling layer Chat composes with the Bulletin Chain.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/statement-store/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/statement-store.md)
 
 - <span class="badge learn">Learn</span> **Host Package**
 
@@ -57,6 +57,6 @@ A rejection reports `MessageTooLarge` when the body or custom payload is over bu
 
     The Product SDK package that exposes `getChatManager()` and the other Host-level capabilities.
 
-    [:octicons-arrow-right-24: Host](/apps/product-sdk/host/)
+    [:octicons-arrow-right-24: Host](/apps/product-sdk/host.md)
 
 </div>

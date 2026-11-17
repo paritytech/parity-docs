@@ -14,7 +14,7 @@ page_tests:
 
 ## Introduction
 
-Unit testing in the Polkadot SDK helps ensure that the functions provided by a pallet behave as expected. It also confirms that data and events associated with a pallet are processed correctly during interactions. With your mock runtime in place from the [previous guide](/polkadot-sdk/customize-runtime/pallet-development/mock-runtime/), you can now write comprehensive tests that verify your pallet's behavior in isolation.
+Unit testing in the Polkadot SDK helps ensure that the functions provided by a pallet behave as expected. It also confirms that data and events associated with a pallet are processed correctly during interactions. With your mock runtime in place from the [previous guide](/polkadot-sdk/customize-runtime/pallet-development/mock-runtime.md), you can now write comprehensive tests that verify your pallet's behavior in isolation.
 
 In this guide, you'll learn how to:
 
@@ -29,8 +29,8 @@ In this guide, you'll learn how to:
 
 Before you begin, ensure you:
 
-- Completed the [Make a Custom Pallet](/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet/) guide.
-- Completed the [Mock Your Runtime](/polkadot-sdk/customize-runtime/pallet-development/mock-runtime/) guide.
+- Completed the [Make a Custom Pallet](/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet.md) guide.
+- Completed the [Mock Your Runtime](/polkadot-sdk/customize-runtime/pallet-development/mock-runtime.md) guide.
 - Configured custom counter pallet with mock runtime in `pallets/pallet-custom`.
 - Understood the basics of [Rust testing](https://doc.rust-lang.org/book/ch11-00-testing.html).
 
@@ -267,7 +267,7 @@ Verify that events are emitted correctly with the right data.
 
 ### Test Event Data
 
-The [`increment_works`](/polkadot-sdk/customize-runtime/pallet-development/pallet-testing/#test-basic-increment) test (shown earlier) already demonstrates event testing by:
+The [`increment_works`](/polkadot-sdk/customize-runtime/pallet-development/pallet-testing.md#test-basic-increment) test (shown earlier) already demonstrates event testing by:
 
 1. Setting the block number to 1 to enable event emission.
 2. Calling the dispatchable function.
@@ -612,6 +612,6 @@ These tests demonstrate comprehensive coverage including basic operations, error
 
     Learn how to benchmark extrinsics in your custom pallet to generate precise weight calculations suitable for production use.
 
-    [:octicons-arrow-right-24: Integrate](/polkadot-sdk/customize-runtime/pallet-development/benchmark-pallet/)
+    [:octicons-arrow-right-24: Integrate](/polkadot-sdk/customize-runtime/pallet-development/benchmark-pallet.md)
 
 </div>

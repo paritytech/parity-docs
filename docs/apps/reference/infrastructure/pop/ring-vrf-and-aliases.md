@@ -58,7 +58,7 @@ A Product can request an alias scoped to another Product's `.dot` domain. This i
 
     The pallet that issues aliases and implements the `under_alias` origin — the foundation of the PoP pallet set.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/pallet-people/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/pallet-people.md)
     
 - <span class="badge learn">Learn</span> **Proof of Personhood in the Polkadot App**
 

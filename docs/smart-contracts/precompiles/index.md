@@ -45,11 +45,11 @@ The following table lists the addresses documented on the individual precompile 
 
 |                Precompile                 |                       Address                        |                                    Description                                     |
 |:-----------------------------------------:|:----------------------------------------------------:|:----------------------------------------------------------------------------------:|
-| [Ethereum native](/smart-contracts/precompiles/eth-native/) |       `0x01` to `0x09` (last byte)        | Standard Ethereum precompiles such as ECRecover, SHA-256, and the alt_bn128 curve operations |
-|  [System](/smart-contracts/precompiles/system/)   |    `0x0000000000000000000000000000000000000900`     |                   Runtime-level utilities such as BLAKE2 hashing, signature verification, and account ID conversion                   |
-| [Storage](/smart-contracts/precompiles/storage/)  |    `0x0000000000000000000000000000000000000901`     |                       Low-level access to contract storage                        |
-|     [XCM](/smart-contracts/precompiles/xcm/)      |    `0x00000000000000000000000000000000000a0000`     |                 Execute, send, and weigh XCM messages                  |
-|   [ERC-20](/smart-contracts/precompiles/erc20/)   | Derived per asset from the asset ID and an instance suffix | ERC-20 interface for assets managed by the Assets pallet |
+| [Ethereum native](/smart-contracts/precompiles/eth-native.md) |       `0x01` to `0x09` (last byte)        | Standard Ethereum precompiles such as ECRecover, SHA-256, and the alt_bn128 curve operations |
+|  [System](/smart-contracts/precompiles/system.md)   |    `0x0000000000000000000000000000000000000900`     |                   Runtime-level utilities such as BLAKE2 hashing, signature verification, and account ID conversion                   |
+| [Storage](/smart-contracts/precompiles/storage.md)  |    `0x0000000000000000000000000000000000000901`     |                       Low-level access to contract storage                        |
+|     [XCM](/smart-contracts/precompiles/xcm.md)      |    `0x00000000000000000000000000000000000a0000`     |                 Execute, send, and weigh XCM messages                  |
+|   [ERC-20](/smart-contracts/precompiles/erc20.md)   | Derived per asset from the asset ID and an instance suffix | ERC-20 interface for assets managed by the Assets pallet |
 
 ## Runtime-Registered Precompiles
 

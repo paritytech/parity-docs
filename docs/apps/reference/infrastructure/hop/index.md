@@ -15,7 +15,7 @@ HOP is implemented in the Polkadot SDK as two crates:
 - **[`sc-hop`](https://paritytech.github.io/polkadot-sdk/master/sc_hop/index.html)**: The node component. It provides a disk-backed data pool, an RPC interface for submit, claim, and acknowledge operations, per-account rate limiting, and best-effort promotion of entries to on-chain storage.
 - **[`sp-hop`](https://paritytech.github.io/polkadot-sdk/master/sp_hop/index.html)**: The runtime primitives. It defines `HopRuntimeApi`, which the node calls to check whether an account is authorized to submit and to promote pool data to on-chain storage.
 
-HOP data is [ephemeral](/get-started/glossary/#ephemeral): it lives in the node's pool, not in chain blocks, unless it is promoted.
+HOP data is [ephemeral](/get-started/glossary.md#ephemeral): it lives in the node's pool, not in chain blocks, unless it is promoted.
 
 !!! warning "Provisional"
     HOP is under active development in the Polkadot SDK, and its interfaces and defaults may change. This page reflects the `sc-hop` and `sp-hop` rustdocs on the Polkadot SDK `master` branch; check them for the current surface.

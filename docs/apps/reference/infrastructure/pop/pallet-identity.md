@@ -57,7 +57,7 @@ When in doubt, prefer aliases — they preserve the privacy default.
 
     The pallet that issues aliases — the unlinkable alternative to direct identity that most Products should prefer.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/pallet-people/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/pallet-people.md)
 
 - <span class="badge learn">Learn</span> **Ring-VRF and Aliases**
 
@@ -65,6 +65,6 @@ When in doubt, prefer aliases — they preserve the privacy default.
 
     The mechanism that makes aliases unlinkable and why most Product use cases prefer aliases over direct identity reads.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/ring-vrf-and-aliases/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/ring-vrf-and-aliases.md)
 
 </div>

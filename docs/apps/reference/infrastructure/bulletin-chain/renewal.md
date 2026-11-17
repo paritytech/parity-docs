@@ -44,7 +44,7 @@ Renewal does not change the CID — readers continue to use the same hash they h
 
 ## What Renewal Costs
 
-Renewal draws on the renewing account's [authorization](/apps/reference/infrastructure/bulletin-chain/authorization/): each renewal uses one transaction, and its size is added to a renewed-bytes counter that the authorization keeps separately from the bytes it has stored. One-time and immediate renewals are charged when you submit them; auto-renewal prepays the first renewal and charges each later one when it takes effect.
+Renewal draws on the renewing account's [authorization](/apps/reference/infrastructure/bulletin-chain/authorization.md): each renewal uses one transaction, and its size is added to a renewed-bytes counter that the authorization keeps separately from the bytes it has stored. One-time and immediate renewals are charged when you submit them; auto-renewal prepays the first renewal and charges each later one when it takes effect.
 
 Unlike a store, a renewal is rejected when the renewed-bytes counter plus the size of the data would exceed the authorization's byte allowance. Stored bytes do not count toward this check: an account with a 10 MiB allowance that has stored 9 MiB can still renew 8 MiB, while an account that has renewed 9.5 MiB cannot renew another 1 MiB. The chain also caps the total size of renewed data across all accounts. Clients see these rejections as `InvalidTransaction::Custom(5)` (the pallet's `PERMANENT_ALLOWANCE_EXCEEDED`) and `InvalidTransaction::Custom(6)` (`CHAIN_PERMANENT_CAP_REACHED`). If an auto-renewal cannot be paid, its registration is dropped and the data expires.
 
@@ -72,7 +72,7 @@ If a Product (or its operator) forgets to renew, the data eventually becomes unr
 
     The quota model that renewals consume — why a renewal needs a live authorization the same way a fresh upload does.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/bulletin-chain/authorization/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/bulletin-chain/authorization.md)
 
 - <span class="badge guide">Guide</span> **Store Data on Chain**
 
@@ -80,5 +80,5 @@ If a Product (or its operator) forgets to renew, the data eventually becomes unr
 
     The Product-side how-to that covers the renewal call alongside the basic store and retrieve flow.
 
-    [:octicons-arrow-right-24: Get Started](/apps/build/store-data-on-chain/)
+    [:octicons-arrow-right-24: Get Started](/apps/build/store-data-on-chain.md)
 </div>

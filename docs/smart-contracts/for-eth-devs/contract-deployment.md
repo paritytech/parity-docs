@@ -79,7 +79,7 @@ PVM's deployment model creates several specific constraints:
 - **Runtime code modification**: Patterns that construct and mutate contract code on-the-fly are not supported.
 - **Assembly-based factories**: Factory contracts written in YUL assembly that generate code at runtime will fail with `CodeNotFound` errors.
 
-These patterns are rare in practice and typically require dropping down to assembly, so they do not affect standard Solidity development. For the low-level details of how `create`, `create2`, `dataoffset`, and `datasize` are translated, see [YUL Function Translation Differences](/smart-contracts/for-eth-devs/evm-vs-pvm/#yul-function-translation-differences).
+These patterns are rare in practice and typically require dropping down to assembly, so they do not affect standard Solidity development. For the low-level details of how `create`, `create2`, `dataoffset`, and `datasize` are translated, see [YUL Function Translation Differences](/smart-contracts/for-eth-devs/evm-vs-pvm.md#yul-function-translation-differences).
 
 ### On-Chain Constructors
 

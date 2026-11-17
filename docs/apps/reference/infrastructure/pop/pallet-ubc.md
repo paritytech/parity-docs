@@ -55,7 +55,7 @@ When any of these fail, the transaction does not silently fail — it follows th
 
     The pallet that records PoP status — the eligibility input UBC checks against.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/pallet-people/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/pallet-people.md)
 
 - <span class="badge guide">Guide</span> **Verify Your Identity**
 
@@ -63,5 +63,5 @@ When any of these fail, the transaction does not silently fail — it follows th
 
     The setup step that produces the PoP status UBC requires.
 
-    [:octicons-arrow-right-24: Get Started](/apps/reference/infrastructure/pop/)
+    [:octicons-arrow-right-24: Get Started](/apps/reference/infrastructure/pop/index.md)
 </div>

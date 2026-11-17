@@ -41,7 +41,7 @@ cargo install --locked staging-chain-spec-builder
 ```
 
 !!! note
-    The [Set Up the Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/) tutorial pins `chain-spec-builder` to version `{{dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.staging_chain_spec_builder_version}}`, the version that matches the template's Polkadot SDK dependencies. The subcommands and flags on this page are the same in that version.
+    The [Set Up the Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template.md) tutorial pins `chain-spec-builder` to version `{{dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.staging_chain_spec_builder_version}}`, the version that matches the template's Polkadot SDK dependencies. The subcommands and flags on this page are the same in that version.
 
 To confirm the installation, run:
 
@@ -102,7 +102,7 @@ After the options, `create` takes one of the following genesis actions, which de
 
 ### List the Runtime's Presets
 
-Before creating a chain spec, list the presets your runtime provides. The following example uses the runtime built in [Set Up the Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/):
+Before creating a chain spec, list the presets your runtime provides. The following example uses the runtime built in [Set Up the Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template.md):
 
 ```bash
 chain-spec-builder list-presets \
@@ -228,10 +228,10 @@ Start a node with the generated chain spec by passing it to the `--chain` flag o
 polkadot-omni-node --chain ./chain_spec.json --dev
 ```
 
-To run the parachain with a local relay chain, reference the chain spec from a [Zombienet](zombienet.md) network configuration, as shown in [Run a Parachain Network](/polkadot-sdk/testing/run-a-parachain-network/). That guide also uses `chain-spec-builder` with the `local_testnet` preset to build the relay chain spec.
+To run the parachain with a local relay chain, reference the chain spec from a [Zombienet](zombienet.md) network configuration, as shown in [Run a Parachain Network](/polkadot-sdk/testing/run-a-parachain-network.md). That guide also uses `chain-spec-builder` with the `local_testnet` preset to build the relay chain spec.
 
 ## Where to Go Next
 
 - [Polkadot Omni Node](omninode.md): Run a parachain node from the chain spec you generated.
-- [Set Up the Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/): Build the parachain template runtime and start it locally.
+- [Set Up the Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template.md): Build the parachain template runtime and start it locally.
 - [Chain Spec Genesis reference](https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/reference_docs/chain_spec_genesis/index.html): Read how genesis presets and the `GenesisBuilder` API work in the Polkadot SDK.

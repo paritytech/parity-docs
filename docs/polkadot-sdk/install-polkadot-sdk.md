@@ -428,6 +428,6 @@ To stop the node, press `Control-C` in the terminal.
 
     Practical examples and tutorials for building and deploying Polkadot parachains, covering everything from launch to customization and cross-chain messaging.
 
-    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/get-started/)
+    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/get-started.md)
  
 </div>

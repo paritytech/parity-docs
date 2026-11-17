@@ -11,14 +11,14 @@ categories: Smart Contracts, Tooling
 
 The Ethereum JSON-RPC adapter, `eth-rpc`, is a server that lets Ethereum wallets, libraries, and development tools work with a chain whose runtime includes `pallet-revive`. It accepts standard Ethereum JSON-RPC requests, translates them into Polkadot SDK RPC calls and runtime API calls to a node, and returns Ethereum-compatible responses.
 
-The adapter is the `eth-rpc` binary of the [`pallet-revive-eth-rpc`](https://github.com/paritytech/polkadot-sdk/tree/{{dependencies.repositories.polkadot_sdk.version}}/substrate/frame/revive/rpc) crate in the Polkadot SDK. This page shows how to build it, run it next to a local node, and configure it. For the Ethereum methods it serves, see [JSON-RPC APIs](/smart-contracts/for-eth-devs/json-rpc-apis/).
+The adapter is the `eth-rpc` binary of the [`pallet-revive-eth-rpc`](https://github.com/paritytech/polkadot-sdk/tree/{{dependencies.repositories.polkadot_sdk.version}}/substrate/frame/revive/rpc) crate in the Polkadot SDK. This page shows how to build it, run it next to a local node, and configure it. For the Ethereum methods it serves, see [JSON-RPC APIs](/smart-contracts/for-eth-devs/json-rpc-apis.md).
 
 ## Prerequisites
 
 Before you start, make sure you have:
 
-- [Rust and the Polkadot SDK dependencies](/polkadot-sdk/install-polkadot-sdk/) installed, if you build the adapter from source.
-- A node whose runtime includes `pallet-revive`. For local development, the [Local Development Node](/smart-contracts/dev-environments/local-dev-node/) guide shows how to build the Revive dev node. To add `pallet-revive` to your own runtime, see [Add pallet-revive to Your Runtime](/polkadot-sdk/customize-runtime/add-pallet-revive/).
+- [Rust and the Polkadot SDK dependencies](/polkadot-sdk/install-polkadot-sdk.md) installed, if you build the adapter from source.
+- A node whose runtime includes `pallet-revive`. For local development, the [Local Development Node](/smart-contracts/dev-environments/local-dev-node.md) guide shows how to build the Revive dev node. To add `pallet-revive` to your own runtime, see [Add pallet-revive to Your Runtime](/polkadot-sdk/customize-runtime/add-pallet-revive.md).
 
 ## How the Adapter Works
 
@@ -199,7 +199,7 @@ The adapter's source documents the following points that matter outside local de
 - **Persistent storage**: Set `--base-path` to a persistent directory so the receipt database survives restarts.
 - **Unprotected transactions**: Leave `--allow-unprotected-txs` disabled unless you need to accept transactions signed without a chain ID ([EIP-155](https://eips.ethereum.org/EIPS/eip-155) replay protection).
 
-For Docker and systemd setups next to a parachain RPC node, see [Ethereum RPC Compatibility](/nodes/run-a-node/parachain-rpc/#ethereum-rpc-compatibility).
+For Docker and systemd setups next to a parachain RPC node, see [Ethereum RPC Compatibility](/nodes/run-a-node/parachain-rpc.md#ethereum-rpc-compatibility).
 
 ## Where to Go Next
 
@@ -211,7 +211,7 @@ For Docker and systemd setups next to a parachain RPC node, see [Ethereum RPC Co
 
     Browse the Ethereum JSON-RPC methods the adapter supports, with request examples.
 
-    [:octicons-arrow-right-24: Reference](/smart-contracts/for-eth-devs/json-rpc-apis/)
+    [:octicons-arrow-right-24: Reference](/smart-contracts/for-eth-devs/json-rpc-apis.md)
 
 -   <span class="badge guide">Guide</span> __Add pallet-revive to Your Runtime__
 
@@ -219,6 +219,6 @@ For Docker and systemd setups next to a parachain RPC node, see [Ethereum RPC Co
 
     Add `pallet-revive` and the runtime APIs the adapter needs to your own Polkadot SDK runtime.
 
-    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/customize-runtime/add-pallet-revive/)
+    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/customize-runtime/add-pallet-revive.md)
 
 </div>

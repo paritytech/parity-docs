@@ -10,15 +10,15 @@ categories: Tooling
 
 [Polkadot REST API](https://github.com/paritytech/polkadot-rest-api) is a REST service for interacting with Polkadot SDK-based nodes. You run it next to a node, and it exposes HTTP endpoints for blocks, accounts, pallet storage, transactions, and other chain data, so your application can read chain state without a WebSocket connection or an SDK.
 
-Polkadot REST API is a Rust rewrite of [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar) built on [Subxt](/tools/subxt/). The Sidecar README marks `substrate-api-sidecar` as deprecated in favor of this project and describes it as having 1:1 API compatibility, with endpoints served under the `/v1/` prefix. If you already run Sidecar, see [Migrating from Sidecar](#migrating-from-sidecar).
+Polkadot REST API is a Rust rewrite of [Substrate API Sidecar](https://github.com/paritytech/substrate-api-sidecar) built on [Subxt](/tools/subxt.md). The Sidecar README marks `substrate-api-sidecar` as deprecated in favor of this project and describes it as having 1:1 API compatibility, with endpoints served under the `/v1/` prefix. If you already run Sidecar, see [Migrating from Sidecar](#migrating-from-sidecar).
 
 This page covers installing Polkadot REST API, configuring it, running it against a local development node, and sending your first requests.
 
 ## Prerequisites
 
-- A Polkadot SDK-based node with its RPC endpoint reachable from where you run the service. For local development, start a node listening on `{{ networks.local.ws_url }}`, for example with [Polkadot Omni Node](/tools/omninode/) or [Zombienet](/tools/zombienet/).
+- A Polkadot SDK-based node with its RPC endpoint reachable from where you run the service. For local development, start a node listening on `{{ networks.local.ws_url }}`, for example with [Polkadot Omni Node](/tools/omninode.md) or [Zombienet](/tools/zombienet.md).
 - One of the following, depending on how you install:
-    - A Rust toolchain with `cargo`, to install from crates.io or build from source. See [Install Dependencies: macOS](/polkadot-sdk/install-polkadot-sdk/#install-dependencies-macos) or [Install Dependencies: Linux](/polkadot-sdk/install-polkadot-sdk/#install-dependencies-linux).
+    - A Rust toolchain with `cargo`, to install from crates.io or build from source. See [Install Dependencies: macOS](/polkadot-sdk/install-polkadot-sdk.md#install-dependencies-macos) or [Install Dependencies: Linux](/polkadot-sdk/install-polkadot-sdk.md#install-dependencies-linux).
     - [Docker](https://www.docker.com/), to run the published container image.
 - [curl](https://curl.se/) or any HTTP client to send requests.
 
@@ -138,7 +138,7 @@ Most read endpoints accept an `at` query parameter with a block hash or block nu
 curl -s "http://127.0.0.1:8080/v1/accounts/INSERT_ADDRESS/balance-info?at=INSERT_BLOCK_NUMBER"
 ```
 
-For task-oriented examples covering balances, assets, pallet storage, and blocks, see [Query On-Chain State with Polkadot REST API](/tools/chain-interactions/query-data/query-rest/).
+For task-oriented examples covering balances, assets, pallet storage, and blocks, see [Query On-Chain State with Polkadot REST API](/tools/chain-interactions/query-data/query-rest.md).
 
 ### API Reference
 
@@ -170,7 +170,7 @@ The migration guide also lists behavior fixes, such as endpoints that now honor 
 
     Query balances, assets, pallet storage, and blocks with `curl`.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/query-rest/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/query-rest.md)
 
 -   __Subxt__
 
@@ -178,6 +178,6 @@ The migration guide also lists behavior fixes, such as endpoints that now honor 
 
     Use the Rust library that Polkadot REST API is built on for type-safe, programmatic chain access.
 
-    [:octicons-arrow-right-24: Get Started](/tools/subxt/)
+    [:octicons-arrow-right-24: Get Started](/tools/subxt.md)
 
 </div>

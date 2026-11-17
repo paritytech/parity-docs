@@ -10,7 +10,7 @@ page_badges:
 
 ## Introduction
 
-The [Bulletin Chain](/apps/reference/infrastructure/bulletin-chain/) is a Polkadot SDK runtime, developed by Parity in the [`paritytech/polkadot-bulletin-chain`](https://github.com/paritytech/polkadot-bulletin-chain) repository, that provides data storage with IPFS-compatible content addressing through its `TransactionStorage` and `DataRenewal` pallets. You can use it to store static sites, images, media assets, application data, or any other files that benefit from availability and censorship-resistance.
+The [Bulletin Chain](/apps/reference/infrastructure/bulletin-chain/index.md) is a Polkadot SDK runtime, developed by Parity in the [`paritytech/polkadot-bulletin-chain`](https://github.com/paritytech/polkadot-bulletin-chain) repository, that provides data storage with IPFS-compatible content addressing through its `TransactionStorage` and `DataRenewal` pallets. You can use it to store static sites, images, media assets, application data, or any other files that benefit from availability and censorship-resistance.
 
 In this tutorial, you walk through a common developer scenario: storing an image on the Bulletin Chain and obtaining its CID (Content Identifier) so it can be referenced from a dApp, NFT metadata, or any IPFS-compatible system. The same steps apply to any file type, including documents, JSON configs, and HTML pages.
 
@@ -21,13 +21,13 @@ The endpoint is configuration. The steps work against a Bulletin Chain node you 
 - [Node.js](https://nodejs.org/) v18 or higher.
 - The WebSocket endpoint of a Bulletin Chain node.
 - An account authorized to store data on that chain, as described in the next section.
-- An image or file to store, at most 2 MiB per transaction. For larger files, you can chunk your data. For details, see [Size Limits](/apps/reference/infrastructure/bulletin-chain/data-storage/#size-limits).
+- An image or file to store, at most 2 MiB per transaction. For larger files, you can chunk your data. For details, see [Size Limits](/apps/reference/infrastructure/bulletin-chain/data-storage.md#size-limits).
 
 ## Get Authorization
 
-The Bulletin Chain has no token balances. Instead, an account needs an [authorization](/apps/reference/infrastructure/bulletin-chain/authorization/) before it can store data. An authorization grants your account a specific number of transactions and bytes that you can use for storage, and it expires at a set block.
+The Bulletin Chain has no token balances. Instead, an account needs an [authorization](/apps/reference/infrastructure/bulletin-chain/authorization.md) before it can store data. An authorization grants your account a specific number of transactions and bytes that you can use for storage, and it expires at a set block.
 
-The `authorize_account(who, transactions, bytes)` extrinsic of the `TransactionStorage` pallet grants authorizations. It requires the authorizer origin: Root, or an account or parachain allowed to grant authorizations. You cannot self-authorize. For details, see [Who Grants Authorization](/apps/reference/infrastructure/bulletin-chain/data-storage/#who-grants-authorization).
+The `authorize_account(who, transactions, bytes)` extrinsic of the `TransactionStorage` pallet grants authorizations. It requires the authorizer origin: Root, or an account or parachain allowed to grant authorizations. You cannot self-authorize. For details, see [Who Grants Authorization](/apps/reference/infrastructure/bulletin-chain/data-storage.md#who-grants-authorization).
 
 - **Local development chain**: The `//Alice` account has sudo access and can grant authorizations. Submit `authorize_account` for your account through the `Sudo` pallet with any client that supports Polkadot SDK chains.
 - **TestNet**: See [Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/) on developers.polkadot.com.
@@ -96,7 +96,7 @@ The script prints the block in which your transaction was included and the data 
 
 ## Retrieve Your Data
 
-The Bulletin Chain follows a "write-to-chain, read-from-network" architecture: you retrieve data from collator nodes using the CID. For a full overview of retrieval methods, see [IPFS Integration and Data Retrieval](/apps/reference/infrastructure/bulletin-chain/data-storage/#ipfs-integration-and-data-retrieval).
+The Bulletin Chain follows a "write-to-chain, read-from-network" architecture: you retrieve data from collator nodes using the CID. For a full overview of retrieval methods, see [IPFS Integration and Data Retrieval](/apps/reference/infrastructure/bulletin-chain/data-storage.md#ipfs-integration-and-data-retrieval).
 
 === "Direct P2P (Helia)"
 
@@ -169,7 +169,7 @@ The `DataRenewal` pallet also provides the following alternatives:
 
     Explore the Bulletin Chain runtime, authorization model, and renewal lifecycle.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/bulletin-chain/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/bulletin-chain/index.md)
 
 -   <span class="badge reference">Reference</span> __Data Storage Reference__
 
@@ -177,6 +177,6 @@ The `DataRenewal` pallet also provides the following alternatives:
 
     Explore the full technical reference for the Bulletin Chain, including all extrinsics, storage items, and events.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/bulletin-chain/data-storage/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/bulletin-chain/data-storage.md)
 
 </div>

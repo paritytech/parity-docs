@@ -10,14 +10,14 @@ categories: Apps
 
 [`@parity/product-sdk-tx`](https://paritytech.github.io/product-sdk/api/tx/) is the submission layer. It signs and broadcasts an extrinsic, follows it through its lifecycle to block inclusion or finality, and reports every status transition. It also covers the machinery around a submission: atomic batching, dry-run extraction, weight buffering, Asset Hub account mapping, retries, and readable error formatting.
 
-It closes the loop that [Signer](/apps/product-sdk/signer/) and [Chain Client](/apps/product-sdk/chain-client/) open: the signer gives you a `PolkadotSigner`, the chain client gives you the typed API to build a transaction, and this package submits it and tells you what happened.
+It closes the loop that [Signer](/apps/product-sdk/signer.md) and [Chain Client](/apps/product-sdk/chain-client.md) open: the signer gives you a `PolkadotSigner`, the chain client gives you the typed API to build a transaction, and this package submits it and tells you what happened.
 
 ## When to Use It
 
 - To sign, broadcast, and track a single extrinsic with per-status callbacks (`submitAndWatch`).
 - To submit several calls as one atomic batch through the Utility pallet (`batchSubmitAndWatch`).
 - For the surrounding steps: dry-run extraction and weight buffering, Asset Hub account mapping for `pallet-revive`, retries with backoff, and dev signers for tests.
-- Do not use it to build the transaction object or open connections; that is the typed API from the chain client. To submit a contract call, prefer the higher-level [Contracts](/apps/product-sdk/contracts/) package, which wraps this one.
+- Do not use it to build the transaction object or open connections; that is the typed API from the chain client. To submit a contract call, prefer the higher-level [Contracts](/apps/product-sdk/contracts.md) package, which wraps this one.
 
 ## Core Concepts
 
@@ -82,7 +82,7 @@ const result = await batchSubmitAndWatch(calls, chain.assetHub, signer, {
 
     The task-focused recipe: derive an account, sign, and submit end to end.
 
-    [:octicons-arrow-right-24: Sign and Submit Transactions](/apps/build/sign-and-submit/)
+    [:octicons-arrow-right-24: Sign and Submit Transactions](/apps/build/sign-and-submit.md)
 
 -   <span class="badge learn">Learn</span> **Signer**
 
@@ -90,7 +90,7 @@ const result = await batchSubmitAndWatch(calls, chain.assetHub, signer, {
 
     Where the `PolkadotSigner` this package consumes comes from.
 
-    [:octicons-arrow-right-24: Signer](/apps/product-sdk/signer/)
+    [:octicons-arrow-right-24: Signer](/apps/product-sdk/signer.md)
 
 -   <span class="badge external">External</span> **API Reference**
 

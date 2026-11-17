@@ -14,7 +14,7 @@ A Statement Store submission passes through five recognizable steps between a `p
 
 1. **Submission**: The Product calls `publish` on its Statement Store client (or the equivalent TrUAPI call). The Host obtains an authentication proof from the paired App and forwards the request to the People Chain node's `statement_submit` JSON-RPC.
 
-2. **Validation**: `pallet-statement-store` checks the submission against the per-account allowance (see [Allowance](/apps/reference/infrastructure/statement-store/allowance/)). If `max_count` or `max_size` would be exceeded, or the authentication proof is invalid, the submission is _rejected_ at this step and never reaches any subscriber. The publish call returns `false` (statement was rejected) rather than throwing.
+2. **Validation**: `pallet-statement-store` checks the submission against the per-account allowance (see [Allowance](/apps/reference/infrastructure/statement-store/allowance.md)). If `max_count` or `max_size` would be exceeded, or the authentication proof is invalid, the submission is _rejected_ at this step and never reaches any subscriber. The publish call returns `false` (statement was rejected) rather than throwing.
 
 3. **Acceptance into the pool**: A validated submission enters the local node's statement pool, the in-memory data structure that holds live statements. The publish call returns `true` at this point — the statement is now live on this node.
 
@@ -45,7 +45,7 @@ A few load-bearing facts that fall out of the lifecycle:
 
     The validation step's quota mechanism — what gets rejected at step 2 and why.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/statement-store/allowance/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/statement-store/allowance.md)
 
 - <span class="badge learn">Learn</span> **Subscriptions**
 
@@ -53,6 +53,6 @@ A few load-bearing facts that fall out of the lifecycle:
 
     How a subscriber attaches to the gossip stream at step 4 and the dedup behavior on the receiving side.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/statement-store/subscriptions/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/statement-store/subscriptions.md)
 
 </div>

@@ -48,7 +48,7 @@ Convert addresses between Ethereum (EVM) and Polkadot (SS58) formats. Use the ne
 
 ## Asset ID to ERC-20 Precompile Address
 
-Derive the ERC-20 precompile address for an asset ID. On chains running `pallet-revive`, a runtime can expose each Assets pallet instance through an [ERC-20 precompile](/smart-contracts/precompiles/erc20/), and contracts use the derived address to call that asset through the standard ERC-20 interface.
+Derive the ERC-20 precompile address for an asset ID. On chains running `pallet-revive`, a runtime can expose each Assets pallet instance through an [ERC-20 precompile](/smart-contracts/precompiles/erc20.md), and contracts use the derived address to call that asset through the standard ERC-20 interface.
 
 The address suffix is runtime configuration. The tool uses the suffixes from the Asset Hub runtimes in the Polkadot SDK (`0x0120` for trust-backed assets, `0x0220` for foreign assets, and `0x0320` for pool assets; see the [Asset Hub Westend runtime](https://github.com/paritytech/polkadot-sdk/blob/{{ dependencies.repositories.polkadot_sdk.version }}/cumulus/parachains/runtimes/assets/asset-hub-westend/src/lib.rs)). If your runtime uses different suffixes, adjust the result accordingly.
 

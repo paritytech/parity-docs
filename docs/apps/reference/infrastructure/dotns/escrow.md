@@ -8,7 +8,7 @@ categories: Apps, Reference
 
 ## Introduction
 
-A name registered on the public path pays a refundable deposit. The deposit is not a purchase price, and no part of it is routed to a treasury: it sits in the escrow contract while the name is held, and it returns to the holder when the name is given up. See [PopRules and Pricing](/apps/reference/infrastructure/dotns/poprules-pricing/) for which names pay a deposit and what it costs.
+A name registered on the public path pays a refundable deposit. The deposit is not a purchase price, and no part of it is routed to a treasury: it sits in the escrow contract while the name is held, and it returns to the holder when the name is given up. See [PopRules and Pricing](/apps/reference/infrastructure/dotns/poprules-pricing.md) for which names pay a deposit and what it costs.
 
 Escrow is also the route by which a name leaves its holder and returns to circulation. This page documents that lifecycle, the two clocks that bound it, and what happens to the deposit when a name changes hands.
 
@@ -29,7 +29,7 @@ Four operations move a name and its deposit through escrow. The holder drives al
 
 `release(tokenId)` moves the name into escrow custody. It starts two independent clocks: a withdrawal cooldown, which gates when the deposit can be taken back, and a redeem window, which gates how long the holder can change their mind.
 
-Releasing is not a sale, and it costs nothing beyond gas. A transfer into or out of escrow is exempt from the transfer fee. See [Name Transfers](/apps/reference/infrastructure/dotns/transfer/).
+Releasing is not a sale, and it costs nothing beyond gas. A transfer into or out of escrow is exempt from the transfer fee. See [Name Transfers](/apps/reference/infrastructure/dotns/transfer.md).
 
 ### Redeem
 
@@ -65,7 +65,7 @@ A transfer therefore settles nothing between the two accounts. If the parties in
 
     Which names can move, the two conditions that trigger a transfer fee, and why an escrow move is always exempt.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/dotns/transfer/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/dotns/transfer.md)
 
 - <span class="badge learn">Learn</span> **PopRules and Pricing**
 
@@ -73,6 +73,6 @@ A transfer therefore settles nothing between the two accounts. If the parties in
 
     Which names pay a deposit, what it costs, and the three routes by which a name reaches an owner.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/dotns/poprules-pricing/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/dotns/poprules-pricing.md)
 
 </div>

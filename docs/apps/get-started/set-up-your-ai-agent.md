@@ -133,7 +133,7 @@ The official Playground starter template ships agent-instruction files, so an ag
 - `CLAUDE.md` for Claude Code, `AGENTS.md` for Codex and other `AGENTS.md`-aware tools.
 - `.clinerules`, `.windsurfrules`, and `.github/copilot-instructions.md` for Cline, Windsurf, and GitHub Copilot.
 
-Coverage varies by app: a moddable app you clone with [`pg mod`](/apps/playground-cli/#mod) may ship all of these, only `CLAUDE.md`, or none, so check the project. If it includes a `setup.sh`, `pg mod` runs it for you to install dependencies and fetch the latest skills; many apps do not ship one.
+Coverage varies by app: a moddable app you clone with [`pg mod`](/apps/playground-cli.md#mod) may ship all of these, only `CLAUDE.md`, or none, so check the project. If it includes a `setup.sh`, `pg mod` runs it for you to install dependencies and fetch the latest skills; many apps do not ship one.
 
 ## Give Your Agent the Docs
 
@@ -143,7 +143,7 @@ This documentation publishes machine-readable versions for AI tools:
 - **`/ai/llms-full.jsonl`**: Every page, pre-chunked by section, one JSON object per line.
 - **Per-page markdown**: Append `.md` to any page path (for example, `/apps/quick-start.md`) to get its raw markdown, or use the **Markdown for LLMs** button on any page to copy it or hand the URL to your agent.
 
-The [AI Resources](/ai-resources/) page collects these downloads.
+The [AI Resources](/ai-resources.md) page collects these downloads.
 
 ## Where to Go Next
 
@@ -155,7 +155,7 @@ The [AI Resources](/ai-resources/) page collects these downloads.
 
     With your agent set up, deploy your first Product from the terminal.
 
-    [:octicons-arrow-right-24: Quick Start](/apps/quick-start/)
+    [:octicons-arrow-right-24: Quick Start](/apps/quick-start.md)
 
 -   <span class="badge guide">Guide</span> **Build Guides**
 
@@ -163,7 +163,7 @@ The [AI Resources](/ai-resources/) page collects these downloads.
 
     The capability recipes your agent will lean on, one per SDK package.
 
-    [:octicons-arrow-right-24: Open Build Guides](/apps/build/)
+    [:octicons-arrow-right-24: Open Build Guides](/apps/build/index.md)
 
 -   <span class="badge external">External</span> **Product SDK Repository**
 

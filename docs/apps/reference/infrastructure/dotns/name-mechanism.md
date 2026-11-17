@@ -19,7 +19,7 @@ This page documents each of those layers so a Product developer knows what each 
 
 ## Layer 1: The Registry on Polkadot Hub
 
-The registry of names (who owns `myproduct.dot`, when the registration was last updated, what record is attached right now) lives in contract state on Polkadot Hub, where it is implemented as a set of contracts (see [Architecture](/apps/reference/infrastructure/dotns/architecture/)).
+The registry of names (who owns `myproduct.dot`, when the registration was last updated, what record is attached right now) lives in contract state on Polkadot Hub, where it is implemented as a set of contracts (see [Architecture](/apps/reference/infrastructure/dotns/architecture.md)).
 
 A registration creates a record; a transfer or update modifies it. A resolver reading the registry asks Polkadot Hub for the current state of a specific name and gets back the records associated with it, including the `contenthash` that points at the Product bundle.
 
@@ -29,7 +29,7 @@ A registration creates a record; a transfer or update modifies it. A resolver re
 
 This is the same scheme ENS uses for `.eth`, which is intentional — the derivation is well-understood, well-tooled, and lets dotNS interoperate with the existing `namehash` ecosystem.
 
-Every name follows the recursive rule, including a device name. `joseph.42` is `joseph` registered beneath its numeric container `42`, so its node is `namehash(namehash(tldNode, "42"), "joseph")`: splitting the name on its dots is exactly how the key derives. Reading `isPopIssued(label)` on the PoP controller (keyed by the full text, `joseph.42`) tells you whether the personhood gateway issued the name; it says nothing about hashing, which is the same for every name. See [PopRules and Pricing](/apps/reference/infrastructure/dotns/poprules-pricing/).
+Every name follows the recursive rule, including a device name. `joseph.42` is `joseph` registered beneath its numeric container `42`, so its node is `namehash(namehash(tldNode, "42"), "joseph")`: splitting the name on its dots is exactly how the key derives. Reading `isPopIssued(label)` on the PoP controller (keyed by the full text, `joseph.42`) tells you whether the personhood gateway issued the name; it says nothing about hashing, which is the same for every name. See [PopRules and Pricing](/apps/reference/infrastructure/dotns/poprules-pricing.md).
 
 ## Layer 3: `contenthash` → CID
 
@@ -72,7 +72,7 @@ A failure at any layer surfaces as a specific shield-state transition in the Hos
 
     The contract architecture on Polkadot Hub that backs the registry layer above.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/dotns/architecture/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/dotns/architecture.md)
 
 - <span class="badge learn">Learn</span> **PopRules and Pricing**
 
@@ -80,7 +80,7 @@ A failure at any layer surfaces as a specific shield-state transition in the Hos
 
     Who can register what name, and at what cost, before the resolution flow above ever runs.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/dotns/poprules-pricing/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/dotns/poprules-pricing.md)
 
 - <span class="badge guide">Guide</span> **Register and Publish**
 
@@ -88,5 +88,5 @@ A failure at any layer surfaces as a specific shield-state transition in the Hos
 
     The Product-side how-to for creating a name record and attaching a `contenthash`.
 
-    [:octicons-arrow-right-24: Get Started](/apps/deploy-your-app/)
+    [:octicons-arrow-right-24: Get Started](/apps/deploy-your-app.md)
 </div>

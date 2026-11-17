@@ -41,7 +41,7 @@ Scores are chain state, so anyone can read them. The alias does not reveal the u
 
     The foundational pallet that issues the aliases this pallet keys on.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/pallet-people/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/pallet-people.md)
 
 - <span class="badge learn">Learn</span> **Ring-VRF and Aliases**
 
@@ -49,6 +49,6 @@ Scores are chain state, so anyone can read them. The alias does not reveal the u
 
     The mechanism that makes the alias-scoping property work — why scores under different contexts cannot be linked.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/ring-vrf-and-aliases/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/ring-vrf-and-aliases.md)
 
 </div>

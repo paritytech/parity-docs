@@ -37,7 +37,7 @@ Download the pre-built `polkadot-omni-node` binary from the [Polkadot SDK releas
 Alternatively, you can install from source using `cargo`:
 
 !!! note
-    Building from source requires Rust and system dependencies. See [Install Dependencies: macOS](/polkadot-sdk/install-polkadot-sdk/#install-dependencies-macos) or [Install Dependencies: Linux](/polkadot-sdk/install-polkadot-sdk/#install-dependencies-linux) before proceeding.
+    Building from source requires Rust and system dependencies. See [Install Dependencies: macOS](/polkadot-sdk/install-polkadot-sdk.md#install-dependencies-macos) or [Install Dependencies: Linux](/polkadot-sdk/install-polkadot-sdk.md#install-dependencies-linux) before proceeding.
 
 ```bash
 cargo install --locked polkadot-omni-node@{{dependencies.crates.polkadot_omni_node.version}}
@@ -57,7 +57,7 @@ The `polkadot-omni-node` binary uses a chain specification file to configure and
 
 ### Generate Your Own
 
-Use [chain-spec-builder](/tools/chain-spec-builder/) ([`staging-chain-spec-builder`](https://crates.io/crates/staging-chain-spec-builder/{{dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.staging_chain_spec_builder_version}}) on crates.io), also released as part of the Polkadot SDK, to create a chain specification from your compiled runtime. For example, with a runtime built from the parachain template:
+Use [chain-spec-builder](/tools/chain-spec-builder.md) ([`staging-chain-spec-builder`](https://crates.io/crates/staging-chain-spec-builder/{{dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.staging_chain_spec_builder_version}}) on crates.io), also released as part of the Polkadot SDK, to create a chain specification from your compiled runtime. For example, with a runtime built from the parachain template:
 
 ```bash
 chain-spec-builder create -t development \
@@ -69,7 +69,7 @@ named-preset development
 
 This writes a `chain_spec.json` file. The `--relay-chain` flag records the identifier of the relay chain the parachain is meant to connect to; set it to match the relay chain you run against.
 
-[Set Up the Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/) walks through installing chain-spec-builder, building the runtime, and generating the chain specification.
+[Set Up the Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template.md) walks through installing chain-spec-builder, building the runtime, and generating the chain specification.
 
 ### Use a Live Network's Specification
 
@@ -115,7 +115,7 @@ Once started, the node connects to peers and syncs with the network. The termina
 
 By default, `polkadot-omni-node` exposes a WebSocket endpoint at `{{ networks.local.ws_url }}`, which you can use to interact with the running node. You can connect using:
 
-- Client libraries such as [Subxt](subxt.md), or the libraries listed in [Interact with a Chain](/tools/chain-interactions/#development-tools-and-sdks).
+- Client libraries such as [Subxt](subxt.md), or the libraries listed in [Interact with a Chain](/tools/chain-interactions/index.md#development-tools-and-sdks).
 - A web interface that supports Polkadot SDK-based chains, for example, the community-maintained [Polkadot.js Apps](https://polkadot.js.org/apps/#/explorer).
 
 Once connected, you can review blocks, call extrinsics, inspect storage, and interact with the runtime.
@@ -210,7 +210,7 @@ Your runtime must include and properly configure the following pallets:
     pub type ParachainInfo = parachain_info::Pallet<Runtime>;
     ```
 
-If you're migrating an existing parachain to use the `polkadot-omni-node`, you may need to perform runtime upgrades to add the required runtime APIs and pallets. Follow the standard parachain [runtime upgrade](/polkadot-sdk/runtime-maintenance/runtime-upgrades/) procedures to apply these changes to a running chain.
+If you're migrating an existing parachain to use the `polkadot-omni-node`, you may need to perform runtime upgrades to add the required runtime APIs and pallets. Follow the standard parachain [runtime upgrade](/polkadot-sdk/runtime-maintenance/runtime-upgrades.md) procedures to apply these changes to a running chain.
 
 ## Command-Line Reference
 
@@ -292,7 +292,7 @@ Use the following flags to run the node as a collator that authors parachain blo
 
 At the `{{dependencies.repositories.polkadot_sdk.version}}` release, the deprecated `--experimental-use-slot-based` flag is still accepted. Use `--authoring slot-based` instead.
 
-[Run a Collator](/nodes/run-a-collator/) shows these flags in a complete collator setup.
+[Run a Collator](/nodes/run-a-collator.md) shows these flags in a complete collator setup.
 
 ### Common Node Flags
 

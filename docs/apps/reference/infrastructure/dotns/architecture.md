@@ -31,16 +31,16 @@ Every contract resolves its siblings through a single protocol registry, a keyed
     - A PopRules contract that places a label in a length band and decides who may register it, with the deposit coming from a separately registered cost model.
     - Controller contracts that orchestrate the registration flow: the PopRules check, fee collection if applicable, and the write to the registry. The public commit-reveal path and the personhood gateway are separate controllers.
     - A registrar contract that is the ERC-721 carrying ownership of public and personhood names, so owning one means holding its token. It mints and burns on a controller's instruction and holds no pricing or personhood policy of its own. A device name is the exception: it has no token, and its ownership lives on the registry record as a subname under a controller-held container.
-    - An escrow contract holding the deposits registrations pay. Deposits are refundable and stay in escrow, so no value is routed to a treasury. It also runs the release, redeem, withdraw, and reclaim lifecycle by which a name returns to circulation. See [Escrow and Deposits](/apps/reference/infrastructure/dotns/escrow/).
+    - An escrow contract holding the deposits registrations pay. Deposits are refundable and stay in escrow, so no value is routed to a treasury. It also runs the release, redeem, withdraw, and reclaim lifecycle by which a name returns to circulation. See [Escrow and Deposits](/apps/reference/infrastructure/dotns/escrow.md).
     - A cost model registry naming the pricing contract in force, which governance can repoint. The deployed model charges one deposit for every name it admits, whatever its length.
     - A whitelist contract holding the per-name grants that the reserved registration path spends.
 
 - **Lifecycle**: What happens to a name after registration. Neither case has a contract of its own:
 
-    - Owner changes for an existing name happen on the registrar itself, through its fee-on-transfer hook and the escrow. A gateway-issued name cannot transfer at all: a personhood name is a soulbound token, and a device name has no token. See [Name Transfers](/apps/reference/infrastructure/dotns/transfer/).
+    - Owner changes for an existing name happen on the registrar itself, through its fee-on-transfer hook and the escrow. A gateway-issued name cannot transfer at all: a personhood name is a soulbound token, and a device name has no token. See [Name Transfers](/apps/reference/infrastructure/dotns/transfer.md).
     - Governance-routed operations, spread across the contracts they act on: grants are issued on the whitelist, and each upgradeable contract authorizes its own upgrade through its owner.
 
-A Product developer rarely interacts with the contracts directly: the [CLI](/apps/reference/infrastructure/dotns/cli/) and the higher-level [Register and Publish](/apps/deploy-your-app/) flow wrap the registration interactions. A Product reading name resolution data does so through the standard chain-client surface, calling into the resolver contract via the typed PAPI descriptor for Polkadot Hub.
+A Product developer rarely interacts with the contracts directly: the [CLI](/apps/reference/infrastructure/dotns/cli.md) and the higher-level [Register and Publish](/apps/deploy-your-app.md) flow wrap the registration interactions. A Product reading name resolution data does so through the standard chain-client surface, calling into the resolver contract via the typed PAPI descriptor for Polkadot Hub.
 
 ## Where to Go Next
 
@@ -52,7 +52,7 @@ A Product developer rarely interacts with the contracts directly: the [CLI](/app
 
     The bands PopRules evaluates: name length, the PoP tier each band requires, and the deposit.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/dotns/poprules-pricing/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/dotns/poprules-pricing.md)
 
 - <span class="badge learn">Learn</span> **MainNet Contracts**
 

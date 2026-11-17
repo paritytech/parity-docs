@@ -9,7 +9,7 @@ categories: Reference
 
 ## Introduction
 
-The Ethereum JSON-RPC adapter (`eth-rpc`) is a server that ships with [pallet-revive](/smart-contracts/overview/). It exposes the standard [Ethereum JSON-RPC interface](https://ethereum.org/developers/docs/apis/json-rpc/#json-rpc-methods) for a chain running pallet-revive, so Ethereum wallets, libraries, and development tools can talk to the chain without modification. This page lists the methods the adapter supports and provides an example request for each.
+The Ethereum JSON-RPC adapter (`eth-rpc`) is a server that ships with [pallet-revive](/smart-contracts/overview.md). It exposes the standard [Ethereum JSON-RPC interface](https://ethereum.org/developers/docs/apis/json-rpc/#json-rpc-methods) for a chain running pallet-revive, so Ethereum wallets, libraries, and development tools can talk to the chain without modification. This page lists the methods the adapter supports and provides an example request for each.
 
 ## How the Adapter Works
 
@@ -38,7 +38,7 @@ This proxy-based approach requires no changes to the node binary. Because the ad
 
 The `eth-rpc` binary is built from the `pallet-revive-eth-rpc` crate in the Polkadot SDK. For a local setup, the adapter connects to a node at `{{ networks.local.ws_url }}` and serves JSON-RPC at `{{ networks.local.eth_rpc_url }}`.
 
-To build, run, and configure the adapter, including its storage, RPC server, and logging options, see [Run the Ethereum JSON-RPC Adapter](/smart-contracts/eth-rpc-adapter/). For Docker and systemd setups next to a parachain RPC node, see [Ethereum RPC Compatibility](/nodes/run-a-node/parachain-rpc/#ethereum-rpc-compatibility).
+To build, run, and configure the adapter, including its storage, RPC server, and logging options, see [Run the Ethereum JSON-RPC Adapter](/smart-contracts/eth-rpc-adapter.md). For Docker and systemd setups next to a parachain RPC node, see [Ethereum RPC Compatibility](/nodes/run-a-node/parachain-rpc.md#ethereum-rpc-compatibility).
 
 ## Supported Transaction Types
 
@@ -49,7 +49,7 @@ pallet-revive receives raw Ethereum transactions from the adapter through the [`
 - **[EIP-2930](https://paritytech.github.io/polkadot-sdk/master/pallet_revive/evm/struct.Transaction2930Unsigned.html)**: Transactions with access lists that pre-declare the addresses and storage slots a transaction touches.
 - **[EIP-4844](https://paritytech.github.io/polkadot-sdk/master/pallet_revive/evm/struct.Transaction4844Unsigned.html)**: Blob-carrying transactions.
 
-For how pallet-revive turns gas into fees, see [Gas Model](/smart-contracts/for-eth-devs/gas-model/).
+For how pallet-revive turns gas into fees, see [Gas Model](/smart-contracts/for-eth-devs/gas-model.md).
 
 ## Examples Endpoint
 

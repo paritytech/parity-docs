@@ -8,9 +8,9 @@ categories: Basics, Smart Contracts
 
 ## Introduction
 
-This page collects the starting points for building smart contracts on [pallet-revive](/smart-contracts/overview/). Start with a local development environment, then connect to a live network such as Polkadot Hub when you are ready to deploy. To run pallet-revive on your own chain, see [Add pallet-revive to Your Runtime](/polkadot-sdk/customize-runtime/add-pallet-revive/).
+This page collects the starting points for building smart contracts on [pallet-revive](/smart-contracts/overview.md). Start with a local development environment, then connect to a live network such as Polkadot Hub when you are ready to deploy. To run pallet-revive on your own chain, see [Add pallet-revive to Your Runtime](/polkadot-sdk/customize-runtime/add-pallet-revive.md).
 
-pallet-revive runs contracts on two backends. REVM executes standard EVM bytecode and is the default choice for existing Solidity projects. PVM runs contracts compiled to PolkaVM with [`resolc`](/smart-contracts/resolc/); it is newer, and its tooling is still maturing.
+pallet-revive runs contracts on two backends. REVM executes standard EVM bytecode and is the default choice for existing Solidity projects. PVM runs contracts compiled to PolkaVM with [`resolc`](/smart-contracts/resolc.md); it is newer, and its tooling is still maturing.
 
 ## Build and Test Locally
 
@@ -23,7 +23,7 @@ extra_rows:
   - title: '[OpenZeppelin Contracts Wizard for Polkadot](https://wizard.openzeppelin.com/polkadot)'
     tools: OpenZeppelin
     description: Generate ERC-20, ERC-721, and other OpenZeppelin-standard contracts without writing code
-  - title: '[Rust for PVM](/smart-contracts/overview/#pvm)'
+  - title: '[Rust for PVM](/smart-contracts/overview.md#pvm)'
     tools: "LLMs, coding agents"
     description: Write PVM smart contracts natively in Rust; use AI assistants while native tooling matures
 -->
@@ -31,13 +31,13 @@ extra_rows:
 
 ## Ethereum Tool Differences on Polkadot EVM
 
-Tools like Foundry and Hardhat are built for standard Ethereum nodes. A chain running pallet-revive exposes the same [Ethereum JSON-RPC](https://ethereum.org/developers/docs/apis/json-rpc/) interface through the [`eth-rpc` adapter](/smart-contracts/eth-rpc-adapter/), but executes contracts in a different environment (a Polkadot SDK runtime with the REVM or PVM backend). As a result:
+Tools like Foundry and Hardhat are built for standard Ethereum nodes. A chain running pallet-revive exposes the same [Ethereum JSON-RPC](https://ethereum.org/developers/docs/apis/json-rpc/) interface through the [`eth-rpc` adapter](/smart-contracts/eth-rpc-adapter.md), but executes contracts in a different environment (a Polkadot SDK runtime with the REVM or PVM backend). As a result:
 
 - **Local tests** (for example, `forge test` or Hardhat's default network) run in the tool's own EVM, not in pallet-revive, so behavior can differ from the real chain.
 - **Time and snapshot helpers** (for example, `evm_increaseTime` or `loadFixture`) are often not supported by the adapter.
 - **Gas reports** from these tools may not match the gas charged on-chain.
 
-To check chain-specific behavior, run your contracts against a [local development node](/smart-contracts/dev-environments/local-dev-node/). For more details, see [EVM vs PVM](/smart-contracts/for-eth-devs/evm-vs-pvm/), [Gas Model](/smart-contracts/for-eth-devs/gas-model/), and [Contract Deployment](/smart-contracts/for-eth-devs/contract-deployment/). Guides for using third-party tools such as Remix, Foundry, and vanilla Hardhat are on the [Polkadot Developer Docs](https://developers.polkadot.com/smart-contracts/overview/).
+To check chain-specific behavior, run your contracts against a [local development node](/smart-contracts/dev-environments/local-dev-node.md). For more details, see [EVM vs PVM](/smart-contracts/for-eth-devs/evm-vs-pvm.md), [Gas Model](/smart-contracts/for-eth-devs/gas-model.md), and [Contract Deployment](/smart-contracts/for-eth-devs/contract-deployment.md). Guides for using third-party tools such as Remix, Foundry, and vanilla Hardhat are on the [Polkadot Developer Docs](https://developers.polkadot.com/smart-contracts/overview/).
 
 ## Connect to a Network
 

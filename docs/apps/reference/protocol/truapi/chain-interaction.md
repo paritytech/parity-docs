@@ -22,7 +22,7 @@ The group exposes the chain-client surface a Product expects, with the Host hand
 - **Reading multiple chains in parallel**: Independent connections per chain let reads compose with `Promise.all`.
 - **Dropping to the raw PAPI client**: `.raw` exposes the underlying `PolkadotClient` for advanced flows the typed surface does not cover, such as custom remote procedure call methods, low-level submissions, and raw storage subscriptions.
 
-For the conceptual model and the Product-side how-to, see [Read Chain State](/apps/build/read-chain-state/).
+For the conceptual model and the Product-side how-to, see [Read Chain State](/apps/build/read-chain-state.md).
 
 !!! warning "Provisional"
     Subscription error semantics (reconnection, missed-events recovery), per-Host differences in how the underlying connection is routed, and the precise set of presets shipped with the SDK are still being finalized.
@@ -37,7 +37,7 @@ For the conceptual model and the Product-side how-to, see [Read Chain State](/ap
 
     The Product-side how-to: preset and BYOD connection paths, reading storage / constants / account state, multi-chain reads.
 
-    [:octicons-arrow-right-24: Get Started](/apps/build/read-chain-state/)
+    [:octicons-arrow-right-24: Get Started](/apps/build/read-chain-state.md)
 
 - <span class="badge learn">Learn</span> **Signing**
 
@@ -45,6 +45,6 @@ For the conceptual model and the Product-side how-to, see [Read Chain State](/ap
 
     The signing method group that complements chain reads and lets a Product react to state changes on-chain.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/signing/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/signing.md)
 
 </div>

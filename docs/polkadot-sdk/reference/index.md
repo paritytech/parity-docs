@@ -156,7 +156,7 @@ The following sections provide detailed guidance on each aspect of parachain dev
 
     Walk through the complete parachain launch flow: from setup and deployment to obtaining coretime.
 
-    [:octicons-arrow-right-24: Deploy](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/)
+    [:octicons-arrow-right-24: Deploy](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template.md)
 
 
 -   <span class="badge guide">Guide</span> __Customize Your Runtime__
@@ -165,7 +165,7 @@ The following sections provide detailed guidance on each aspect of parachain dev
 
     Design your parachain's runtime logic and choose appropriate pallets for your use case.
 
-    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/customize-runtime/)
+    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/customize-runtime/index.md)
 
 -   <span class="badge guide">Guide</span> __Interoperability__
 
@@ -173,7 +173,7 @@ The following sections provide detailed guidance on each aspect of parachain dev
 
     Implement XCM for trustless cross-chain communication with other parachains.
 
-    [:octicons-arrow-right-24: Learn More](/polkadot-sdk/interoperability/get-started/)
+    [:octicons-arrow-right-24: Learn More](/polkadot-sdk/interoperability/get-started.md)
 
 -   <span class="badge guide">Guide</span> __Runtime Upgrades__
 
@@ -181,6 +181,6 @@ The following sections provide detailed guidance on each aspect of parachain dev
 
     Upgrade your parachain's runtime without hard forks using forkless upgrade mechanisms.
 
-    [:octicons-arrow-right-24: Maintain](/polkadot-sdk/runtime-maintenance/runtime-upgrades/)
+    [:octicons-arrow-right-24: Maintain](/polkadot-sdk/runtime-maintenance/runtime-upgrades.md)
 
 </div>

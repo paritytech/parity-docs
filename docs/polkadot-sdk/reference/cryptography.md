@@ -43,7 +43,7 @@ pub type Signature = MultiSignature;
 pub type AccountId = <<Signature as Verify>::Signer as IdentifyAccount>::AccountId;
 ```
 
-`MultiSignature` has `Ed25519`, `Sr25519`, `Ecdsa`, and `Eth` variants, and the matching [`MultiSigner`](https://paritytech.github.io/polkadot-sdk/master/sp_runtime/enum.MultiSigner.html) maps each public key to a 32-byte account ID. For sr25519 and ed25519, the account ID is the public key. For ECDSA, it is the Blake2 hash of the compressed public key, and the `Eth` variant derives the account ID from the Ethereum address instead. See [Accounts](/polkadot-sdk/reference/accounts/) for how account IDs are encoded as SS58 addresses.
+`MultiSignature` has `Ed25519`, `Sr25519`, `Ecdsa`, and `Eth` variants, and the matching [`MultiSigner`](https://paritytech.github.io/polkadot-sdk/master/sp_runtime/enum.MultiSigner.html) maps each public key to a 32-byte account ID. For sr25519 and ed25519, the account ID is the public key. For ECDSA, it is the Blake2 hash of the compressed public key, and the `Eth` variant derives the account ID from the Ethereum address instead. See [Accounts](/polkadot-sdk/reference/accounts.md) for how account IDs are encoded as SS58 addresses.
 
 ## Key Types
 
@@ -72,7 +72,7 @@ impl_opaque_keys! {
 }
 ```
 
-Pallets that define their own keys use [`sp_application_crypto`](https://paritytech.github.io/polkadot-sdk/master/sp_application_crypto/index.html) to wrap one of the `sp_core` schemes in an application-specific type bound to a `KeyTypeId`, so that keys for different purposes cannot be confused. For how collators generate and register their session keys, see [Run a Collator](/nodes/run-a-collator/).
+Pallets that define their own keys use [`sp_application_crypto`](https://paritytech.github.io/polkadot-sdk/master/sp_application_crypto/index.html) to wrap one of the `sp_core` schemes in an application-specific type bound to a `KeyTypeId`, so that keys for different purposes cannot be confused. For how collators generate and register their session keys, see [Run a Collator](/nodes/run-a-collator.md).
 
 ## Hash Functions
 
@@ -110,4 +110,4 @@ FRAME storage maps choose a hasher for their keys, such as [`Blake2_128Concat`](
     echo -n "INSERT_MESSAGE" | subkey verify INSERT_SIGNATURE INSERT_ADDRESS
     ```
 
-See [Validating Addresses](/polkadot-sdk/reference/accounts/#validating-addresses) for example `subkey inspect` output.
+See [Validating Addresses](/polkadot-sdk/reference/accounts.md#validating-addresses) for example `subkey inspect` output.

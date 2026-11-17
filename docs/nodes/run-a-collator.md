@@ -10,7 +10,7 @@ categories: Nodes
 
 A collator is a parachain node started in collator mode. Unlike RPC or archive nodes, which serve state, collators produce blocks: they collect transactions, build parachain block candidates, generate the Proof-of-Validity (PoV) that relay chain validators need to check them, and submit the candidates for inclusion. Collators keep both the parachain and the relay chain in sync and handle cross-chain messages through XCM. They provide liveness and censorship resistance; security comes from the relay chain validators through the [ELVES protocol](https://wiki.polkadot.com/learn/learn-parachains-protocol/).
 
-This guide runs the `polkadot-parachain` binary with the `--collator` flag. It covers the node key, the chain specification, the collator startup flags, session key generation, and routine maintenance. The same flags work with [Polkadot Omni Node](/tools/omninode/) for parachains that use it.
+This guide runs the `polkadot-parachain` binary with the `--collator` flag. It covers the node key, the chain specification, the collator startup flags, session key generation, and routine maintenance. The same flags work with [Polkadot Omni Node](/tools/omninode.md) for parachains that use it.
 
 Which collators a parachain accepts is set by its runtime and governance. For the process to become a collator on a Polkadot system parachain, including invulnerables, bonds, and hardware expectations, see [Run a Block-Producing Collator](https://developers.polkadot.com/node-infrastructure/run-a-collator/) on the Polkadot Developer Docs.
 
@@ -76,7 +76,7 @@ This guide provides two deployment options. Select the option that best fits you
 
 ## Obtain the Chain Specification
 
-The collator needs the parachain's chain specification file, saved as `chain-spec.json`. See [Obtain the Chain Specification](/nodes/run-a-node/parachain-rpc/#obtain-the-chain-specification) for where to find it.
+The collator needs the parachain's chain specification file, saved as `chain-spec.json`. See [Obtain the Chain Specification](/nodes/run-a-node/parachain-rpc.md#obtain-the-chain-specification) for where to find it.
 
 ## Run the Collator
 
@@ -228,7 +228,7 @@ Using your preferred deployment method, take the following steps to set up and r
 
     - **`--collator`**: Enables block production mode.
     - **`--node-key-file`**: Uses the generated node key for stable peer ID.
-    - **`--name`**: Your collator name, shown in logs and on any [telemetry](/nodes/run-a-node/relay-chain/full-node/#telemetry) server the node reports to.
+    - **`--name`**: Your collator name, shown in logs and on any [telemetry](/nodes/run-a-node/relay-chain/full-node.md#telemetry) server the node reports to.
     - **`--blocks-pruning=256`**: Keeps the last 256 blocks.
     - **`--state-pruning=256`**: Keeps the state history of the last 256 blocks.
     - **`--database=paritydb`**: Uses ParityDB for better performance.
@@ -469,5 +469,5 @@ Updates can happen to either the runtime or the node binary. Runtime upgrades ar
 
 ## Where to Go Next
 
-- To collect metrics and set up alerts, see [Monitor and Harden a Node](/nodes/monitor-and-harden/).
-- To test a collator against a local relay chain, see [Run a Parachain Network](/polkadot-sdk/testing/run-a-parachain-network/).
+- To collect metrics and set up alerts, see [Monitor and Harden a Node](/nodes/monitor-and-harden.md).
+- To test a collator against a local relay chain, see [Run a Parachain Network](/polkadot-sdk/testing/run-a-parachain-network.md).

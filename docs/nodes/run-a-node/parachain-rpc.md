@@ -12,7 +12,7 @@ A parachain RPC node gives applications direct access to a parachain's state, tr
 
 Through the RPC port (9944, serving both WebSocket and HTTP), your node acts as the bridge between the parachain and applications. This page walks through setting up a parachain RPC node with the `polkadot-parachain` binary, covering hardware requirements and deployment with Docker or systemd. It also covers the `eth-rpc` adapter, which adds an Ethereum JSON-RPC interface on chains that include `pallet-revive`.
 
-A parachain node embeds a relay chain node so that it can follow the relay chain. The commands on this page configure both. To run a parachain whose runtime works without a dedicated node binary, you can use [Polkadot Omni Node](/tools/omninode/) with the same flags.
+A parachain node embeds a relay chain node so that it can follow the relay chain. The commands on this page configure both. To run a parachain whose runtime works without a dedicated node binary, you can use [Polkadot Omni Node](/tools/omninode.md) with the same flags.
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ RPC nodes serving production traffic require the following hardware:
     - **8545**: Ethereum JSON-RPC (if running the `eth-rpc` adapter).
 
 !!! note
-    For development or low-traffic scenarios, you can reduce these requirements proportionally. Consider using a reverse proxy ([nginx](https://nginx.org/), [Caddy](https://caddyserver.com/)) for production deployments. See [Set Up Secure WebSocket](/nodes/run-a-node/relay-chain/secure-wss/).
+    For development or low-traffic scenarios, you can reduce these requirements proportionally. Consider using a reverse proxy ([nginx](https://nginx.org/), [Caddy](https://caddyserver.com/)) for production deployments. See [Set Up Secure WebSocket](/nodes/run-a-node/relay-chain/secure-wss.md).
 
 ### Software Requirements
 
@@ -50,7 +50,7 @@ curl -sL -o chain-spec.json \
   https://raw.githubusercontent.com/paritytech/polkadot-sdk/{{ dependencies.repositories.polkadot_sdk.version }}/cumulus/parachains/chain-specs/asset-hub-polkadot.json
 ```
 
-For a parachain you build yourself, generate the chain specification with [`chain-spec-builder`](/tools/chain-spec-builder/). See [Set Up the Polkadot SDK Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/).
+For a parachain you build yourself, generate the chain specification with [`chain-spec-builder`](/tools/chain-spec-builder.md). See [Set Up the Polkadot SDK Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template.md).
 
 ## Spin Up a Node
 
@@ -420,7 +420,7 @@ Use the following commands to manage your node:
 !!! note
     Ethereum RPC compatibility is available only on chains whose runtime includes `pallet-revive`, such as Polkadot Hub.
 
-Ethereum RPC compatibility is provided through the [`eth-rpc` adapter](/smart-contracts/eth-rpc-adapter/), which is part of [pallet-revive](https://paritytech.github.io/polkadot-sdk/master/pallet_revive_eth_rpc/index.html). This adapter translates Ethereum JSON-RPC calls into Polkadot SDK-compatible requests, enabling integration with Ethereum tools like [MetaMask](https://metamask.io/), [Hardhat](https://hardhat.org/), and [Ethers.js](https://docs.ethers.org/v6/).
+Ethereum RPC compatibility is provided through the [`eth-rpc` adapter](/smart-contracts/eth-rpc-adapter.md), which is part of [pallet-revive](https://paritytech.github.io/polkadot-sdk/master/pallet_revive_eth_rpc/index.html). This adapter translates Ethereum JSON-RPC calls into Polkadot SDK-compatible requests, enabling integration with Ethereum tools like [MetaMask](https://metamask.io/), [Hardhat](https://hardhat.org/), and [Ethers.js](https://docs.ethers.org/v6/).
 
 ### Prerequisites
 
@@ -554,7 +554,7 @@ Your node setup provides two distinct API interfaces:
 
 ### Verify the Ethereum RPC Adapter
 
-To verify the Ethereum RPC adapter is working correctly, you can test standard Ethereum JSON-RPC methods like `eth_chainId`, `eth_blockNumber`, and `eth_getBlockByNumber`. For a complete list of supported methods and example queries, see the [JSON-RPC APIs](/smart-contracts/for-eth-devs/json-rpc-apis/) reference.
+To verify the Ethereum RPC adapter is working correctly, you can test standard Ethereum JSON-RPC methods like `eth_chainId`, `eth_blockNumber`, and `eth_getBlockByNumber`. For a complete list of supported methods and example queries, see the [JSON-RPC APIs](/smart-contracts/for-eth-devs/json-rpc-apis.md) reference.
 
 ### Manage the Ethereum RPC Adapter
 
@@ -600,6 +600,6 @@ To verify the Ethereum RPC adapter is working correctly, you can test standard E
 
 ## Where to Go Next
 
-- To expose the RPC endpoint over TLS, see [Set Up Secure WebSocket](/nodes/run-a-node/relay-chain/secure-wss/).
-- To collect metrics and set up alerts, see [Monitor and Harden a Node](/nodes/monitor-and-harden/).
-- To interact with the node from code, see [Chain Interactions](/tools/chain-interactions/).
+- To expose the RPC endpoint over TLS, see [Set Up Secure WebSocket](/nodes/run-a-node/relay-chain/secure-wss.md).
+- To collect metrics and set up alerts, see [Monitor and Harden a Node](/nodes/monitor-and-harden.md).
+- To interact with the node from code, see [Chain Interactions](/tools/chain-interactions/index.md).

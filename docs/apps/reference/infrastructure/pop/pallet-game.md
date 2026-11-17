@@ -42,7 +42,7 @@ The pallet runs the game; the Product is the UI that lets users enter and see re
 
     The foundational pallet that issues the aliases this pallet keys on.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/pallet-people/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/pallet-people.md)
 
 - <span class="badge learn">Learn</span> **Ring-VRF and Aliases**
 
@@ -50,6 +50,6 @@ The pallet runs the game; the Product is the UI that lets users enter and see re
 
     The mechanism that scopes aliases per context, which is what makes one entry per person possible.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/ring-vrf-and-aliases/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/ring-vrf-and-aliases.md)
 
 </div>

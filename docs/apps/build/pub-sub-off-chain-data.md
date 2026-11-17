@@ -10,7 +10,7 @@ page_badges:
 
 ## Introduction
 
-This guide covers the [Statement Store](/apps/reference/infrastructure/statement-store/), a pub/sub primitive on Polkadot's People Chain for real-time signaling between users of your Product. Statements are small, signed payloads that propagate peer-to-peer via the node's gossip layer without entering chain storage, making them the right tool for chat messages, presence indicators, multiplayer cursors, and typing indicators. Submissions are allowance-gated (no fees); reading is permissionless. The guide covers four steps: setting up the client, subscribing to incoming statements, publishing a typed statement, and using a channel for last-write-wins state.
+This guide covers the [Statement Store](/apps/reference/infrastructure/statement-store/index.md), a pub/sub primitive on Polkadot's People Chain for real-time signaling between users of your Product. Statements are small, signed payloads that propagate peer-to-peer via the node's gossip layer without entering chain storage, making them the right tool for chat messages, presence indicators, multiplayer cursors, and typing indicators. Submissions are allowance-gated (no fees); reading is permissionless. The guide covers four steps: setting up the client, subscribing to incoming statements, publishing a typed statement, and using a channel for last-write-wins state.
 
 --8<-- 'text/apps/storage-options.md'
 
@@ -20,9 +20,9 @@ The Statement Store and Bulletin Chain compose well: [Polkadot App](https://deve
 
 Before starting, ensure you have:
 
-- Completed [Run a Host for Local Development](/apps/get-started/) so you have a paired [Polkadot Desktop](https://developers.polkadot.com/reference/apps/hosts/polkadot-desktop/) and a signer for product-scoped accounts
+- Completed [Run a Host for Local Development](/apps/get-started/index.md) so you have a paired [Polkadot Desktop](https://developers.polkadot.com/reference/apps/hosts/polkadot-desktop/) and a signer for product-scoped accounts
 - A Statement Store allowance for your account; the People Chain's `pallet-statement-store` gates submissions on a per-account allowance (`max_count` live statements and `max_size` total bytes)
-- A Polkadot Product project running locally (see [Set Up Your Project](/apps/build/#set-up-your-project) if you don't have one yet)
+- A Polkadot Product project running locally (see [Set Up Your Project](/apps/build/index.md#set-up-your-project) if you don't have one yet)
 
 !!! warning "Provisional"
     How an account obtains a Statement Store allowance depends on the target environment and is not yet documented here. See [developers.polkadot.com](https://developers.polkadot.com/) for the current access paths.
@@ -41,15 +41,15 @@ npm install @parity/product-sdk @parity/product-sdk-statement-store
 !!! note "Versions the snippets target"
     The snippets target `@parity/product-sdk` v0.30.0 and `@parity/product-sdk-statement-store` v0.6.11; every SDK surface they use is present on that line. If you pin an earlier release, pass `createApp` a `name` (required before v0.30.0) and check the return types first: v0.18.0 moved `StatementStoreClient.publish` and `ChannelStore.write` from `Promise<boolean>` to a typed `Result`. A `Result` object is always truthy, so code written for the older shape keeps compiling and stops working.
 
-See [Two Ways to Use the SDK](/apps/product-sdk/#two-ways-to-use-the-sdk) for how the install styles compare.
+See [Two Ways to Use the SDK](/apps/product-sdk/index.md#two-ways-to-use-the-sdk) for how the install styles compare.
 
 ## Set Up Your Statement Store Client
 
-Every snippet in this guide is Product code: modules placed inside the Product running at `localhost:3000` (per [Set Up Your Project](/apps/build/#set-up-your-project)), loaded by Polkadot Desktop. Signing requests route through the Host (Polkadot Desktop) to the user's paired Polkadot App on their phone, which holds the signing keys; your Product never derives, sees, or holds keys.
+Every snippet in this guide is Product code: modules placed inside the Product running at `localhost:3000` (per [Set Up Your Project](/apps/build/index.md#set-up-your-project)), loaded by Polkadot Desktop. Signing requests route through the Host (Polkadot Desktop) to the user's paired Polkadot App on their phone, which holds the signing keys; your Product never derives, sees, or holds keys.
 
 `StatementStoreClient` is the high-level client. It wraps the People Chain node's `statement_submit` and `statement_subscribeStatement` JSON-RPC methods, handles JSON encoding of your payload, requests authentication proofs from the Host, and deduplicates incoming statements. Connect it once at the top of your Product:
 
-Start with the shared app setup, which creates the SDK app and connects the wallet. It is the same file [Store Data on Chain](/apps/build/store-data-on-chain/) uses:
+Start with the shared app setup, which creates the SDK app and connects the wallet. It is the same file [Store Data on Chain](/apps/build/store-data-on-chain.md) uses:
 
 ```typescript title="setup-app.ts"
 --8<-- "code/apps/build/shared/setup-app.ts"
@@ -122,7 +122,7 @@ Two limits worth designing around:
 
     Your Product can sync state between users; next, keep device-local data (preferences, drafts, caches) across sessions.
 
-    [:octicons-arrow-right-24: Persist Data Locally](/apps/build/persist-data-locally/)
+    [:octicons-arrow-right-24: Persist Data Locally](/apps/build/persist-data-locally.md)
 
 -   <span class="badge guide">Guide</span> **Store Data on Chain**
 
@@ -130,7 +130,7 @@ Two limits worth designing around:
 
     For durable, content-addressed payloads, route through the Bulletin Chain. Pair with the Statement Store by publishing the CID as a Statement.
 
-    [:octicons-arrow-right-24: Store Data on Chain](/apps/build/store-data-on-chain/)
+    [:octicons-arrow-right-24: Store Data on Chain](/apps/build/store-data-on-chain.md)
 
 -   <span class="badge external">External</span> **Product SDK API Reference**
 

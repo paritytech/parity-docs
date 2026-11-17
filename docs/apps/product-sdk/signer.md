@@ -86,7 +86,7 @@ Three things that example is doing deliberately:
 
 - **`try`/`catch`**: `requestResourceAllocation` adapts the Host's `Result`-returning call into a throwing one, so an unguarded `await` can throw inside `onConnect`. Errors thrown here are logged and do not break the connected state, but you lose the chance to react.
 - **`signal.aborted`**: The `AbortSignal` fires if the user disconnects or the manager is destroyed while the request is still in flight. Check it before acting on the outcomes.
-- **Checking the outcomes**: Each is `'Allocated'`, `'Rejected'`, or `'NotAvailable'` — bare strings here, unlike the tagged objects the [`auth`](/apps/product-sdk/auth/) package returns. See [Allowances and Permissions](/apps/concepts/allowances/) for what each resource authorizes.
+- **Checking the outcomes**: Each is `'Allocated'`, `'Rejected'`, or `'NotAvailable'` — bare strings here, unlike the tagged objects the [`auth`](/apps/product-sdk/auth.md) package returns. See [Allowances and Permissions](/apps/concepts/allowances.md) for what each resource authorizes.
 
 !!! note "Why not `AutoSigning` in this example"
     `AutoSigning` is the most interesting resource to request and the one you cannot rely on: it returns `NotAvailable` on both the Android and iOS wallets today. Request it if you want, but treat per-transaction signing as the real path and do not build a flow that depends on the grant landing.
@@ -108,7 +108,7 @@ Three things that example is doing deliberately:
 
     The task-focused recipe: derive a product account, sign, and submit a transaction end to end.
 
-    [:octicons-arrow-right-24: Sign and Submit Transactions](/apps/build/sign-and-submit/)
+    [:octicons-arrow-right-24: Sign and Submit Transactions](/apps/build/sign-and-submit.md)
 
 -   <span class="badge learn">Learn</span> **Transactions**
 
@@ -116,7 +116,7 @@ Three things that example is doing deliberately:
 
     Take the signer this package produces and submit and track a transaction to finality.
 
-    [:octicons-arrow-right-24: Transactions](/apps/product-sdk/tx/)
+    [:octicons-arrow-right-24: Transactions](/apps/product-sdk/tx.md)
 
 -   <span class="badge external">External</span> **API Reference**
 

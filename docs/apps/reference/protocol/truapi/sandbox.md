@@ -28,7 +28,7 @@ Instead, each Product gets a per-domain sub-account, derived deterministically f
 
 The trade-off is that the Product cannot accumulate "the user's full identity." It can only see the user's behavior in this Product. Cross-Product correlation is a permission the user grants explicitly, not a default.
 
-For the Product-side how-to that consumes this surface, see [Sign and Submit Transactions](/apps/build/sign-and-submit/).
+For the Product-side how-to that consumes this surface, see [Sign and Submit Transactions](/apps/build/sign-and-submit.md).
 
 ## Why the Host API Is the Only Egress
 
@@ -61,7 +61,7 @@ Every permission is a narrow, declared widening, not a broad "trust this Product
 
     The Product-side how-to that consumes the sub-account surface: setting up the signer, building transactions, and submitting them through the Host.
 
-    [:octicons-arrow-right-24: Get Started](/apps/build/sign-and-submit/)
+    [:octicons-arrow-right-24: Get Started](/apps/build/sign-and-submit.md)
 
 - <span class="badge learn">Learn</span> **Signing**
 
@@ -69,6 +69,6 @@ Every permission is a narrow, declared widening, not a broad "trust this Product
 
     How the `ChainSubmit` permission grants the ability to request a signature without granting the Host authority to sign, and what a Host must enforce.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/signing/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/signing.md)
 
 </div>

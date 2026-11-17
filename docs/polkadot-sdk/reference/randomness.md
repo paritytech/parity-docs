@@ -57,4 +57,4 @@ The [`pallet_insecure_randomness_collective_flip`](https://paritytech.github.io/
 
 - [Randomness](https://wiki.polkadot.com/learn/learn-cryptography/#randomness) on the Polkadot Wiki
 - [`frame_support::traits::Randomness`](https://paritytech.github.io/polkadot-sdk/master/frame_support/traits/trait.Randomness.html) in the Polkadot SDK Rust docs
-- [Blind Assignment of Blockchain Extension (BABE)](/get-started/glossary/#blind-assignment-of-blockchain-extension-babe) in the glossary
+- [Blind Assignment of Blockchain Extension (BABE)](/get-started/glossary.md#blind-assignment-of-blockchain-extension-babe) in the glossary

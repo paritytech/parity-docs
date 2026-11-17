@@ -13,7 +13,7 @@ page_badges:
 
 Transaction fees are the cost of executing operations on Polkadot SDK-based chains. Estimating these fees before you submit a transaction helps you manage account balances and build better user experiences in your applications.
 
-This tutorial explains the fee model that FRAME runtimes use and shows how to estimate a transaction's fee with [Subxt](/tools/subxt/), Parity's Rust library for Polkadot SDK-based chains.
+This tutorial explains the fee model that FRAME runtimes use and shows how to estimate a transaction's fee with [Subxt](/tools/subxt.md), Parity's Rust library for Polkadot SDK-based chains.
 
 ## Fee Model
 
@@ -33,14 +33,14 @@ final_fee = inclusion_fee + tip
 
 The `targeted_fee_adjustment` multiplier tunes the fee based on network congestion. Each runtime configures how weight maps to fees and how the multiplier is updated, so the same call can cost different amounts on different chains.
 
-The runtime exposes fee estimates through the `TransactionPaymentApi` runtime API. Client libraries call this API to estimate the fee of a signed transaction before submitting it. For more about runtime APIs, see [Runtime API Calls](/tools/chain-interactions/query-data/runtime-api-calls/).
+The runtime exposes fee estimates through the `TransactionPaymentApi` runtime API. Client libraries call this API to estimate the fee of a signed transaction before submitting it. For more about runtime APIs, see [Runtime API Calls](/tools/chain-interactions/query-data/runtime-api-calls.md).
 
 ## Estimate Fees with Subxt
 
 ### Prerequisites
 
 - [Rust](https://rustup.rs/) toolchain (latest stable) and Cargo.
-- A local development node listening on `{{ networks.local.ws_url }}`, for example the parachain template node described in [Run the Node Locally](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/#run-the-node-locally).
+- A local development node listening on `{{ networks.local.ws_url }}`, for example the parachain template node described in [Run the Node Locally](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template.md#run-the-node-locally).
 
 ### Set Up the Project
 
@@ -108,7 +108,7 @@ Now that you can calculate transaction fees, explore related guides to send tran
 
     Learn how to send transactions while paying fees using alternative tokens instead of the native chain token.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/pay-fees-with-different-tokens/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/pay-fees-with-different-tokens.md)
 
 -   <span class="badge guide">Guide</span> __Send Transactions with SDKs__
 
@@ -116,7 +116,7 @@ Now that you can calculate transaction fees, explore related guides to send tran
 
     Learn how to send signed transactions using Subxt.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/with-sdks/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/with-sdks.md)
 
 -   <span class="badge guide">Guide</span> __Query Chain Data__
 
@@ -124,6 +124,6 @@ Now that you can calculate transaction fees, explore related guides to send tran
 
     Explore different methods for querying blockchain data using REST APIs, SDKs, and runtime API calls.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/query-sdks/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/query-sdks.md)
 
 </div>

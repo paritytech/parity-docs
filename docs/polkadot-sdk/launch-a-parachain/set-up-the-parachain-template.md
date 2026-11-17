@@ -14,7 +14,7 @@ page_tests:
 
 ## Introduction
 
-The [Polkadot SDK](https://github.com/paritytech/polkadot-sdk) includes several [templates](/polkadot-sdk/customize-runtime/#starting-templates) designed to help you quickly start building your own blockchain. Each template offers a different level of configuration, from minimal setups to feature-rich environments, allowing you to choose the foundation that best fits your project's needs.
+The [Polkadot SDK](https://github.com/paritytech/polkadot-sdk) includes several [templates](/polkadot-sdk/customize-runtime/index.md#starting-templates) designed to help you quickly start building your own blockchain. Each template offers a different level of configuration, from minimal setups to feature-rich environments, allowing you to choose the foundation that best fits your project's needs.
 
 Among these, the [Parachain Template](https://github.com/paritytech/polkadot-sdk-parachain-template) provides a preconfigured runtime with commonly used pallets, making it an ideal starting point for most parachain development projects.
 
@@ -31,7 +31,7 @@ By the end of this guide, you'll have a working template ready to customize and 
 
 Before getting started, ensure you have done the following:
 
-- Completed the [Install Polkadot SDK](/polkadot-sdk/install-polkadot-sdk/) guide and successfully installed [Rust](https://rust-lang.org/) and the required packages to set up your development environment.
+- Completed the [Install Polkadot SDK](/polkadot-sdk/install-polkadot-sdk.md) guide and successfully installed [Rust](https://rust-lang.org/) and the required packages to set up your development environment.
 
 For this tutorial series, you need to use Rust `{{dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.rust_version}}`. Newer versions of the compiler may not work with this parachain template version.
 
@@ -59,8 +59,8 @@ Run the following commands to set up the correct Rust version:
 
 This tutorial requires two essential tools:
 
-- **[Chain spec builder](https://crates.io/crates/staging-chain-spec-builder/{{dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.staging_chain_spec_builder_version}})**: A Polkadot SDK utility for generating chain specifications. See the [chain-spec-builder reference](/tools/chain-spec-builder/) for its commands and options.
-- **[Polkadot Omni Node](https://crates.io/crates/polkadot-omni-node/{{dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.polkadot_omni_node_version}})**: A white-labeled binary, released as part of the Polkadot SDK, that can act as the collator of a parachain in production, with the auxiliary functionality a collator node needs, such as an RPC server and state archiving. It can also run the Wasm blob of the parachain locally for testing and development. See the [Omni Node reference](/tools/omninode/) for details.
+- **[Chain spec builder](https://crates.io/crates/staging-chain-spec-builder/{{dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.staging_chain_spec_builder_version}})**: A Polkadot SDK utility for generating chain specifications. See the [chain-spec-builder reference](/tools/chain-spec-builder.md) for its commands and options.
+- **[Polkadot Omni Node](https://crates.io/crates/polkadot-omni-node/{{dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.polkadot_omni_node_version}})**: A white-labeled binary, released as part of the Polkadot SDK, that can act as the collator of a parachain in production, with the auxiliary functionality a collator node needs, such as an RPC server and state archiving. It can also run the Wasm blob of the parachain locally for testing and development. See the [Omni Node reference](/tools/omninode.md) for details.
 
 Download the pre-built binaries from the [Polkadot SDK release](https://github.com/paritytech/polkadot-sdk/releases/tag/{{dependencies.repositories.polkadot_sdk_parachain_template.subdependencies.polkadot_sdk_version}}) (recommended):
 
@@ -176,7 +176,7 @@ Follow these steps to launch your node in development mode:
     ```
 
     !!! note
-        The `--relay-chain` flag records the identifier of the relay chain the parachain is meant to connect to. When you run the parachain against a relay chain, set it to match that relay chain (for local development, the relay chain spec you start with [Zombienet](/polkadot-sdk/testing/run-a-parachain-network/)).
+        The `--relay-chain` flag records the identifier of the relay chain the parachain is meant to connect to. When you run the parachain against a relay chain, set it to match that relay chain (for local development, the relay chain spec you start with [Zombienet](/polkadot-sdk/testing/run-a-parachain-network.md)).
 
 2. Start the Omni Node with the generated chain spec. You'll start it in development mode (without a relay chain config), producing and finalizing blocks:
 
@@ -189,7 +189,7 @@ Follow these steps to launch your node in development mode:
     - Deletes all active data (keys, blockchain database, networking information) when stopped.
     - Ensures a clean working state each time you restart the node.
 
-    For the other flags `polkadot-omni-node` accepts, see the Omni Node [Command-Line Reference](/tools/omninode/#command-line-reference).
+    For the other flags `polkadot-omni-node` accepts, see the Omni Node [Command-Line Reference](/tools/omninode.md#command-line-reference).
 
 3. Verify that your node is running by reviewing the terminal output. You should see log messages indicating block production and finalization.
 
@@ -236,7 +236,7 @@ Running on a live relay chain uses the artifacts you produce locally:
 
 - **Wasm runtime**: The `parachain_template_runtime.compact.compressed.wasm` file you built in [Compile the Runtime](#compile-the-runtime).
 - **Chain specification**: The `chain_spec.json` file you generated with `chain-spec-builder`. For a live network, generate it with the `--relay-chain` value and parachain ID of your target relay chain.
-- **Collator keys**: The node key and session keys your collator uses. See [Run a Block-Producing Collator](/nodes/run-a-collator/) for how to generate them.
+- **Collator keys**: The node key and session keys your collator uses. See [Run a Block-Producing Collator](/nodes/run-a-collator.md) for how to generate them.
 
 Registering a parachain and obtaining coretime are network processes. See [Deploy on Polkadot](https://developers.polkadot.com/parachains/launch-a-parachain/deploy-to-polkadot/) on the Polkadot Developer Docs for those steps.
 
@@ -250,7 +250,7 @@ Registering a parachain and obtaining coretime are network processes. See [Deplo
 
     Add pre-built FRAME pallets to the template runtime and test them locally.
 
-    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/customize-runtime/add-existing-pallets/)
+    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/customize-runtime/add-existing-pallets.md)
 
 -   <span class="badge tutorial">Tutorial</span> __Run a Parachain Network__
 
@@ -258,6 +258,6 @@ Registering a parachain and obtaining coretime are network processes. See [Deplo
 
     Run the template as a parachain alongside a local relay chain using Zombienet.
 
-    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/testing/run-a-parachain-network/)
+    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/testing/run-a-parachain-network.md)
 
 </div>

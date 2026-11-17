@@ -9,7 +9,7 @@ categories: Smart Contracts
 
 ## Introduction
 
-The [XCM (Cross-Consensus Message)](/polkadot-sdk/interoperability/get-started/) precompile gives smart contracts on chains running `pallet-revive` access to XCM functionality through a Solidity interface. The precompile is implemented in `pallet-xcm` and is available only on chains whose runtime registers it.
+The [XCM (Cross-Consensus Message)](/polkadot-sdk/interoperability/get-started.md) precompile gives smart contracts on chains running `pallet-revive` access to XCM functionality through a Solidity interface. The precompile is implemented in `pallet-xcm` and is available only on chains whose runtime registers it.
 
 Located at the fixed address `0x00000000000000000000000000000000000a0000`, the XCM precompile offers three primary functions:
 
@@ -35,7 +35,7 @@ The interface defines a `Weight` struct that represents the computational cost o
 - **`refTime`**: Computational time on reference hardware.
 - **`proofSize`**: The size of the proof required for execution.
 
-All XCM messages must be encoded using the [SCALE codec](/polkadot-sdk/reference/data-encoding/#data-encoding), Polkadot's standard serialization format.
+All XCM messages must be encoded using the [SCALE codec](/polkadot-sdk/reference/data-encoding.md#data-encoding), Polkadot's standard serialization format.
 
 For further information, check the [`precompiles/IXCM.sol`](https://github.com/paritytech/polkadot-sdk/blob/cb629d46ebf00aa65624013a61f9c69ebf02b0b4/polkadot/xcm/pallet-xcm/src/precompiles/IXcm.sol) file present in `pallet-xcm`.
 
@@ -135,5 +135,5 @@ The XCM precompile provides a low-level interface for cross-chain interactions f
 
 ## Next Steps
 
-- Call the precompile from your own contracts using the [Hardhat Polkadot plugin](/smart-contracts/dev-environments/hardhat-polkadot/), deploying to a chain that registers the XCM precompile.
-- Learn more about XCM in [Get Started with XCM](/polkadot-sdk/interoperability/get-started/).
+- Call the precompile from your own contracts using the [Hardhat Polkadot plugin](/smart-contracts/dev-environments/hardhat-polkadot.md), deploying to a chain that registers the XCM precompile.
+- Learn more about XCM in [Get Started with XCM](/polkadot-sdk/interoperability/get-started.md).

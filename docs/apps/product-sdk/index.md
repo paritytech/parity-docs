@@ -12,7 +12,7 @@ The [Product SDK](https://github.com/paritytech/product-sdk) is the TypeScript S
 
 The SDK never dials an RPC endpoint itself. Every sensitive operation (signing, chain access, storage) goes through the Host, which selects the network, holds the user's keys, and prompts for approval on the user's phone. Your Product calls a typed method; the Host mediates the rest.
 
-Fallible operations in the individual packages return a typed `Result` instead of throwing, so you check `.ok` before reading `.value`. That pattern runs through every capability package and is what each [Build guide](/apps/build/) teaches. The `createApp` facade below is thinner and does not follow it uniformly — see [What `createApp` Returns](#what-createapp-returns).
+Fallible operations in the individual packages return a typed `Result` instead of throwing, so you check `.ok` before reading `.value`. That pattern runs through every capability package and is what each [Build guide](/apps/build/index.md) teaches. The `createApp` facade below is thinner and does not follow it uniformly — see [What `createApp` Returns](#what-createapp-returns).
 
 ## Two Ways to Use the SDK
 
@@ -21,7 +21,7 @@ The SDK ships as one umbrella package that re-exports most capabilities, plus in
 - **Umbrella package**: `npm install @parity/product-sdk`. One dependency that provides the `createApp` entry point and re-exports most capabilities through subpaths such as `@parity/product-sdk/cloud-storage`. Convenient when your Product uses several capabilities and bundle size is not a concern. A few packages, notably `statement-store`, are not re-exported and are always installed on their own.
 - **Individual packages**: `npm install @parity/product-sdk-chain-client @parity/product-sdk-signer` (and so on). Install only what you use to keep your bundle smaller and your dependencies explicit.
 
-The import specifiers differ between the two: the umbrella exposes subpaths like `@parity/product-sdk/cloud-storage`, while the standalone package is `@parity/product-sdk-cloud-storage`. Switching styles means updating your imports. Start with the umbrella and switch to individual packages later as a bundle-size optimization. Guides built on `createApp`, such as [Store Data on Chain](/apps/build/store-data-on-chain/) and [Publish and Subscribe to Off-Chain Data](/apps/build/pub-sub-off-chain-data/), need the umbrella package, because `createApp` has no standalone package.
+The import specifiers differ between the two: the umbrella exposes subpaths like `@parity/product-sdk/cloud-storage`, while the standalone package is `@parity/product-sdk-cloud-storage`. Switching styles means updating your imports. Start with the umbrella and switch to individual packages later as a bundle-size optimization. Guides built on `createApp`, such as [Store Data on Chain](/apps/build/store-data-on-chain.md) and [Publish and Subscribe to Off-Chain Data](/apps/build/pub-sub-off-chain-data.md), need the umbrella package, because `createApp` has no standalone package.
 
 The umbrella's subpaths are a fixed set: `address`, `chain`, `cloud-storage`, `contracts`, `core`, `crypto`, `host`, `identity`, `individuality`, `local-storage`, `react`, `renderer`, `testing`, and `wallet`. Two of those names do not match their leaf package — `@parity/product-sdk/chain` re-exports `chain-client`, and `@parity/product-sdk/wallet` re-exports `signer`, kept under the older name for compatibility.
 
@@ -75,7 +75,7 @@ An `App` exposing `wallet`, `localStorage`, `chain`, and `cloudStorage`, plus `g
 | `chain`          | **Throws.** `getClient` and `getRawClient` throw if the chain is not connected. |
 | `cloudStorage`   | **Returns a `Result`.** `upload` and `fetch` resolve to `ok`/`err`, matching the rest of the SDK. Also `null` entirely when cloud storage is disabled via `cloudStorage: false`. |
 
-If you want the `Result` convention throughout, use the individual packages instead: [`signer`](/apps/product-sdk/signer/) in place of `app.wallet`, [`chain-client`](/apps/product-sdk/chain-client/) in place of `app.chain`, and [`local-storage`](/apps/product-sdk/local-storage/) in place of `app.localStorage`. That is the path every [Build guide](/apps/build/) takes.
+If you want the `Result` convention throughout, use the individual packages instead: [`signer`](/apps/product-sdk/signer.md) in place of `app.wallet`, [`chain-client`](/apps/product-sdk/chain-client.md) in place of `app.chain`, and [`local-storage`](/apps/product-sdk/local-storage.md) in place of `app.localStorage`. That is the path every [Build guide](/apps/build/index.md) takes.
 
 !!! warning "createApp requires a Host"
     `createApp` must run inside a compatible Host ([Polkadot Desktop](https://developers.polkadot.com/reference/apps/hosts/polkadot-desktop/), the [Polkadot App](https://developers.polkadot.com/reference/apps/hosts/polkadot-app/), or [Polkadot Web](https://developers.polkadot.com/reference/apps/hosts/polkadot-web/)). Called outside one, it throws `Host storage unavailable`. For local development and tests, use the SDK's fake Host; see [Testing Without a Host](#testing-without-a-host).
@@ -86,38 +86,38 @@ Each capability is its own package. The umbrella re-exports most of them; a few 
 
 |                Package                 |                                            What it does                                            |                     API reference                     |
 |:--------------------------------------:|:--------------------------------------------------------------------------------------------------:|:-----------------------------------------------------:|
-|   [Chain Client](/apps/product-sdk/chain-client/) (`chain-client`)     | Typed, host-routed client for reading on-chain storage, constants, and account state across chains |    [API](https://paritytech.github.io/product-sdk/api/chain-client/)    |
-|        [Signer](/apps/product-sdk/signer/) (`signer`)         |    Derives product-scoped accounts and requests signatures, routing every approval to the phone    |      [API](https://paritytech.github.io/product-sdk/api/signer/)      |
-|     [Transactions](/apps/product-sdk/tx/) (`tx`)          |                     Builds, submits, and follows transactions through to finality                  |       [API](https://paritytech.github.io/product-sdk/api/tx/)       |
-|  [Cloud Storage](/apps/product-sdk/cloud-storage/) (`cloud-storage`)   |     Uploads and retrieves content-addressed data by CID, backed by the Bulletin Chain              |   [API](https://paritytech.github.io/product-sdk/api/cloud-storage/)    |
-| [Statement Store](/apps/product-sdk/statement-store/) (`statement-store`) |        Publish/subscribe client for signed, short-lived statements gossiped off-chain             |  [API](https://paritytech.github.io/product-sdk/api/statement-store/)   |
-|   [Local Storage](/apps/product-sdk/local-storage/) (`local-storage`)   |             Per-Product, per-device key-value store backed by the Host                            |   [API](https://paritytech.github.io/product-sdk/api/local-storage/)    |
-|      [Contracts](/apps/product-sdk/contracts/) (`contracts`)      |   Typed calls to `pallet-revive` (PolkaVM) contracts on Asset Hub, resolved from a `cdm.json`      |    [API](https://paritytech.github.io/product-sdk/api/contracts/)     |
-|          [Keys](/apps/product-sdk/keys/) (`keys`)         |                Derives application and session keys from the user's accounts                        |       [API](https://paritytech.github.io/product-sdk/api/keys/)       |
-|  [Individuality](/apps/product-sdk/individuality/) (`individuality`) |     Reads personhood standing and usernames on the Individuality chain, and dispatches under a person origin    | [Source](https://github.com/paritytech/product-sdk/tree/main/product-sdk/packages/individuality) |
-|          [Host](/apps/product-sdk/host/) (`host`)         |         Detects the Host container and exposes its lower-level API surface directly                 |       [API](https://paritytech.github.io/product-sdk/api/host/)       |
+|   [Chain Client](/apps/product-sdk/chain-client.md) (`chain-client`)     | Typed, host-routed client for reading on-chain storage, constants, and account state across chains |    [API](https://paritytech.github.io/product-sdk/api/chain-client/)    |
+|        [Signer](/apps/product-sdk/signer.md) (`signer`)         |    Derives product-scoped accounts and requests signatures, routing every approval to the phone    |      [API](https://paritytech.github.io/product-sdk/api/signer/)      |
+|     [Transactions](/apps/product-sdk/tx.md) (`tx`)          |                     Builds, submits, and follows transactions through to finality                  |       [API](https://paritytech.github.io/product-sdk/api/tx/)       |
+|  [Cloud Storage](/apps/product-sdk/cloud-storage.md) (`cloud-storage`)   |     Uploads and retrieves content-addressed data by CID, backed by the Bulletin Chain              |   [API](https://paritytech.github.io/product-sdk/api/cloud-storage/)    |
+| [Statement Store](/apps/product-sdk/statement-store.md) (`statement-store`) |        Publish/subscribe client for signed, short-lived statements gossiped off-chain             |  [API](https://paritytech.github.io/product-sdk/api/statement-store/)   |
+|   [Local Storage](/apps/product-sdk/local-storage.md) (`local-storage`)   |             Per-Product, per-device key-value store backed by the Host                            |   [API](https://paritytech.github.io/product-sdk/api/local-storage/)    |
+|      [Contracts](/apps/product-sdk/contracts.md) (`contracts`)      |   Typed calls to `pallet-revive` (PolkaVM) contracts on Asset Hub, resolved from a `cdm.json`      |    [API](https://paritytech.github.io/product-sdk/api/contracts/)     |
+|          [Keys](/apps/product-sdk/keys.md) (`keys`)         |                Derives application and session keys from the user's accounts                        |       [API](https://paritytech.github.io/product-sdk/api/keys/)       |
+|  [Individuality](/apps/product-sdk/individuality.md) (`individuality`) |     Reads personhood standing and usernames on the Individuality chain, and dispatches under a person origin    | [Source](https://github.com/paritytech/product-sdk/tree/main/product-sdk/packages/individuality) |
+|          [Host](/apps/product-sdk/host.md) (`host`)         |         Detects the Host container and exposes its lower-level API surface directly                 |       [API](https://paritytech.github.io/product-sdk/api/host/)       |
 
 ### Packages in the Build Guides
 
-Each [Build guide](/apps/build/) is built around one primary package and weaves in utility packages such as [`tx`](/apps/product-sdk/tx/), `address`, `descriptors`, and [`host`](/apps/product-sdk/host/) where they are needed:
+Each [Build guide](/apps/build/index.md) is built around one primary package and weaves in utility packages such as [`tx`](/apps/product-sdk/tx.md), `address`, `descriptors`, and [`host`](/apps/product-sdk/host.md) where they are needed:
 
-- **[`chain-client`](/apps/product-sdk/chain-client/)**: [Read On-Chain Data](/apps/build/read-chain-state/)
-- **[`signer`](/apps/product-sdk/signer/)**: [Sign and Submit Transactions](/apps/build/sign-and-submit/)
-- **[`cloud-storage`](/apps/product-sdk/cloud-storage/)**: [Store Data on Chain](/apps/build/store-data-on-chain/)
-- **[`statement-store`](/apps/product-sdk/statement-store/)**: [Publish and Subscribe to Off-Chain Data](/apps/build/pub-sub-off-chain-data/)
-- **[`local-storage`](/apps/product-sdk/local-storage/)**: [Persist Data Locally](/apps/build/persist-data-locally/)
-- **[`contracts`](/apps/product-sdk/contracts/)**: [Add a Smart Contract to Your Product](/apps/build/deploy-a-smart-contract/)
+- **[`chain-client`](/apps/product-sdk/chain-client.md)**: [Read On-Chain Data](/apps/build/read-chain-state.md)
+- **[`signer`](/apps/product-sdk/signer.md)**: [Sign and Submit Transactions](/apps/build/sign-and-submit.md)
+- **[`cloud-storage`](/apps/product-sdk/cloud-storage.md)**: [Store Data on Chain](/apps/build/store-data-on-chain.md)
+- **[`statement-store`](/apps/product-sdk/statement-store.md)**: [Publish and Subscribe to Off-Chain Data](/apps/build/pub-sub-off-chain-data.md)
+- **[`local-storage`](/apps/product-sdk/local-storage.md)**: [Persist Data Locally](/apps/build/persist-data-locally.md)
+- **[`contracts`](/apps/product-sdk/contracts.md)**: [Add a Smart Contract to Your Product](/apps/build/deploy-a-smart-contract.md)
 
-These packages anchor the current recipes because their surfaces are stable. Other packages, such as [`keys`](/apps/product-sdk/keys/), `crypto`, and [`host`](/apps/product-sdk/host/), will get recipes of their own as their surfaces stabilize.
+These packages anchor the current recipes because their surfaces are stable. Other packages, such as [`keys`](/apps/product-sdk/keys.md), `crypto`, and [`host`](/apps/product-sdk/host.md), will get recipes of their own as their surfaces stabilize.
 
 ### Command-Line Packages
 
-Two packages are for tools you run _next to_ a Product — a deploy script, a migration job, a CI step — rather than inside one. A Product runs in a Host that already owns pairing and signing, so it uses [Signer](/apps/product-sdk/signer/) instead. Both require Node 21 or later.
+Two packages are for tools you run _next to_ a Product — a deploy script, a migration job, a CI step — rather than inside one. A Product runs in a Host that already owns pairing and signing, so it uses [Signer](/apps/product-sdk/signer.md) instead. Both require Node 21 or later.
 
 |                Package                 |                                What it does                                |                  API reference                   |
 |:--------------------------------------:|:--------------------------------------------------------------------------:|:------------------------------------------------:|
-|  [Terminal](/apps/product-sdk/terminal/) (`terminal`)  | QR-code pairing, session signing, and allowance signers for a Node CLI     | [API](https://paritytech.github.io/product-sdk/api/terminal/) |
-|      [Auth](/apps/product-sdk/auth/) (`auth`)      | The runtime-agnostic login, logout, and allocation flow built on `terminal` |   [API](https://paritytech.github.io/product-sdk/api/auth/)   |
+|  [Terminal](/apps/product-sdk/terminal.md) (`terminal`)  | QR-code pairing, session signing, and allowance signers for a Node CLI     | [API](https://paritytech.github.io/product-sdk/api/terminal/) |
+|      [Auth](/apps/product-sdk/auth.md) (`auth`)      | The runtime-agnostic login, logout, and allocation flow built on `terminal` |   [API](https://paritytech.github.io/product-sdk/api/auth/)   |
 
 ### Supporting Packages
 
@@ -137,7 +137,7 @@ The full surface, every package, class, and method, is documented in the [Produc
 
 ## Capabilities That Live on the Host
 
-A few things the platform offers are reached through the [`host`](/apps/product-sdk/host/) package rather than a dedicated capability package, so there is no focused API to learn yet:
+A few things the platform offers are reached through the [`host`](/apps/product-sdk/host.md) package rather than a dedicated capability package, so there is no focused API to learn yet:
 
 - **Payments**: `getPaymentManager()` — request a payment, top up, and track status.
 - **Chat**: `getChatManager()` — rooms, bots, and interactive action buttons.
@@ -155,11 +155,11 @@ The umbrella exposes a React entry point at `@parity/product-sdk/react`. Wrap yo
 - **`useLocalStorage`**: Reactive per-Product key-value storage.
 - **`useChain`**: The host-routed chain client.
 
-The [Shared Todo App tutorial](/apps/tutorials/shared-todo-app/) uses these bindings end to end.
+The [Shared Todo App tutorial](/apps/tutorials/shared-todo-app.md) uses these bindings end to end.
 
 ## Testing Without a Host
 
-Because `createApp` and the host-only methods require a Host, the SDK ships fakes so _automated tests_ can exercise Product logic in plain Node or a browser test runner. These are a test tool, not a development environment: to _develop_ against a real Host, run your Product from `localhost` inside Polkadot Desktop, per [Set Up Your Project](/apps/build/#set-up-your-project).
+Because `createApp` and the host-only methods require a Host, the SDK ships fakes so _automated tests_ can exercise Product logic in plain Node or a browser test runner. These are a test tool, not a development environment: to _develop_ against a real Host, run your Product from `localhost` inside Polkadot Desktop, per [Set Up Your Project](/apps/build/index.md#set-up-your-project).
 
 `@parity/product-sdk/testing` exports `createFakeApp`, which returns a fake `App` you can use directly in a logic test or hand to `ProductSDKContext.Provider` for a React component test:
 
@@ -177,18 +177,18 @@ It fakes `wallet`, `localStorage`, and `cloudStorage`. Each is overridable throu
 !!! warning "There is no chain fake, and `app.chain` throws"
     `createFakeApp` leaves `chain` unconfigured, so `getClient` and `getRawClient` throw — deliberately, because the Host owns RPC selection and a fake would not exercise the real wiring. The SDK's own guidance is to put chain-reading logic behind an interface you control, unit-test against that, and cover the wiring in end-to-end tests. Pass a `chain` override to `createFakeApp` if you would rather supply your own double.
 
-    This matters most for [Read On-Chain Data](/apps/build/read-chain-state/), the first Build recipe, which is entirely chain reads.
+    This matters most for [Read On-Chain Data](/apps/build/read-chain-state.md), the first Build recipe, which is entirely chain reads.
 
-The subpath also re-exports the per-package fakes for [`signer`](/apps/product-sdk/signer/), [`local-storage`](/apps/product-sdk/local-storage/), [`contracts`](/apps/product-sdk/contracts/), and [`host`](/apps/product-sdk/host/) — `createFakeSignerProvider`, `createFakeHostLocalStorage`, and the rest — so one import covers them.
+The subpath also re-exports the per-package fakes for [`signer`](/apps/product-sdk/signer.md), [`local-storage`](/apps/product-sdk/local-storage.md), [`contracts`](/apps/product-sdk/contracts.md), and [`host`](/apps/product-sdk/host.md) — `createFakeSignerProvider`, `createFakeHostLocalStorage`, and the rest — so one import covers them.
 
 !!! note "Statement store fakes are imported separately"
     They are deliberately not re-exported here, for the same reason `statement-store` has no umbrella subpath: adding it would pull in a dependency the umbrella does not otherwise have, and could pin a different version than the one your Product installs. Import them from `@parity/product-sdk-statement-store/testing` instead.
 
-Individual packages also expose a dev path where it makes sense; for example, `SignerManager.connect('dev')` loads the standard Substrate dev accounts. See [Sign and Submit Transactions](/apps/build/sign-and-submit/#test-without-a-host).
+Individual packages also expose a dev path where it makes sense; for example, `SignerManager.connect('dev')` loads the standard Substrate dev accounts. See [Sign and Submit Transactions](/apps/build/sign-and-submit.md#test-without-a-host).
 
 ## Requirements
 
-- **Node.js**: version 20 or later — **except [`terminal`](/apps/product-sdk/terminal/) and [`auth`](/apps/product-sdk/auth/), which need 21 or later.** Those two open a WebSocket through the global `WebSocket` that Node 21 was the first to expose; on Node 18 or 20 they fail at connect time with `WebSocket is not defined`, not at install time.
+- **Node.js**: version 20 or later — **except [`terminal`](/apps/product-sdk/terminal.md) and [`auth`](/apps/product-sdk/auth.md), which need 21 or later.** Those two open a WebSocket through the global `WebSocket` that Node 21 was the first to expose; on Node 18 or 20 they fail at connect time with `WebSocket is not defined`, not at install time.
 - **Module format**: ESM only. The SDK does not ship CommonJS builds.
 - **TypeScript**: version 5.0 or later, if you consume the types.
 - **Runtime Host**: The umbrella package and host-only methods require a compatible Host at runtime. Use the SDK's testing fakes in automated tests.
@@ -203,7 +203,7 @@ Individual packages also expose a dev path where it makes sense; for example, `S
 
     Task-focused recipes, one per capability, that take you from an empty project to working Product code.
 
-    [:octicons-arrow-right-24: Open Build Guides](/apps/build/)
+    [:octicons-arrow-right-24: Open Build Guides](/apps/build/index.md)
 
 -   <span class="badge external">External</span> **Product SDK API Reference**
 
@@ -219,6 +219,6 @@ Individual packages also expose a dev path where it makes sense; for example, `S
 
     How the Product, SDK, Host, and on-chain infrastructure fit together.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/index.md)
 
 </div>

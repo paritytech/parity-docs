@@ -103,12 +103,12 @@ The easiest way to begin customizing your runtime is with a starter template. Th
 
 This section covers the most common customization patterns you'll encounter:
 
-- **[Add Existing Pallets to Your Runtime](/polkadot-sdk/customize-runtime/add-existing-pallets/)**: Integrate pre-built pallets from the FRAME library with minimal configuration.
+- **[Add Existing Pallets to Your Runtime](/polkadot-sdk/customize-runtime/add-existing-pallets.md)**: Integrate pre-built pallets from the FRAME library with minimal configuration.
 
-- **[Add Multiple Instances of a Pallet](/polkadot-sdk/customize-runtime/add-pallet-instances/)**: Run multiple instances of the same pallet with different configurations—useful for multi-token systems or parallel features.
+- **[Add Multiple Instances of a Pallet](/polkadot-sdk/customize-runtime/add-pallet-instances.md)**: Run multiple instances of the same pallet with different configurations—useful for multi-token systems or parallel features.
 
-- **[Add Smart Contract Functionality](/polkadot-sdk/customize-runtime/add-smart-contract-functionality/)**: Enable smart contract execution on your parachain using Contracts pallets.
+- **[Add Smart Contract Functionality](/polkadot-sdk/customize-runtime/add-smart-contract-functionality.md)**: Enable smart contract execution on your parachain using Contracts pallets.
 
-- **[Create Custom Pallets](/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet/)**: Build entirely custom pallets for features unique to your blockchain.
+- **[Create Custom Pallets](/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet.md)**: Build entirely custom pallets for features unique to your blockchain.
 
-- **[Test Your Runtime](/polkadot-sdk/customize-runtime/pallet-development/pallet-testing/)**: Unit test pallets and mock complete runtimes to ensure everything works correctly.
+- **[Test Your Runtime](/polkadot-sdk/customize-runtime/pallet-development/pallet-testing.md)**: Unit test pallets and mock complete runtimes to ensure everything works correctly.

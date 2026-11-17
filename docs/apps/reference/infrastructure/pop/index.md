@@ -19,18 +19,18 @@ This reference is organized into two halves: the mechanism (Ring-VRF, aliases, t
 
 ## The Mechanism
 
-[Ring-VRF and Aliases](/apps/reference/infrastructure/pop/ring-vrf-and-aliases/) is the conceptual deep dive: how the PoP cryptography produces unlinkable per-Product aliases, what `under_alias` is at the runtime layer, and the privacy property the whole stack delivers.
+[Ring-VRF and Aliases](/apps/reference/infrastructure/pop/ring-vrf-and-aliases.md) is the conceptual deep dive: how the PoP cryptography produces unlinkable per-Product aliases, what `under_alias` is at the runtime layer, and the privacy property the whole stack delivers.
 
 ## The Pallets
 
 | Pallet                                                                   | What It Covers                                                                                                                        |
 |--------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| [`pallet-people`](/apps/reference/infrastructure/pop/pallet-people/)     | Personhood registration, alias-issuing, and the `under_alias` runtime origin. The foundational pallet the rest of the set depends on. |
-| [`pallet-game`](/apps/reference/infrastructure/pop/pallet-game/)         | Personhood-gated on-chain games and randomized selection flows.                                                                       |
-| [`pallet-score`](/apps/reference/infrastructure/pop/pallet-score/)       | Personhood-anchored reputation and scoring primitives.                                                                                |
-| [`pallet-identity`](/apps/reference/infrastructure/pop/pallet-identity/) | The identity record on People Chain associated with a PoP account.                                                                    |
-| [`pallet-ubc`](/apps/reference/infrastructure/pop/pallet-ubc/)           | Universal Basic Capacity — the per-person on-chain capacity primitives.                                                               |
-| [`pallet-coinage`](/apps/reference/infrastructure/pop/pallet-coinage/)   | The personhood-aware peer-to-peer payment surface behind the App's Coinage feature.                                                   |
+| [`pallet-people`](/apps/reference/infrastructure/pop/pallet-people.md)     | Personhood registration, alias-issuing, and the `under_alias` runtime origin. The foundational pallet the rest of the set depends on. |
+| [`pallet-game`](/apps/reference/infrastructure/pop/pallet-game.md)         | Personhood-gated on-chain games and randomized selection flows.                                                                       |
+| [`pallet-score`](/apps/reference/infrastructure/pop/pallet-score.md)       | Personhood-anchored reputation and scoring primitives.                                                                                |
+| [`pallet-identity`](/apps/reference/infrastructure/pop/pallet-identity.md) | The identity record on People Chain associated with a PoP account.                                                                    |
+| [`pallet-ubc`](/apps/reference/infrastructure/pop/pallet-ubc.md)           | Universal Basic Capacity — the per-person on-chain capacity primitives.                                                               |
+| [`pallet-coinage`](/apps/reference/infrastructure/pop/pallet-coinage.md)   | The personhood-aware peer-to-peer payment surface behind the App's Coinage feature.                                                   |
 
 ## Where to Go Next
 
@@ -42,7 +42,7 @@ This reference is organized into two halves: the mechanism (Ring-VRF, aliases, t
 
     The cryptographic and runtime mechanism — how PoP produces unlinkable per-Product aliases, what `under_alias` is, and the privacy property the whole stack delivers.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/ring-vrf-and-aliases/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/ring-vrf-and-aliases.md)
 
 - <span class="badge learn">Learn</span> **pallet-people**
 
@@ -50,6 +50,6 @@ This reference is organized into two halves: the mechanism (Ring-VRF, aliases, t
 
     The foundational pallet of the PoP set — registration, alias-issuing, and the `under_alias` runtime origin.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/pallet-people/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/pallet-people.md)
 
 </div>

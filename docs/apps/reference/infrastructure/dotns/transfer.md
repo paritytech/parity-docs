@@ -10,7 +10,7 @@ categories: Apps, Reference
 
 A `.dot` name is owned by an account on Polkadot Hub. A transfer changes _who controls the name's record_: who can update where it points (its `contenthash`), sell it on, or set administrative fields. The name itself and what it resolves to stay the same.
 
-Not every name can move. dotNS hands out names by two routes, the paid public path and the personhood gateway (see [PopRules and Pricing](/apps/reference/infrastructure/dotns/poprules-pricing/)). A name registered on the public path is transferable. A gateway-issued name is permanently non-transferable: it identifies the person or device that earned it, and it stays with them. Read `isSoulbound(tokenId)` on the registrar before offering a transfer; a device name has no `tokenId`, so for a dotted shape ask `isPopIssued(label)` on the PoP controller instead.
+Not every name can move. dotNS hands out names by two routes, the paid public path and the personhood gateway (see [PopRules and Pricing](/apps/reference/infrastructure/dotns/poprules-pricing.md)). A name registered on the public path is transferable. A gateway-issued name is permanently non-transferable: it identifies the person or device that earned it, and it stays with them. Read `isSoulbound(tokenId)` on the registrar before offering a transfer; a device name has no `tokenId`, so for a dotted shape ask `isPopIssued(label)` on the PoP controller instead.
 
 This page documents the conceptual transfer flow and the rules dotNS enforces on it.
 
@@ -25,7 +25,7 @@ A transfer modifies one field of the name's record: the _owner_. Specifically:
 - The name itself — the dotted string the user sees — does not change.
 - The attached `contenthash` does not change. Users navigating to the name continue to see the same Product bundle they saw before, unless and until the new owner updates it.
 - The PoP tier the original owner used to qualify for the name does _not_ transfer with the name. The new owner inherits the name regardless of their own PoP tier, and any later `PopRules`-evaluated operation is checked against the new owner's status.
-- The deposit follows the name rather than the account that paid it. The escrow rebinds the refund recipient to the new holder, and nothing is refunded at transfer time. See [Escrow and Deposits](/apps/reference/infrastructure/dotns/escrow/).
+- The deposit follows the name rather than the account that paid it. The escrow rebinds the refund recipient to the new holder, and nothing is refunded at transfer time. See [Escrow and Deposits](/apps/reference/infrastructure/dotns/escrow.md).
 
 ## The Transfer Fee
 
@@ -60,7 +60,7 @@ A bare ERC-721 `transferFrom` does not route through the registry, so a name bou
 
     The resolution flow that turns a name into bytes — what a Host actually does between the user typing a `.dot` and a Product loading.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/dotns/name-mechanism/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/dotns/name-mechanism.md)
 
 - <span class="badge learn">Learn</span> **Architecture**
 
@@ -68,6 +68,6 @@ A bare ERC-721 `transferFrom` does not route through the registry, so a name bou
 
     The contract responsibilities split, including which contract handles the transfer dispatch.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/dotns/architecture/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/dotns/architecture.md)
 
 </div>

@@ -20,10 +20,10 @@ This guide demonstrates how to benchmark a pallet and incorporate the resulting 
 
 Before you begin, ensure you have:
 
-- A pallet to benchmark. If you followed the pallet development tutorials, you can use the counter pallet from the [Create a Pallet](/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet/) guide. You can also follow these steps to benchmark a custom pallet by updating the `benchmarking.rs` functions, and instances of usage in future steps, to calculate weights using your specific pallet functionality.
+- A pallet to benchmark. If you followed the pallet development tutorials, you can use the counter pallet from the [Create a Pallet](/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet.md) guide. You can also follow these steps to benchmark a custom pallet by updating the `benchmarking.rs` functions, and instances of usage in future steps, to calculate weights using your specific pallet functionality.
 - Basic understanding of [computational complexity](https://en.wikipedia.org/wiki/Computational_complexity).
 - Familiarity with [Rust's testing framework](https://doc.rust-lang.org/book/ch11-00-testing.html).
-- Familiarity setting up the Polkadot Omni Node and [Polkadot Chain Spec Builder](/tools/chain-spec-builder/). Refer to the [Set Up a Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/) guide for instructions if needed.
+- Familiarity setting up the Polkadot Omni Node and [Polkadot Chain Spec Builder](/tools/chain-spec-builder.md). Refer to the [Set Up a Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template.md) guide for instructions if needed.
 
 ## Create the Benchmarking Module
 

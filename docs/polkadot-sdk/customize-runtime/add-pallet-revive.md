@@ -9,7 +9,7 @@ categories: Polkadot SDK, Smart Contracts
 
 ## Introduction
 
-[`pallet-revive`](https://paritytech.github.io/polkadot-sdk/master/pallet_revive/index.html) adds smart contract support to a Polkadot SDK runtime, and the [Ethereum JSON-RPC adapter](/smart-contracts/eth-rpc-adapter/) (`eth-rpc`) lets Ethereum tools talk to a chain that runs it. For an overview of what the pallet provides, see [Add Smart Contract Functionality](/polkadot-sdk/customize-runtime/add-smart-contract-functionality/). This guide walks through the changes you make to your runtime:
+[`pallet-revive`](https://paritytech.github.io/polkadot-sdk/master/pallet_revive/index.html) adds smart contract support to a Polkadot SDK runtime, and the [Ethereum JSON-RPC adapter](/smart-contracts/eth-rpc-adapter.md) (`eth-rpc`) lets Ethereum tools talk to a chain that runs it. For an overview of what the pallet provides, see [Add Smart Contract Functionality](/polkadot-sdk/customize-runtime/add-smart-contract-functionality.md). This guide walks through the changes you make to your runtime:
 
 - Add the `pallet-revive` dependency.
 - Configure transaction fees in the way the pallet requires.
@@ -30,9 +30,9 @@ The code in this guide comes from runtimes in the Polkadot SDK at release `{{dep
 
 Before you begin, make sure you have:
 
-- [Rust and the Polkadot SDK dependencies](/polkadot-sdk/install-polkadot-sdk/) installed.
+- [Rust and the Polkadot SDK dependencies](/polkadot-sdk/install-polkadot-sdk.md) installed.
 - A FRAME runtime that already includes `frame_system`, `pallet_balances`, `pallet_timestamp`, and `pallet_transaction_payment`. `pallet-revive` uses these pallets for accounts, balances, timestamps, and fees.
-- Familiarity with adding a pallet to a runtime, as described in [Add an Existing Pallet to the Runtime](/polkadot-sdk/customize-runtime/add-existing-pallets/).
+- Familiarity with adding a pallet to a runtime, as described in [Add an Existing Pallet to the Runtime](/polkadot-sdk/customize-runtime/add-existing-pallets.md).
 
 ## Add the Dependency
 
@@ -319,7 +319,7 @@ impl pallet_revive::Config for Runtime {
 }
 ```
 
-Each precompile crate is a separate dependency of your runtime, and some, such as the vesting precompile, also require their own pallet in the runtime. The Asset Hub Westend runtime additionally registers `pallet_xcm_precompiles::XcmPrecompile` and the asset conversion precompile. For the precompiles that contracts can call, see [Precompiles](/smart-contracts/precompiles/).
+Each precompile crate is a separate dependency of your runtime, and some, such as the vesting precompile, also require their own pallet in the runtime. The Asset Hub Westend runtime additionally registers `pallet_xcm_precompiles::XcmPrecompile` and the asset conversion precompile. For the precompiles that contracts can call, see [Precompiles](/smart-contracts/precompiles/index.md).
 
 ## Configure Genesis
 
@@ -338,7 +338,7 @@ revive: ReviveConfig {
 ## Verify the Integration
 
 1. Build your runtime and node, then start the node locally with its development configuration.
-2. Build and start the `eth-rpc` adapter against your node, as described in [Run the Ethereum JSON-RPC Adapter](/smart-contracts/eth-rpc-adapter/).
+2. Build and start the `eth-rpc` adapter against your node, as described in [Run the Ethereum JSON-RPC Adapter](/smart-contracts/eth-rpc-adapter.md).
 3. Request the chain ID through the adapter:
 
     ```bash
@@ -359,7 +359,7 @@ revive: ReviveConfig {
 
     Build, run, and configure the `eth-rpc` adapter next to your node.
 
-    [:octicons-arrow-right-24: Get Started](/smart-contracts/eth-rpc-adapter/)
+    [:octicons-arrow-right-24: Get Started](/smart-contracts/eth-rpc-adapter.md)
 
 -   <span class="badge learn">Learn</span> __Smart Contracts Overview__
 
@@ -367,6 +367,6 @@ revive: ReviveConfig {
 
     Learn how `pallet-revive`, its execution backends, and its tooling fit together.
 
-    [:octicons-arrow-right-24: Learn More](/smart-contracts/overview/)
+    [:octicons-arrow-right-24: Learn More](/smart-contracts/overview.md)
 
 </div>

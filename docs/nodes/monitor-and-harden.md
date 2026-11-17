@@ -541,7 +541,7 @@ At startup, the node checks that the host supports the required kernel features:
     CONFIG_SECCOMP=y
     ```
 
-- **Filesystem sandboxing**: Either [Landlock](https://docs.kernel.org/userspace-api/landlock.html) (Linux 5.13 or later) or the ability to unshare the user namespace and change root. See [Validator Mode](/nodes/run-a-node/relay-chain/full-node/#validator-mode) for the Landlock check.
+- **Filesystem sandboxing**: Either [Landlock](https://docs.kernel.org/userspace-api/landlock.html) (Linux 5.13 or later) or the ability to unshare the user namespace and change root. See [Validator Mode](/nodes/run-a-node/relay-chain/full-node.md#validator-mode) for the Landlock check.
 
 If a required feature is missing, the node logs an error and refuses to start in validator mode. The `--insecure-validator-i-know-what-i-do` flag lets it run anyway, with the available features applied on a best-effort basis. Use it only when you understand the risk.
 

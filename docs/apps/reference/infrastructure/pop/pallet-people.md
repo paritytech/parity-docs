@@ -8,7 +8,7 @@ categories: Apps, Reference
 
 ## Introduction
 
-`pallet-people` is the foundation of [Polkadot's Proof of Personhood](/apps/reference/infrastructure/pop/) on the People Chain. It's the pallet that records who has completed personhood verification, issues the aliases other Products gate on, and exposes the `under_alias` runtime origin every other PoP pallet (game, score, identity, ubc, coinage) builds on top of.
+`pallet-people` is the foundation of [Polkadot's Proof of Personhood](/apps/reference/infrastructure/pop/index.md) on the People Chain. It's the pallet that records who has completed personhood verification, issues the aliases other Products gate on, and exposes the `under_alias` runtime origin every other PoP pallet (game, score, identity, ubc, coinage) builds on top of.
 
 Its responsibilities cluster into three:
 
@@ -47,7 +47,7 @@ This is the property that lets downstream pallets (game, score, identity, ubc) g
 
 ## Pallets That Depend on This One
 
-Every other pallet in the PoP set ultimately reads `pallet-people`'s ring root or accepts `under_alias` calls validated against it. The downstream pallets are listed in the [Proof of Personhood overview](/apps/reference/infrastructure/pop/); the foundational guarantee they all rely on is that this pallet's rings represent the current set of real persons on the network.
+Every other pallet in the PoP set ultimately reads `pallet-people`'s ring root or accepts `under_alias` calls validated against it. The downstream pallets are listed in the [Proof of Personhood overview](/apps/reference/infrastructure/pop/index.md); the foundational guarantee they all rely on is that this pallet's rings represent the current set of real persons on the network.
 
 ## Where to Go Next
 
@@ -59,6 +59,6 @@ Every other pallet in the PoP set ultimately reads `pallet-people`'s ring root o
 
     The cryptographic and runtime mechanism this pallet implements — what Ring-VRF is, what an alias is, how `under_alias` works at the runtime layer.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/ring-vrf-and-aliases/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/ring-vrf-and-aliases.md)
 
 </div>

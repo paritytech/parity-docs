@@ -10,7 +10,7 @@ categories: Basics, Interoperability, Polkadot SDK
 
 Polkadot’s unique value lies in its ability to enable interoperability between parachains and other blockchain systems. At the core of this capability is XCM (Cross-Consensus Messaging)—a flexible messaging format that facilitates communication and collaboration between independent consensus systems.
 
-With XCM, one chain can send intents to another one, fostering a more interconnected ecosystem. Although it was developed specifically for Polkadot, XCM is a universal format, usable in any blockchain environment. This guide provides an overview of XCM’s core principles, design, and functionality, alongside practical examples of its implementation. To set up XCM in your own parachain runtime, see [Configure XCM in Your Runtime](/polkadot-sdk/interoperability/configure-xcm/).
+With XCM, one chain can send intents to another one, fostering a more interconnected ecosystem. Although it was developed specifically for Polkadot, XCM is a universal format, usable in any blockchain environment. This guide provides an overview of XCM’s core principles, design, and functionality, alongside practical examples of its implementation. To set up XCM in your own parachain runtime, see [Configure XCM in Your Runtime](/polkadot-sdk/interoperability/configure-xcm.md).
 
 ## Messaging Format
 

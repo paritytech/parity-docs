@@ -84,7 +84,7 @@ flowchart LR
 
 The relay chain stores only the parablock header, not the full block. The complete block stays on the parachain network.
 
-Whether a parachain uses synchronous or [asynchronous backing](/polkadot-sdk/reference/consensus/async-backing/), all parablocks follow this pipeline. With asynchronous backing, several parablocks can be at different stages at the same time. With [elastic scaling](/polkadot-sdk/reference/consensus/elastic-scaling/), parablocks are also spread across more than one core.
+Whether a parachain uses synchronous or [asynchronous backing](/polkadot-sdk/reference/consensus/async-backing.md), all parablocks follow this pipeline. With asynchronous backing, several parablocks can be at different stages at the same time. With [elastic scaling](/polkadot-sdk/reference/consensus/elastic-scaling.md), parablocks are also spread across more than one core.
 
 ## Where to Go Next
 
@@ -96,7 +96,7 @@ Whether a parachain uses synchronous or [asynchronous backing](/polkadot-sdk/ref
 
     Configure the runtime constants and the lookahead collator that let collators build ahead of the relay chain.
 
-    [:octicons-arrow-right-24: Asynchronous Backing](/polkadot-sdk/reference/consensus/async-backing/)
+    [:octicons-arrow-right-24: Asynchronous Backing](/polkadot-sdk/reference/consensus/async-backing.md)
 
 -   <span class="badge learn">Learn</span> __Elastic Scaling__
 
@@ -104,7 +104,7 @@ Whether a parachain uses synchronous or [asynchronous backing](/polkadot-sdk/ref
 
     Configure the slot-based collator and the runtime to produce blocks on more than one core.
 
-    [:octicons-arrow-right-24: Elastic Scaling](/polkadot-sdk/reference/consensus/elastic-scaling/)
+    [:octicons-arrow-right-24: Elastic Scaling](/polkadot-sdk/reference/consensus/elastic-scaling.md)
 
 -   <span class="badge external">Learn</span> __Parachain Protocol__
 

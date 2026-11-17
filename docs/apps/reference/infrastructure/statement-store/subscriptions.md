@@ -26,7 +26,7 @@ A Product subscribing without `topic2` sees every statement published anywhere i
 The subscription delivers each matching statement to your callback decoded into your typed `T` and deduped by channel and content hash. The dedup means:
 
 - A statement that propagates to the Product's node via multiple gossip paths fires the callback only once.
-- A statement replaced on the same channel by a newer one (see [Channels](/apps/reference/infrastructure/statement-store/channels/)) fires the callback for the newer value only.
+- A statement replaced on the same channel by a newer one (see [Channels](/apps/reference/infrastructure/statement-store/channels.md)) fires the callback for the newer value only.
 
 ## Subscription Lifecycle
 
@@ -49,7 +49,7 @@ Some `subscribe` implementations return the current statement pool matching the 
 
     The last-write-wins primitive built on the same gossip layer — `topic2` filters by scope; channels filter by replacement semantics.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/statement-store/channels/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/statement-store/channels.md)
 
 - <span class="badge learn">Learn</span> **Lifecycle**
 
@@ -57,6 +57,6 @@ Some `subscribe` implementations return the current statement pool matching the 
 
     Where in the lifecycle a subscription attaches (step 4: gossip propagation) and what the dedup behavior protects against.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/statement-store/lifecycle/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/statement-store/lifecycle.md)
 
 </div>

@@ -6,7 +6,7 @@ categories: Basics, Smart Contracts
 
 # Smart Contracts Cookbook
 
-This page lists the hands-on tutorials for building and deploying smart contracts on chains running `pallet-revive`. The tutorials target the [Local Development Node](/smart-contracts/dev-environments/local-dev-node/) by default. For tutorials that use third-party Ethereum tools such as Remix, Foundry, and standard Hardhat, see the [smart contracts cookbook on developers.polkadot.com](https://developers.polkadot.com/smart-contracts/cookbook/).
+This page lists the hands-on tutorials for building and deploying smart contracts on chains running `pallet-revive`. The tutorials target the [Local Development Node](/smart-contracts/dev-environments/local-dev-node.md) by default. For tutorials that use third-party Ethereum tools such as Remix, Foundry, and standard Hardhat, see the [smart contracts cookbook on developers.polkadot.com](https://developers.polkadot.com/smart-contracts/cookbook/).
 
 <!-- INDEX TABLE START
 columns: [title, difficulty, tools, description]

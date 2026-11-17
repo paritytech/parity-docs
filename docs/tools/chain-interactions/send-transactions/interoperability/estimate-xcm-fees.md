@@ -11,7 +11,7 @@ categories: Interoperability, Chain Interactions
 
 When sending cross-chain messages, ensure that the transaction will succeed not only on the local chain but also on the destination chain and any intermediate chains. Doing so requires estimating the fees for each part of the operation before you submit it.
 
-Polkadot SDK runtimes expose two runtime APIs for this purpose: [`XcmPaymentApi`](https://paritytech.github.io/polkadot-sdk/master/xcm_runtime_apis/fees/trait.XcmPaymentApi.html) for weights and fees, and [`DryRunApi`](https://paritytech.github.io/polkadot-sdk/master/xcm_runtime_apis/dry_run/trait.DryRunApi.html) for simulating a call or message and capturing the messages it would forward. This page explains the fee mechanism and the sequence of runtime API calls that produces a complete estimate. The chains involved are configuration: the same steps work between any two chains whose runtimes expose these APIs, including a local pair of chains started with [Zombienet](/tools/zombienet/).
+Polkadot SDK runtimes expose two runtime APIs for this purpose: [`XcmPaymentApi`](https://paritytech.github.io/polkadot-sdk/master/xcm_runtime_apis/fees/trait.XcmPaymentApi.html) for weights and fees, and [`DryRunApi`](https://paritytech.github.io/polkadot-sdk/master/xcm_runtime_apis/dry_run/trait.DryRunApi.html) for simulating a call or message and capturing the messages it would forward. This page explains the fee mechanism and the sequence of runtime API calls that produces a complete estimate. The chains involved are configuration: the same steps work between any two chains whose runtimes expose these APIs, including a local pair of chains started with [Zombienet](/tools/zombienet.md).
 
 ## Fee Mechanism
 
@@ -36,7 +36,7 @@ The overall fees are `local_execution_fees` + `delivery_fees` + `remote_executio
 
 ## Runtime APIs for Fee Estimation
 
-The following runtime API methods provide the data you need. To expose them from your own runtime, see [Add the XCM Runtime APIs](/polkadot-sdk/interoperability/configure-xcm/#add-the-xcm-runtime-apis):
+The following runtime API methods provide the data you need. To expose them from your own runtime, see [Add the XCM Runtime APIs](/polkadot-sdk/interoperability/configure-xcm.md#add-the-xcm-runtime-apis):
 
 | API | Method | Purpose |
 |-----|--------|---------|
@@ -63,7 +63,7 @@ Asset locations are relative to the chain that interprets them. For example, the
 
 ## Call the APIs from a Client
 
-With [Subxt](/tools/subxt/), call these runtime APIs through the runtime API interface generated from each chain's metadata, or through dynamic runtime API calls. Create one client per chain, because steps 1 and 2 run against the origin chain and step 3 runs against the destination chain. For the general pattern, see [Runtime API Calls](/tools/chain-interactions/query-data/runtime-api-calls/) and the [Subxt runtime API documentation](https://docs.rs/subxt/{{ dependencies.crates.subxt.version }}/subxt/runtime_apis/index.html).
+With [Subxt](/tools/subxt.md), call these runtime APIs through the runtime API interface generated from each chain's metadata, or through dynamic runtime API calls. Create one client per chain, because steps 1 and 2 run against the origin chain and step 3 runs against the destination chain. For the general pattern, see [Runtime API Calls](/tools/chain-interactions/query-data/runtime-api-calls.md) and the [Subxt runtime API documentation](https://docs.rs/subxt/{{ dependencies.crates.subxt.version }}/subxt/runtime_apis/index.html).
 
 Third-party libraries can call the same APIs, for example [Polkadot API (PAPI)](https://developers.polkadot.com/reference/tools/papi/). For a complete PAPI walkthrough of a teleport between two live system chains, see [XCM Fee Estimation](https://developers.polkadot.com/chain-interactions/send-transactions/interoperability/estimate-xcm-fees/) on developers.polkadot.com.
 

@@ -9,7 +9,7 @@ categories: Smart Contracts, Protocol Internals
 
 ## Introduction
 
-pallet-revive runs contracts on two backends. REVM executes standard EVM bytecode and is the default choice for existing Solidity projects. PVM runs contracts compiled to PolkaVM with [`resolc`](/smart-contracts/resolc/); it is newer, and its tooling is still maturing.
+pallet-revive runs contracts on two backends. REVM executes standard EVM bytecode and is the default choice for existing Solidity projects. PVM runs contracts compiled to PolkaVM with [`resolc`](/smart-contracts/resolc.md); it is newer, and its tooling is still maturing.
 
 This page covers the PVM backend. While PVM strives for maximum Ethereum compatibility, several fundamental design decisions create necessary divergences from the [EVM](https://ethereum.org/developers/docs/evm/). These differences represent trade-offs that enhance performance and resource management while maintaining accessibility for Solidity developers.
 
@@ -49,7 +49,7 @@ However, this architectural difference becomes relevant in specific scenarios. T
 
 This primarily affects contracts using [`EXTCODECOPY`](https://www.evm.codes/?fork=cancun#3c) to manipulate code at runtime. A contract encounters problems specifically when it uses `EXTCODECOPY` to copy contract code into memory and then attempts to mutate it. This pattern is not possible in standard Solidity and requires dropping down to YUL assembly. An example would be a factory contract written in assembly that constructs and instantiates new contracts by generating code at runtime. Such contracts are rare in practice.
 
-PVM offers an alternative through its [on-chain constructors](https://paritytech.github.io/polkadot-sdk/master/pallet_revive/pallet/struct.Pallet.html#method.bare_instantiate), enabling contract instantiation without runtime code modification, making this pattern unnecessary. This architectural difference also impacts how contract deployment works more broadly, as described in [Contract Deployment](/smart-contracts/for-eth-devs/contract-deployment/).
+PVM offers an alternative through its [on-chain constructors](https://paritytech.github.io/polkadot-sdk/master/pallet_revive/pallet/struct.Pallet.html#method.bare_instantiate), enabling contract instantiation without runtime code modification, making this pattern unnecessary. This architectural difference also impacts how contract deployment works more broadly, as described in [Contract Deployment](/smart-contracts/for-eth-devs/contract-deployment.md).
 
 ### High-Level Architecture Comparison
 
@@ -83,7 +83,7 @@ Moving beyond Ethereum's single gas metric, PVM meters three distinct resources:
 - **`proof_size`**: Tracks state proof size for validator verification.
 - **`storage_deposit`**: Manages state bloat through a deposit system.
 
-All three resources can be limited at the transaction level, like gas on Ethereum. The [Ethereum JSON-RPC adapter (`eth-rpc`)](/smart-contracts/eth-rpc-adapter/) maps all three dimensions into the single gas dimension, ensuring everything behaves as expected for users.
+All three resources can be limited at the transaction level, like gas on Ethereum. The [Ethereum JSON-RPC adapter (`eth-rpc`)](/smart-contracts/eth-rpc-adapter.md) maps all three dimensions into the single gas dimension, ensuring everything behaves as expected for users.
 
 These resources can also be limited when making cross-contract calls, which is essential for security when interacting with untrusted contracts. However, Solidity only allows specifying `gas_limit` for cross-contract calls. The `gas_limit` is most similar to the `ref_time_limit` of pallet-revive, but `resolc` doesn't supply any imposed `gas_limit` for cross-contract calls for two key reasons:
 
@@ -164,7 +164,7 @@ This approach ensures that Ethereum contracts work without modifications while k
 
 ## Contract Deployment
 
-PVM separates code upload from contract instantiation, which changes how factory contracts and runtime code generation work. See [Contract Deployment](/smart-contracts/for-eth-devs/contract-deployment/) for the deployment models of both backends and how to adapt factory contracts. The specific behavior of contract creation opcodes is covered in [YUL Function Translation Differences](#yul-function-translation-differences).
+PVM separates code upload from contract instantiation, which changes how factory contracts and runtime code generation work. See [Contract Deployment](/smart-contracts/for-eth-devs/contract-deployment.md) for the deployment models of both backends and how to adapt factory contracts. The specific behavior of contract creation opcodes is covered in [YUL Function Translation Differences](#yul-function-translation-differences).
 
 ## Solidity and YUL IR Translation Incompatibilities
 

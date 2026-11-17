@@ -10,7 +10,7 @@ categories: Apps, Reference
 
 The [`playground` CLI](https://github.com/paritytech/playground-cli) builds a Polkadot Product, uploads it to the Bulletin Chain, registers a dotNS name for it, and optionally lists it in the Playground registry. The binary installs as `playground`, with `pg` as a short alias that runs the same binary, so `playground deploy` and `pg deploy` are interchangeable.
 
-This page lists every command and flag, the environments the CLI can target, the files it reads and writes, and how it reports failure. For a guided first deploy, see the [Quick Start](/apps/quick-start/). For a walkthrough of the interactive deploy prompts, see [Deploy Your App](/apps/deploy-your-app/).
+This page lists every command and flag, the environments the CLI can target, the files it reads and writes, and how it reports failure. For a guided first deploy, see the [Quick Start](/apps/quick-start.md). For a walkthrough of the interactive deploy prompts, see [Deploy Your App](/apps/deploy-your-app.md).
 
 !!! info "CLI version"
     This page targets playground-cli `v0.48.5`. The upstream README describes the CLI as a prototype reference implementation, and breaking changes between versions are expected. Run `pg <command> --help` on the version you installed, and compare with the [playground-cli releases](https://github.com/paritytech/playground-cli/releases) and [`CHANGELOG.md`](https://github.com/paritytech/playground-cli/blob/main/CHANGELOG.md) before scripting around a flag.
@@ -178,7 +178,7 @@ pg deploy [options]
 `deploy` runs in one of three modes:
 
 - **Non-interactive**: When you pass `-y`, or pass all of `--signer`, `--domain`, `--buildDir`, `--playground`, and either `--contracts` or `--no-contracts`, no prompts are shown.
-- **Interactive**: In a terminal, any value you did not pass is asked for in a prompt. [Deploy Your App](/apps/deploy-your-app/) walks through each prompt.
+- **Interactive**: In a terminal, any value you did not pass is asked for in a prompt. [Deploy Your App](/apps/deploy-your-app.md) walks through each prompt.
 - **Error**: Without a terminal (CI, a coding agent, or piped input) and without `-y` or the full flag set, the command exits with an error that names both options instead of prompting.
 
 For example, a CI deploy with the development signer looks like this:
@@ -247,7 +247,7 @@ pg decentralize --path ./dist --dot my-site
 
 ### `contract`
 
-Runs the [Contract Dependency Manager](https://github.com/paritytech/contract-dependency-manager) (CDM) pipeline bundled in the CLI. See [Add a Smart Contract to Your Product](/apps/build/deploy-a-smart-contract/) for the workflow and for when to run `cdm` directly.
+Runs the [Contract Dependency Manager](https://github.com/paritytech/contract-dependency-manager) (CDM) pipeline bundled in the CLI. See [Add a Smart Contract to Your Product](/apps/build/deploy-a-smart-contract.md) for the workflow and for when to run `cdm` directly.
 
 `pg contract deploy` builds, deploys, and registers the project's contracts. It signs with the paired session by default.
 
@@ -271,7 +271,7 @@ Runs the [Contract Dependency Manager](https://github.com/paritytech/contract-de
 
 ### `dotns`
 
-Runs the [dotNS CLI](/apps/reference/infrastructure/dotns/cli/) bundled in the binary (`@parity/dotns-cli` `0.8.0` in this release), passing every argument after `dotns` through unchanged and exiting with its exit code.
+Runs the [dotNS CLI](/apps/reference/infrastructure/dotns/cli.md) bundled in the binary (`@parity/dotns-cli` `0.8.0` in this release), passing every argument after `dotns` through unchanged and exiting with its exit code.
 
 ```bash
 pg dotns --help
@@ -340,7 +340,7 @@ An unsupported `--env` value always exits `1`, before the builder identity check
 
     Install the CLI, pair it with the Polkadot App, and deploy your first Product.
 
-    [:octicons-arrow-right-24: Quick Start](/apps/quick-start/)
+    [:octicons-arrow-right-24: Quick Start](/apps/quick-start.md)
 
 -   <span class="badge guide">Guide</span> **Deploy Your App**
 
@@ -348,7 +348,7 @@ An unsupported `--env` value always exits `1`, before the builder identity check
 
     Walk through each prompt of the interactive deploy and what it publishes.
 
-    [:octicons-arrow-right-24: Deploy Your App](/apps/deploy-your-app/)
+    [:octicons-arrow-right-24: Deploy Your App](/apps/deploy-your-app.md)
 
 -   <span class="badge guide">Guide</span> **Register a .dot Domain**
 
@@ -356,6 +356,6 @@ An unsupported `--env` value always exits `1`, before the builder identity check
 
     Choose a name your account can register and manage it after the deploy.
 
-    [:octicons-arrow-right-24: Register a .dot Domain](/apps/register-dot-domain/)
+    [:octicons-arrow-right-24: Register a .dot Domain](/apps/register-dot-domain.md)
 
 </div>

@@ -14,7 +14,7 @@ page_tests:
 
 ## Introduction
 
-This guide demonstrates how to compile a basic Solidity smart contract to PVM and deploy it to a local dev node running `pallet-revive`, using [Hardhat](https://hardhat.org/) with the [Hardhat Polkadot plugin](/smart-contracts/dev-environments/hardhat-polkadot/). Hardhat provides a development environment with built-in testing, debugging, and deployment capabilities.
+This guide demonstrates how to compile a basic Solidity smart contract to PVM and deploy it to a local dev node running `pallet-revive`, using [Hardhat](https://hardhat.org/) with the [Hardhat Polkadot plugin](/smart-contracts/dev-environments/hardhat-polkadot.md). Hardhat provides a development environment with built-in testing, debugging, and deployment capabilities.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ Before you begin, ensure you have the following:
 
 - A basic understanding of [Solidity](https://www.soliditylang.org/) programming.
 - [Node.js](https://nodejs.org/) version 22.5+ and [npm](https://www.npmjs.com/) version 10.9.0+.
-- The `revive-dev-node` and `eth-rpc` binaries, built as described in [Local Development Node](/smart-contracts/dev-environments/local-dev-node/) or downloaded from the [`hardhat-polkadot` releases](https://github.com/paritytech/hardhat-polkadot/releases).
+- The `revive-dev-node` and `eth-rpc` binaries, built as described in [Local Development Node](/smart-contracts/dev-environments/local-dev-node.md) or downloaded from the [`hardhat-polkadot` releases](https://github.com/paritytech/hardhat-polkadot/releases).
 
 ## Set Up Your Project
 
@@ -56,7 +56,7 @@ Before you begin, ensure you have the following:
 
 ## Configure Hardhat
 
-Open `hardhat.config.js` and update the binary paths to point at your `revive-dev-node` and `eth-rpc` binaries. For details on the plugin configuration, see [Hardhat Polkadot Plugin](/smart-contracts/dev-environments/hardhat-polkadot/#start-a-local-node).
+Open `hardhat.config.js` and update the binary paths to point at your `revive-dev-node` and `eth-rpc` binaries. For details on the plugin configuration, see [Hardhat Polkadot Plugin](/smart-contracts/dev-environments/hardhat-polkadot.md#start-a-local-node).
 
 ## Create the Contract
 
@@ -112,7 +112,7 @@ Deploy the contract to the local dev node as follows:
 
     When the deployment finishes, Ignition prints the address of the deployed `Storage` contract.
 
-You've deployed a basic smart contract to a local `pallet-revive` dev node using Hardhat. To deploy the same contract to a live network, see [Deploy to Any eth-rpc Endpoint](/smart-contracts/dev-environments/hardhat-polkadot/#deploy-to-any-eth-rpc-endpoint).
+You've deployed a basic smart contract to a local `pallet-revive` dev node using Hardhat. To deploy the same contract to a live network, see [Deploy to Any eth-rpc Endpoint](/smart-contracts/dev-environments/hardhat-polkadot.md#deploy-to-any-eth-rpc-endpoint).
 
 ## Where to Go Next
 
@@ -124,7 +124,7 @@ You've deployed a basic smart contract to a local `pallet-revive` dev node using
 
     Test contracts locally and deploy them to any chain running `pallet-revive`.
 
-    [:octicons-arrow-right-24: Get Started](/smart-contracts/dev-environments/hardhat-polkadot/)
+    [:octicons-arrow-right-24: Get Started](/smart-contracts/dev-environments/hardhat-polkadot.md)
 
 -   <span class="badge guide">Guide</span> __Deploy an ERC-20__
 

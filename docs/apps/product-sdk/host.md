@@ -17,7 +17,7 @@ Most Products reach these capabilities through the higher-level packages rather 
 - To detect whether your Product is running inside a Host container (`isInsideContainer`, `isInsideContainerSync`) and branch behavior accordingly.
 - To reach a Host capability directly: accounts and signers, payments, chat, push notifications, deep-link navigation, or feature and chain probes.
 - To get a PAPI-compatible provider that routes chain traffic through the Host (`getHostProvider`), or the native statement store transport (`getStatementStore`).
-- Prefer the higher-level packages where they exist: [Signer](/apps/product-sdk/signer/) for signing, [Local Storage](/apps/product-sdk/local-storage/) for key-value storage, and [Chain Client](/apps/product-sdk/chain-client/) for connections. Outside a container, every getter resolves to `null`.
+- Prefer the higher-level packages where they exist: [Signer](/apps/product-sdk/signer.md) for signing, [Local Storage](/apps/product-sdk/local-storage.md) for key-value storage, and [Chain Client](/apps/product-sdk/chain-client.md) for connections. Outside a container, every getter resolves to `null`.
 
 ## Core Concepts
 
@@ -70,7 +70,7 @@ if (accounts) {
 - Every getter returns `null` outside a Host container; this package has no standalone fallback.
 - The package mixes two error conventions: flat operations return a `Result`, while adapter methods throw. Handle both.
 - `getHostProvider` throws `ChainNotSupportedError` when the Host cannot serve a chain, rather than returning a working provider.
-- Host storage returns an empty string for a missing key; normalize it yourself, or use the [Local Storage](/apps/product-sdk/local-storage/) package, which does.
+- Host storage returns an empty string for a missing key; normalize it yourself, or use the [Local Storage](/apps/product-sdk/local-storage.md) package, which does.
 
 ## Where to Go Next
 
@@ -82,7 +82,7 @@ if (accounts) {
 
     How the Host mediates between your Product and Polkadot's infrastructure.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/index.md)
 
 -   <span class="badge learn">Learn</span> **Signer**
 
@@ -90,7 +90,7 @@ if (accounts) {
 
     The higher-level way to discover accounts and sign, built on this package.
 
-    [:octicons-arrow-right-24: Signer](/apps/product-sdk/signer/)
+    [:octicons-arrow-right-24: Signer](/apps/product-sdk/signer.md)
 
 -   <span class="badge external">External</span> **API Reference**
 

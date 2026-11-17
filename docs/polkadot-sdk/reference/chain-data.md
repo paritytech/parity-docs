@@ -18,7 +18,7 @@ For your custom chain to be useful to others, you'll need to provide a client ap
 
 ## Understand Metadata
 
-Polkadot SDK-based blockchain networks are designed to expose their runtime information, allowing developers to learn granular details regarding pallets, RPC calls, and runtime APIs. The metadata also exposes their related documentation. The chain's metadata is [SCALE-encoded](/polkadot-sdk/reference/data-encoding/), allowing for the development of browser-based, mobile, or desktop applications to support the chain's runtime upgrades. It is also possible to develop applications compatible with multiple Polkadot SDK-based chains simultaneously.
+Polkadot SDK-based blockchain networks are designed to expose their runtime information, allowing developers to learn granular details regarding pallets, RPC calls, and runtime APIs. The metadata also exposes their related documentation. The chain's metadata is [SCALE-encoded](/polkadot-sdk/reference/data-encoding.md), allowing for the development of browser-based, mobile, or desktop applications to support the chain's runtime upgrades. It is also possible to develop applications compatible with multiple Polkadot SDK-based chains simultaneously.
 
 ## Expose Runtime Information as Metadata
 
@@ -115,7 +115,7 @@ The constant `1635018093` is a magic number that identifies the file as a metada
 - The `pallets` section contains information about each pallet in the runtime.
 - The `extrinsic` section describes the type identifier and transaction format version that the runtime uses.
 
-Different extrinsic versions can have varying formats, especially when considering [signed transactions](/polkadot-sdk/reference/blocks-transactions-fees/transactions/#signed-transactions). 
+Different extrinsic versions can have varying formats, especially when considering [signed transactions](/polkadot-sdk/reference/blocks-transactions-fees/transactions.md#signed-transactions). 
 
 ### Pallets
 

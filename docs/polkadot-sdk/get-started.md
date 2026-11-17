@@ -14,8 +14,8 @@ Start by installing the Polkadot SDK toolchain, then set up the Polkadot SDK Par
 
 |                                             Tutorial                                             |       Tools        |                                Description                                 |
 |:------------------------------------------------------------------------------------------------:|:------------------:|:--------------------------------------------------------------------------:|
-|                    [Install Polkadot SDK](/polkadot-sdk/install-polkadot-sdk/)                     | Rust, Polkadot SDK | Install the toolchain and dependencies needed to build Polkadot SDK chains |
-| [Set Up the Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/) |    Polkadot SDK    |  Learn how to set up and run the Polkadot SDK Parachain Template locally   |
+|                    [Install Polkadot SDK](/polkadot-sdk/install-polkadot-sdk.md)                     | Rust, Polkadot SDK | Install the toolchain and dependencies needed to build Polkadot SDK chains |
+| [Set Up the Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template.md) |    Polkadot SDK    |  Learn how to set up and run the Polkadot SDK Parachain Template locally   |
 
 ## Build a Runtime
 
@@ -63,7 +63,7 @@ columns: [title, description, difficulty]
 
 ## Enable Interoperability
 
-Configure your parachain for cross-chain communication using Cross-Consensus Messaging (XCM). To set up the XCM executor, `pallet-xcm`, and message queues in your runtime, see [Configure XCM in Your Runtime](/polkadot-sdk/interoperability/configure-xcm/).
+Configure your parachain for cross-chain communication using Cross-Consensus Messaging (XCM). To set up the XCM executor, `pallet-xcm`, and message queues in your runtime, see [Configure XCM in Your Runtime](/polkadot-sdk/interoperability/configure-xcm.md).
 
 <!-- INDEX TABLE START
 dir: interoperability
@@ -74,7 +74,7 @@ columns: [title, description, difficulty]
 
 ## Reference
 
-The [Polkadot SDK reference](/polkadot-sdk/reference/) explains the concepts behind these tutorials, including the node and runtime architecture, accounts, blocks, transactions and fees, consensus, and data encoding.
+The [Polkadot SDK reference](/polkadot-sdk/reference/index.md) explains the concepts behind these tutorials, including the node and runtime architecture, accounts, blocks, transactions and fees, consensus, and data encoding.
 
 ## Deploy to a Live Network
 

@@ -8,7 +8,7 @@ categories: Apps, Reference
 
 ## Introduction
 
-This page is the pallet-level reference for the Bulletin Chain runtime: the extrinsics, storage items, and events of the `TransactionStorage` and `DataRenewal` pallets, how authorizations are granted, how data is retrieved over IPFS, and the size limits that apply to uploads. For the conceptual model (content addressing, permissionless reads, authorization-gated writes, and time-bound retention), start with the [Bulletin Chain overview](/apps/reference/infrastructure/bulletin-chain/).
+This page is the pallet-level reference for the Bulletin Chain runtime: the extrinsics, storage items, and events of the `TransactionStorage` and `DataRenewal` pallets, how authorizations are granted, how data is retrieved over IPFS, and the size limits that apply to uploads. For the conceptual model (content addressing, permissionless reads, authorization-gated writes, and time-bound retention), start with the [Bulletin Chain overview](/apps/reference/infrastructure/bulletin-chain/index.md).
 
 The runtime and pallets are developed in the [`paritytech/polkadot-bulletin-chain`](https://github.com/paritytech/polkadot-bulletin-chain) repository, which is planned to move to the [fellowship runtimes repository](https://github.com/polkadot-fellows/runtimes).
 
@@ -20,7 +20,7 @@ The Bulletin Chain has no token balances and charges no fees. Storage access is 
 - The number of transactions and bytes the account can use.
 - An expiration block after which the authorization becomes invalid, set a fixed number of blocks after the authorization is granted. The number of blocks is part of the runtime configuration.
 
-Each storage transaction decrements the remaining transaction count and byte allowance. Once the allocation is used up or the expiration block is reached, the account needs a new authorization. See [Authorization](/apps/reference/infrastructure/bulletin-chain/authorization/) for the full model.
+Each storage transaction decrements the remaining transaction count and byte allowance. Once the allocation is used up or the expiration block is reached, the account needs a new authorization. See [Authorization](/apps/reference/infrastructure/bulletin-chain/authorization.md) for the full model.
 
 ### Who Grants Authorization
 
@@ -46,7 +46,7 @@ Preimage authorization grants storage access to anyone who can provide the preim
 
 ### Capacity Planning
 
-When requesting authorization, estimate how many transactions and bytes you need. A single file of up to 2 MiB requires one transaction. For chunked uploads (files over 2 MiB), each chunk requires a separate transaction, plus one additional transaction for the manifest. With the Bulletin SDKs' default chunk size of 1 MiB, a 10 MiB file requires 11 transactions. See [Chunked Uploads](/apps/reference/infrastructure/bulletin-chain/chunked-upload/).
+When requesting authorization, estimate how many transactions and bytes you need. A single file of up to 2 MiB requires one transaction. For chunked uploads (files over 2 MiB), each chunk requires a separate transaction, plus one additional transaction for the manifest. With the Bulletin SDKs' default chunk size of 1 MiB, a 10 MiB file requires 11 transactions. See [Chunked Uploads](/apps/reference/infrastructure/bulletin-chain/chunked-upload.md).
 
 ## Transaction Storage Pallet
 
@@ -138,7 +138,7 @@ The pallet emits the following events:
 | `PermanentStorageUsedUpdated` | Emitted when the total of renewed storage changes |
 | `PermanentStorageNearCap` | Emitted when the total of renewed storage crosses 80% of `MaxPermanentStorageSize` |
 
-For the renewal lifecycle and its costs, see [Renewal](/apps/reference/infrastructure/bulletin-chain/renewal/).
+For the renewal lifecycle and its costs, see [Renewal](/apps/reference/infrastructure/bulletin-chain/renewal.md).
 
 ## IPFS Integration and Data Retrieval
 
@@ -155,7 +155,7 @@ The following retrieval methods are available:
 | IPFS HTTP gateway | Available where deployed | A gateway that fetches from Bulletin Chain collator nodes serves data at `<gateway>/ipfs/<CID>`, which can also be used programmatically with `fetch()` |
 | Smoldot light client | Planned | Fully decentralized retrieval through the `bitswap_block` RPC, enabling trustless data access without connecting to a full node |
 
-Inside a Host, the Product SDK reads data by CID through the Host instead; see [Store Data on Chain](/apps/build/store-data-on-chain/).
+Inside a Host, the Product SDK reads data by CID through the Host instead; see [Store Data on Chain](/apps/build/store-data-on-chain.md).
 
 !!! warning
     Generic public IPFS gateways like `ipfs.io` or `cloudflare-ipfs.com` are deprecated for Bulletin Chain retrieval. They do not reliably serve Bulletin Chain data and introduce external single points of failure.
@@ -192,7 +192,7 @@ The Bulletin SDKs chunk at most 64 MiB in a single operation. To store a larger 
 
     The Product-side how-to: setting up the storage client, storing and retrieving data, larger files, and renewal.
 
-    [:octicons-arrow-right-24: Get Started](/apps/build/store-data-on-chain/)
+    [:octicons-arrow-right-24: Get Started](/apps/build/store-data-on-chain.md)
 
 -   <span class="badge tutorial">Tutorial</span> __Store and Retrieve Data on the Bulletin Chain__
 
@@ -200,6 +200,6 @@ The Bulletin SDKs chunk at most 64 MiB in a single operation. To store a larger 
 
     Authorize an account, store an image, retrieve it, and manage renewals with PAPI.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/store-data/bulletin-chain/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/store-data/bulletin-chain.md)
 
 </div>

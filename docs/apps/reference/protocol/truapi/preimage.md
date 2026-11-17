@@ -20,7 +20,7 @@ The group covers:
 - **Looking up a preimage**: The Product subscribes to a key and receives the bytes once the Host finds them, or `null` until then.
 - **Lifecycle**: Preimages stay available until the referencing operation completes or until they are explicitly cleaned up, unlike statements, which expire after their time to live (TTL).
 
-In the [`@parity/truapi`](https://www.npmjs.com/package/@parity/truapi) client, the `preimage` domain exposes `submit` and `lookupSubscribe`. The Product SDK wraps them as a `PreimageManager` returned by `getPreimageManager()` in [`@parity/product-sdk-host`](/apps/product-sdk/host/), with `submit` and `lookup` methods.
+In the [`@parity/truapi`](https://www.npmjs.com/package/@parity/truapi) client, the `preimage` domain exposes `submit` and `lookupSubscribe`. The Product SDK wraps them as a `PreimageManager` returned by `getPreimageManager()` in [`@parity/product-sdk-host`](/apps/product-sdk/host.md), with `submit` and `lookup` methods.
 
 !!! warning "Provisional"
     Supported preimage size limits, the exact relationship with Bulletin Chain storage, and any preimage-availability hooks for runtime introspection are still being finalized.
@@ -41,9 +41,9 @@ A useful rule of thumb: if your Product would still be correct after the bytes e
 
 A Host implementing this method group must:
 
-- **Gate on `PreimageSubmit`**: Require the [`PreimageSubmit`](/apps/reference/protocol/truapi/permissions/#remote-operation-permissions) permission, prompting for it implicitly on the first submission if it has not been granted.
+- **Gate on `PreimageSubmit`**: Require the [`PreimageSubmit`](/apps/reference/protocol/truapi/permissions.md#remote-operation-permissions) permission, prompting for it implicitly on the first submission if it has not been granted.
 - **Return the key**: Resolve a successful submission to the preimage key, so the Product can reference it on chain.
-- **Keep the bytes reachable**: Make the submitted bytes available for lookup when the referencing operation executes. Hosts commonly store them on the [Bulletin Chain](/apps/reference/infrastructure/bulletin-chain/).
+- **Keep the bytes reachable**: Make the submitted bytes available for lookup when the referencing operation executes. Hosts commonly store them on the [Bulletin Chain](/apps/reference/infrastructure/bulletin-chain/index.md).
 - **Report lookups as they resolve**: Deliver `null` to a lookup subscription until the bytes are found, then deliver the bytes.
 
 ## Where to Go Next
@@ -56,7 +56,7 @@ A Host implementing this method group must:
 
     The other half of the Statement vs Preimage decision: content that belongs on the gossip-distributed signaling layer.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/statement-store/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/statement-store.md)
 
 - <span class="badge guide">Guide</span> **Store Data on Chain**
 
@@ -64,6 +64,6 @@ A Host implementing this method group must:
 
     The Product-side how-to for Bulletin Chain storage, which the preimage surface often uses underneath.
 
-    [:octicons-arrow-right-24: Get Started](/apps/build/store-data-on-chain/)
+    [:octicons-arrow-right-24: Get Started](/apps/build/store-data-on-chain.md)
 
 </div>

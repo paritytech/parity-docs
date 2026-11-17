@@ -8,17 +8,17 @@ categories: Apps
 
 ## Introduction
 
-This page lists the failures developers hit most while building and deploying Polkadot Products with the Product SDK and the [`playground` CLI](/apps/playground-cli/). Each entry states the cause and the resolution. For problems with a network or a service running on it, rather than with the software, see the note below for where to report them.
+This page lists the failures developers hit most while building and deploying Polkadot Products with the Product SDK and the [`playground` CLI](/apps/playground-cli.md). Each entry states the cause and the resolution. For problems with a network or a service running on it, rather than with the software, see the note below for where to report them.
 
 --8<-- 'text/apps/network-operators.md'
 
 ## `no allowance set for account`
 
-**Cause**: [Allowances](/apps/concepts/allowances/) are granted per account. This error means the account that actually signed the request has no allowance — almost always because the allowance was granted to a _different_ account than the one signing. Common ways this happens: you funded a dev key but signed with your phone account (or the reverse), or your Product derived its [per-app account](/apps/concepts/accounts/) under a different `productId` than the one you granted the allowance under (for example, running from `localhost`, which derives under `playground.dot`, versus a `<name>.dot.li` URL, which derives under `<name>.dot`).
+**Cause**: [Allowances](/apps/concepts/allowances.md) are granted per account. This error means the account that actually signed the request has no allowance — almost always because the allowance was granted to a _different_ account than the one signing. Common ways this happens: you funded a dev key but signed with your phone account (or the reverse), or your Product derived its [per-app account](/apps/concepts/accounts.md) under a different `productId` than the one you granted the allowance under (for example, running from `localhost`, which derives under `playground.dot`, versus a `<name>.dot.li` URL, which derives under `<name>.dot`).
 
 **Resolution**:
 
-1. Determine which account actually signs. A Product running inside a Host can read its product account address (SS58 and H160) through the [`signer`](/apps/product-sdk/signer/) package; surface it in your dev UI. See [Accounts and Signing](/apps/concepts/accounts/#see-the-signing-address).
+1. Determine which account actually signs. A Product running inside a Host can read its product account address (SS58 and H160) through the [`signer`](/apps/product-sdk/signer.md) package; surface it in your dev UI. See [Accounts and Signing](/apps/concepts/accounts.md#see-the-signing-address).
 2. Grant the allowance (or storage authorization) to _that_ account. See [Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/).
 3. Keep the `productId` consistent between where you request the allowance and where you sign, so the same account is used throughout.
 
@@ -26,19 +26,19 @@ This page lists the failures developers hit most while building and deploying Po
 
 **Cause**: Signing happens on your phone, and there is no push notification telling you the phone is waiting. After you trigger a signable action, the interface can look stuck while an approval prompt sits unopened in the Polkadot App.
 
-**Resolution**: Open the Polkadot App and check for a pending approval. Approve or reject it there, and the flow continues. When building, show a non-blocking "check your phone" state after any signable action rather than a spinner that looks frozen. See [Sign and Submit Transactions](/apps/build/sign-and-submit/) for designing around cross-device signing latency.
+**Resolution**: Open the Polkadot App and check for a pending approval. Approve or reject it there, and the flow continues. When building, show a non-blocking "check your phone" state after any signable action rather than a spinner that looks frozen. See [Sign and Submit Transactions](/apps/build/sign-and-submit.md) for designing around cross-device signing latency.
 
 ## The Deploy Pauses for About a Minute
 
-**Cause**: During `playground deploy`, there is a deliberate pause of about 60 seconds between reserving and finalizing your dotNS name. Most of that is the tooling waiting for the commitment to settle; the [dotNS](/apps/register-dot-domain/) contract itself requires only that the commitment be six seconds old. The two-step handshake prevents someone from front-running your name.
+**Cause**: During `playground deploy`, there is a deliberate pause of about 60 seconds between reserving and finalizing your dotNS name. Most of that is the tooling waiting for the commitment to settle; the [dotNS](/apps/register-dot-domain.md) contract itself requires only that the commitment be six seconds old. The two-step handshake prevents someone from front-running your name.
 
 **Resolution**: Wait. The deploy is not stuck. The next approval appears in the Polkadot App once the window elapses.
 
 ## Short Names Are Not for Sale
 
-**Cause**: The dotNS `PopRules` contract rejected the name because of its length. Which lengths are open on the registration path that `playground`, `pad`, and the dotNS CLI use is set by the configuration of the dotNS deployment you target; see the [PopRules and Pricing reference](/apps/reference/infrastructure/dotns/poprules-pricing/).
+**Cause**: The dotNS `PopRules` contract rejected the name because of its length. Which lengths are open on the registration path that `playground`, `pad`, and the dotNS CLI use is set by the configuration of the dotNS deployment you target; see the [PopRules and Pricing reference](/apps/reference/infrastructure/dotns/poprules-pricing.md).
 
-**Resolution**: Choose a longer name. On the configuration these guides target, names of nine characters or more register with no personhood check. See [Register a `.dot` Domain](/apps/register-dot-domain/#choose-a-name).
+**Resolution**: Choose a longer name. On the configuration these guides target, names of nine characters or more register with no personhood check. See [Register a `.dot` Domain](/apps/register-dot-domain.md#choose-a-name).
 
 ## The Name Is Already Registered
 
@@ -60,6 +60,6 @@ This page lists the failures developers hit most while building and deploying Po
 
 ## Connecting to a Chain Throws Outside a Host
 
-**Cause**: The [`chain-client`](/apps/product-sdk/chain-client/) routes every connection through the Host and has no direct-WebSocket fallback, so it throws when no Host provider is present.
+**Cause**: The [`chain-client`](/apps/product-sdk/chain-client.md) routes every connection through the Host and has no direct-WebSocket fallback, so it throws when no Host provider is present.
 
-**Resolution**: Run your Product inside a Host. For out-of-Host development and tests, use the SDK's testing fakes rather than a live connection. See [Read On-Chain Data](/apps/build/read-chain-state/).
+**Resolution**: Run your Product inside a Host. For out-of-Host development and tests, use the SDK's testing fakes rather than a live connection. See [Read On-Chain Data](/apps/build/read-chain-state.md).

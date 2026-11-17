@@ -13,7 +13,7 @@ page_badges:
 
 Polkadot SDK runtimes can let accounts pay transaction fees in an asset other than the chain's native token. This capability comes from the `ChargeAssetTxPayment` transaction extension, which adds an optional asset ID to each transaction. When the asset ID is set, the runtime charges the fee in that asset. When it is not set, the fee falls back to the native token.
 
-This tutorial explains how the extension works and uses [Subxt](/tools/subxt/), Parity's Rust library for Polkadot SDK-based chains, to send a native token transfer while paying the fee in another asset. The same pattern applies to any runtime that includes the extension.
+This tutorial explains how the extension works and uses [Subxt](/tools/subxt.md), Parity's Rust library for Polkadot SDK-based chains, to send a native token transfer while paying the fee in another asset. The same pattern applies to any runtime that includes the extension.
 
 Third-party client libraries also support this extension, for example [Polkadot API (PAPI)](https://developers.polkadot.com/reference/tools/papi/) and [Polkadot.js API](https://developers.polkadot.com/reference/tools/polkadot-js-api/). For a walkthrough on Polkadot Hub, see [Pay Transaction Fees with Different Tokens](https://developers.polkadot.com/chain-interactions/send-transactions/pay-fees-with-different-tokens/) on developers.polkadot.com.
 
@@ -160,7 +160,7 @@ The `ChargeAssetTxPayment` extension lets users and applications pay fees in the
 
     Learn how to build, sign, and submit transactions with Subxt.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/with-sdks/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/with-sdks.md)
 
 -   <span class="badge guide">Guide</span> __Calculate Transaction Fees__
 
@@ -168,6 +168,6 @@ The `ChargeAssetTxPayment` extension lets users and applications pay fees in the
 
     Understand how to estimate transaction fees before submitting.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/calculate-transaction-fees/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/calculate-transaction-fees.md)
 
 </div>

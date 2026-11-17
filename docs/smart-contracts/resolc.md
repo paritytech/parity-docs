@@ -13,7 +13,7 @@ categories: Smart Contracts, Tooling
 
 `revive` is the name of the overall compiler project, which includes the Yul parser, the code generation library, and other components. `resolc` is the compiler driver executable that combines those components into a single command-line tool. This page covers how to install `resolc`, compile contracts with it, and configure its PVM-specific settings.
 
-Contracts that target the REVM backend do not need `resolc`; they use standard `solc` output. Contracts compiled with `resolc` run on PVM, which behaves differently from the EVM in several areas, such as gas, memory, and contract creation. Read [EVM vs PVM](/smart-contracts/for-eth-devs/evm-vs-pvm/) before you deploy a contract compiled with `resolc`.
+Contracts that target the REVM backend do not need `resolc`; they use standard `solc` output. Contracts compiled with `resolc` run on PVM, which behaves differently from the EVM in several areas, such as gas, memory, and contract creation. Read [EVM vs PVM](/smart-contracts/for-eth-devs/evm-vs-pvm.md) before you deploy a contract compiled with `resolc`.
 
 ## How resolc Compiles Contracts
 
@@ -207,7 +207,7 @@ Set these sizes with `--heap-size` and `--stack-size`, both 131072 bytes by defa
 !!! warning
     A contract that uses more heap or stack memory than configured compiles without errors but reverts at runtime when it exceeds the limit. Test contracts with realistic inputs after changing these values.
 
-For the memory limits that `pallet-revive` enforces, see [Memory Management](/smart-contracts/for-eth-devs/evm-vs-pvm/#memory-management).
+For the memory limits that `pallet-revive` enforces, see [Memory Management](/smart-contracts/for-eth-devs/evm-vs-pvm.md#memory-management).
 
 ## Use Standard JSON Input and Output
 
@@ -275,7 +275,7 @@ For details, see the [CLI usage](https://paritytech.github.io/revive/user_guide/
 
 ## Use resolc with Development Tools
 
-- **Hardhat**: The [Hardhat Polkadot](/smart-contracts/dev-environments/hardhat-polkadot/) plugin compiles contracts with `resolc`.
+- **Hardhat**: The [Hardhat Polkadot](/smart-contracts/dev-environments/hardhat-polkadot.md) plugin compiles contracts with `resolc`.
 - **Foundry**: The [Parity Foundry fork](https://github.com/paritytech/foundry-polkadot) integrates `resolc`.
 - **Compiler Explorer**: `resolc` is available on [godbolt.org](https://godbolt.org/) for Solidity and Yul input.
 
@@ -289,7 +289,7 @@ For details, see the [CLI usage](https://paritytech.github.io/revive/user_guide/
 
     Review the behavioral differences between contracts compiled with `resolc` for PVM and contracts running on the EVM.
 
-    [:octicons-arrow-right-24: Reference](/smart-contracts/for-eth-devs/evm-vs-pvm/)
+    [:octicons-arrow-right-24: Reference](/smart-contracts/for-eth-devs/evm-vs-pvm.md)
 
 -   <span class="badge guide">Guide</span> __Hardhat Polkadot__
 
@@ -297,6 +297,6 @@ For details, see the [CLI usage](https://paritytech.github.io/revive/user_guide/
 
     Compile, test, and deploy PVM contracts with Hardhat and `resolc`.
 
-    [:octicons-arrow-right-24: Get Started](/smart-contracts/dev-environments/hardhat-polkadot/)
+    [:octicons-arrow-right-24: Get Started](/smart-contracts/dev-environments/hardhat-polkadot.md)
 
 </div>

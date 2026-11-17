@@ -8,7 +8,7 @@ categories: Apps, Reference
 
 ## Introduction
 
-[`@parity/dotns-cli`](https://www.npmjs.com/package/@parity/dotns-cli) is the command-line tool for interacting with the dotNS registry: registering a `.dot` name, updating its `contenthash`, and transferring ownership. It is the canonical tool for these operations; the higher-level [Register and Publish](/apps/deploy-your-app/) flow wraps it for the Polkadot Product setup track.
+[`@parity/dotns-cli`](https://www.npmjs.com/package/@parity/dotns-cli) is the command-line tool for interacting with the dotNS registry: registering a `.dot` name, updating its `contenthash`, and transferring ownership. It is the canonical tool for these operations; the higher-level [Register and Publish](/apps/deploy-your-app.md) flow wraps it for the Polkadot Product setup track.
 
 Names carry the TLD of the deployment the CLI targets, for example `.paseo` on the Paseo TestNet and `.dot` on Polkadot. Registrations do not expire and there is no renewal step. A name stays with its owner until it is transferred or deliberately released.
 
@@ -37,14 +37,14 @@ The CLI groups its commands into five families that map onto the dotNS contract 
 
     - Transfer a name that is not soulbound to another account.
     - Let another account manage and transfer a name on your behalf, and revoke that delegation.
-    - Release a name into escrow, inspect its position, redeem it, withdraw the deposit, and claim it. See [Escrow and Deposits](/apps/reference/infrastructure/dotns/escrow/).
+    - Release a name into escrow, inspect its position, redeem it, withdraw the deposit, and claim it. See [Escrow and Deposits](/apps/reference/infrastructure/dotns/escrow.md).
 
 - **Accounts**: Commands that manage the signing account and its on-chain mapping:
 
     - Manage the encrypted keystore the CLI signs with.
     - Show balances, map a Substrate account to its EVM address, and check a name's governance grant.
 
-- **Bulletin storage**: Commands that upload a Product bundle to the [Bulletin Chain](/apps/reference/infrastructure/bulletin-chain/) and track what was uploaded, producing the CID a `contenthash` points at.
+- **Bulletin storage**: Commands that upload a Product bundle to the [Bulletin Chain](/apps/reference/infrastructure/bulletin-chain/index.md) and track what was uploaded, producing the CID a `contenthash` points at.
 
 ## Installing and Authenticating
 
@@ -92,7 +92,7 @@ The table lists every command in `1.0.0`. Run `dotns <command> --help` for each 
 
     The higher-level publishing flow that wraps the most common CLI operations.
 
-    [:octicons-arrow-right-24: Get Started](/apps/deploy-your-app/)
+    [:octicons-arrow-right-24: Get Started](/apps/deploy-your-app.md)
     
 - <span class="badge learn">Learn</span> **MainNet Contracts**
 

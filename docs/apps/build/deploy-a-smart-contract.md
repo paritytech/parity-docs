@@ -10,21 +10,21 @@ page_badges:
 
 ## Introduction
 
-Some Products need on-chain logic and shared state that no single user owns: a leaderboard, a registry, an escrow, a game whose rules must be enforced for everyone. That is what a smart contract gives you. This guide adds a [PolkaVM](/get-started/glossary/#polkadot-virtual-machine-pvm) contract to a Product, deploys it to Asset Hub, and calls it from your frontend with the [`@parity/product-sdk-contracts`](https://paritytech.github.io/product-sdk/) package.
+Some Products need on-chain logic and shared state that no single user owns: a leaderboard, a registry, an escrow, a game whose rules must be enforced for everyone. That is what a smart contract gives you. This guide adds a [PolkaVM](/get-started/glossary.md#polkadot-virtual-machine-pvm) contract to a Product, deploys it to Asset Hub, and calls it from your frontend with the [`@parity/product-sdk-contracts`](https://paritytech.github.io/product-sdk/) package.
 
 Contracts on Polkadot run as PolkaVM bytecode through the `pallet-revive` runtime on Asset Hub. You author them in Rust or Solidity, and the [Contract Dependency Manager](https://github.com/paritytech/contract-dependency-manager) (`cdm`) builds, deploys, and registers them, the same tool the `playground` CLI runs for you when it deploys a Product that has contracts. `cdm` fills the role npm fills for libraries, but for on-chain contracts: it publishes each contract under a global name (`@scope/name`) in an on-chain registry, so your frontend resolves it by name instead of hardcoding an address.
 
 !!! note "Contracts are optional"
-    Many Products never need a contract. If all you need is durable content or real-time state between users, [Store Data on Chain](/apps/build/store-data-on-chain/) and [Publish and Subscribe to Off-Chain Data](/apps/build/pub-sub-off-chain-data/) cover those without any contract at all. Reach for a contract when you need enforced, shared on-chain logic.
+    Many Products never need a contract. If all you need is durable content or real-time state between users, [Store Data on Chain](/apps/build/store-data-on-chain.md) and [Publish and Subscribe to Off-Chain Data](/apps/build/pub-sub-off-chain-data.md) cover those without any contract at all. Reach for a contract when you need enforced, shared on-chain logic.
 
 !!! tip "Writing the contract itself"
-    This guide focuses on deploying a contract and calling it from a Product. For authoring PolkaVM contracts, toolchains, and libraries in depth, see the [Smart Contracts](/smart-contracts/overview/) section.
+    This guide focuses on deploying a contract and calling it from a Product. For authoring PolkaVM contracts, toolchains, and libraries in depth, see the [Smart Contracts](/smart-contracts/overview.md) section.
 
 ## Prerequisites
 
 Before starting, ensure you have:
 
-- A Polkadot Product project running locally. See [Set Up Your Project](/apps/build/#set-up-your-project).
+- A Polkadot Product project running locally. See [Set Up Your Project](/apps/build/index.md#set-up-your-project).
 - Funds and a Bulletin Chain storage authorization on the target network for the account `cdm` will sign with. See [Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/) on developers.polkadot.com. Deploying a contract writes to Asset Hub (fees) and publishes metadata to the Bulletin Chain (authorization). The next two sections cover installing `cdm` and creating that account.
 - A workstation rather than a browser alone. Contracts compile to PolkaVM, so unlike the frontend capabilities this step needs a local toolchain.
 
@@ -39,7 +39,7 @@ curl -fsSL https://raw.githubusercontent.com/paritytech/contract-dependency-mana
 Update an existing install with `cdm update`.
 
 !!! note "`cdm` and `playground` are separate installs"
-    Installing the [`playground` CLI](/apps/quick-start/) does not give you `cdm`, and vice versa. `playground deploy` shells out to its own bundled CDM pipeline for the contract step, but running `cdm` directly, as this guide does, needs the binary on your `PATH`.
+    Installing the [`playground` CLI](/apps/quick-start.md) does not give you `cdm`, and vice versa. `playground deploy` shells out to its own bundled CDM pipeline for the contract step, but running `cdm` directly, as this guide does, needs the binary on your `PATH`.
 
 ## Set Up a Signing Account
 
@@ -56,7 +56,7 @@ The mapping step is required before your first deploy: `pallet-revive` needs eac
 - **`cdm account set -n paseo --mnemonic "…"`**: Imports an existing account instead of generating one.
 
 !!! warning "Pick a `-n` preset for your target network"
-    Every `cdm` command takes a `-n` preset that selects the target network and its contract registry. This guide uses `-n paseo` (Paseo Next v2, the network the `playground` CLI deploys to); `-n devnet` targets Products Devnet. Each preset is a different chain with a different registry, so a contract deployed under one preset is not resolvable under the other. Fund the account on the network you actually target; see [Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/) on developers.polkadot.com, and see [Target Environments](/apps/troubleshooting/#introduction) for where to report network problems.
+    Every `cdm` command takes a `-n` preset that selects the target network and its contract registry. This guide uses `-n paseo` (Paseo Next v2, the network the `playground` CLI deploys to); `-n devnet` targets Products Devnet. Each preset is a different chain with a different registry, so a contract deployed under one preset is not resolvable under the other. Fund the account on the network you actually target; see [Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/) on developers.polkadot.com, and see [Target Environments](/apps/troubleshooting.md#introduction) for where to report network problems.
 
 ## How Contracts Fit Together
 
@@ -161,7 +161,7 @@ cdm deploy -n paseo --suri "INSERT_ACCOUNT_SECRET_URI"
     With no `--suri` and no `cdm init` account, `cdm` falls back to the shared `//Alice` development key. Because registration is first-writer-owns, deploying that way parks your contract name on a public key anyone can use. Pass `--suri` (or run `cdm init` first) so the name and contract belong to you.
 
 !!! note "Deploying alongside your Product"
-    When you deploy the whole Product with [`playground deploy`](/apps/deploy-your-app/), the CLI runs this contract step for you. At the `did you change your smart contracts?` prompt, choose `yes` and the CLI redeploys the contracts and rebuilds the site to match. Use `cdm deploy` directly when you want to iterate on the contract on its own, without redeploying the frontend.
+    When you deploy the whole Product with [`playground deploy`](/apps/deploy-your-app.md), the CLI runs this contract step for you. At the `did you change your smart contracts?` prompt, choose `yes` and the CLI redeploys the contracts and rebuilds the site to match. Use `cdm deploy` directly when you want to iterate on the contract on its own, without redeploying the frontend.
 
 ## Add the Contract to Your Manifest
 
@@ -251,7 +251,7 @@ async function useCounter() {
 }
 ```
 
-Passing `signerManager` to `fromClient` lets the manager resolve the current account at call time, so an account switch is picked up without rebuilding it. See [Sign and Submit Transactions](/apps/build/sign-and-submit/) for the signing setup in depth. Contract writes are signed by your Product-scoped account, so they route to the user's phone for approval like any other transaction. For the full frontend surface, see [Contracts](/apps/product-sdk/contracts/).
+Passing `signerManager` to `fromClient` lets the manager resolve the current account at call time, so an account switch is picked up without rebuilding it. See [Sign and Submit Transactions](/apps/build/sign-and-submit.md) for the signing setup in depth. Contract writes are signed by your Product-scoped account, so they route to the user's phone for approval like any other transaction. For the full frontend surface, see [Contracts](/apps/product-sdk/contracts.md).
 
 !!! note "query returns a status, tx returns a Result"
     `query` is a dry run that does not throw on a revert; branch on `.success`, because on failure `.value` holds the dispatch-error payload, not your data. `tx` returns a `Result`; check `.ok` before assuming the write landed.
@@ -281,7 +281,7 @@ None of that is automated. If your contract will hold state you cannot afford to
 
     Deploy the whole Product, contracts and frontend together, and register a `.dot` name with the `playground` CLI.
 
-    [:octicons-arrow-right-24: Deploy Your App](/apps/deploy-your-app/)
+    [:octicons-arrow-right-24: Deploy Your App](/apps/deploy-your-app.md)
 
 -   <span class="badge external">External</span> **Product SDK API Reference**
 

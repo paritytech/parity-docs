@@ -10,11 +10,11 @@ page_badges:
 
 ## Introduction
 
-A Polkadot Product runs inside a Host, which mediates chain access, storage, and signing through [TrUAPI](/apps/reference/protocol/truapi/). For local development, you run [Polkadot Desktop](https://developers.polkadot.com/reference/apps/hosts/polkadot-desktop/) as your Host and pair it with the [Polkadot App](https://developers.polkadot.com/reference/apps/hosts/polkadot-app/) on your phone, which holds your key and approves signing. This page covers starting Desktop and pairing the two with a QR scan. About 10 minutes.
+A Polkadot Product runs inside a Host, which mediates chain access, storage, and signing through [TrUAPI](/apps/reference/protocol/truapi/index.md). For local development, you run [Polkadot Desktop](https://developers.polkadot.com/reference/apps/hosts/polkadot-desktop/) as your Host and pair it with the [Polkadot App](https://developers.polkadot.com/reference/apps/hosts/polkadot-app/) on your phone, which holds your key and approves signing. This page covers starting Desktop and pairing the two with a QR scan. About 10 minutes.
 
 ![Diagram: Polkadot Desktop displays a QR code that the Polkadot App scans; the App returns a session public key, and from then on every signing request routes from Desktop to the App for signature.](/images/apps/get-started/install-and-pair/pairing-flow.svg){: .browser-extension}
 
-Polkadot Desktop never holds your private key. Your identity lives on the Polkadot [People Chain](/get-started/glossary/#people-chain), your private key lives in the Polkadot App, and Polkadot Desktop only ever holds a derived session public key: enough to identify you and construct per-Product accounts, but not enough to sign anything on its own.
+Polkadot Desktop never holds your private key. Your identity lives on the Polkadot [People Chain](/get-started/glossary.md#people-chain), your private key lives in the Polkadot App, and Polkadot Desktop only ever holds a derived session public key: enough to identify you and construct per-Product accounts, but not enough to sign anything on its own.
 
 ## Prerequisites
 
@@ -72,7 +72,7 @@ After pairing, your identity on the People Chain is bound to the Polkadot App fo
 
     Load your Product from `localhost` in Desktop, then add capabilities one recipe at a time.
 
-    [:octicons-arrow-right-24: Set Up Your Project](/apps/build/#set-up-your-project)
+    [:octicons-arrow-right-24: Set Up Your Project](/apps/build/index.md#set-up-your-project)
 
 -   <span class="badge external">External</span> **Get TestNet Tokens**
 

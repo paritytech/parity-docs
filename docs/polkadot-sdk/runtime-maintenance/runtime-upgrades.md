@@ -22,9 +22,9 @@ This tutorial guides you through preparing, submitting, and verifying a runtime 
 
 Complete the following before you begin:
 
-- Complete the [Install Polkadot SDK](/polkadot-sdk/install-polkadot-sdk/) guide.
-- Set up and run the parachain template by following the [Set Up the Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/) tutorial.
-- Create and integrate a custom pallet by following the [Create a Custom Pallet](/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet/) tutorial.
+- Complete the [Install Polkadot SDK](/polkadot-sdk/install-polkadot-sdk.md) guide.
+- Set up and run the parachain template by following the [Set Up the Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template.md) tutorial.
+- Create and integrate a custom pallet by following the [Create a Custom Pallet](/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet.md) tutorial.
 - Have a client that supports Polkadot SDK chains connected to your local node. This tutorial uses [Polkadot.js Apps](https://polkadot.js.org/apps/#/explorer), a community-maintained web interface, as an example.
 
 ## Start Your Chain
@@ -183,7 +183,7 @@ Test the new functionality:
 
     Learn how to write and manage storage migrations when runtime upgrades change how data is stored on-chain.
 
-    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/runtime-maintenance/storage-migrations/)
+    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/runtime-maintenance/storage-migrations.md)
 
 -   <span class="badge tutorial">Tutorial</span> __Create a Custom Pallet__
 
@@ -191,6 +191,6 @@ Test the new functionality:
 
     Learn how to build a custom pallet from scratch to add new functionality to your Polkadot SDK-based runtime.
 
-    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet/)
+    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet.md)
 
 </div>

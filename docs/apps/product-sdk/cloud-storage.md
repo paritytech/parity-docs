@@ -8,7 +8,7 @@ categories: Apps
 
 ## Introduction
 
-[`@parity/product-sdk-cloud-storage`](https://paritytech.github.io/product-sdk/api/cloud-storage/) stores content-addressed data on the [Bulletin Chain](/apps/reference/infrastructure/bulletin-chain/). You upload bytes and get back a CID; you fetch by CID from anywhere inside a Host. It handles chunking, DAG-PB manifests, and CID calculation for you, and adds network presets, container-only read helpers, and an authorization pre-flight.
+[`@parity/product-sdk-cloud-storage`](https://paritytech.github.io/product-sdk/api/cloud-storage/) stores content-addressed data on the [Bulletin Chain](/apps/reference/infrastructure/bulletin-chain/index.md). You upload bytes and get back a CID; you fetch by CID from anywhere inside a Host. It handles chunking, DAG-PB manifests, and CID calculation for you, and adds network presets, container-only read helpers, and an authorization pre-flight.
 
 Reach for it when your Product needs content that outlives a session and is addressable by anyone who has the CID: profile photos, published posts, file uploads, or full snapshots of app state.
 
@@ -77,7 +77,7 @@ if (!status.ok) {
 - Uploading requires a signer and an on-chain storage authorization for the account.
 - `authorizeAccount` is additive and is deliberately not retried; verify the result with `checkAuthorization` before retrying yourself.
 - `verifyStored` needs a known block; it does not scan the whole chain.
-- A chunked upload (large files) returns no `blockNumber` or `extrinsicIndex`, so it cannot be renewed by position. [Renew it by content hash](/apps/build/store-data-on-chain/#renew-long-lived-data) instead: the manifest CID and every chunk CID, which you can read from `StoreResult.chunks.chunkCids` or from the manifest's links.
+- A chunked upload (large files) returns no `blockNumber` or `extrinsicIndex`, so it cannot be renewed by position. [Renew it by content hash](/apps/build/store-data-on-chain.md#renew-long-lived-data) instead: the manifest CID and every chunk CID, which you can read from `StoreResult.chunks.chunkCids` or from the manifest's links.
 
 ## Where to Go Next
 
@@ -89,7 +89,7 @@ if (!status.ok) {
 
     The task-focused recipe: upload to the Bulletin Chain and fetch by CID, with chunking and authorization.
 
-    [:octicons-arrow-right-24: Store Data on Chain](/apps/build/store-data-on-chain/)
+    [:octicons-arrow-right-24: Store Data on Chain](/apps/build/store-data-on-chain.md)
 
 -   <span class="badge learn">Learn</span> **Statement Store**
 
@@ -97,7 +97,7 @@ if (!status.ok) {
 
     Pair durable storage with real-time signaling: announce a fresh CID to other users as it changes.
 
-    [:octicons-arrow-right-24: Statement Store](/apps/product-sdk/statement-store/)
+    [:octicons-arrow-right-24: Statement Store](/apps/product-sdk/statement-store.md)
 
 -   <span class="badge external">External</span> **API Reference**
 

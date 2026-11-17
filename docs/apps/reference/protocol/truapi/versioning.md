@@ -38,7 +38,7 @@ The intent is for the [`@parity/product-sdk`](https://www.npmjs.com/package/@par
 
 Under that model, when TrUAPI introduces a behavioral change the SDK would absorb it where it can; where it cannot (a removed method, an incompatible parameter), it would bump a major version, and a Product's upgrade path would be to update the SDK pin and re-test against the new TrUAPI surface.
 
-For the package map, see [Packages](/apps/reference/protocol/truapi/packages/).
+For the package map, see [Packages](/apps/reference/protocol/truapi/packages.md).
 
 ## Where to Go Next
 
@@ -50,6 +50,6 @@ For the package map, see [Packages](/apps/reference/protocol/truapi/packages/).
 
     Which SDK package wraps which TrUAPI method group, and how SDK versions map to TrUAPI versions.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/packages/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/packages.md)
 
 </div>

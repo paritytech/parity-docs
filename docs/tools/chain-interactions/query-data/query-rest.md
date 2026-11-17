@@ -9,19 +9,19 @@ categories: Chain Interactions, Tooling
 
 ## Introduction
 
-[Polkadot REST API](/tools/polkadot-rest-api/) is a REST service that Parity maintains for Polkadot SDK-based blockchains. It provides an HTTP interface to query account balances, asset information, block data, and other on-chain state without requiring WebSocket connections or SDK integrations. It replaces the deprecated Substrate API Sidecar and serves the same endpoints under the `/v1` prefix.
+[Polkadot REST API](/tools/polkadot-rest-api.md) is a REST service that Parity maintains for Polkadot SDK-based blockchains. It provides an HTTP interface to query account balances, asset information, block data, and other on-chain state without requiring WebSocket connections or SDK integrations. It replaces the deprecated Substrate API Sidecar and serves the same endpoints under the `/v1` prefix.
 
 This guide demonstrates how to query on-chain storage with `curl` against a Polkadot REST API instance that you run yourself, connected to a local development node.
 
 ## Prerequisites
 
 - [curl](https://curl.se/) or any HTTP client.
-- A local development node listening on `{{ networks.local.ws_url }}`, for example the parachain template node described in [Run the Node Locally](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/#run-the-node-locally).
+- A local development node listening on `{{ networks.local.ws_url }}`, for example the parachain template node described in [Run the Node Locally](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template.md#run-the-node-locally).
 - For the asset queries, a runtime that includes the [Assets pallet](https://paritytech.github.io/polkadot-sdk/master/pallet_assets/index.html) and at least one asset.
 
 ## Run Polkadot REST API Locally
 
-Install and start Polkadot REST API. For more installation and configuration options, see the [Polkadot REST API](/tools/polkadot-rest-api/) page.
+Install and start Polkadot REST API. For more installation and configuration options, see the [Polkadot REST API](/tools/polkadot-rest-api.md) page.
 
 === "Cargo"
 
@@ -252,7 +252,7 @@ Now that you understand how to query on-chain state with the REST API, explore t
 
     Use the Subxt Rust library for programmatic, type-safe access.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/query-sdks/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/query-sdks.md)
 
 -   __Runtime API Calls__
 
@@ -260,7 +260,7 @@ Now that you understand how to query on-chain state with the REST API, explore t
 
     Learn how to execute runtime APIs for specialized queries.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/runtime-api-calls/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/runtime-api-calls.md)
 
 -   __Send Transactions__
 
@@ -268,6 +268,6 @@ Now that you understand how to query on-chain state with the REST API, explore t
 
     Learn to construct and submit transactions.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/with-sdks/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/with-sdks.md)
 
 </div>

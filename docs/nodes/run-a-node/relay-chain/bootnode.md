@@ -16,7 +16,7 @@ This guide walks you through setting up a bootnode for any Polkadot SDK-based ch
 
 Before you start, you need to have the following prerequisites:
 
-- Verify a working node binary, such as `polkadot`, is available on your machine. See [Install and Run a Polkadot Node](/nodes/run-a-node/relay-chain/full-node/).
+- Verify a working node binary, such as `polkadot`, is available on your machine. See [Install and Run a Polkadot Node](/nodes/run-a-node/relay-chain/full-node.md).
 - Ensure you have nginx installed. See the [nginx installation guide](https://nginx.org/en/docs/install.html) if needed.
 - Set up a virtual private server (VPS) or other dedicated server.
 

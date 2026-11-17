@@ -21,7 +21,7 @@ The allowance is the spam-resistance mechanism. Without it, a misbehaving accoun
 
 Allowances are raised with the `increase_allowance_by` extrinsic, which is privileged, so a regular account cannot grant itself an allowance.
 
-Both limits are checked at validation (step 2 of the [lifecycle](/apps/reference/infrastructure/statement-store/lifecycle/)). A submission that would exceed either is rejected at the pallet boundary before it ever enters the gossip layer.
+Both limits are checked at validation (step 2 of the [lifecycle](/apps/reference/infrastructure/statement-store/lifecycle.md)). A submission that would exceed either is rejected at the pallet boundary before it ever enters the gossip layer.
 
 ## How the Limits Interact
 
@@ -50,7 +50,7 @@ To get a Statement Store allowance on TestNet, see [Get TestNet Tokens](https://
 
     Where allowance validation sits in the statement lifecycle (step 2 — before gossip propagation).
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/statement-store/lifecycle/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/statement-store/lifecycle.md)
 
 - <span class="badge guide">Guide</span> **Get TestNet Funds**
 

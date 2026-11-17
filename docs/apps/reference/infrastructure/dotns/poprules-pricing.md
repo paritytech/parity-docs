@@ -19,7 +19,7 @@ This page documents the bands, the two PoP tiers `PopRules` recognizes, and how 
 A name reaches an owner by one of three routes, and most of the rules on this page apply to only one of them:
 
 - **The public path**: The commit-reveal route the CLI and the deploy flow use. It charges the deposit, applies the length bands, rejects any label carrying a separator, and refuses a label shorter than three characters.
-- **The personhood gateway**: The route that issues device and personhood names. It charges no deposit and refuses a stem of five characters or fewer. Gateway names cannot be transferred; see [Name Transfers](/apps/reference/infrastructure/dotns/transfer/).
+- **The personhood gateway**: The route that issues device and personhood names. It charges no deposit and refuses a stem of five characters or fewer. Gateway names cannot be transferred; see [Name Transfers](/apps/reference/infrastructure/dotns/transfer.md).
 - **The reserved path**: The governance route that puts names of five characters or fewer into circulation. It mints an available label at no cost and skips the personhood check. It requires a governance-issued grant naming the label and the intended owner, or a Substrate Root origin.
 
 ## The Two Proof Tiers
@@ -45,7 +45,7 @@ A name's band comes from its length, counted as written. Digits count like any o
 
 The six-to-eight band is closed on the public path by default. `PopRules` admits it only while `shortNamesEnabled` is set, and only a Root origin can set it: governance on MainNet, and the sudo pallet on TestNets. The switch is off on Paseo, so a public registration of six to eight characters fails with `Short names are not for sale`, whatever tier the account holds. The gateway and the reserved path do not consult the switch, so personhood and device names of that length are still issued.
 
-The deposit is 10 units of the network's native token (10 PAS on Paseo), and it does not vary with the band. See [One Deployment per Network](/apps/reference/infrastructure/dotns/#one-deployment-per-network).
+The deposit is 10 units of the network's native token (10 PAS on Paseo), and it does not vary with the band. See [One Deployment per Network](/apps/reference/infrastructure/dotns/index.md#one-deployment-per-network).
 
 Only the public path charges it. A gateway-issued name carries no deposit, whatever its length, and holding personhood does not make a public registration free.
 
@@ -65,7 +65,7 @@ A gateway name is earned rather than bought, so it carries no deposit. Proving p
 
 Neither shape can be bought. A label with digits but no separator, like `joseph42`, is an ordinary public name.
 
-The shape alone does not prove personhood: provenance is not written into the characters. A client reads it from `isPopIssued(label)` on the PoP controller; see [Name Mechanism and Resolution](/apps/reference/infrastructure/dotns/name-mechanism/).
+The shape alone does not prove personhood: provenance is not written into the characters. A client reads it from `isPopIssued(label)` on the PoP controller; see [Name Mechanism and Resolution](/apps/reference/infrastructure/dotns/name-mechanism.md).
 
 ## Migrating a Device Name to a Personhood Name
 
@@ -93,5 +93,5 @@ Two clocks limit the reservation. `PopRules` holds the slot for at most 12 weeks
 
     The Product-side how-to that consumes the PopRules check: registering a `.dot` name and paying its deposit.
 
-    [:octicons-arrow-right-24: Get Started](/apps/deploy-your-app/)
+    [:octicons-arrow-right-24: Get Started](/apps/deploy-your-app.md)
 </div>

@@ -13,7 +13,7 @@ The Local Storage method group exposes the per-Product, per-device key-value sto
 Two properties matter for how this group is shaped:
 
 - **Per-Product namespacing**: The Host prepends every key with a prefix derived from the Product's `.dot` domain. A Product cannot accidentally read or write another Product's keys; the boundary is at the Host, not in the Product's code.
-- **Host-dependent backend**: The Host chooses the backend. An installed Host can use on-device storage; a browser-based Host uses browser-managed storage (see [Host Implementation Notes](/apps/reference/protocol/truapi/#host-implementation-notes)). The SDK abstracts the difference; the Product's code is identical either way.
+- **Host-dependent backend**: The Host chooses the backend. An installed Host can use on-device storage; a browser-based Host uses browser-managed storage (see [Host Implementation Notes](/apps/reference/protocol/truapi/index.md#host-implementation-notes)). The SDK abstracts the difference; the Product's code is identical either way.
 
 ## Conceptual Contract
 
@@ -38,6 +38,6 @@ Reads return `null` for absent keys; deletes are idempotent (no error on missing
 
     The Product-side how-to: initializing the store, reading and writing values, prefix namespaces, error handling.
 
-    [:octicons-arrow-right-24: Get Started](/apps/build/persist-data-locally/)
+    [:octicons-arrow-right-24: Get Started](/apps/build/persist-data-locally.md)
 
 </div>

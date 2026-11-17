@@ -10,7 +10,7 @@ categories: Apps, Reference
 
 The Statement Store method group lets a Product publish and subscribe to signed, gossip-distributed statements on the People Chain. The Statement Store itself, including the pallet, gossip layer, lifecycle, and validation rules, is a network-layer pub/sub primitive. It is short-lived, allowance-gated, and propagated peer-to-peer. This TrUAPI group is how a Product reaches it through the Host.
 
-The Product SDK wraps this surface as `StatementStoreClient` from [`@parity/product-sdk-statement-store`](https://www.npmjs.com/package/@parity/product-sdk-statement-store). For the conceptual model of what statements are good for (versus the Bulletin Chain or local storage), see [Where to Store Data](/apps/concepts/data-placement/).
+The Product SDK wraps this surface as `StatementStoreClient` from [`@parity/product-sdk-statement-store`](https://www.npmjs.com/package/@parity/product-sdk-statement-store). For the conceptual model of what statements are good for (versus the Bulletin Chain or local storage), see [Where to Store Data](/apps/concepts/data-placement.md).
 
 ## Conceptual Contract
 
@@ -32,14 +32,14 @@ A Product never talks to a Statement Store node directly. A Host implementing th
 - **Route the proof**: Every submission carries an authentication proof. The Host obtains it from the user's signer (for example, a paired phone) rather than letting the Product produce it, then submits the statement with the proof attached.
 - **Attach the account context**: Sign statements with the user's per-Product account, derived from the user's identity and scoped to the Product's `.dot` domain. The Product does not need to know the address up front.
 - **Enforce the topic scope**: Apply the per-Product primary topic at the Host boundary, so a misconfigured Product cannot publish into another Product's topic.
-- **Gate on `StatementSubmit`**: Require the [`StatementSubmit`](/apps/reference/protocol/truapi/permissions/#remote-operation-permissions) permission, prompting for it implicitly on the first submission if it has not been granted.
+- **Gate on `StatementSubmit`**: Require the [`StatementSubmit`](/apps/reference/protocol/truapi/permissions.md#remote-operation-permissions) permission, prompting for it implicitly on the first submission if it has not been granted.
 
 Some responsibilities stay with the Product, and a Host should not take them over:
 
 - **Product-chosen settings**: The secondary `topic2`, the channel, and the per-statement TTL come from the Product's call.
 - **Delivery semantics**: The Host does not add a queue, retry, or acknowledgment layer. Reliability is composed at the application layer.
 
-When content needs to outlive the statement TTL, the usual pattern is to store it on the Bulletin Chain and publish the resulting CID as the statement payload. The same per-Product account context applies to both layers. See the [Statement Store infrastructure reference](/apps/reference/infrastructure/statement-store/) for the composition.
+When content needs to outlive the statement TTL, the usual pattern is to store it on the Bulletin Chain and publish the resulting CID as the statement payload. The same per-Product account context applies to both layers. See the [Statement Store infrastructure reference](/apps/reference/infrastructure/statement-store/index.md) for the composition.
 
 ## Where to Go Next
 
@@ -51,7 +51,7 @@ When content needs to outlive the statement TTL, the usual pattern is to store i
 
     The Product-side how-to: setting up the client, subscribing, publishing typed statements, and using channels.
 
-    [:octicons-arrow-right-24: Get Started](/apps/build/pub-sub-off-chain-data/)
+    [:octicons-arrow-right-24: Get Started](/apps/build/pub-sub-off-chain-data.md)
 
 - <span class="badge learn">Learn</span> **Statement Store Infrastructure**
 
@@ -59,6 +59,6 @@ When content needs to outlive the statement TTL, the usual pattern is to store i
 
     The pallet, gossip layer, lifecycle, and validation rules behind this method group.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/statement-store/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/statement-store/index.md)
 
 </div>

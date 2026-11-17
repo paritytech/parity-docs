@@ -16,7 +16,7 @@ The Product SDK wraps this as `tx.signAndSubmit(signer)` on a Polkadot API (PAPI
 
 A signing operation involves three roles:
 
-- **Product**: Builds the transaction and calls `signAndSubmit` through [`@parity/product-sdk-signer`](/apps/product-sdk/signer/) or directly through TrUAPI.
+- **Product**: Builds the transaction and calls `signAndSubmit` through [`@parity/product-sdk-signer`](/apps/product-sdk/signer.md) or directly through TrUAPI.
 - **Host**: Receives the encoded payload, shows the user a signing prompt, forwards the request to the signer, and broadcasts the signed extrinsic.
 - **Signer**: Holds the key, asks the user to approve or reject, and returns the signature. The signer can be a separate paired device, such as the Polkadot App on the user's phone, or part of the Host itself.
 
@@ -48,7 +48,7 @@ In the [`@parity/truapi`](https://www.npmjs.com/package/@parity/truapi) client, 
 
 ## `ChainSubmit` Grants the Ability to Ask
 
-The [`ChainSubmit`](/apps/reference/protocol/truapi/permissions/#remote-operation-permissions) permission does not authorize the Host to sign on the user's behalf. It authorizes the Product to _request_ that a signing prompt be shown:
+The [`ChainSubmit`](/apps/reference/protocol/truapi/permissions.md#remote-operation-permissions) permission does not authorize the Host to sign on the user's behalf. It authorizes the Product to _request_ that a signing prompt be shown:
 
 - Without `ChainSubmit`, the Product cannot ask. The Host rejects the signing request with `PermissionDenied`.
 - With `ChainSubmit`, the Product can ask, and each request is confirmed by the user individually. Two consecutive transactions produce two prompts.
@@ -59,7 +59,7 @@ The `signer` package requests `ChainSubmit` automatically after `connect()`.
 
 Per-request confirmation is the default. The only exception the protocol defines is the `AutoSigning` resource. A Product requests it through resource allocation (the `requestResourceAllocation` callback in the `signer` package's `onConnect` hook), and the user must grant it. When an `AutoSigning` grant covers an account, the Host serves `createTransaction`, `signPayload`, `signRaw`, and `signVrf` for that account without a per-call confirmation. Without the grant, every call is confirmed by the user.
 
-The allocation resolves to `Allocated`, `Rejected`, or `NotAvailable`. See [Allowances and Permissions](/apps/concepts/allowances/) for its scope and lifetime.
+The allocation resolves to `Allocated`, `Rejected`, or `NotAvailable`. See [Allowances and Permissions](/apps/concepts/allowances.md) for its scope and lifetime.
 
 !!! warning "Provisional"
     The guides report that both the Android and iOS wallets return `NotAvailable` for `AutoSigning` today, and this reference cannot confirm that any Host grants it. Treat per-request signing as the real path and do not build a flow that depends on `AutoSigning` being granted.
@@ -71,7 +71,7 @@ Signing is asynchronous, because the user may approve on another device. Two fai
 - **User rejection** (`HostRejectedError`): The user dismissed the prompt. Treat it like a cancellation: return the user to a stable UI state and let them retry.
 - **Session timeout** (`TimeoutError`): The signing session expired before the user responded. Handle it the same way as a rejection.
 
-Do not freeze your interface during a signing request. Show a non-blocking pending state, and make your retry path idempotent in case the user attempts the same action twice. For the `try`/`catch` pattern, see [Sign and Submit Transactions](/apps/build/sign-and-submit/).
+Do not freeze your interface during a signing request. Show a non-blocking pending state, and make your retry path idempotent in case the user attempts the same action twice. For the `try`/`catch` pattern, see [Sign and Submit Transactions](/apps/build/sign-and-submit.md).
 
 ## Host Requirements
 
@@ -97,7 +97,7 @@ A Host implementing this method group must:
 
     The Product-side how-to with the `try`/`catch` patterns for `HostRejectedError` and `TimeoutError`.
 
-    [:octicons-arrow-right-24: Get Started](/apps/build/sign-and-submit/)
+    [:octicons-arrow-right-24: Get Started](/apps/build/sign-and-submit.md)
 
 - <span class="badge learn">Learn</span> **Permissions**
 
@@ -105,6 +105,6 @@ A Host implementing this method group must:
 
     The `ChainSubmit` permission and the rest of the permission set the Host enforces.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/permissions/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/permissions.md)
 
 </div>

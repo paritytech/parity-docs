@@ -21,14 +21,14 @@ Runtimes expose additional APIs for the pallets they include. For example, a run
 
 ## Call Runtime APIs with Subxt
 
-This section uses [Subxt](/tools/subxt/), Parity's Rust library for Polkadot SDK-based chains, to call runtime APIs on a local development node. The example queries an account nonce and the supported metadata versions.
+This section uses [Subxt](/tools/subxt.md), Parity's Rust library for Polkadot SDK-based chains, to call runtime APIs on a local development node. The example queries an account nonce and the supported metadata versions.
 
 The same runtime APIs can be called from third-party client libraries, for example [Polkadot API (PAPI)](https://developers.polkadot.com/reference/tools/papi/), [Dedot](https://developers.polkadot.com/reference/tools/dedot/), [Polkadot.js API](https://developers.polkadot.com/reference/tools/polkadot-js-api/), and [Python Substrate Interface](https://developers.polkadot.com/reference/tools/py-substrate-interface/).
 
 ### Prerequisites
 
 - [Rust](https://rustup.rs/) toolchain (latest stable) and Cargo.
-- A local development node listening on `{{ networks.local.ws_url }}`, for example the parachain template node described in [Run the Node Locally](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/#run-the-node-locally).
+- A local development node listening on `{{ networks.local.ws_url }}`, for example the parachain template node described in [Run the Node Locally](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template.md#run-the-node-locally).
 
 ### Set Up the Project
 
@@ -112,7 +112,7 @@ Now that you understand how to call runtime APIs to execute logic within the run
 
     Use the Subxt Rust library to query storage.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/query-sdks/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/query-sdks.md)
 
 -   __Query On-Chain State with Polkadot REST API__
 
@@ -120,7 +120,7 @@ Now that you understand how to call runtime APIs to execute logic within the run
 
     Learn how to query on-chain state using the Polkadot REST API.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/query-rest/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/query-rest.md)
 
 -   __Send Transactions__
 
@@ -128,6 +128,6 @@ Now that you understand how to call runtime APIs to execute logic within the run
 
     Learn to construct and submit transactions.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/with-sdks/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/with-sdks.md)
 
 </div>

@@ -15,21 +15,21 @@ A Product developer rarely calls TrUAPI directly. The [`@parity/product-sdk`](ht
 
 ## Package Map
 
-Each row links to the Product SDK page for the package that wraps the group. Groups without a dedicated capability package are reached through the [`host`](/apps/product-sdk/host/) package, the foundation the other packages build on.
+Each row links to the Product SDK page for the package that wraps the group. Groups without a dedicated capability package are reached through the [`host`](/apps/product-sdk/host.md) package, the foundation the other packages build on.
 
 | TrUAPI Method Group | SDK Package |
 |:-------------------:|:-----------:|
-| [TrUAPI Calls](/apps/reference/protocol/truapi/calls/) | [`@parity/product-sdk`](/apps/product-sdk/) (core, used implicitly by every package) |
-| [Permissions](/apps/reference/protocol/truapi/permissions/) | [`@parity/product-sdk-host`](/apps/product-sdk/host/) (`requestPermission`, `requestDevicePermission`); [`@parity/product-sdk-signer`](/apps/product-sdk/signer/) requests `ChainSubmit` on connect |
-| [Local Storage](/apps/reference/protocol/truapi/local-storage/) | [`@parity/product-sdk-local-storage`](/apps/product-sdk/local-storage/) |
-| [Account Management](/apps/reference/protocol/truapi/account-management/) | [`@parity/product-sdk-signer`](/apps/product-sdk/signer/) and [`@parity/product-sdk-address`](https://paritytech.github.io/product-sdk/api/address/) |
-| [Signing](/apps/reference/protocol/truapi/signing/) | [`@parity/product-sdk-signer`](/apps/product-sdk/signer/) and [`@parity/product-sdk-tx`](/apps/product-sdk/tx/) |
-| [Chat](/apps/reference/protocol/truapi/chat/) | [`@parity/product-sdk-host`](/apps/product-sdk/host/) (`getChatManager`) |
-| [Statement Store](/apps/reference/protocol/truapi/statement-store/) | [`@parity/product-sdk-statement-store`](/apps/product-sdk/statement-store/) |
-| [Preimage](/apps/reference/protocol/truapi/preimage/) | [`@parity/product-sdk-host`](/apps/product-sdk/host/) (`getPreimageManager`) |
-| [Chain Interaction](/apps/reference/protocol/truapi/chain-interaction/) | [`@parity/product-sdk-chain-client`](/apps/product-sdk/chain-client/) and [`polkadot-api`](https://www.npmjs.com/package/polkadot-api) (PAPI) |
-| [Payment](/apps/reference/protocol/truapi/payment/) | [`@parity/product-sdk-tx`](/apps/product-sdk/tx/) and [`@parity/product-sdk-utils`](https://paritytech.github.io/product-sdk/api/utils/); [`@parity/product-sdk-host`](/apps/product-sdk/host/) (`getPaymentManager`) |
-| [Entropy](/apps/reference/protocol/truapi/entropy/) | [`@parity/product-sdk-host`](/apps/product-sdk/host/) |
+| [TrUAPI Calls](/apps/reference/protocol/truapi/calls.md) | [`@parity/product-sdk`](/apps/product-sdk/index.md) (core, used implicitly by every package) |
+| [Permissions](/apps/reference/protocol/truapi/permissions.md) | [`@parity/product-sdk-host`](/apps/product-sdk/host.md) (`requestPermission`, `requestDevicePermission`); [`@parity/product-sdk-signer`](/apps/product-sdk/signer.md) requests `ChainSubmit` on connect |
+| [Local Storage](/apps/reference/protocol/truapi/local-storage.md) | [`@parity/product-sdk-local-storage`](/apps/product-sdk/local-storage.md) |
+| [Account Management](/apps/reference/protocol/truapi/account-management.md) | [`@parity/product-sdk-signer`](/apps/product-sdk/signer.md) and [`@parity/product-sdk-address`](https://paritytech.github.io/product-sdk/api/address/) |
+| [Signing](/apps/reference/protocol/truapi/signing.md) | [`@parity/product-sdk-signer`](/apps/product-sdk/signer.md) and [`@parity/product-sdk-tx`](/apps/product-sdk/tx.md) |
+| [Chat](/apps/reference/protocol/truapi/chat.md) | [`@parity/product-sdk-host`](/apps/product-sdk/host.md) (`getChatManager`) |
+| [Statement Store](/apps/reference/protocol/truapi/statement-store.md) | [`@parity/product-sdk-statement-store`](/apps/product-sdk/statement-store.md) |
+| [Preimage](/apps/reference/protocol/truapi/preimage.md) | [`@parity/product-sdk-host`](/apps/product-sdk/host.md) (`getPreimageManager`) |
+| [Chain Interaction](/apps/reference/protocol/truapi/chain-interaction.md) | [`@parity/product-sdk-chain-client`](/apps/product-sdk/chain-client.md) and [`polkadot-api`](https://www.npmjs.com/package/polkadot-api) (PAPI) |
+| [Payment](/apps/reference/protocol/truapi/payment.md) | [`@parity/product-sdk-tx`](/apps/product-sdk/tx.md) and [`@parity/product-sdk-utils`](https://paritytech.github.io/product-sdk/api/utils/); [`@parity/product-sdk-host`](/apps/product-sdk/host.md) (`getPaymentManager`) |
+| [Entropy](/apps/reference/protocol/truapi/entropy.md) | [`@parity/product-sdk-host`](/apps/product-sdk/host.md) |
 
 `address` and `utils` are supporting packages without their own Product SDK page; their links go to the generated API reference.
 
@@ -51,6 +51,6 @@ A useful way to read the package map is by where the package executes:
 
     How package versions map to TrUAPI protocol versions.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/versioning/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/versioning.md)
 
 </div>

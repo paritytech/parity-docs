@@ -35,6 +35,6 @@ After the lifecycle handshake completes, the Product is in steady state: every o
 
     The next layer after the lifecycle handshake: what capabilities the Host will let the Product actually invoke, based on declared and granted permissions.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/permissions/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/permissions.md)
 
 </div>

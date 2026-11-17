@@ -10,7 +10,7 @@ categories: Protocol Internals
 
 Elastic scaling lets a parachain use more than one relay chain core at the same time. Instead of one parachain block per relay chain block, collators produce several blocks per relay chain block, and the relay chain backs and includes them on different cores in parallel. More cores give a parachain more total execution time, more data availability bandwidth, and shorter block times.
 
-Elastic scaling builds on [asynchronous backing](/polkadot-sdk/reference/consensus/async-backing/). On the Polkadot SDK side, it requires the slot-based collator and a few runtime settings, described on this page. The parachain must also be assigned the extra cores on the relay chain; core assignment is a network process covered by [Agile Coretime](https://developers.polkadot.com/reference/polkadot-hub/consensus-and-security/agile-coretime/) on the Polkadot developer site. The SDK does not acquire cores automatically.
+Elastic scaling builds on [asynchronous backing](/polkadot-sdk/reference/consensus/async-backing.md). On the Polkadot SDK side, it requires the slot-based collator and a few runtime settings, described on this page. The parachain must also be assigned the extra cores on the relay chain; core assignment is a network process covered by [Agile Coretime](https://developers.polkadot.com/reference/polkadot-hub/consensus-and-security/agile-coretime/) on the Polkadot developer site. The SDK does not acquire cores automatically.
 
 For the full upgrade procedure, see the [Enable Elastic Scaling for a Parachain](https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/guides/enable_elastic_scaling/index.html) guide in the Polkadot SDK Docs, which this page follows.
 
@@ -110,7 +110,7 @@ The following table, from the slot-based collator's documentation, shows product
 
 ## Runtime Configuration
 
-The runtime settings below go beyond the [async backing configuration](/polkadot-sdk/reference/consensus/async-backing/#runtime-configuration) used by the parachain template.
+The runtime settings below go beyond the [async backing configuration](/polkadot-sdk/reference/consensus/async-backing.md#runtime-configuration) used by the parachain template.
 
 ### Relay Parent Offset
 
@@ -172,7 +172,7 @@ The Polkadot SDK guide notes the following limitations:
 
     See how the Cumulus collator builds and submits blocks and how the inclusion pipeline works.
 
-    [:octicons-arrow-right-24: Parachain Consensus](/polkadot-sdk/reference/consensus/)
+    [:octicons-arrow-right-24: Parachain Consensus](/polkadot-sdk/reference/consensus/index.md)
 
 -   <span class="badge learn">Learn</span> __Asynchronous Backing__
 
@@ -180,6 +180,6 @@ The Polkadot SDK guide notes the following limitations:
 
     Review the runtime constants and the lookahead collator that elastic scaling builds on.
 
-    [:octicons-arrow-right-24: Asynchronous Backing](/polkadot-sdk/reference/consensus/async-backing/)
+    [:octicons-arrow-right-24: Asynchronous Backing](/polkadot-sdk/reference/consensus/async-backing.md)
 
 </div>

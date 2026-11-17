@@ -8,7 +8,7 @@ categories: Apps, Reference
 
 ## Introduction
 
-The Account Management method group lets a Product discover which account it should operate against. A Polkadot Product never sees the user's root identity; it sees a per-Product sub-account derived from the user's identity and the Product's `.dot` domain. See [Sandbox and Sub-Accounts](/apps/reference/protocol/truapi/sandbox/) for the derivation model. This method group is the surface that resolves that sub-account, exposes its address, and returns related state.
+The Account Management method group lets a Product discover which account it should operate against. A Polkadot Product never sees the user's root identity; it sees a per-Product sub-account derived from the user's identity and the Product's `.dot` domain. See [Sandbox and Sub-Accounts](/apps/reference/protocol/truapi/sandbox.md) for the derivation model. This method group is the surface that resolves that sub-account, exposes its address, and returns related state.
 
 The Product SDK wraps this surface as `SignerManager.getProductAccount(dotNsIdentifier, derivationIndex)` in [`@parity/product-sdk-signer`](https://www.npmjs.com/package/@parity/product-sdk-signer).
 
@@ -35,7 +35,7 @@ Account resolution is local and instantaneous. The Host computes the derived add
 
     The conceptual model for why a Product gets a derived sub-account in the first place, and how isolation works.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/sandbox/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/sandbox.md)
 
 - <span class="badge guide">Guide</span> **Accounts and Signing**
 
@@ -43,6 +43,6 @@ Account resolution is local and instantaneous. The Host computes the derived add
 
     The Product-side how-to: getting an account, building a transaction, and submitting it.
 
-    [:octicons-arrow-right-24: Get Started](/apps/build/sign-and-submit/)
+    [:octicons-arrow-right-24: Get Started](/apps/build/sign-and-submit.md)
 
 </div>

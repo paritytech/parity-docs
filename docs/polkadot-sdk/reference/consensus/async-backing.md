@@ -14,7 +14,7 @@ On the Polkadot SDK side, async backing is a combination of runtime configuratio
 
 ## Synchronous vs. Asynchronous Processing
 
-In the original synchronous mode, collators and validators drew context only from the relay parent of the prior parablock. The generation and backing steps for a new parablock could only start once the prior parablock had gone through the whole [inclusion pipeline](/polkadot-sdk/reference/consensus/#inclusion-pipeline). As a result, one parablock could be processed every other relay chain block, with 0.5 seconds of execution time.
+In the original synchronous mode, collators and validators drew context only from the relay parent of the prior parablock. The generation and backing steps for a new parablock could only start once the prior parablock had gone through the whole [inclusion pipeline](/polkadot-sdk/reference/consensus/index.md#inclusion-pipeline). As a result, one parablock could be processed every other relay chain block, with 0.5 seconds of execution time.
 
 ```mermaid
 ---
@@ -211,11 +211,11 @@ With a capacity of 3 and a velocity of 1, one parachain block is authored per re
 
 The template node starts the [`lookahead`](https://paritytech.github.io/polkadot-sdk/master/cumulus_client_consensus_aura/collators/lookahead/index.html) collator from `cumulus_client_consensus_aura` in its `start_consensus` function in `node/src/service.rs`, with an `authoring_duration` of 2000 ms. The lookahead collator looks ahead of the most recently included parachain block when choosing a parent, and builds additional blocks while the unincluded segment is not full.
 
-`polkadot-omni-node` uses the same collator by default. Its [`--authoring`](https://paritytech.github.io/polkadot-sdk/master/polkadot_omni_node_lib/cli/enum.AuthoringPolicy.html) option defaults to `lookahead`, which the CLI help describes as the default for asynchronous backing chains. Chains that use more than one core switch to `slot-based`, as described in [Elastic Scaling](/polkadot-sdk/reference/consensus/elastic-scaling/).
+`polkadot-omni-node` uses the same collator by default. Its [`--authoring`](https://paritytech.github.io/polkadot-sdk/master/polkadot_omni_node_lib/cli/enum.AuthoringPolicy.html) option defaults to `lookahead`, which the CLI help describes as the default for asynchronous backing chains. Chains that use more than one core switch to `slot-based`, as described in [Elastic Scaling](/polkadot-sdk/reference/consensus/elastic-scaling.md).
 
 ## Relay Chain Requirements
 
-The relay chain must also have async backing enabled. When you run a local relay chain, for example with [Zombienet](/tools/zombienet/), check that the relay chain configuration sets `scheduler_params.lookahead` to at least `3`:
+The relay chain must also have async backing enabled. When you run a local relay chain, for example with [Zombienet](/tools/zombienet.md), check that the relay chain configuration sets `scheduler_params.lookahead` to at least `3`:
 
 ```json
 "scheduler_params": {
@@ -235,7 +235,7 @@ With a lower value, parachain block times degrade to worse than synchronous back
 
     See how the Cumulus collator builds and submits blocks and how the inclusion pipeline works.
 
-    [:octicons-arrow-right-24: Parachain Consensus](/polkadot-sdk/reference/consensus/)
+    [:octicons-arrow-right-24: Parachain Consensus](/polkadot-sdk/reference/consensus/index.md)
 
 -   <span class="badge learn">Learn</span> __Elastic Scaling__
 
@@ -243,6 +243,6 @@ With a lower value, parachain block times degrade to worse than synchronous back
 
     Configure the slot-based collator and the runtime to produce blocks on more than one core.
 
-    [:octicons-arrow-right-24: Elastic Scaling](/polkadot-sdk/reference/consensus/elastic-scaling/)
+    [:octicons-arrow-right-24: Elastic Scaling](/polkadot-sdk/reference/consensus/elastic-scaling.md)
 
 </div>

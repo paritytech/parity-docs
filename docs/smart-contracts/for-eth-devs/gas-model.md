@@ -21,7 +21,7 @@ Unlike Ethereum, which uses a single gas value to measure everything, pallet-rev
 
 For Ethereum wallet compatibility, these three dimensions are mapped into a single gas value that wallets can understand and display to users.
 
-These resources can be limited at both the transaction and the contract level, similar to Ethereum's gas limits. Gas costs are based on benchmarks of actual execution rather than Ethereum's fixed values, which makes computation cheaper relative to I/O operations. Do not hardcode gas values in your contracts or scripts; estimate them instead. For how the gas-related opcodes and cross-contract call limits behave on PVM, see [EVM vs PVM](/smart-contracts/for-eth-devs/evm-vs-pvm/#gas-model).
+These resources can be limited at both the transaction and the contract level, similar to Ethereum's gas limits. Gas costs are based on benchmarks of actual execution rather than Ethereum's fixed values, which makes computation cheaper relative to I/O operations. Do not hardcode gas values in your contracts or scripts; estimate them instead. For how the gas-related opcodes and cross-contract call limits behave on PVM, see [EVM vs PVM](/smart-contracts/for-eth-devs/evm-vs-pvm.md#gas-model).
 
 ## Gas vs Weight
 
@@ -31,7 +31,7 @@ The system continuously translates between these representations: converting `we
 
 ## How Gas Estimation Works
 
-When your wallet requests a gas estimate ([`eth_estimateGas`](/smart-contracts/for-eth-devs/json-rpc-apis/#eth_estimategas)), pallet-revive performs a dry-run of your transaction. This test execution discovers:
+When your wallet requests a gas estimate ([`eth_estimateGas`](/smart-contracts/for-eth-devs/json-rpc-apis.md#eth_estimategas)), pallet-revive performs a dry-run of your transaction. This test execution discovers:
 
 - How much computational time the contract will consume (`ref_time`).
 - How much state data needs to be verified (`proof_size`).
@@ -92,11 +92,11 @@ The total fee for a contract transaction combines the following parts:
 - **Length fee**: Charged for the size of the transaction in bytes.
 - **Storage deposit**: Held, not spent, when a transaction creates new storage, including the code storage for a contract deployment. The deposit is refunded when the storage is freed.
 
-Because the storage deposit is part of the estimate but is refundable, gas estimates for deployments can be much higher than the fee you end up paying. See [Gas Estimation vs Actual Consumption](/smart-contracts/for-eth-devs/contract-deployment/#gas-estimation-vs-actual-consumption).
+Because the storage deposit is part of the estimate but is refundable, gas estimates for deployments can be much higher than the fee you end up paying. See [Gas Estimation vs Actual Consumption](/smart-contracts/for-eth-devs/contract-deployment.md#gas-estimation-vs-actual-consumption).
 
 ## Blocks and Transactions
 
-Blocks on a chain running pallet-revive are standard Polkadot SDK blocks. pallet-revive adds an Ethereum view of each block, represented by its [`Block`](https://paritytech.github.io/polkadot-sdk/master/pallet_revive/evm/struct.Block.html) type, so Ethereum JSON-RPC methods such as `eth_getBlockByNumber` can return Ethereum-shaped block data. Ethereum transactions reach pallet-revive through the `eth-rpc` adapter. For the supported transaction formats, see [Supported Transaction Types](/smart-contracts/for-eth-devs/json-rpc-apis/#supported-transaction-types).
+Blocks on a chain running pallet-revive are standard Polkadot SDK blocks. pallet-revive adds an Ethereum view of each block, represented by its [`Block`](https://paritytech.github.io/polkadot-sdk/master/pallet_revive/evm/struct.Block.html) type, so Ethereum JSON-RPC methods such as `eth_getBlockByNumber` can return Ethereum-shaped block data. Ethereum transactions reach pallet-revive through the `eth-rpc` adapter. For the supported transaction formats, see [Supported Transaction Types](/smart-contracts/for-eth-devs/json-rpc-apis.md#supported-transaction-types).
 
 ## Conclusion
 

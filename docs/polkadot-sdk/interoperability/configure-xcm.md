@@ -8,7 +8,7 @@ categories: Polkadot SDK, Interoperability
 
 ## Introduction
 
-[Get Started with XCM](/polkadot-sdk/interoperability/get-started/) describes the Cross-Consensus Messaging (XCM) format. To send and receive XCM messages, a Polkadot SDK runtime also needs configuration: it decides which messages it executes, how it converts locations into accounts and origins, which assets it holds and trusts, how it charges for execution, and how messages travel to the relay chain and to other parachains.
+[Get Started with XCM](/polkadot-sdk/interoperability/get-started.md) describes the Cross-Consensus Messaging (XCM) format. To send and receive XCM messages, a Polkadot SDK runtime also needs configuration: it decides which messages it executes, how it converts locations into accounts and origins, which assets it holds and trusts, how it charges for execution, and how messages travel to the relay chain and to other parachains.
 
 This guide walks through that configuration as it appears in the parachain template in the Polkadot SDK, at the `{{dependencies.repositories.polkadot_sdk.version}}` release. It covers the following:
 
@@ -24,9 +24,9 @@ Code excerpts come from the parachain template runtime ([`templates/parachain/ru
 
 Before you begin, make sure you have:
 
-- A parachain runtime based on the [Polkadot SDK parachain template](https://github.com/paritytech/polkadot-sdk-parachain-template). [Set Up the Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/) walks through building it.
-- Familiarity with configuring pallets in a runtime, as shown in [Add an Existing Pallet to the Runtime](/polkadot-sdk/customize-runtime/add-existing-pallets/).
-- A basic understanding of XCM locations, assets, and instructions from [Get Started with XCM](/polkadot-sdk/interoperability/get-started/).
+- A parachain runtime based on the [Polkadot SDK parachain template](https://github.com/paritytech/polkadot-sdk-parachain-template). [Set Up the Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template.md) walks through building it.
+- Familiarity with configuring pallets in a runtime, as shown in [Add an Existing Pallet to the Runtime](/polkadot-sdk/customize-runtime/add-existing-pallets.md).
+- A basic understanding of XCM locations, assets, and instructions from [Get Started with XCM](/polkadot-sdk/interoperability/get-started.md).
 
 ## XCM Pallets in a Parachain Runtime
 
@@ -445,7 +445,7 @@ The XCMP queue sends to a sibling only over an open HRMP channel; opening channe
 
 ## Add the XCM Runtime APIs
 
-Wallets, SDKs, and tools such as the [XCM fee estimation flow](/tools/chain-interactions/send-transactions/interoperability/estimate-xcm-fees/) rely on two runtime APIs from the [`xcm-runtime-apis`](https://paritytech.github.io/polkadot-sdk/master/xcm_runtime_apis/index.html) crate:
+Wallets, SDKs, and tools such as the [XCM fee estimation flow](/tools/chain-interactions/send-transactions/interoperability/estimate-xcm-fees.md) rely on two runtime APIs from the [`xcm-runtime-apis`](https://paritytech.github.io/polkadot-sdk/master/xcm_runtime_apis/index.html) crate:
 
 - **[`DryRunApi`](https://paritytech.github.io/polkadot-sdk/master/xcm_runtime_apis/dry_run/trait.DryRunApi.html)**: Simulates an extrinsic (`dry_run_call`) or an XCM (`dry_run_xcm`) and returns its result, emitted events, and the messages it would send to other chains.
 - **[`XcmPaymentApi`](https://paritytech.github.io/polkadot-sdk/master/xcm_runtime_apis/fees/trait.XcmPaymentApi.html)**: Returns the assets the chain accepts for execution fees, the weight of an XCM, the fee for a weight in a given asset, and the delivery fee for sending a message to a destination.
@@ -503,14 +503,14 @@ Adapt the following parts to your runtime:
 
 The same runtime also implements `LocationToAccountApi`, `TrustedQueryApi`, and `AuthorizedAliasersApi` from `xcm-runtime-apis`. They are optional, and you can add them in the same way.
 
-After you add the APIs, rebuild the runtime and confirm that they appear in its metadata. A runtime upgrade is required to make them available on a running chain. See [Runtime Upgrades](/polkadot-sdk/runtime-maintenance/runtime-upgrades/).
+After you add the APIs, rebuild the runtime and confirm that they appear in its metadata. A runtime upgrade is required to make them available on a running chain. See [Runtime Upgrades](/polkadot-sdk/runtime-maintenance/runtime-upgrades.md).
 
 ## Test Your Configuration Locally
 
-To test XCM between chains, run your parachain with a local relay chain and a second parachain. [Run a Parachain Network](/polkadot-sdk/testing/run-a-parachain-network/) shows how to start such a network with [Zombienet](/tools/zombienet/). Once the APIs from the previous section are in place, use [Estimate XCM Fees](/tools/chain-interactions/send-transactions/interoperability/estimate-xcm-fees/) to dry-run transfers and estimate fees against your local chains.
+To test XCM between chains, run your parachain with a local relay chain and a second parachain. [Run a Parachain Network](/polkadot-sdk/testing/run-a-parachain-network.md) shows how to start such a network with [Zombienet](/tools/zombienet.md). Once the APIs from the previous section are in place, use [Estimate XCM Fees](/tools/chain-interactions/send-transactions/interoperability/estimate-xcm-fees.md) to dry-run transfers and estimate fees against your local chains.
 
 ## Where to Go Next
 
 - [XCM docs](https://paritytech.github.io/polkadot-sdk/master/xcm_docs/index.html): Read the Polkadot SDK reference for XCM, including the executor, the builder types, and worked examples.
-- [Estimate XCM Fees](/tools/chain-interactions/send-transactions/interoperability/estimate-xcm-fees/): Use `DryRunApi` and `XcmPaymentApi` from a client.
-- [XCM Precompile](/smart-contracts/precompiles/xcm/): Send and execute XCM from smart contracts.
+- [Estimate XCM Fees](/tools/chain-interactions/send-transactions/interoperability/estimate-xcm-fees.md): Use `DryRunApi` and `XcmPaymentApi` from a client.
+- [XCM Precompile](/smart-contracts/precompiles/xcm.md): Send and execute XCM from smart contracts.

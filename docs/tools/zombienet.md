@@ -224,7 +224,7 @@ The following example starts a relay chain from `rococo-local`, a development ch
     ```
 
 !!! note "Relay chain specs"
-    The `chain` value names a relay chain spec. The `polkadot` binary from the Polkadot SDK releases includes the `rococo-local` and `westend-local` development specs (see [`polkadot/cli/src/command.rs`](https://github.com/paritytech/polkadot-sdk/blob/{{ dependencies.repositories.polkadot_sdk.version }}/polkadot/cli/src/command.rs)). To use a spec you generated yourself, set `chain_spec_path` instead. To run your own parachain, set the parachain's `chain_spec_path` to a spec generated with [chain-spec-builder](/tools/chain-spec-builder/), as shown in [Run a Parachain Network](/polkadot-sdk/testing/run-a-parachain-network/).
+    The `chain` value names a relay chain spec. The `polkadot` binary from the Polkadot SDK releases includes the `rococo-local` and `westend-local` development specs (see [`polkadot/cli/src/command.rs`](https://github.com/paritytech/polkadot-sdk/blob/{{ dependencies.repositories.polkadot_sdk.version }}/polkadot/cli/src/command.rs)). To use a spec you generated yourself, set `chain_spec_path` instead. To run your own parachain, set the parachain's `chain_spec_path` to a spec generated with [chain-spec-builder](/tools/chain-spec-builder.md), as shown in [Run a Parachain Network](/polkadot-sdk/testing/run-a-parachain-network.md).
 
 ### CLI Commands
 

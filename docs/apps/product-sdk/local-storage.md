@@ -16,8 +16,8 @@ The store is scoped per Product, so keys never collide with other Products, and 
 
 - To persist small app state inside a Host: preferences, drafts, cached values, or a session identifier.
 - To namespace keys per Product with a `prefix`, so `theme` becomes `my-product:theme` and stays isolated.
-- To hand a store to higher-level SDK pieces; for example, the session-key manager in [Keys](/apps/product-sdk/keys/) takes a store to persist its mnemonic.
-- Not a general-purpose browser shim: the store requires a Host and has no standalone browser fallback. For raw Host storage without the key-value convenience layer, use the [Host](/apps/product-sdk/host/) package directly.
+- To hand a store to higher-level SDK pieces; for example, the session-key manager in [Keys](/apps/product-sdk/keys.md) takes a store to persist its mnemonic.
+- Not a general-purpose browser shim: the store requires a Host and has no standalone browser fallback. For raw Host storage without the key-value convenience layer, use the [Host](/apps/product-sdk/host.md) package directly.
 
 ## Core Concepts
 
@@ -60,7 +60,7 @@ await store.remove('draft');
 
     The task-focused recipe: JSON helpers, prefixes, and React usage, step by step.
 
-    [:octicons-arrow-right-24: Persist Data Locally](/apps/build/persist-data-locally/)
+    [:octicons-arrow-right-24: Persist Data Locally](/apps/build/persist-data-locally.md)
 
 -   <span class="badge learn">Learn</span> **Keys**
 
@@ -68,7 +68,7 @@ await store.remove('draft');
 
     A common consumer of this store: the session-key manager persists its mnemonic here.
 
-    [:octicons-arrow-right-24: Keys](/apps/product-sdk/keys/)
+    [:octicons-arrow-right-24: Keys](/apps/product-sdk/keys.md)
 
 -   <span class="badge external">External</span> **API Reference**
 

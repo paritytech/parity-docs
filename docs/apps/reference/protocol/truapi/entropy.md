@@ -38,6 +38,6 @@ There is no subscription, no per-block or per-epoch update, and no randomness be
 
     Why a Product is scoped to derived material rather than the user's root identity — the same derivation principle this group exposes for arbitrary secrets.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/sandbox/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/sandbox.md)
 
 </div>

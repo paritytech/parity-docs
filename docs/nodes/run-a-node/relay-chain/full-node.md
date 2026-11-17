@@ -17,14 +17,14 @@ Running your own node gives you direct access to chain data, full control over t
 - **RPC node**: A pruned or archive node that exposes its JSON-RPC server to external clients.
 - **Validator mode**: The `--validator` flag, which turns on block authoring and parachain validation. See [Validator Mode](#validator-mode).
 
-This page covers installing the `polkadot` binary, verifying the release, and configuring each run mode. To run a parachain node, see [Run a Parachain RPC Node](/nodes/run-a-node/parachain-rpc/) or [Polkadot Omni Node](/tools/omninode/).
+This page covers installing the `polkadot` binary, verifying the release, and configuring each run mode. To run a parachain node, see [Run a Parachain RPC Node](/nodes/run-a-node/parachain-rpc.md) or [Polkadot Omni Node](/tools/omninode.md).
 
 ## Prerequisites
 
 Before you install the node, check the following:
 
 - Pre-built release binaries and Debian packages target Linux. On macOS or Windows, use [Docker](#install-with-docker) or [build from source](#build-from-source). On Windows, use [WSL and Ubuntu](https://learn.microsoft.com/en-us/windows/wsl/install) and follow the Linux instructions.
-- To build from source, [install the Polkadot SDK dependencies](/polkadot-sdk/install-polkadot-sdk/) first.
+- To build from source, [install the Polkadot SDK dependencies](/polkadot-sdk/install-polkadot-sdk.md) first.
 
 ## Install the Binaries
 
@@ -148,7 +148,7 @@ To manage installations on several machines, the [Parity chain operations Ansibl
 
 ### Build from Source
 
-Building from source works on any platform the Polkadot SDK supports. After you [install the dependencies](/polkadot-sdk/install-polkadot-sdk/), clone the release tag and build it:
+Building from source works on any platform the Polkadot SDK supports. After you [install the dependencies](/polkadot-sdk/install-polkadot-sdk.md), clone the release tag and build it:
 
 ```bash
 git clone --branch {{ dependencies.repositories.polkadot_sdk.version }} --depth 1 https://github.com/paritytech/polkadot-sdk.git
@@ -219,13 +219,13 @@ The base commands for each storage mode are as follows:
       --blocks-pruning archive
     ```
 
-The [Node Configuration Parameters](/nodes/run-a-node/parachain-rpc/#node-configuration-parameters) section of the parachain RPC guide explains the pruning and sync flags in detail. To list every available flag, run:
+The [Node Configuration Parameters](/nodes/run-a-node/parachain-rpc.md#node-configuration-parameters) section of the parachain RPC guide explains the pruning and sync flags in detail. To list every available flag, run:
 
 ```bash
 polkadot --help
 ```
 
-To run the node on a local relay chain for development instead of a live network, see [Zombienet](/tools/zombienet/).
+To run the node on a local relay chain for development instead of a live network, see [Zombienet](/tools/zombienet.md).
 
 ### RPC Configuration
 
@@ -234,7 +234,7 @@ The node's startup flags control which RPC methods are exposed, how many connect
 - Limit the exposed methods with `--rpc-methods`. Use `--rpc-methods safe` for public endpoints.
 - Set the maximum number of connections with `--rpc-max-connections`, for example, `--rpc-max-connections 200`.
 - By default, only `localhost` origins and `https://polkadot.js.org` can access the RPC server. Change this with `--rpc-cors`. To allow access from any origin, use `--rpc-cors all`.
-- Listen on all network interfaces with `--rpc-external`. Combine it with `--rpc-methods safe` and, in production, a TLS proxy. See [Set Up Secure WebSocket](/nodes/run-a-node/relay-chain/secure-wss/).
+- Listen on all network interfaces with `--rpc-external`. Combine it with `--rpc-methods safe` and, in production, a TLS proxy. See [Set Up Secure WebSocket](/nodes/run-a-node/relay-chain/secure-wss.md).
 
 For more flags relevant to RPC nodes, see [Important Flags for Running an RPC Node](https://paritytech.github.io/devops-guide/guides/rpc_index.html?#important-flags-for-running-an-rpc-node) in the Parity DevOps guide.
 
@@ -279,11 +279,11 @@ By default, the node serves JSON-RPC over WebSocket and HTTP at the following lo
 {{ networks.local.ws_url }}
 ```
 
-Connect to it from any Polkadot SDK client, such as [Subxt](/tools/subxt/) or a block explorer like Polkadot.js Apps. See [Chain Interactions](/tools/chain-interactions/) for client options.
+Connect to it from any Polkadot SDK client, such as [Subxt](/tools/subxt.md) or a block explorer like Polkadot.js Apps. See [Chain Interactions](/tools/chain-interactions/index.md) for client options.
 
 ## Validator Mode
 
-The `--validator` flag runs the node as an authority: it authors blocks, takes part in finality, and validates parachain candidates. In this mode, the node also needs the `polkadot-prepare-worker` and `polkadot-execute-worker` binaries and enforces [secure-validator mode](/nodes/monitor-and-harden/#secure-validator-mode), a set of Linux sandboxing checks.
+The `--validator` flag runs the node as an authority: it authors blocks, takes part in finality, and validates parachain candidates. In this mode, the node also needs the `polkadot-prepare-worker` and `polkadot-execute-worker` binaries and enforces [secure-validator mode](/nodes/monitor-and-harden.md#secure-validator-mode), a set of Linux sandboxing checks.
 
 One of the sandboxing features the node uses is [Landlock](https://docs.kernel.org/userspace-api/landlock.html), which lets an unprivileged process restrict its own access to the system. Landlock is available in Linux kernels 5.13 and later and is activated by default on most distributions. Check whether it is active by running the following command as root:
 

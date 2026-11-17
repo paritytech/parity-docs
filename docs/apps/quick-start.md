@@ -15,7 +15,7 @@ The CLI is the command-line counterpart to [Polkadot Desktop](https://developers
 --8<-- 'text/apps/network-tld.md'
 
 !!! tip "Building with an AI agent?"
-    Point your coding agent at the right skills, repos, and docs first, so it writes idiomatic Product code instead of generic boilerplate. See [Set Up Your AI Agent](/apps/get-started/set-up-your-ai-agent/) for a paste-ready setup prompt.
+    Point your coding agent at the right skills, repos, and docs first, so it writes idiomatic Product code instead of generic boilerplate. See [Set Up Your AI Agent](/apps/get-started/set-up-your-ai-agent.md) for a paste-ready setup prompt.
 
 ## Before You Start
 
@@ -25,10 +25,10 @@ Get these in order before your first deploy. The last two are easy to skip and f
 2. **Have a terminal** with `curl` available and permission to install CLI tools in your user shell.
 3. **Have a Product project** on disk with a package-manager build command.
 4. **Fund the signing account on the target environment.** The `playground` CLI targets Paseo Next v2, where PAS pays transaction fees and the name deposit. For TestNet funds, see [Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/) on developers.polkadot.com.
-5. **Get a [Bulletin Chain storage authorization](/apps/reference/infrastructure/bulletin-chain/authorization/)** for the account that will sign. Without it, uploads are rejected at deploy time even when your balance is fine, and the missing authorization surfaces only as a failed publish.
+5. **Get a [Bulletin Chain storage authorization](/apps/reference/infrastructure/bulletin-chain/authorization.md)** for the account that will sign. Without it, uploads are rejected at deploy time even when your balance is fine, and the missing authorization surfaces only as a failed publish.
 
 !!! warning "Fund the account that actually signs"
-    The PAS balance and the storage authorization are both per account, and the account that signs your deploy may not be the one you expect. If a deploy fails with `no allowance set for account`, see [Accounts and Signing](/apps/concepts/accounts/) and the [troubleshooting entry](/apps/troubleshooting/#no-allowance-set-for-account). Account mapping to an EVM address is handled for you for the product account you deploy with; a smart contract needs its signing account mapped explicitly, covered in [Add a Smart Contract to Your Product](/apps/build/deploy-a-smart-contract/).
+    The PAS balance and the storage authorization are both per account, and the account that signs your deploy may not be the one you expect. If a deploy fails with `no allowance set for account`, see [Accounts and Signing](/apps/concepts/accounts.md) and the [troubleshooting entry](/apps/troubleshooting.md#no-allowance-set-for-account). Account mapping to an EVM address is handled for you for the product account you deploy with; a smart contract needs its signing account mapped explicitly, covered in [Add a Smart Contract to Your Product](/apps/build/deploy-a-smart-contract.md).
 
 !!! warning "Provisional"
     The CLI is in active development, and breaking changes between versions are expected. If a command below no longer matches, check this page's last update against the latest [playground-cli release](https://github.com/paritytech/playground-cli/releases).
@@ -113,21 +113,21 @@ pg deploy
 pg deploy --signer dev --suri //Alice --domain my-product
 ```
 
-Pass the bare label to `--domain`. The CLI appends the environment's TLD, so `my-product` becomes `my-product.paseo` on Paseo Next v2. Name availability depends on the label's length, counted as written; see [Choose a Name](/apps/register-dot-domain/#choose-a-name) for the rules the prompt enforces.
+Pass the bare label to `--domain`. The CLI appends the environment's TLD, so `my-product` becomes `my-product.paseo` on Paseo Next v2. Name availability depends on the label's length, counted as written; see [Choose a Name](/apps/register-dot-domain.md#choose-a-name) for the rules the prompt enforces.
 
 --8<-- 'code/apps/quick-start/cli/termynal-deploy.html'
 
 !!! note "Your phone will prompt — check it"
-    With the phone signer, each on-chain step waits for you to approve it in the Polkadot App, and no push notification announces the prompt. If the deploy seems to pause (including a deliberate ~60-second wait while your name is registered), open the app and approve the pending request. See [Troubleshooting](/apps/troubleshooting/#the-app-seems-frozen-after-an-action).
+    With the phone signer, each on-chain step waits for you to approve it in the Polkadot App, and no push notification announces the prompt. If the deploy seems to pause (including a deliberate ~60-second wait while your name is registered), open the app and approve the pending request. See [Troubleshooting](/apps/troubleshooting.md#the-app-seems-frozen-after-an-action).
 
 !!! note
     `pg deploy` includes a memory watchdog that aborts the deploy if the process exceeds 4 GB RSS. If you hit this limit, set `DOT_MEMORY_TRACE=1` alongside `DOT_DEPLOY_VERBOSE=1` to capture per-second RSS and heap samples.
 
-For the full interactive deploy walkthrough, including the domain-name rules, contract redeploys, and the confirmation summary, see [Deploy Your App](/apps/deploy-your-app/).
+For the full interactive deploy walkthrough, including the domain-name rules, contract redeploys, and the confirmation summary, see [Deploy Your App](/apps/deploy-your-app.md).
 
 ??? note "More CLI commands"
 
-    For every command and flag, see the [`playground` CLI reference](/apps/playground-cli/).
+    For every command and flag, see the [`playground` CLI reference](/apps/playground-cli.md).
 
     **Account and session**
 
@@ -176,7 +176,7 @@ For the full interactive deploy walkthrough, including the domain-name rules, co
         pg deploy-all --manifest apps.json --signer dev --playground
         ```
 
-    - **`pg contract`**: The playground-native path to contracts, backed by `cdm`. `pg contract deploy` builds, deploys, and registers your contracts signed by your logged-in account; `pg contract install` writes `cdm.json` and the generated type outputs. See [Add a Smart Contract to Your Product](/apps/build/deploy-a-smart-contract/) for the workflow, including when to call `cdm` directly instead.
+    - **`pg contract`**: The playground-native path to contracts, backed by `cdm`. `pg contract deploy` builds, deploys, and registers your contracts signed by your logged-in account; `pg contract install` writes `cdm.json` and the generated type outputs. See [Add a Smart Contract to Your Product](/apps/build/deploy-a-smart-contract.md) for the workflow, including when to call `cdm` directly instead.
 
         ```bash
         pg contract deploy
@@ -190,9 +190,9 @@ For the full interactive deploy walkthrough, including the domain-name rules, co
         ```
 
 !!! tip "Scripting a deploy, or handing one to an agent"
-    `pg deploy -y` runs non-interactively using defaults, skipping every prompt. It requires `--domain`, and `--signer` defaults to `dev`. For full control in CI, pass `--signer`, `--domain`, `--buildDir`, `--playground`, and `--contracts` or `--no-contracts` explicitly; add `--suri //Alice` with `--signer dev` so the dev signer uses a known keypair. The [`playground` CLI reference](/apps/playground-cli/) lists every command and flag. See [Set Up Your AI Agent](/apps/get-started/set-up-your-ai-agent/) for orienting a coding agent around this toolchain.
+    `pg deploy -y` runs non-interactively using defaults, skipping every prompt. It requires `--domain`, and `--signer` defaults to `dev`. For full control in CI, pass `--signer`, `--domain`, `--buildDir`, `--playground`, and `--contracts` or `--no-contracts` explicitly; add `--suri //Alice` with `--signer dev` so the dev signer uses a known keypair. The [`playground` CLI reference](/apps/playground-cli.md) lists every command and flag. See [Set Up Your AI Agent](/apps/get-started/set-up-your-ai-agent.md) for orienting a coding agent around this toolchain.
 
-You have deployed a Polkadot Product. To keep building it with your own editor and toolchain, head to the Build guides; they open with [project setup](/apps/build/#set-up-your-project) so Polkadot Desktop can load your Product from `localhost` while you iterate with live reload.
+You have deployed a Polkadot Product. To keep building it with your own editor and toolchain, head to the Build guides; they open with [project setup](/apps/build/index.md#set-up-your-project) so Polkadot Desktop can load your Product from `localhost` while you iterate with live reload.
 
 ## Where to Go Next
 
@@ -204,7 +204,7 @@ You have deployed a Polkadot Product. To keep building it with your own editor a
 
     Understand the SDK that powers your Product: what each package does and how the pieces fit together.
 
-    [:octicons-arrow-right-24: Product SDK](/apps/product-sdk/)
+    [:octicons-arrow-right-24: Product SDK](/apps/product-sdk/index.md)
 
 -   <span class="badge guide">Guide</span> **Build Guides**
 
@@ -212,7 +212,7 @@ You have deployed a Polkadot Product. To keep building it with your own editor a
 
     Set up the local dev loop, then add capabilities to your Product: signing, on-chain reads, decentralized storage, off-chain pub/sub, local persistence, and smart contracts.
 
-    [:octicons-arrow-right-24: Open Build Guides](/apps/build/)
+    [:octicons-arrow-right-24: Open Build Guides](/apps/build/index.md)
 
 -   <span class="badge guide">Guide</span> **Deploy Your App**
 
@@ -220,6 +220,6 @@ You have deployed a Polkadot Product. To keep building it with your own editor a
 
     The full deploy flow in depth: build the bundle, register a dotNS name, publish to the playground, and go live on the Bulletin Chain.
 
-    [:octicons-arrow-right-24: Deploy Your App](/apps/deploy-your-app/)
+    [:octicons-arrow-right-24: Deploy Your App](/apps/deploy-your-app.md)
 
 </div>

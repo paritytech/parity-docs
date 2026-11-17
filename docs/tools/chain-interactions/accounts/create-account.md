@@ -15,7 +15,7 @@ Creating accounts is a fundamental operation when building applications on Polka
 
 Polkadot SDK-based chains use the SR25519 signature scheme by default, though ED25519 and ECDSA are also supported. Each account consists of a public key (address) and a private key (seed or mnemonic). Keep your private keys secure and never share them.
 
-This tutorial generates an account in Rust with [`sp-core`](https://docs.rs/sp-core/latest/sp_core/), the Polkadot SDK crate that provides the core cryptographic primitives. To sign transactions with the generated mnemonic, use [`subxt-signer`](https://docs.rs/subxt-signer/{{ dependencies.crates.subxt_signer.version }}/subxt_signer/), as shown in [Send Transactions with SDKs](/tools/chain-interactions/send-transactions/with-sdks/).
+This tutorial generates an account in Rust with [`sp-core`](https://docs.rs/sp-core/latest/sp_core/), the Polkadot SDK crate that provides the core cryptographic primitives. To sign transactions with the generated mnemonic, use [`subxt-signer`](https://docs.rs/subxt-signer/{{ dependencies.crates.subxt_signer.version }}/subxt_signer/), as shown in [Send Transactions with SDKs](/tools/chain-interactions/send-transactions/with-sdks.md).
 
 Account generation is also available in third-party libraries, for example [Polkadot.js API](https://developers.polkadot.com/reference/tools/polkadot-js-api/) and [Python Substrate Interface](https://developers.polkadot.com/reference/tools/py-substrate-interface/).
 
@@ -73,7 +73,7 @@ Before starting, make sure you have:
 
     Learn how to send signed transactions using Subxt.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/with-sdks/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/with-sdks.md)
 
 -   <span class="badge guide">Guide</span> __Calculate Transaction Fees__
 
@@ -81,7 +81,7 @@ Before starting, make sure you have:
 
     Learn how to estimate transaction fees before sending transactions from your accounts.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/calculate-transaction-fees/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/send-transactions/calculate-transaction-fees.md)
 
 -   <span class="badge guide">Guide</span> __Query Chain Data__
 
@@ -89,6 +89,6 @@ Before starting, make sure you have:
 
     Query account information, balances, and other chain state.
 
-    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/query-sdks/)
+    [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/query-data/query-sdks.md)
 
 </div>

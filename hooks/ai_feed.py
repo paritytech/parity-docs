@@ -79,11 +79,11 @@ Machine-readable versions of this documentation, for LLMs and AI tools.
 
 ## Full corpus feed
 
-- [`/ai/llms-full.jsonl`](/ai/llms-full.jsonl): every documentation page, pre-chunked
+- [`/ai/llms-full.jsonl`](../ai/llms-full.jsonl): every documentation page, pre-chunked
   by section. One JSON object per line with `source`, `page_id`, `url`, heading
   `anchor`, `page_version_hash`, and the section `text`. Regenerated on every docs
   deploy — it is a snapshot of the current docs, not a log.
-- [`/llms.txt`](/llms.txt): index file following the [llms.txt convention](https://llmstxt.org/).
+- [`/llms.txt`](../llms.txt): index file following the [llms.txt convention](https://llmstxt.org/).
 
 ## Per-page Markdown
 
@@ -177,7 +177,9 @@ def on_post_page(output, page, config, **kwargs):
     route = page.url.rstrip("/")
     if not route:
         return output
-    md_href = f'{cfg["site_path"]}/{route}.md'
+    # The page's Markdown copy is written next to its folder ({route}.md), so a
+    # relative link works at any base path.
+    md_href = f'../{os.path.basename(route)}.md'
     page_abs = f'{cfg["docs_base_url"]}/{route}/'
     widget = _dropdown_html(md_href, page_abs, os.path.basename(md_href))
     return _inject_dropdown(output, widget)

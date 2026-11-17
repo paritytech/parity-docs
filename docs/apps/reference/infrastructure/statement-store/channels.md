@@ -54,7 +54,7 @@ The SDK's `ChannelStore<T>` exposes the standard surface:
 
     The subscription surface that delivers channel transitions to subscribers, including the per-channel dedup behavior.
 
-    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/statement-store/subscriptions/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/statement-store/subscriptions.md)
 
 - <span class="badge guide">Guide</span> **Exchange Ephemeral Messages**
 
@@ -62,5 +62,5 @@ The SDK's `ChannelStore<T>` exposes the standard surface:
 
     The Product-side how-to including the `ChannelStore` walkthrough.
 
-    [:octicons-arrow-right-24: Get Started](/apps/build/pub-sub-off-chain-data/)
+    [:octicons-arrow-right-24: Get Started](/apps/build/pub-sub-off-chain-data.md)
 </div>

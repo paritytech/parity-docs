@@ -30,8 +30,8 @@ In this guide, you'll learn how to:
 
 Before you begin, ensure you have:
 
-- [Polkadot SDK dependencies installed](/polkadot-sdk/install-polkadot-sdk/)
-- A working [Polkadot SDK development environment](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/)
+- [Polkadot SDK dependencies installed](/polkadot-sdk/install-polkadot-sdk.md)
+- A working [Polkadot SDK development environment](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template.md)
 
 ## Add an Existing Polkadot SDK Pallet to Your Runtime
 
@@ -223,7 +223,7 @@ This command validates the pallet configurations and prepares the build for test
 
 ## Run Your Chain Locally
 
-Now that you've added the pallet to your runtime, you can launch your parachain locally to test the new functionality using the [Polkadot Omni Node](https://crates.io/crates/polkadot-omni-node). For instructions on setting up the Polkadot Omni Node and [Polkadot Chain Spec Builder](/tools/chain-spec-builder/), refer to the [Set Up a Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template/) guide.
+Now that you've added the pallet to your runtime, you can launch your parachain locally to test the new functionality using the [Polkadot Omni Node](https://crates.io/crates/polkadot-omni-node). For instructions on setting up the Polkadot Omni Node and [Polkadot Chain Spec Builder](/tools/chain-spec-builder.md), refer to the [Set Up a Parachain Template](/polkadot-sdk/launch-a-parachain/set-up-the-parachain-template.md) guide.
 
 ### Generate a Chain Specification
 
@@ -240,7 +240,7 @@ named-preset development
 This command generates a chain specification file, `chain_spec.json`, for your parachain with the updated runtime.
 
 !!! note
-    The `--relay-chain` flag records the identifier of the relay chain the parachain is meant to connect to. When you run the parachain against a relay chain, set it to match that relay chain (for local development, the relay chain spec you start with [Zombienet](/polkadot-sdk/testing/run-a-parachain-network/)).
+    The `--relay-chain` flag records the identifier of the relay chain the parachain is meant to connect to. When you run the parachain against a relay chain, set it to match that relay chain (for local development, the relay chain spec you start with [Zombienet](/polkadot-sdk/testing/run-a-parachain-network.md)).
 
 ### Start the Parachain Node
 
@@ -281,7 +281,7 @@ You can now test the pallet's functionality by submitting transactions through t
 
     Learn how to implement multiple instances of the same pallet in your Polkadot SDK-based runtime.
 
-    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/customize-runtime/add-pallet-instances/)
+    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/customize-runtime/add-pallet-instances.md)
 
 -   <span class="badge guide">Guide</span> __Make a Custom Pallet__
 
@@ -289,6 +289,6 @@ You can now test the pallet's functionality by submitting transactions through t
 
     Learn how to create custom pallets using FRAME.
 
-    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet/)
+    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/customize-runtime/pallet-development/create-a-pallet.md)
 
 </div>
