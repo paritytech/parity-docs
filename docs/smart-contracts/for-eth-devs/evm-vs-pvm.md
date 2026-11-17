@@ -2,18 +2,20 @@
 title: EVM vs PVM
 description: Compares EVM and PVM, highlighting key architectural differences, gas models, memory management, and account handling while ensuring Solidity compatibility.
 short_description: Compare EVM and PVM architectures, gas models, and key differences.
-categories: Smart Contracts, Polkadot Protocol
+categories: Smart Contracts, Protocol Internals
 ---
 
 # EVM vs PVM
 
 ## Introduction
 
-While Polkadot Virtual Machine (PVM) strives for maximum Ethereum compatibility, several fundamental design decisions create necessary divergences from the [EVM](https://ethereum.org/developers/docs/evm/){target=\_blank}. These differences represent trade-offs that enhance performance and resource management while maintaining accessibility for Solidity developers.
+pallet-revive runs contracts on two backends. REVM executes standard EVM bytecode and is the default choice for existing Solidity projects. PVM runs contracts compiled to PolkaVM with [`resolc`](/smart-contracts/resolc/); it is newer, and its tooling is still maturing.
+
+This page covers the PVM backend. While PVM strives for maximum Ethereum compatibility, several fundamental design decisions create necessary divergences from the [EVM](https://ethereum.org/developers/docs/evm/). These differences represent trade-offs that enhance performance and resource management while maintaining accessibility for Solidity developers.
 
 ## Core Virtual Machine Architecture
 
-The most significant departure from Ethereum comes from PVM's foundation itself. Rather than implementing the EVM, PVM utilizes a RISC-V instruction set. For most Solidity developers, this architectural change remains transparent thanks to the [Revive compiler's](https://github.com/paritytech/revive){target=\_blank} complete Solidity support, including inline assembler functionality.
+The most significant departure from Ethereum comes from PVM's foundation itself. Rather than implementing the EVM, PVM utilizes a RISC-V instruction set. For most Solidity developers, this architectural change remains transparent thanks to the [`resolc` compiler's](https://github.com/paritytech/revive) complete Solidity support, including inline assembler functionality.
 
 ```mermaid
 graph TD
@@ -45,9 +47,9 @@ graph TD
 
 However, this architectural difference becomes relevant in specific scenarios. Tools that attempt to download and inspect contract bytecode will fail, as they expect EVM bytecode rather than PVM's RISC-V format. Most applications typically pass bytecode as an opaque blob, making this a non-issue for standard use cases.
 
-This primarily affects contracts using [`EXTCODECOPY`](https://www.evm.codes/?fork=cancun#3c){target=\_blank} to manipulate code at runtime. A contract encounters problems specifically when it uses `EXTCODECOPY` to copy contract code into memory and then attempts to mutate it. This pattern is not possible in standard Solidity and requires dropping down to YUL assembly. An example would be a factory contract written in assembly that constructs and instantiates new contracts by generating code at runtime. Such contracts are rare in practice.
+This primarily affects contracts using [`EXTCODECOPY`](https://www.evm.codes/?fork=cancun#3c) to manipulate code at runtime. A contract encounters problems specifically when it uses `EXTCODECOPY` to copy contract code into memory and then attempts to mutate it. This pattern is not possible in standard Solidity and requires dropping down to YUL assembly. An example would be a factory contract written in assembly that constructs and instantiates new contracts by generating code at runtime. Such contracts are rare in practice.
 
-PVM offers an elegant alternative through its [on-chain constructors](https://paritytech.github.io/polkadot-sdk/master/pallet_revive/pallet/struct.Pallet.html#method.bare_instantiate){target=\_blank}, enabling contract instantiation without runtime code modification, making this pattern unnecessary. This architectural difference also impacts how contract deployment works more broadly, as discussed in the [Contract Deployment](#contract-deployment) section.
+PVM offers an alternative through its [on-chain constructors](https://paritytech.github.io/polkadot-sdk/master/pallet_revive/pallet/struct.Pallet.html#method.bare_instantiate), enabling contract instantiation without runtime code modification, making this pattern unnecessary. This architectural difference also impacts how contract deployment works more broadly, as described in [Contract Deployment](/smart-contracts/for-eth-devs/contract-deployment/).
 
 ### High-Level Architecture Comparison
 
@@ -58,14 +60,14 @@ PVM offers an elegant alternative through its [on-chain constructors](https://pa
 |    **Contract Size Limit**    |                                 24KB code size limit                                 |            Contract-specific memory limits             |
 |         **Compiler**          |                                  Solidity Compiler                                   |                    Revive Compiler                     |
 |      **Inline Assembly**      |                                      Supported                                       |         Supported with the compatibility layer         |
-|    **Code Introspection**     | Supported via [`EXTCODECOPY`](https://www.evm.codes/?fork=cancun#3c){target=\_blank} | Limited support, alternative via on-chain constructors |
+|    **Code Introspection**     | Supported via [`EXTCODECOPY`](https://www.evm.codes/?fork=cancun#3c) | Limited support, alternative via on-chain constructors |
 |     **Resource Metering**     |                                  Single gas metric                                   |                   Multi-dimensional                    |
 | **Runtime Code Modification** |                                      Supported                                       |               Limited, with alternatives               |
 |  **Contract Instantiation**   |                                 Standard deployment                                  |    On-chain constructors for flexible instantiation    |
 
 ## Gas Model
 
-Ethereum's resource model relies on a single metric: [gas](https://ethereum.org/developers/docs/gas/#what-is-gas){target=\_blank}, which serves as the universal unit for measuring computational costs. Each operation on the network consumes a specific amount of gas. Most platforms aiming for Ethereum compatibility typically adopt identical gas values to ensure seamless integration.
+Ethereum's resource model relies on a single metric: [gas](https://ethereum.org/developers/docs/gas/#what-is-gas), which serves as the universal unit for measuring computational costs. Each operation on the network consumes a specific amount of gas. Most platforms aiming for Ethereum compatibility typically adopt identical gas values to stay compatible with existing tools.
 
 The significant changes to Ethereum's gas model will be outlined in the following sections.
 
@@ -81,9 +83,9 @@ Moving beyond Ethereum's single gas metric, PVM meters three distinct resources:
 - **`proof_size`**: Tracks state proof size for validator verification.
 - **`storage_deposit`**: Manages state bloat through a deposit system.
 
-All three resources can be limited at the transaction level, just like gas on Ethereum. The [Ethereum RPC proxy](https://github.com/paritytech/polkadot-sdk/tree/master/substrate/frame/revive/rpc){target=\_blank} maps all three dimensions into the single gas dimension, ensuring everything behaves as expected for users.
+All three resources can be limited at the transaction level, like gas on Ethereum. The [Ethereum JSON-RPC adapter (`eth-rpc`)](/smart-contracts/eth-rpc-adapter/) maps all three dimensions into the single gas dimension, ensuring everything behaves as expected for users.
 
-These resources can also be limited when making cross-contract calls, which is essential for security when interacting with untrusted contracts. However, Solidity only allows specifying `gas_limit` for cross-contract calls. The `gas_limit` is most similar to Polkadots `ref_time_limit`, but the Revive compiler doesn't supply any imposed `gas_limit` for cross-contract calls for two key reasons:
+These resources can also be limited when making cross-contract calls, which is essential for security when interacting with untrusted contracts. However, Solidity only allows specifying `gas_limit` for cross-contract calls. The `gas_limit` is most similar to the `ref_time_limit` of pallet-revive, but `resolc` doesn't supply any imposed `gas_limit` for cross-contract calls for two key reasons:
 
 - **Semantic differences**: `gas_limit` and `ref_time_limit` are not semantically identical; blindly passing EVM gas as `ref_time_limit` can lead to unexpected behavior.
 - **Incomplete protection**: The other two resources (`proof_size` and `storage_deposit`) would remain uncapped anyway, making it insufficient to prevent malicious callees from performing DOS attacks.
@@ -93,7 +95,7 @@ When resources are "uncapped" in cross-contract calls, they remain constrained b
 !!! note
     The runtime will provide a special precompile, allowing cross-contract calls with limits specified for all weight dimensions in the future.
 
-All gas-related opcodes like [`GAS`](https://www.evm.codes/?fork=cancun#5a){target=\_blank} or [`GAS_LIMIT`](https://www.evm.codes/?fork=cancun#45){target=\_blank} return only the `ref_time` value as it's the closest match to traditional gas. Extended APIs will be provided through precompiles to make full use of all resources, including cross-contract calls with all three resources specified.
+All gas-related opcodes like [`GAS`](https://www.evm.codes/?fork=cancun#5a) or [`GAS_LIMIT`](https://www.evm.codes/?fork=cancun#45) return only the `ref_time` value as it's the closest match to traditional gas. Extended APIs will be provided through precompiles to make full use of all resources, including cross-contract calls with all three resources specified.
 
 ## Memory Management
 
@@ -114,28 +116,30 @@ The architecture establishes a constant memory limit per contract, which is the 
 
 ### Current Memory Limits
 
-The following table depicts memory-related limits at the time of writing:
+The following table lists limits that contract code can observe, as defined in the [`limits`](https://github.com/paritytech/polkadot-sdk/blob/{{dependencies.repositories.polkadot_sdk.version}}/substrate/frame/revive/src/limits.rs) module of pallet-revive in Polkadot SDK `{{dependencies.repositories.polkadot_sdk.version}}`:
 
-|                   Limit                    |     Maximum     |
-|:------------------------------------------:|:---------------:|
-|              Call stack depth              |        5        |
-|                Event topics                |        4        |
-| Event data payload size (including topics) |    416 bytes    |
-|             Storage value size             |    416 bytes    |
-|        Transient storage variables         | 128 uint values |
-|            Immutable variables             | 16 uint values  |
-|          Contract code blob size           | ~100 kilobytes  |
+|                 Limit                  |            Maximum             |
+|:--------------------------------------:|:------------------------------:|
+|            Call stack depth            |               25               |
+|              Event topics              |               4                |
+|           Event data payload           |         64 kilobytes           |
+|           Storage value size           |           416 bytes            |
+|           Storage key length           |           128 bytes            |
+|  Transient storage (keys and values)   |          4 kilobytes           |
+|            Immutable data              | 4 kilobytes (16 `uint256` values) |
+|        Call data and return data       |         128 kilobytes          |
+|        Contract code blob size         |          1 megabyte            |
 
 !!! note
     Limits might be increased in the future. To guarantee existing contracts work as expected, limits will never be decreased.
 
-## Account Management - Existential Deposit
+## Account Management and the Existential Deposit
 
-Ethereum and Polkadot handle account persistence differently, affecting state management and contract interactions:
+Ethereum and the Polkadot SDK handle account persistence differently, affecting state management and contract interactions. The existential deposit (ED) behavior described in this section is implemented by pallet-revive and applies to contracts on both the REVM and PVM backends.
 
 ### Account Management Comparison
 
-|          Feature          |                   Ethereum Approach                   |               PVM/Polkadot Approach                |
+|          Feature          |                   Ethereum Approach                   |               pallet-revive Approach                |
 |:-------------------------:|:-----------------------------------------------------:|:------------------------------------------------------:|
 |  **Account Persistence**  | Accounts persist indefinitely, even with zero balance | Requires existential deposit (ED) to maintain account  |
 |    **Minimum Balance**    |                         None                          |                      ED required                       |
@@ -146,7 +150,7 @@ Ethereum and Polkadot handle account persistence differently, affecting state ma
 | **Contract-to-Contract**  |                   Direct transfers                    | ED drawn from transaction signer, not sending contract |
 |   **State Management**    |      Potential bloat from zero-balance accounts       |     Optimized with auto-deletion of dust accounts      |
 
-This difference introduces potential compatibility challenges for Ethereum-based contracts and tools, particularly wallets. To mitigate this, PVM implements several transparent adjustments:
+This difference introduces potential compatibility challenges for Ethereum-based contracts and tools, particularly wallets. To mitigate this, pallet-revive implements several transparent adjustments:
 
 - Balance queries via Ethereum RPC automatically deduct the ED, ensuring reported balances match spendable amounts.
 - Account balance checks through EVM opcodes reflect the ED-adjusted balance.
@@ -156,21 +160,11 @@ This difference introduces potential compatibility challenges for Ethereum-based
     - Keeping transfer amounts transparent for contract logic.
     - Treating ED like other storage deposit costs.
 
-This approach ensures that Ethereum contracts work without modifications while maintaining Polkadot's optimized state management.
+This approach ensures that Ethereum contracts work without modifications while keeping the state management benefits of the existential deposit.
 
 ## Contract Deployment
 
-For most users deploying contracts (like ERC-20 tokens), contract deployment works seamlessly without requiring special steps. However, when using advanced patterns like factory contracts that dynamically create other contracts at runtime, you'll need to understand PVM's unique deployment model.
-
-In the PVM, contract deployment follows a fundamentally different model from EVM. The EVM allows contracts to be deployed with a single transaction, where the contract code is bundled with the deployment transaction. In contrast, PVM has a different process for contract instantiation.
-
-- **Code must be pre-uploaded**: Unlike EVM, where contract code is bundled within the deploying contract, PVM requires all contract bytecode to be uploaded to the chain before instantiation.
-- **Factory pattern limitations**: The common EVM pattern, where contracts dynamically create other contracts, will fail with a `CodeNotFound` error unless the dependent contract code was previously uploaded.
-- **Separate upload and instantiation**: This creates a two-step process where developers must first upload all contract code, then instantiate relationships between contracts.
-
-This architecture impacts several common EVM patterns and requires developers to adapt their deployment strategies accordingly. _Factory contracts must be modified to work with pre-uploaded code rather than embedding bytecode_, and runtime code generation is not supported due to PVM's RISC-V bytecode format. The specific behavior of contract creation opcodes is detailed in the [YUL IR Translation](#yul-function-translation-differences) section.
-
-When migrating EVM projects to PVM, developers should identify all contracts that will be instantiated at runtime and ensure they are pre-uploaded to the chain before any instantiation attempts.
+PVM separates code upload from contract instantiation, which changes how factory contracts and runtime code generation work. See [Contract Deployment](/smart-contracts/for-eth-devs/contract-deployment/) for the deployment models of both backends and how to adapt factory contracts. The specific behavior of contract creation opcodes is covered in [YUL Function Translation Differences](#yul-function-translation-differences).
 
 ## Solidity and YUL IR Translation Incompatibilities
 
@@ -241,9 +235,9 @@ The following YUL functions exhibit notable behavioral differences in PVM:
         1. A buffer containing the code hash to deploy.
         2. The constructor arguments buffer.
 
-        PVM translates `dataoffset` and `datasize` instructions to handle contract hashes instead of contract code, enabling seamless use of the `new` keyword in Solidity. However, this translation may fail for contracts creating other contracts within `assembly` blocks.
+        PVM translates `dataoffset` and `datasize` instructions to handle contract hashes instead of contract code, so the `new` keyword works unchanged in Solidity. However, this translation may fail for contracts creating other contracts within `assembly` blocks.
 
-        If you use the Solidity `new` keyword to deploy contracts, the Revive compiler handles this transparently. However, if you are creating contracts manually in YUL assembly using `create` or `create2` opcodes, you must provide the code hash of the contract to be deployed, not its raw bytecode. Attempting to pass raw bytecode will fail. This fundamentally changes how manual contract creation is performed in assembly.
+        If you use the Solidity `new` keyword to deploy contracts, `resolc` handles this transparently. However, if you are creating contracts manually in YUL assembly using `create` or `create2` opcodes, you must provide the code hash of the contract to be deployed, not its raw bytecode. Attempting to pass raw bytecode will fail. This fundamentally changes how manual contract creation is performed in assembly.
 
         !!! warning
             Avoid using `create` family opcodes for manual deployment crafting in `assembly` blocks. This pattern is discouraged due to translation complexity and offers no gas savings benefits in PVM.
@@ -265,7 +259,7 @@ The following YUL functions exhibit notable behavioral differences in PVM:
 
     - **`prevrandao`, `difficulty`**: Both translate to a constant value of `2500000000000000`, as PVM doesn't implement Ethereum's difficulty adjustment or randomness mechanisms.
 
-        - If your Solidity contract relies on `block.difficulty` (or its equivalent YUL opcode `difficulty`) for randomness generation or any logic tied to Ethereum's proof-of-work difficulty, this will not provide true randomness on PVM. The value will always be constant. Developers needing on-chain randomness should utilize Polkadot's native randomness sources or dedicated VRF (Verifiable Random Function) solutions if available. 
+        - If your Solidity contract relies on `block.difficulty` (or its equivalent YUL opcode `difficulty`) for randomness generation or any logic tied to Ethereum's proof-of-work difficulty, this will not provide true randomness on PVM. The value will always be constant. Developers needing on-chain randomness should use a randomness source provided by the runtime or dedicated VRF (Verifiable Random Function) solutions if available. 
 
 ### Unsupported Operations
 
@@ -273,9 +267,9 @@ Several EVM operations are not supported in PVM and produce compile-time errors:
 
 - **`pc`, `extcodecopy`**: These operations are EVM-specific and have no equivalent functionality in PVM's RISC-V architecture.
 
-    - Any Solidity contracts that utilize inline assembly to interact with `pc` (program counter) or `extcodecopy` will fail to compile or behave unexpectedly. This means patterns involving introspection of the current execution location or copying external contract bytecode at runtime are not supported.
+    - Any Solidity contracts that use inline assembly to interact with `pc` (program counter) or `extcodecopy` will fail to compile or behave unexpectedly. This means patterns involving introspection of the current execution location or copying external contract bytecode at runtime are not supported.
 
-- **`blobhash`, `blobbasefee`**: Related to Ethereum's rollup model and blob data handling, these operations are unnecessary given Polkadot's superior rollup architecture.
+- **`blobhash`, `blobbasefee`**: Related to Ethereum's rollup model and blob data handling, these operations have no equivalent in pallet-revive.
 
     - If you are porting contracts designed for Ethereum's EIP-4844 (proto-danksharding) and rely on these blob-related opcodes, they will not be available on PVM.
 
@@ -285,7 +279,7 @@ Several EVM operations are not supported in PVM and produce compile-time errors:
 
 ### Compilation Pipeline Considerations
 
-PVM processes YUL IR exclusively, meaning all contracts exhibit behavior consistent with Solidity's `via-ir` compilation mode. Developers familiar with the legacy compilation pipeline should expect [IR-based codegen behavior](https://docs.soliditylang.org/en/latest/ir-breaking-changes.html){target=\_blank} when working with PVM contracts.
+PVM processes YUL IR exclusively, meaning all contracts exhibit behavior consistent with Solidity's `via-ir` compilation mode. Developers familiar with the legacy compilation pipeline should expect [IR-based codegen behavior](https://docs.soliditylang.org/en/latest/ir-breaking-changes.html) when working with PVM contracts.
 
 If you've previously worked with older Solidity compilers that did not use the `via-ir` pipeline by default, you might observe subtle differences in compiled bytecode size or gas usage. It's recommended to familiarize yourself with Solidity's IR-based codegen behavior, as this is the standard for PVM.
 

@@ -1,0 +1,5 @@
+nav:
+ - 'Overview': index.md
+ - 'Run a Node': run-a-node
+ - 'Run a Collator': run-a-collator.md
+ - 'Monitor and Harden a Node': monitor-and-harden.md

@@ -37,8 +37,11 @@ from urllib.parse import urlparse
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-MIN_CHUNKS = 1500
-MIN_PAGES = 180
+# Collapse guards, about 15% below the feed size after the Polkadot network
+# content was handed off (1,454 chunks, 163 pages). Lower them again if
+# pages are intentionally removed; never raise them past the current size.
+MIN_CHUNKS = 1200
+MIN_PAGES = 140
 REQUIRED_KEYS = {"source", "page_id", "url", "anchor", "page_version_hash",
                  "page_title", "title", "text"}
 

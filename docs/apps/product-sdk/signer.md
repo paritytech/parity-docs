@@ -8,7 +8,7 @@ categories: Apps
 
 ## Introduction
 
-[`@parity/product-sdk-signer`](https://paritytech.github.io/product-sdk/api/signer/) handles account discovery, selection, and signing, decoupled from where the keys actually live. Your Product talks to one class, `SignerManager`, and the same call sites work whether signing routes to the user's [Polkadot App](/reference/apps/hosts/polkadot-app/) in production or to local dev accounts in a test.
+[`@parity/product-sdk-signer`](https://paritytech.github.io/product-sdk/api/signer/) handles account discovery, selection, and signing, decoupled from where the keys actually live. Your Product talks to one class, `SignerManager`, and the same call sites work whether signing routes to the user's [Polkadot App](https://developers.polkadot.com/reference/apps/hosts/polkadot-app/) in production or to local dev accounts in a test.
 
 Every fallible method returns a typed `Result`, so you check `.ok` before reading `.value` rather than wrapping calls in `try`/`catch`.
 
@@ -16,7 +16,7 @@ Every fallible method returns a typed `Result`, so you check `.ok` before readin
 
 - Whenever your Product needs to discover accounts, select one, and obtain a `PolkadotSigner` to sign transactions or raw bytes.
 - To manage the connection lifecycle: connect, disconnect, subscribe to state changes, and run once-per-session setup through the `onConnect` hook (for example, requesting permissions).
-- Use the host provider for real signing on [Polkadot Desktop](/reference/apps/hosts/polkadot-desktop/) and the Polkadot App; use the dev provider for tests with well-known accounts such as Alice and Bob.
+- Use the host provider for real signing on [Polkadot Desktop](https://developers.polkadot.com/reference/apps/hosts/polkadot-desktop/) and the Polkadot App; use the dev provider for tests with well-known accounts such as Alice and Bob.
 - The product-account and Ring-VRF methods are Host-only; they return `HostUnavailableError` under the dev provider.
 
 ## Core Concepts

@@ -8,7 +8,7 @@ categories: Apps
 
 ## Introduction
 
-[`@parity/product-sdk-cloud-storage`](https://paritytech.github.io/product-sdk/api/cloud-storage/) stores content-addressed data on the [Bulletin Chain](/reference/apps/infrastructure/bulletin-chain/). You upload bytes and get back a CID; you fetch by CID from anywhere inside a Host. It handles chunking, DAG-PB manifests, and CID calculation for you, and adds network presets, container-only read helpers, and an authorization pre-flight.
+[`@parity/product-sdk-cloud-storage`](https://paritytech.github.io/product-sdk/api/cloud-storage/) stores content-addressed data on the [Bulletin Chain](/apps/reference/infrastructure/bulletin-chain/). You upload bytes and get back a CID; you fetch by CID from anywhere inside a Host. It handles chunking, DAG-PB manifests, and CID calculation for you, and adds network presets, container-only read helpers, and an authorization pre-flight.
 
 Reach for it when your Product needs content that outlives a session and is addressable by anyone who has the CID: profile photos, published posts, file uploads, or full snapshots of app state.
 
@@ -25,7 +25,7 @@ Reach for it when your Product needs content that outlives a session and is addr
 - **Content addressing**: Uploads are identified by a CID (CIDv1) derived from their content, not by a path or key. The same bytes always produce the same CID.
 - **`store(data)` builder**: A fluent builder ending in `.send()`, which resolves with a `StoreResult`. Only `size` is always present; `cid`, `blockNumber`, and `extrinsicIndex` are optional. Large payloads are chunked automatically.
 - **Read helpers return a `Result`**: `fetchBytes` and `fetchJson` return a `Result` (check `.ok`); DAG-PB chunked content is reassembled for you unless you opt out.
-- **Authorization pre-flight**: `checkAuthorization` returns a `Result` wrapping an `AuthorizationStatus` with the remaining transactions, bytes, and expiration, and never throws. Uploading requires an [authorization](/apps/get-started/get-testnet-tokens/) on the account.
+- **Authorization pre-flight**: `checkAuthorization` returns a `Result` wrapping an `AuthorizationStatus` with the remaining transactions, bytes, and expiration, and never throws. Uploading requires an [authorization](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/) on the account.
 - **`createLazySigner(getSigner)`**: A signer wrapper that resolves the underlying signer on each call, so you can build the client before an account is selected.
 
 ## Store and Fetch by CID

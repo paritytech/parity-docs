@@ -82,7 +82,7 @@ if (accounts) {
 
     How the Host mediates between your Product and Polkadot's infrastructure.
 
-    [:octicons-arrow-right-24: Reference](/reference/apps/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/)
 
 -   <span class="badge learn">Learn</span> **Signer**
 

@@ -1,9 +1,8 @@
 [relaychain]
 default_command = "polkadot"
 default_image = "polkadot-debug:master"
-chain = "paseo"
-chain_spec_path = "INSERT_PATH_TO_CHAIN_SPEC"
-default_args = ["--chain", "paseo"]
+chain = "rococo-local"
+default_args = ["-lparachain=debug"]
 
 [[relaychain.nodes]]
 name = "alice"

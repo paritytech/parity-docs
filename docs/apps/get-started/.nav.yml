@@ -1,4 +1,3 @@
 nav:
- - 'Install Desktop and Pair': index.md
- - 'Get TestNet Tokens': get-testnet-tokens.md
+ - 'Run a Host Locally': index.md
  - 'Set Up Your AI Agent': set-up-your-ai-agent.md

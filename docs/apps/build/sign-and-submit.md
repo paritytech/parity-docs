@@ -10,7 +10,7 @@ page_badges:
 
 ## Introduction
 
-This guide covers the `@parity/product-sdk-signer` package, which gives your Product a typed, host-aware signing interface for deriving accounts and signing payloads (raw bytes or full transactions) from inside a Polkadot host container. The SDK exposes a single orchestrator, `SignerManager`, that wraps both the production host path ([Polkadot Desktop](/reference/apps/hosts/polkadot-desktop/)) and a deterministic dev path behind the same `Result`-typed API.
+This guide covers the `@parity/product-sdk-signer` package, which gives your Product a typed, host-aware signing interface for deriving accounts and signing payloads (raw bytes or full transactions) from inside a Polkadot host container. The SDK exposes a single orchestrator, `SignerManager`, that wraps both the production host path ([Polkadot Desktop](https://developers.polkadot.com/reference/apps/hosts/polkadot-desktop/)) and a deterministic dev path behind the same `Result`-typed API.
 
 ## Prerequisites
 
@@ -18,13 +18,16 @@ Before starting, ensure you have:
 
 - A Polkadot Product project running locally (see [Set Up Your Project](/apps/build/#set-up-your-project)) with a TypeScript toolchain
 - Node.js 20 or later with ESM support (`@parity/product-sdk-signer` is ESM only)
-- Polkadot Desktop to run your Product inside a host container (see [Install Desktop and Pair](/apps/get-started/))
+- Polkadot Desktop to run your Product inside a host container (see [Run a Host for Local Development](/apps/get-started/))
 
 !!! note
     To test signing without a host container, use `manager.connect('dev')`. This loads the standard Substrate dev accounts (Alice, Bob, and others) locally and does not require Polkadot Desktop. See [Test Without a Host](#test-without-a-host).
 
 !!! note "Code examples"
-    The snippets in this guide are standalone; each one illustrates one concept and can be pasted into your Product independently. They are confirmed working with Polkadot Desktop and `@parity/product-sdk` v0.9.0.
+    The snippets in this guide are standalone; each one illustrates one concept and can be pasted into your Product independently.
+
+!!! warning "Provisional"
+    The signer snippets were last confirmed with Polkadot Desktop and `@parity/product-sdk` v0.9.0, while the rest of this section targets v0.30.0. Check them against the [Product SDK API reference](https://paritytech.github.io/product-sdk/) for the version you install.
 
 ## Install the SDK
 
@@ -205,25 +208,29 @@ async function signMessage() {
 
 ## Sign and Submit a Transaction
 
-To sign a transaction, get a `PolkadotSigner` from `SignerManager` and pass it to the `signAndSubmit` method from `polkadot-api` (PAPI). The SDK handles routing the signing request to Desktop, which renders a signing modal and forwards to the [Polkadot App](/reference/apps/hosts/polkadot-app/).
+To submit a transaction, combine three packages: the [chain client](/apps/product-sdk/chain-client/) builds the transaction from a typed API, `SignerManager` supplies a `PolkadotSigner` for the selected account, and [`tx`](/apps/product-sdk/tx/) signs, broadcasts, and follows it. The Host owns the chain connection, so your Product never opens a WebSocket or picks an RPC endpoint. The signing request routes to Desktop, which renders a signing modal and forwards it to the [Polkadot App](https://developers.polkadot.com/reference/apps/hosts/polkadot-app/).
 
-`@parity/product-sdk-signer` provides only the signer interface; chain connectivity uses `polkadot-api` directly. Set up your PAPI client separately:
+Install the two extra packages. `tx` has no umbrella subpath, so install it on its own even if you use the umbrella package:
 
-```typescript
-import { createClient } from 'polkadot-api';
-import { getWsProvider } from 'polkadot-api/ws-provider/web';
-import { dot } from '@polkadot-api/descriptors';
-
-const client = createClient(getWsProvider('wss://rpc.polkadot.io'));
-const api = client.getTypedApi(dot);
+```bash
+npm install @parity/product-sdk-chain-client @parity/product-sdk-tx
 ```
 
-The `dot` descriptor is the typed API surface for the Polkadot relay chain. Run `npx papi add dot` in your project to pull or regenerate it.
+Get a typed client for the environment's preset chains with `getChainAPI`. Pass the environment name your Product targets, such as `'paseo'`:
 
 ```typescript
-async function transfer() {
-  const recipient = 'INSERT_RECIPIENT_ADDRESS';
+import { getChainAPI } from '@parity/product-sdk-chain-client';
 
+const chain = await getChainAPI('paseo');
+```
+
+Then build a transaction from the typed API and submit it with `submitAndWatch`. This example posts a `System.remark` on Asset Hub:
+
+```typescript
+import { submitAndWatch } from '@parity/product-sdk-tx';
+import { Binary } from 'polkadot-api';
+
+async function postRemark() {
   const account = await loadProductAccount();
   if (!account) return null;
 
@@ -234,48 +241,31 @@ async function transfer() {
   const signer = manager.getSigner();
   if (!signer) return null;
 
-  const tx = api.tx.Balances.transfer_keep_alive({
-    dest: recipient,
-    value: 1_000_000_000_000n,
+  const tx = chain.assetHub.tx.System.remark({ remark: Binary.fromText('hello') });
+
+  const result = await submitAndWatch(tx, signer, {
+    onStatus: (status) => console.log(status.type),
   });
 
-  return tx.signAndSubmit(signer);
+  if (!result.ok) {
+    console.error(result.error.message); // TxError
+    return null;
+  }
+
+  return result.value.block.number;
 }
 ```
+
+`onStatus` reports each transition (`signing`, `broadcasting`, `in-block`, and `finalized`), which you can drive a progress indicator from. `result.ok` means the transaction was included and its dispatch succeeded. Call `chain.destroy()` when your Product no longer needs the client.
 
 ## Handle Signing Errors
 
-Two outcomes are worth handling explicitly: the user rejects the request, or the signing session times out.
+`submitAndWatch` returns a `Result` and resolves expected failures on the error channel rather than throwing. Two outcomes are worth handling explicitly:
 
-```typescript
-import {
-  HostRejectedError,
-  TimeoutError,
-} from '@parity/product-sdk-signer';
-import type { PolkadotSigner } from 'polkadot-api';
+- **The user declines**: The user dismissed the signing prompt on the Polkadot App, reported as `TxSigningRejectedError`. Return the user to a stable state and let them retry.
+- **The submission times out**: The transaction did not reach the requested state in time, reported as `TxTimeoutError`. The default timeout is 300 seconds.
 
-async function submitOrReport(
-  tx: { signAndSubmit(signer: PolkadotSigner): Promise<unknown> },
-  signer: PolkadotSigner,
-) {
-  try {
-    return await tx.signAndSubmit(signer);
-  } catch (error) {
-    if (error instanceof HostRejectedError) {
-      // The user dismissed the signing prompt on the Polkadot App
-      return null;
-    }
-    if (error instanceof TimeoutError) {
-      // The signing session expired before the user responded
-      return null;
-    }
-    throw error;
-  }
-}
-```
-
-- **`HostRejectedError`**: The user explicitly denied the request. Return the user to a stable state and let them retry.
-- **`TimeoutError`**: The signing session expired. Treat this the same as a rejection.
+A dispatch that fails on chain arrives as `TxDispatchError`, and a transaction rejected before inclusion as `TxValidityError`. All of them extend `TxError`; see [Transactions](/apps/product-sdk/tx/) for the full hierarchy.
 
 !!! tip "Design for async latency"
     Signing is asynchronous because the Polkadot App runs on a separate device. Show a non-blocking pending state rather than freezing the interface, and make sure your retry path is idempotent in case the user attempts the same action twice. There is no push notification when the phone is waiting, so a stalled-looking action is often an [unanswered prompt](/apps/troubleshooting/#the-app-seems-frozen-after-an-action).

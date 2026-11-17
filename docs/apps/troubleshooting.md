@@ -6,7 +6,9 @@ categories: Apps
 
 # Troubleshooting
 
-Named entries for the failures developers hit most while building and deploying Polkadot Products. Each one states the cause and the resolution.
+## Introduction
+
+This page lists the failures developers hit most while building and deploying Polkadot Products with the Product SDK and the [`playground` CLI](/apps/playground-cli/). Each entry states the cause and the resolution. For problems with a network or a service running on it, rather than with the software, see the note below for where to report them.
 
 --8<-- 'text/apps/network-operators.md'
 
@@ -17,7 +19,7 @@ Named entries for the failures developers hit most while building and deploying 
 **Resolution**:
 
 1. Determine which account actually signs. A Product running inside a Host can read its product account address (SS58 and H160) through the [`signer`](/apps/product-sdk/signer/) package; surface it in your dev UI. See [Accounts and Signing](/apps/concepts/accounts/#see-the-signing-address).
-2. Grant the allowance (or storage authorization) to _that_ account. See [Get TestNet Tokens](/apps/get-started/get-testnet-tokens/).
+2. Grant the allowance (or storage authorization) to _that_ account. See [Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/).
 3. Keep the `productId` consistent between where you request the allowance and where you sign, so the same account is used throughout.
 
 ## The App Seems Frozen After an Action
@@ -34,9 +36,9 @@ Named entries for the failures developers hit most while building and deploying 
 
 ## Short Names Are Not for Sale
 
-**Cause**: Registering a name of eight characters or fewer fails with `Short names are not for sale`. The public registration path that `playground`, `pad`, and the dotNS CLI use sells only names of nine characters or more. The six-to-eight band is closed by a governance switch in `PopRules`, which is off by default, so [Proof of Personhood](/apps/concepts/identity/) does not open it. A name of five characters or fewer stays closed on this path even when the switch is on, because it is reserved for governance. Length is counted as written, so digits do not change which band a name falls in.
+**Cause**: The dotNS `PopRules` contract rejected the name because of its length. Which lengths are open on the registration path that `playground`, `pad`, and the dotNS CLI use is set by the configuration of the dotNS deployment you target; see the [PopRules and Pricing reference](/apps/reference/infrastructure/dotns/poprules-pricing/).
 
-**Resolution**: Choose a name of nine characters or more. A name of six to eight characters is available as a personhood or device name, earned in the Polkadot App. See [Register a `.dot` Domain](/apps/register-dot-domain/#choose-a-name).
+**Resolution**: Choose a longer name. On the configuration these guides target, names of nine characters or more register with no personhood check. See [Register a `.dot` Domain](/apps/register-dot-domain/#choose-a-name).
 
 ## The Name Is Already Registered
 
@@ -48,13 +50,13 @@ Named entries for the failures developers hit most while building and deploying 
 
 **Cause**: Two different problems share this symptom. Storing on the Bulletin Chain requires an explicit storage authorization on the signing account — without it, the store is rejected regardless of your token balance. Separately, `Host storage unavailable` means code that needs a Host is running outside one.
 
-**Resolution**: Request a storage authorization for the signing account (see [Get TestNet Tokens](/apps/get-started/get-testnet-tokens/)), and confirm you granted it to the account that actually signs (see the allowance entry above). For `Host storage unavailable`, run your Product inside [Polkadot Desktop](/reference/apps/hosts/polkadot-desktop/), or use the SDK's dev and testing paths for out-of-Host development.
+**Resolution**: Request a storage authorization for the signing account (see [Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/)), and confirm you granted it to the account that actually signs (see the allowance entry above). For `Host storage unavailable`, run your Product inside [Polkadot Desktop](https://developers.polkadot.com/reference/apps/hosts/polkadot-desktop/), or use the SDK's dev and testing paths for out-of-Host development.
 
 ## The App Does Not Appear Right After Deploy
 
 **Cause**: On-chain state takes a short time to propagate after the deploy transaction finalizes, and the web gateway resolves your name through an in-browser light client.
 
-**Resolution**: Wait a few seconds and refresh. A `curl` or script against the gateway URL returns a generic gateway shell, not your app — open it in a real browser to see the resolved Product. If it still does not resolve after a minute, confirm the deploy finalized and check network status with the developer community.
+**Resolution**: Wait a few seconds and refresh. A `curl` or script against the gateway URL returns a generic gateway shell, not your app — open it in a real browser to see the resolved Product. If it still does not resolve after a minute, confirm the deploy finalized, then report the problem to the operator of the environment you deployed to.
 
 ## Connecting to a Chain Throws Outside a Host
 

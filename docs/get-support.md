@@ -94,7 +94,7 @@ Use one of the channels below to get live technical support or ask questions.
 
 </div>
 
-For Polkadot ecosystem resources such as governance, the Polkadot Forum, and network-wide news, refer to the [Polkadot Developer Docs](https://docs.polkadot.com/).
+For Polkadot ecosystem resources such as governance, the Polkadot Forum, and network-wide news, refer to the [Polkadot Developer Docs](https://developers.polkadot.com/).
 
 ## AI Resources
 

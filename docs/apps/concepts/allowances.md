@@ -79,7 +79,7 @@ Design for re-approval: make requesting allowances idempotent, and do not treat 
 
     Grant your account the Bulletin storage authorization and other service allowances.
 
-    [:octicons-arrow-right-24: Get TestNet Tokens](/apps/get-started/get-testnet-tokens/)
+    [:octicons-arrow-right-24: Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/)
 
 -   <span class="badge learn">Learn</span> **Permissions Reference**
 
@@ -87,6 +87,6 @@ Design for re-approval: make requesting allowances idempotent, and do not treat 
 
     The Host-to-Product permission model at the protocol level.
 
-    [:octicons-arrow-right-24: Reference](/reference/apps/protocol/truapi/permissions/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/permissions/)
 
 </div>

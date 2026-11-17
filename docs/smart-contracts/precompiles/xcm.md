@@ -9,7 +9,7 @@ categories: Smart Contracts
 
 ## Introduction
 
-The [XCM (Cross-Consensus Message)](/parachains/interoperability/get-started/){target=\_blank} precompile enables Polkadot Hub developers to access XCM functionality directly from their smart contracts using a Solidity interface.
+The [XCM (Cross-Consensus Message)](/polkadot-sdk/interoperability/get-started/) precompile gives smart contracts on chains running `pallet-revive` access to XCM functionality through a Solidity interface. The precompile is implemented in `pallet-xcm` and is available only on chains whose runtime registers it.
 
 Located at the fixed address `0x00000000000000000000000000000000000a0000`, the XCM precompile offers three primary functions:
 
@@ -17,7 +17,7 @@ Located at the fixed address `0x00000000000000000000000000000000000a0000`, the X
 - **`send`**: For cross-chain message transmission.
 - **`weighMessage`**: For cost estimation.
 
-This guide demonstrates how to interact with the XCM precompile through Solidity smart contracts using [Remix IDE](/smart-contracts/dev-environments/remix/){target=\_blank}.
+This guide demonstrates how to interact with the XCM precompile through Solidity smart contracts using [Remix IDE](https://developers.polkadot.com/smart-contracts/dev-environments/remix/). The examples need a chain that registers the XCM precompile, such as Polkadot Hub TestNet. For network endpoints and test tokens, see [Connect to Polkadot](https://developers.polkadot.com/smart-contracts/connect/) on developers.polkadot.com.
 
 !!!note
     The XCM precompile provides the barebones XCM functionality. While it provides a lot of flexibility, it doesn't provide abstractions to hide away XCM details. These have to be built on top.
@@ -35,17 +35,17 @@ The interface defines a `Weight` struct that represents the computational cost o
 - **`refTime`**: Computational time on reference hardware.
 - **`proofSize`**: The size of the proof required for execution.
 
-All XCM messages must be encoded using the [SCALE codec](/reference/parachains/data-encoding/#data-encoding){target=\_blank}, Polkadot's standard serialization format.
+All XCM messages must be encoded using the [SCALE codec](/polkadot-sdk/reference/data-encoding/#data-encoding), Polkadot's standard serialization format.
 
-For further information, check the [`precompiles/IXCM.sol`](https://github.com/paritytech/polkadot-sdk/blob/cb629d46ebf00aa65624013a61f9c69ebf02b0b4/polkadot/xcm/pallet-xcm/src/precompiles/IXcm.sol){target=\_blank} file present in `pallet-xcm`.
+For further information, check the [`precompiles/IXCM.sol`](https://github.com/paritytech/polkadot-sdk/blob/cb629d46ebf00aa65624013a61f9c69ebf02b0b4/polkadot/xcm/pallet-xcm/src/precompiles/IXcm.sol) file present in `pallet-xcm`.
 
 ## Interact with the XCM Precompile
 
-To interact with the XCM precompile, you can use the precompile interface directly in [Remix IDE](/smart-contracts/dev-environments/remix/){target=\_blank}:
+To interact with the XCM precompile, you can use the precompile interface directly in [Remix IDE](https://developers.polkadot.com/smart-contracts/dev-environments/remix/):
 
 1. Create a new file called `IXcm.sol` in Remix.
 2. Copy and paste the `IXcm` interface code into the file.
-3. Compile the interface by selecting the button or using **Ctrl +S** keys:
+3. Compile the interface by selecting the button or using **Ctrl + S** keys:
 
     ![](/images/smart-contracts/precompiles/xcm/xcm-01.webp)
 
@@ -55,7 +55,7 @@ To interact with the XCM precompile, you can use the precompile interface direct
 
     ![](/images/smart-contracts/precompiles/xcm/xcm-02.webp)
 
-7. Once connected, you can use the Remix interface to interact with the XCM precompile's  `execute`, `send`, and `weighMessage` functions.
+7. Once connected, you can use the Remix interface to interact with the XCM precompile's `execute`, `send`, and `weighMessage` functions.
 
     ![](/images/smart-contracts/precompiles/xcm/xcm-03.webp)
 
@@ -75,18 +75,15 @@ To test this functionality in Remix, you can call `callWeighMessage` with a SCAL
 
 This encoded message represents a sequence of XCM instructions:
 
-- **[Withdraw Asset](https://github.com/polkadot-fellows/xcm-format?tab=readme-ov-file#withdrawasset){target=\_blank}**: This instruction removes assets from the local chain's sovereign account or the caller's account, making them available for use in subsequent XCM instructions.
-- **[Buy Execution](https://github.com/polkadot-fellows/xcm-format?tab=readme-ov-file#buyexecution){target=\_blank}**: This instruction purchases execution time on the destination chain using the withdrawn assets, ensuring the message can be processed.
-- **[Deposit Asset](https://github.com/polkadot-fellows/xcm-format?tab=readme-ov-file#depositasset){target=\_blank}**: This instruction deposits the remaining assets into a specified account on the destination chain after execution costs have been deducted.
+- **[Withdraw Asset](https://github.com/polkadot-fellows/xcm-format?tab=readme-ov-file#withdrawasset)**: This instruction removes assets from the local chain's sovereign account or the caller's account, making them available for use in subsequent XCM instructions.
+- **[Buy Execution](https://github.com/polkadot-fellows/xcm-format?tab=readme-ov-file#buyexecution)**: This instruction purchases execution time on the destination chain using the withdrawn assets, ensuring the message can be processed.
+- **[Deposit Asset](https://github.com/polkadot-fellows/xcm-format?tab=readme-ov-file#depositasset)**: This instruction deposits the remaining assets into a specified account on the destination chain after execution costs have been deducted.
 
 This encoded message is provided as an example. You can craft your own XCM message tailored to your specific use case as needed.
 
 The function returns a `Weight` struct containing `refTime` and `proofSize` values, which indicate the estimated computational cost of executing this message. If successful, after calling the `callWeighMessage` function, you should see the `refTime` and `proofSize` of the message:
 
 ![](/images/smart-contracts/precompiles/xcm/xcm-05.webp)
-
-!!!note
-    You can find many more examples of XCMs in this [gist](https://gist.github.com/franciscoaguirre/a6dea0c55e81faba65bedf700033a1a2){target=\_blank}, which connects to the Polkadot Hub TestNet.
 
 ### Execute a Message
 
@@ -101,8 +98,6 @@ For example, using the same message from the weighing example, you would call `e
 
     - **`message`**: The encoded XCM message bytes.
     - **`weight`**: The `Weight` struct returned from `weighMessage`.
-
-    You can use the [papi console](https://dev.papi.how/extrinsics#networkId=localhost&endpoint=wss%3A%2F%2Ftestnet-passet-hub.polkadot.io&data=0x1f03050c000401000003008c86471301000003008c8647000d010101000000010100368e8759910dab756d344995f1d3c79374ca8f70066d3a709e48029f6bf0ee7e0750c61e2901daad0600){target=\_blank} to examine the complete extrinsic structure for this operation.
 
 3. On Remix, click on the **Transact** button to execute the XCM message:
   
@@ -130,17 +125,15 @@ Unlike `execute`, the `send` function doesn't require a weight parameter since t
 
 ## Cross Contract Calls
 
-Beyond direct interaction and wrapper contracts, you can integrate XCM functionality directly into your existing smart contracts by inheriting from or importing the `IXcm` interface. This approach enables you to embed cross-chain capabilities into your application logic seamlessly.
+Beyond direct interaction and wrapper contracts, you can integrate XCM functionality directly into your existing smart contracts by inheriting from or importing the `IXcm` interface. This approach lets you embed cross-chain capabilities directly in your application logic.
 
 Whether you're building DeFi protocols, governance systems, or any application requiring cross-chain coordination, you can incorporate XCM calls directly within your contract's functions.
 
 ## Conclusion
 
-The XCM precompile provides a simple yet powerful interface for cross-chain interactions within the Polkadot ecosystem and beyond.
-By building and executing XCM programs, developers can build cross-chain applications that leverage the full potential of Polkadot's interoperability features.
+The XCM precompile provides a low-level interface for cross-chain interactions from smart contracts. By building and executing XCM programs, developers can create cross-chain applications on top of XCM.
 
 ## Next Steps
 
-Head to the Polkadot Hub TestNet and start playing around with the precompile using [Hardhat](/smart-contracts/dev-environments/hardhat/){target=\_blank}.
-
-You can use PAPI to build XCM programs and test them with Chopsticks.
+- Call the precompile from your own contracts using the [Hardhat Polkadot plugin](/smart-contracts/dev-environments/hardhat-polkadot/), deploying to a chain that registers the XCM precompile.
+- Learn more about XCM in [Get Started with XCM](/polkadot-sdk/interoperability/get-started/).

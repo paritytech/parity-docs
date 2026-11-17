@@ -415,7 +415,7 @@ def build(args):
     excl = cfg.get("content", {}).get("exclusions", {})
     skip_base = set(excl.get("skip_basenames", [])) | DEFAULT_EXCLUDE_BASENAMES
     skip_paths = excl.get("skip_paths", [])
-    docs_base_url = cfg.get("project", {}).get("docs_base_url", "https://docs.polkadot.com/")
+    docs_base_url = cfg.get("project", {}).get("docs_base_url", "https://docs.parity.io/")
 
     processed = []
     for path in iter_markdown(args.docs):

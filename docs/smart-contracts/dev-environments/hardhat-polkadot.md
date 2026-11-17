@@ -1,12 +1,8 @@
 ---
-title: Use Hardhat with Polkadot Hub
-description: Learn how to set up, configure, and use Hardhat Polkadot to create, compile, test, and deploy Solidity smart contracts on Polkadot Hub using the PVM runtime.
-short_description: Set up Hardhat Polkadot to deploy Solidity contracts using the PVM runtime.
+title: Hardhat Polkadot Plugin
+description: Set up the Hardhat Polkadot plugin to compile Solidity contracts to PVM with resolc, test them on a local dev node, and deploy to any chain running pallet-revive.
+short_description: Compile, test, and deploy Solidity contracts to PVM with Hardhat.
 categories: Smart Contracts, Tooling
-toggle:
-  group: hardhat
-  variant: pvm
-  label: PVM
 page_badges:
   tutorial_badge: Beginner
   test_workflow: polkadot-docs-hardhat-pvm
@@ -14,18 +10,20 @@ page_tests:
   path: polkadot-docs/smart-contracts/dev-environments/hardhat-pvm/tests/docs.test.ts
 ---
 
-# Hardhat Polkadot
+# Hardhat Polkadot Plugin
 
 ## Introduction
 
-[Hardhat](https://hardhat.org/){target=\_blank} is a flexible development environment for building, testing, and deploying smart contracts. With the [`@parity/hardhat-polkadot`](https://github.com/paritytech/hardhat-polkadot){target=\_blank} plugin, you can compile Solidity contracts to PVM bytecode and deploy them to Polkadot Hub. This page demonstrates how to set up a Hardhat project for PVM development.
+The [`@parity/hardhat-polkadot`](https://github.com/paritytech/hardhat-polkadot) plugin extends [Hardhat](https://hardhat.org/) so you can compile Solidity contracts to PVM bytecode with the [`resolc`](/smart-contracts/resolc/) compiler, test them against a local dev node, and deploy them to any chain running `pallet-revive` through its [Ethereum JSON-RPC adapter](/smart-contracts/eth-rpc-adapter/) (`eth-rpc`).
+
+pallet-revive runs contracts on two backends. REVM executes standard EVM bytecode and is the default choice for existing Solidity projects. PVM runs contracts compiled to PolkaVM with `resolc`; it is newer, and its tooling is still maturing. This plugin targets PVM. For standard Hardhat against REVM, see the [Hardhat guide on developers.polkadot.com](https://developers.polkadot.com/smart-contracts/dev-environments/hardhat/).
 
 ## Prerequisites
 
 Before setting up Hardhat, make sure the following are installed:
 
-- [Node.js](https://nodejs.org/){target=\_blank} version 22.5+ and [npm](https://www.npmjs.com/){target=\_blank} version 10.9.0+ to avoid issues with the Polkadot plugin
-- A package manager like npm, [pnpm](https://pnpm.io/){target=\_blank}, or [yarn](https://yarnpkg.com/){target=\_blank}
+- [Node.js](https://nodejs.org/) version 22.5+ and [npm](https://www.npmjs.com/) version 10.9.0+ to avoid issues with the Polkadot plugin
+- A package manager like npm, [pnpm](https://pnpm.io/), or [yarn](https://yarnpkg.com/)
 
 ## Initialize a Hardhat Project
 
@@ -48,7 +46,7 @@ Before setting up Hardhat, make sure the following are installed:
     npm install --save-dev @parity/hardhat-polkadot@{{dependencies.javascript_packages.hardhat_polkadot.version}}
     ```
 
-4. Install the resolc compiler (required for compiling Solidity to PVM):
+4. Install the `resolc` compiler (required for compiling Solidity to PVM):
 
     ```bash
     npm install --save-dev @parity/resolc@{{dependencies.javascript_packages.resolc.version}}
@@ -80,7 +78,7 @@ Before setting up Hardhat, make sure the following are installed:
 
 ## Compile Your Contract
 
-The plugin will compile your Solidity contracts (version `0.8.0` and higher) to PVM bytecode using the resolc compiler:
+The plugin compiles your Solidity contracts (version `0.8.0` and higher) to PVM bytecode using `resolc`:
 
 ```bash
 npx hardhat compile
@@ -96,21 +94,24 @@ You should see JSON files containing the contract ABIs and bytecodes for the con
 
 ## Test Your Contract Locally
 
-Hardhat provides a local testing environment through the `hardhat-polkadot` plugin, which spins up a local Substrate node with an ETH-RPC adapter.
+The plugin can start a local dev node together with the `eth-rpc` adapter, so you can test against `pallet-revive` without connecting to a live network.
 
 ### Start a Local Node
 
-To obtain the `dev-node` and `eth-rpc` binaries, check this [release](https://github.com/paritytech/hardhat-polkadot/releases/tag/nodes-19071579107){target=\_blank} and download the binaries for your platform, then update the paths in your config.
+The plugin needs a `pallet-revive` dev node binary and an `eth-rpc` binary. You can get them in either of the following ways, then update the binary paths in your `hardhat.config.js`:
+
+- Build `revive-dev-node` and `eth-rpc` from the Polkadot SDK, as described in [Local Development Node](/smart-contracts/dev-environments/local-dev-node/).
+- Download prebuilt binaries for your platform from the [`hardhat-polkadot` releases](https://github.com/paritytech/hardhat-polkadot/releases).
 
 !!! note
     You might need to give executable permissions to the binaries:
-    
+
     ```bash
     chmod +x /path/to/your/binary
     ```
-    
+
     In macOS environments, binaries are sometimes quarantined. To remove this, run:
-    
+
     ```bash
     xattr -d com.apple.quarantine /path/to/your/binary
     ```
@@ -121,7 +122,7 @@ Once you have set up the binaries, start your local testing node:
 npx hardhat node
 ```
 
-This command launches a local node with the ETH-RPC adapter. By default, the Substrate node runs on `localhost:8000`, and the ETH-RPC adapter on `localhost:8545`.
+This command launches a local node with the `eth-rpc` adapter. By default, the node's Substrate RPC runs on `localhost:8000`, and the `eth-rpc` adapter on `localhost:8545`.
 
 The output will be something like this:
 
@@ -136,17 +137,19 @@ npx hardhat test
 ```
 
 !!! warning "Compatibility Note"
-    Be aware that [`@nomicfoundation/hardhat-toolbox/network-helpers`](https://hardhat.org/hardhat-network-helpers/docs/overview){target=\_blank} is not fully compatible with Polkadot Hub's available RPCs. Specifically, helpers like `time` and `loadFixture` may not work due to missing RPC calls in the node. For a broader overview of how Ethereum-native tools differ when used against Polkadot EVM networks, see [Differences between Ethereum-native tools and Polkadot EVM networks](/smart-contracts/get-started/#differences-between-ethereum-native-tools-and-polkadot-evm-networks){target=\_blank}. For plugin-specific details, refer to the [Compatibility](https://github.com/paritytech/hardhat-polkadot/tree/main/packages/hardhat-polkadot-node#compatibility){target=\_blank} section in the `hardhat-polkadot` documentation.
+    The `eth-rpc` adapter exposes a subset of the Ethereum JSON-RPC API, so [`@nomicfoundation/hardhat-toolbox/network-helpers`](https://hardhat.org/hardhat-network-helpers/docs/overview) is not fully compatible with it. Specifically, helpers like `time` and `loadFixture` may not work due to missing RPC calls in the node. For a broader overview, see [Ethereum Tool Differences on Polkadot EVM](/smart-contracts/get-started/#ethereum-tool-differences-on-polkadot-evm). For plugin-specific details, refer to the [Compatibility](https://github.com/paritytech/hardhat-polkadot/tree/main/packages/hardhat-polkadot-node#compatibility) section in the `hardhat-polkadot` documentation.
 
-### Deploy to Local Node
+### Deploy to the Local Node
 
-Before deploying to a live network, you can deploy your contract to a local node using [Ignition](https://hardhat.org/ignition/docs/getting-started#overview){target=\_blank} modules:
+Deploy your contract to the local node using [Ignition](https://hardhat.org/ignition/docs/getting-started#overview) modules:
 
 1. Ensure your local node is running:
 
     ```bash
     npx hardhat node
     ```
+
+    If you run the [Local Development Node](/smart-contracts/dev-environments/local-dev-node/) yourself instead, its `eth-rpc` adapter listens on the same endpoint, `{{ networks.local.eth_rpc_url }}`.
 
 2. In a new terminal window, deploy the contract using Ignition:
 
@@ -157,11 +160,21 @@ Before deploying to a live network, you can deploy your contract to a local node
 !!! tip
     The `ignition.requiredConfirmations: 1` setting in your config ensures that deployment doesn't hang on local nodes that only produce blocks when transactions are submitted.
 
-## Deploy to Polkadot Hub TestNet
+## Deploy to Any eth-rpc Endpoint
 
-After testing locally, you can deploy to the Polkadot Hub TestNet:
+After testing locally, you can deploy to any chain running `pallet-revive` that exposes an `eth-rpc` endpoint. You need the endpoint URL, the chain ID, and an account funded on that chain.
 
-1. Fund your deployment account with PAS test tokens from the [Polkadot faucet](https://faucet.polkadot.io/){target=\_blank}.
+1. Add a network entry to the `networks` section of `hardhat.config.js`, following the format of the entries the init wizard generated. The following example uses the values for Polkadot Hub TestNet; replace them with the values for your target chain:
+
+    ```javascript title="hardhat.config.js"
+    polkadotTestnet: {
+      url: '{{ networks.polkadot_hub_testnet.eth_rpc_url }}',
+      chainId: {{ networks.polkadot_hub_testnet.chain_id }},
+      accounts: [vars.get('PRIVATE_KEY')],
+    },
+    ```
+
+    For endpoints, chain IDs, test tokens, and explorers of public networks, see [Connect to Polkadot](https://developers.polkadot.com/smart-contracts/connect/) on developers.polkadot.com.
 
 2. Set your private key as a configuration variable:
 
@@ -178,17 +191,17 @@ After testing locally, you can deploy to the Polkadot Hub TestNet:
     npx hardhat vars get PRIVATE_KEY
     ```
 
-4. Deploy your contract:
+4. Deploy your contract, passing the name of the network entry you added:
 
     ```bash
     npx hardhat ignition deploy ./ignition/modules/MyToken.js --network polkadotTestnet
     ```
 
-### Common Issues
+## Common Issues
 
-- **Compilation fails with resolc errors**: Ensure you have `@parity/resolc@{{dependencies.javascript_packages.resolc.version}}` installed and the version is specified in your `hardhat.config.js`
-- **Deployment hangs on local node**: You might need to set `ignition.requiredConfirmations: 1` in your config file
-- **Binary permission issues**: Run `chmod +x /path/to/your/binary` and on macOS, use `xattr -d com.apple.quarantine /path/to/your/binary`
+- **Compilation fails with `resolc` errors**: Ensure you have `@parity/resolc@{{dependencies.javascript_packages.resolc.version}}` installed and the version is specified in your `hardhat.config.js`.
+- **Deployment hangs on local node**: You might need to set `ignition.requiredConfirmations: 1` in your config file.
+- **Binary permission issues**: Run `chmod +x /path/to/your/binary` and on macOS, use `xattr -d com.apple.quarantine /path/to/your/binary`.
 
 ## Where to Go Next
 
@@ -198,17 +211,25 @@ After testing locally, you can deploy to the Polkadot Hub TestNet:
 
     ---
 
-    Ready to start using Hardhat with PVM? Learn how to compile, test, and deploy a basic contract.
+    Compile and deploy a basic contract to the local dev node with the Hardhat Polkadot plugin.
 
     [:octicons-arrow-right-24: Get Started](/smart-contracts/cookbook/smart-contracts/deploy-basic/basic-hardhat/)
 
--   <span class="badge guide">Guide</span> __Deploy an ERC-20__
+-   <span class="badge guide">Guide</span> __Local Development Node__
 
     ---
 
-    Walk through deploying a fully-functional ERC-20 to Polkadot Hub using Hardhat.
+    Build and run the `pallet-revive` dev node and the `eth-rpc` adapter from the Polkadot SDK.
 
-    [:octicons-arrow-right-24: Get Started](/smart-contracts/cookbook/smart-contracts/deploy-erc20/erc20-hardhat/)
+    [:octicons-arrow-right-24: Get Started](/smart-contracts/dev-environments/local-dev-node/)
+
+-   <span class="badge guide">Guide</span> __The resolc Compiler__
+
+    ---
+
+    Install `resolc` and learn its compiler options for Solidity to PVM compilation.
+
+    [:octicons-arrow-right-24: Get Started](/smart-contracts/resolc/)
 
 -   <span class="badge external">External</span> __Hardhat Documentation__
 
@@ -216,7 +237,7 @@ After testing locally, you can deploy to the Polkadot Hub TestNet:
 
     Learn more about Hardhat's advanced features and best practices.
 
-    [:octicons-arrow-right-24: Get Started](https://hardhat.org/docs){target=\_blank}
+    [:octicons-arrow-right-24: Get Started](https://hardhat.org/docs)
 
 -   <span class="badge external">External</span> __Hardhat Polkadot Plugin__
 
@@ -224,6 +245,6 @@ After testing locally, you can deploy to the Polkadot Hub TestNet:
 
     Explore the full capabilities of the Hardhat Polkadot plugin.
 
-    [:octicons-arrow-right-24: Get Started](https://github.com/paritytech/hardhat-polkadot){target=\_blank}
+    [:octicons-arrow-right-24: Get Started](https://github.com/paritytech/hardhat-polkadot)
 
 </div>

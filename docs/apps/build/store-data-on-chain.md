@@ -10,18 +10,18 @@ page_badges:
 
 ## Introduction
 
-This guide covers the [Bulletin Chain](/reference/apps/infrastructure/bulletin-chain/), Polkadot's content-addressed storage layer for Products. You write data, the chain returns a Content Identifier (CID), and anyone with that CID can fetch the data back from the network. Data is retained for about two weeks by default and can be renewed. Access is gated by a per-account storage authorization, not a token balance. The guide walks through four flows in order of complexity: a Hello World store and retrieve, a larger file upload, long-lived data with renewal, and Preimage submission.
+This guide covers the [Bulletin Chain](/apps/reference/infrastructure/bulletin-chain/), Polkadot's content-addressed storage layer for Products. You write data, the chain returns a Content Identifier (CID), and anyone with that CID can fetch the data back from the network. Data is retained for about two weeks by default and can be renewed. Access is gated by a per-account storage authorization, not a token balance. The guide walks through three flows in order of complexity: a Hello World store and retrieve, a larger file upload, and long-lived data with renewal.
 
 --8<-- 'text/apps/storage-options.md'
 
 !!! note "Network"
-    The flows on this page target Paseo Next, the default environment in [Polkadot Desktop](/reference/apps/hosts/polkadot-desktop/) development builds. If you switched environments during setup, select the matching network from the environment selector in Polkadot Desktop.
+    The Host selects the network, so the flows on this page run against whichever environment Polkadot Desktop is connected to. Select it from the environment selector in Polkadot Desktop, and make sure your storage authorization is on that environment.
 
 ## Prerequisites
 
 Before starting, ensure you have:
 
-- Completed the [Install Desktop and Pair](/apps/get-started/) and [Get TestNet Tokens](/apps/get-started/get-testnet-tokens/) guides; your account needs PAS funds and a Bulletin Chain authorization. If you have not obtained a Bulletin Chain authorization yet, request one from the [Bulletin Chain authorization page](https://paritytech.github.io/polkadot-bulletin-chain/authorizations)
+- Completed [Run a Host for Local Development](/apps/get-started/) and [Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/) guides; your account needs funds and a [Bulletin Chain storage authorization](/apps/reference/infrastructure/bulletin-chain/authorization/) on the target environment
 - A Polkadot Product project running locally (see [Set Up Your Project](/apps/build/#set-up-your-project))
 
 ## Install the SDK
@@ -32,7 +32,7 @@ This guide builds on `createApp`, which only the umbrella package provides, so i
 npm install @parity/product-sdk
 ```
 
-Every snippet imports from `@parity/product-sdk`, including `SignerManager` and `CloudStorageClient`, which the umbrella re-exports from its root, and `parseCid` and `CidCodec`, which it re-exports from its `@parity/product-sdk/cloud-storage` subpath, so no other package is needed. The renewal example is the exception: it also uses `@ipld/dag-pb` to read chunked-upload manifests. See [Umbrella or Individual Packages](/apps/build/#umbrella-or-individual-packages) for how the install styles compare.
+Every snippet imports from `@parity/product-sdk`, including `SignerManager` and `CloudStorageClient`, which the umbrella re-exports from its root, and `parseCid` and `CidCodec`, which it re-exports from its `@parity/product-sdk/cloud-storage` subpath, so no other package is needed. The renewal example is the exception: it also uses `@ipld/dag-pb` to read chunked-upload manifests. See [Two Ways to Use the SDK](/apps/product-sdk/#two-ways-to-use-the-sdk) for how the install styles compare.
 
 ## Set Up Your Storage Client
 
@@ -75,7 +75,7 @@ The Bulletin Chain follows a "write-to-chain, read-from-network" model: the chai
 
 The snippet verifies the bytes by recomputing their CID with `app.cloudStorage.computeCid(bytes)` and comparing to the CID you asked for. If the host returned the wrong bytes, the recomputed CID does not match; that is the integrity property content addressing gives you.
 
-For libp2p / Helia / Smoldot retrieval paths (when you want to fetch outside a Polkadot Desktop container), see [Retrieve Your Data](/chain-interactions/store-data/bulletin-chain/#retrieve-your-data) in the canonical tutorial.
+For libp2p / Helia / Smoldot retrieval paths (when you want to fetch outside a Polkadot Desktop container), see [Retrieve Your Data](/tools/chain-interactions/store-data/bulletin-chain/#retrieve-your-data) in the canonical tutorial.
 
 ## Store a Larger File
 
@@ -95,16 +95,16 @@ The `client.store(...)` builder takes the same chunking pipeline `app.cloudStora
 --8<-- "code/apps/build/store-data-on-chain/store-large-file.ts"
 ```
 
-The returned `StoreResult.cid` is the manifest CID; `StoreResult.chunks.chunkCids` lists each chunk's individual CID. `withCallback()` receives per-chunk progress events as the upload streams. The Bulletin Chain limits each transaction to 2 MiB; see [Size Limits](/reference/polkadot-hub/data-storage/#size-limits). Chunks cannot exceed that.
+The returned `StoreResult.cid` is the manifest CID; `StoreResult.chunks.chunkCids` lists each chunk's individual CID. `withCallback()` receives per-chunk progress events as the upload streams. The Bulletin Chain limits each transaction to 2 MiB; see [Size Limits](/apps/reference/infrastructure/bulletin-chain/data-storage/#size-limits). Chunks cannot exceed that.
 
 Chunked uploads are not atomic. Each chunk is a separate transaction, and the manifest is one more on top. If chunk N fails after chunks 0..N-1 have already landed, the earlier chunks remain on chain and consume your authorization. There is no rollback. Inspect the `chunkCids` on the thrown error and either resume from the failed chunk or, if the use case demands it, abandon the partial upload.
 
 ## Get Authorization
 
-The Bulletin Chain has no token balance for storage; every account needs an explicit authorization. You should already have one from [Get TestNet Tokens](/apps/get-started/get-testnet-tokens/); if not, request your storage quota directly from the [Bulletin Chain authorization page](https://paritytech.github.io/polkadot-bulletin-chain/authorizations). If a store is rejected, confirm the authorization is on the account that signs: see [uploads are rejected](/apps/troubleshooting/#uploads-are-rejected-or-host-storage-unavailable) in troubleshooting.
+The Bulletin Chain has no token balance for storage; every account needs an explicit authorization. For how to obtain one on a TestNet, see [Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/) on developers.polkadot.com; for the mechanism, see the [authorization reference](/apps/reference/infrastructure/bulletin-chain/authorization/). If a store is rejected, confirm the authorization is on the account that signs: see [uploads are rejected](/apps/troubleshooting/#uploads-are-rejected-or-host-storage-unavailable) in troubleshooting.
 
 !!! note
-    The `authorize_account` extrinsic requires the authorizer origin: Root, or an account or parachain allowed to grant authorizations. You cannot self-authorize programmatically; on Polkadot TestNet, use the [Bulletin Chain authorization page](https://paritytech.github.io/polkadot-bulletin-chain/authorizations) before submitting any `store` extrinsic from your Product.
+    The `authorize_account` extrinsic requires the authorizer origin: Root, or an account or parachain allowed to grant authorizations. You cannot self-authorize programmatically, so obtain an authorization on the target environment before submitting any `store` extrinsic from your Product.
 
 `CloudStorageClient` (introduced in [Store a Larger File](#store-a-larger-file)) exposes `client.checkAuthorization(address)` as a pre-flight check before submitting a store:
 
@@ -166,7 +166,7 @@ The flows in this guide target the same chain but differ in authorization, atomi
 | Bulletin store (small)          | Bulletin authorization                               | Single tx                    | ~2 weeks (renewable) | Most Product writes                                             |
 | Bulletin store (chunked)        | Bulletin authorization                               | Multi-tx + DAG-PB manifest   | ~2 weeks (renewable) | Files larger than 2 MiB                                         |
 
-For deeper comparison and the full pallet reference, see [Data Storage Reference](/reference/polkadot-hub/data-storage/).
+For deeper comparison and the full pallet reference, see [Data Storage Reference](/apps/reference/infrastructure/bulletin-chain/data-storage/).
 
 ## Where to Go Next
 

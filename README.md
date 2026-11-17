@@ -6,7 +6,7 @@ The documentation source files are written in [Markdown](https://daringfireball.
 
 ## About This Repository
 
-This repository started as Parity's fork of the Polkadot developer documentation and keeps its full Git history. The [Polkadot Developer Docs](https://docs.polkadot.com) are now maintained by the [Polkadot Community Foundation](https://github.com/Polkadot-Community-Foundation/polkadot-docs). For ecosystem-wide Polkadot documentation, refer to that site.
+This repository started as Parity's fork of the Polkadot developer documentation and keeps its full Git history. The [Polkadot Developer Docs](https://developers.polkadot.com) are now maintained by the [Polkadot Community Foundation](https://github.com/Polkadot-Community-Foundation/polkadot-docs). For ecosystem-wide Polkadot documentation, refer to that site.
 
 This repository focuses only on Parity's own tools and technologies. Content inherited from the Polkadot docs is being reviewed and refocused accordingly.
 
@@ -15,13 +15,15 @@ This repository focuses only on Parity's own tools and technologies. Content inh
 ```
 parity-docs/
 ├── docs/                   # Documentation content (Markdown, images, snippets)
-│   ├── apps/
-│   ├── chain-interactions/
+│   ├── get-started/        # What Parity builds, glossary
+│   ├── polkadot-sdk/       # Build chains with the Polkadot SDK
+│   ├── smart-contracts/    # pallet-revive contract stack
+│   ├── apps/               # Product SDK and its reference
+│   ├── nodes/              # Run the node binaries
+│   ├── tools/              # Client libraries and developer tools
 │   ├── images/
-│   ├── parachains/
-│   ├── reference/
-│   ├── smart-contracts/
-│   └── ...
+│   ├── .snippets/          # Reusable code and text includes
+│   └── variables.yml       # Shared versions and network values
 ├── hooks/                  # MkDocs hooks (Python)
 ├── layouts/                # Social card layouts
 ├── material-overrides/     # Theme overrides and custom CSS

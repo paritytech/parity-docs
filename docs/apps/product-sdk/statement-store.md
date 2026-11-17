@@ -8,7 +8,7 @@ categories: Apps
 
 ## Introduction
 
-[`@parity/product-sdk-statement-store`](https://paritytech.github.io/product-sdk/api/statement-store/) is a publish/subscribe client over the [Statement Store](/reference/apps/infrastructure/statement-store/): signed, short-lived messages gossiped between instances of your Product, off-chain and with no fee per message. On top of raw pub/sub it adds an optional last-write-wins channel abstraction for per-key shared state.
+[`@parity/product-sdk-statement-store`](https://paritytech.github.io/product-sdk/api/statement-store/) is a publish/subscribe client over the [Statement Store](/apps/reference/infrastructure/statement-store/): signed, short-lived messages gossiped between instances of your Product, off-chain and with no fee per message. On top of raw pub/sub it adds an optional last-write-wins channel abstraction for per-key shared state.
 
 Reach for it when your Product needs real-time state between users: presence, typing indicators, multiplayer cursors, or announcing where the latest snapshot of shared content lives.
 

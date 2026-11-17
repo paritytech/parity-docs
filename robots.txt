@@ -43,7 +43,7 @@ Disallow: /
 User-agent: anthropic-ai
 Disallow: /
 
-Sitemap: https://docs.polkadot.com/sitemap.xml
+Sitemap: https://docs.parity.io/sitemap.xml
 
 # User-facing LLM agents (ChatGPT-User, ClaudeBot, etc.)
 # are NOT blocked — they use the default "allow all" rule.

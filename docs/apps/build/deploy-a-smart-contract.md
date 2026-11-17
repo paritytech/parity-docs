@@ -10,19 +10,22 @@ page_badges:
 
 ## Introduction
 
-Some Products need on-chain logic and shared state that no single user owns: a leaderboard, a registry, an escrow, a game whose rules must be enforced for everyone. That is what a smart contract gives you. This guide adds a [PolkaVM](/reference/glossary/#polkadot-virtual-machine-pvm) contract to a Product, deploys it to Asset Hub, and calls it from your frontend with the [`@parity/product-sdk-contracts`](https://paritytech.github.io/product-sdk/) package.
+Some Products need on-chain logic and shared state that no single user owns: a leaderboard, a registry, an escrow, a game whose rules must be enforced for everyone. That is what a smart contract gives you. This guide adds a [PolkaVM](/get-started/glossary/#polkadot-virtual-machine-pvm) contract to a Product, deploys it to Asset Hub, and calls it from your frontend with the [`@parity/product-sdk-contracts`](https://paritytech.github.io/product-sdk/) package.
 
 Contracts on Polkadot run as PolkaVM bytecode through the `pallet-revive` runtime on Asset Hub. You author them in Rust or Solidity, and the [Contract Dependency Manager](https://github.com/paritytech/contract-dependency-manager) (`cdm`) builds, deploys, and registers them, the same tool the `playground` CLI runs for you when it deploys a Product that has contracts. `cdm` fills the role npm fills for libraries, but for on-chain contracts: it publishes each contract under a global name (`@scope/name`) in an on-chain registry, so your frontend resolves it by name instead of hardcoding an address.
 
 !!! note "Contracts are optional"
     Many Products never need a contract. If all you need is durable content or real-time state between users, [Store Data on Chain](/apps/build/store-data-on-chain/) and [Publish and Subscribe to Off-Chain Data](/apps/build/pub-sub-off-chain-data/) cover those without any contract at all. Reach for a contract when you need enforced, shared on-chain logic.
 
+!!! tip "Writing the contract itself"
+    This guide focuses on deploying a contract and calling it from a Product. For authoring PolkaVM contracts, toolchains, and libraries in depth, see the [Smart Contracts](/smart-contracts/overview/) section.
+
 ## Prerequisites
 
 Before starting, ensure you have:
 
 - A Polkadot Product project running locally. See [Set Up Your Project](/apps/build/#set-up-your-project).
-- PAS funds and a Bulletin Chain authorization for the account `cdm` will sign with. See [Get TestNet Tokens](/apps/get-started/get-testnet-tokens/). Deploying a contract writes to Asset Hub (fees) and publishes metadata to the Bulletin Chain (authorization). The next two sections cover installing `cdm` and creating that account.
+- Funds and a Bulletin Chain storage authorization on the target network for the account `cdm` will sign with. See [Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/) on developers.polkadot.com. Deploying a contract writes to Asset Hub (fees) and publishes metadata to the Bulletin Chain (authorization). The next two sections cover installing `cdm` and creating that account.
 - A workstation rather than a browser alone. Contracts compile to PolkaVM, so unlike the frontend capabilities this step needs a local toolchain.
 
 ## Install cdm
@@ -52,8 +55,8 @@ The mapping step is required before your first deploy: `pallet-revive` needs eac
 - **`cdm account bal -n paseo`**: Prints the account's balance and its Bulletin allowances, and links to a top-up when they run low.
 - **`cdm account set -n paseo --mnemonic "…"`**: Imports an existing account instead of generating one.
 
-!!! warning "`cdm`'s `paseo` preset is Paseo Next, not the Paseo TestNet"
-    `cdm -n paseo` targets the Paseo Asset Hub preview network (para 1500), the same network the `playground` CLI deploys to. `cdm -n devnet` targets Products Devnet, the Paseo TestNet Asset Hub (para 1000) with a registry operated by the Polkadot Community Foundation (PCF). Problems with Products Devnet go to PCF, not Parity; see [Choose the Right Channel](/get-support/#choose-the-right-channel). They are different chains with different registries, so a contract deployed under one preset is not resolvable under the other. Fund the account on the network you actually target — the [faucet](/apps/get-started/get-testnet-tokens/) needs `?parachain=1500` for Paseo Next.
+!!! warning "Pick a `-n` preset for your target network"
+    Every `cdm` command takes a `-n` preset that selects the target network and its contract registry. This guide uses `-n paseo` (Paseo Next v2, the network the `playground` CLI deploys to); `-n devnet` targets Products Devnet. Each preset is a different chain with a different registry, so a contract deployed under one preset is not resolvable under the other. Fund the account on the network you actually target; see [Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/) on developers.polkadot.com, and see [Target Environments](/apps/troubleshooting/#introduction) for where to report network problems.
 
 ## How Contracts Fit Together
 

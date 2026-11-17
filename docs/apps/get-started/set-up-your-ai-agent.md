@@ -10,7 +10,7 @@ page_badges:
 
 ## Introduction
 
-Many developers build Polkadot Products with an AI coding agent. Out of the box, an agent does not know that Products run inside a Host, that chain access routes through the SDK rather than a direct RPC, or where the skills and repos live — so it falls back on generic patterns that do not work here. A few minutes of setup points the agent at the right context and tilts it toward correct, idiomatic code.
+Many developers build Polkadot Products with an AI coding agent. Out of the box, an agent does not know that Products run inside a Host, that chain access routes through the SDK rather than a direct RPC, or where the skills and repos live, so it falls back on generic patterns that do not work here. A few minutes of setup points the agent at the right context and tilts it toward correct, idiomatic code.
 
 This page gives you a paste-ready setup prompt, then the resources to wire in: the skills, the repos, and the machine-readable docs.
 
@@ -32,9 +32,10 @@ Toolchain:
   legacy ink!/Wasm.
 
 Docs (read before answering; append `.md` to any page URL for raw markdown):
-- Guides: https://docs.polkadot.com/apps/
-- Full corpus: https://docs.polkadot.com/ai/llms-full.jsonl
-- Index: https://docs.polkadot.com/llms.txt
+- Guides: {{ config.site_url }}apps/
+- CLI reference: {{ config.site_url }}apps/playground-cli/
+- Full corpus: {{ config.site_url }}ai/llms-full.jsonl
+- Index: {{ config.site_url }}llms.txt
 - SDK API reference: https://paritytech.github.io/product-sdk/
 
 Repos:
@@ -46,12 +47,13 @@ Rules to follow:
 - All chain reads, signing, and storage route through the Host via @parity/product-sdk.
   Never open a direct WebSocket/RPC connection or dial a public IPFS gateway.
 - Sign with a product account: getProductAccount(...).getSigner(). Approvals happen
-  on the user's phone. On Paseo Next v2, do not use Polkadot.js-style signing (the
-  AsPgas signed extension breaks it) — use the product-account signer.
+  on the user's phone. Do not use Polkadot.js-style signing on chains that use the
+  AsPgas signed extension, such as Paseo Next v2; it breaks there. Use the
+  product-account signer.
 - Most fallible SDK calls return a Result; check `.ok` before reading `.value`. Two
   exceptions: a contract read, `contract.method.query()`, returns `{ success, value }`,
   so check `.success`; and the `createApp` facade is not Result-typed except for
-  `app.cloudStorage` — `app.wallet` and `app.chain` throw, and `app.localStorage`
+  `app.cloudStorage`; `app.wallet` and `app.chain` throw, and `app.localStorage`
   returns plain values. Prefer the individual packages (`signer`, `chain-client`,
   `local-storage`), which are Result-typed throughout.
 - From `@parity/product-sdk` v0.30.0, call `createApp()` with no `name`: the Host's
@@ -69,19 +71,60 @@ Trim the sections your project does not need. If you scaffolded from a template,
 
 ## Install the Skills
 
-The [Product SDK skills](/reference/apps/skills/) are modular instruction sets that teach an agent how to work across the Products stack (chain connections, storage, contracts, and more). They tilt the agent toward idiomatic answers instead of generic boilerplate.
+Product SDK skills are small, modular instruction sets that teach an agent how to work across one slice of the Products stack (chain connections, Bulletin Chain storage, contracts, and more). When you ask for help in that area, the agent has the right context loaded, which tilts it toward idiomatic answers instead of generic boilerplate. The skills live in the [`paritytech/product-sdk`](https://github.com/paritytech/product-sdk) monorepo under `product-sdk/skills/`.
 
-In Claude Code, add the Parity marketplace and install the plugin:
+| Skill | What It Covers |
+|:-----:|:--------------:|
+| [`product-sdk-app-builder`](https://github.com/paritytech/product-sdk/tree/main/product-sdk/skills/product-sdk-app-builder) | End-to-end scaffolding and implementation of Polkadot apps using `@parity/product-sdk` packages. Foundational orchestrator skill; reach for this when starting a new project or scaffolding chain interactions. |
+| [`product-sdk-cloud-storage`](https://github.com/paritytech/product-sdk/tree/main/product-sdk/skills/product-sdk-cloud-storage)             | Upload and retrieve data on the Polkadot Bulletin Chain. Covers CID-based content-addressed storage, the `CloudStorageClient` SDK, chunked uploads, CID computation, and the authorization pre-flight. Reads are container-only: the SDK does not fall back to a public IPFS gateway. |
+| [`product-sdk-chain-connection`](https://github.com/paritytech/product-sdk/tree/main/product-sdk/skills/product-sdk-chain-connection) | Typed access to Polkadot chains via `@parity/product-sdk-chain-client` and `@parity/product-sdk-descriptors`. Covers preset and BYOD (bring-your-own-descriptors) paths, state queries, and storage subscriptions. |
+| [`product-sdk-contracts`](https://github.com/paritytech/product-sdk/tree/main/product-sdk/skills/product-sdk-contracts)           | Smart contract interaction (PolkaVM / Solidity) on Asset Hub. Covers `ContractManager` with `cdm.json` manifests, ad-hoc `createContract`, `ContractRuntime`, and contract type codegen. |
+| [`product-sdk-statement-store`](https://github.com/paritytech/product-sdk/tree/main/product-sdk/skills/product-sdk-statement-store) | Publish and subscribe to ephemeral messages on the Polkadot Statement Store. Covers `StatementStoreClient` lifecycle, host and local connection modes, channels with last-write-wins semantics, and the 512-byte size limit. |
+| [`product-sdk-transactions`](https://github.com/paritytech/product-sdk/tree/main/product-sdk/skills/product-sdk-transactions)     | Submit transactions, manage signers, and derive keys. Covers `@parity/product-sdk-tx`, `@parity/product-sdk-signer`, and `@parity/product-sdk-keys`: multi-provider wallet accounts, Host API signing (Desktop/Mobile), and dev signers for testnet. |
+| [`product-sdk-utilities`](https://github.com/paritytech/product-sdk/tree/main/product-sdk/skills/product-sdk-utilities)           | Foundational utilities: SS58/H160 address encoding, AES/ChaCha/NaCl crypto, HKDF key derivation, byte encoding, token (planck) formatting, key-value storage, and structured logging. |
+| [`product-sdk-individuality`](https://github.com/paritytech/product-sdk/tree/main/product-sdk/skills/product-sdk-individuality) | Personhood and membership standing on the Individuality chain. Covers `readPersonhoodState` from a username or an account, `lookupUsername`, the seven-state `PersonhoodState` union, and `withAsPerson` for dispatching under a person origin. |
+| [`migrating-to-product-sdk`](https://github.com/paritytech/product-sdk/tree/main/product-sdk/skills/migrating-to-product-sdk) | Migrating an existing codebase onto `@parity/product-sdk`. Detects legacy stacks (`polkadot-apps`, `novasamatech`, hand-rolled crypto or IPFS, `polkadot-api` 1.x) and writes a per-repo migration spec. Discovery and planning only; it does not edit code. |
+
+### Claude Code
+
+The repo ships a plugin marketplace, so no clone is needed. Add the marketplace, then install the plugin, which installs every skill in the table above at once:
 
 ```text
 /plugin marketplace add paritytech/product-sdk
 /plugin install product-sdk@paritytech
 ```
 
-For other agents (Cursor, Codex, Cline, Windsurf, or a custom harness), clone `paritytech/product-sdk` and register the skills under `product-sdk/skills/` with your agent's context mechanism. The [Skills reference](/reference/apps/skills/) covers the full list, how to register them, and how to keep them current.
+### Other Agents
 
-!!! tip "Keep skills current"
-    Product surfaces are in active development. A stale skill teaches stale API patterns, which is worse than no skill. Refresh after major releases.
+For Cursor, Codex, Cline, Windsurf, or a custom harness, clone the repo:
+
+```bash
+git clone https://github.com/paritytech/product-sdk.git
+```
+
+Skills live under `product-sdk/skills/<skill-name>/` in the cloned directory. Register whichever skills are relevant using your agent's skill or context-loading mechanism.
+
+### Invoke a Skill
+
+Skills trigger based on context. You can also invoke a skill directly by name before asking a question, so the agent loads the SDK's API patterns before it answers. For example, before asking for help chunking a large upload to the Bulletin Chain:
+
+```text
+/product-sdk-cloud-storage how do I chunk a 50 MB file across multiple transactions?
+```
+
+### Keep Skills Current
+
+Product surfaces are in active development. A stale skill teaches stale API patterns, which is worse than no skill, so refresh after major releases. In Claude Code, update the plugin:
+
+```text
+/plugin update product-sdk@paritytech
+```
+
+From a clone, pull the latest changes and re-register any updated skills with your agent:
+
+```bash
+git pull
+```
 
 ## Start From a Template
 
@@ -90,7 +133,7 @@ The official Playground starter template ships agent-instruction files, so an ag
 - `CLAUDE.md` for Claude Code, `AGENTS.md` for Codex and other `AGENTS.md`-aware tools.
 - `.clinerules`, `.windsurfrules`, and `.github/copilot-instructions.md` for Cline, Windsurf, and GitHub Copilot.
 
-Coverage varies by app: a moddable app you clone with `pg mod` may ship all of these, only `CLAUDE.md`, or none, so check the project. If it includes a `setup.sh`, `pg mod` runs it for you to install dependencies and fetch the latest skills; many apps do not ship one.
+Coverage varies by app: a moddable app you clone with [`pg mod`](/apps/playground-cli/#mod) may ship all of these, only `CLAUDE.md`, or none, so check the project. If it includes a `setup.sh`, `pg mod` runs it for you to install dependencies and fetch the latest skills; many apps do not ship one.
 
 ## Give Your Agent the Docs
 
@@ -110,7 +153,7 @@ The [AI Resources](/ai-resources/) page collects these downloads.
 
     ---
 
-    With your agent set up, deploy your first Product from the terminal or the browser.
+    With your agent set up, deploy your first Product from the terminal.
 
     [:octicons-arrow-right-24: Quick Start](/apps/quick-start/)
 
@@ -122,12 +165,12 @@ The [AI Resources](/ai-resources/) page collects these downloads.
 
     [:octicons-arrow-right-24: Open Build Guides](/apps/build/)
 
--   <span class="badge learn">Learn</span> **Skills Reference**
+-   <span class="badge external">External</span> **Product SDK Repository**
 
     ---
 
-    The full skills list, how to register them, and how to keep them current.
+    The source of truth for the skills, including per-skill README files and updates.
 
-    [:octicons-arrow-right-24: Skills](/reference/apps/skills/)
+    [:octicons-arrow-right-24: Visit Repo](https://github.com/paritytech/product-sdk)
 
 </div>

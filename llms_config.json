@@ -1,13 +1,11 @@
 {
   "schema_version": "1.2",
-
   "project": {
     "id": "parity",
     "name": "Parity",
     "project_url": "https://www.parity.io/",
     "docs_base_url": "https://docs.parity.io/"
   },
-
   "repository": {
     "host": "github",
     "org": "paritytech",
@@ -16,60 +14,62 @@
     "docs_path": ".",
     "ai_artifacts_path": "ai/pages"
   },
-
   "content": {
     "docs_dir": ".",
-    "base_context_categories": ["basics", "reference"],
+    "base_context_categories": [
+      "basics",
+      "reference"
+    ],
     "categories_info": {
       "apps": {
         "id": "apps",
         "name": "Apps",
-        "description": "Building and shipping Products on the Polkadot platform, from identity setup and local development through to deployment and discovery."
+        "description": "Building Polkadot Products with the Product SDK and the playground CLI, plus the TrUAPI, Bulletin chain, Statement Store, and dotNS reference."
       },
       "basics": {
         "id": "basics",
         "name": "Basics",
-        "description": "Polkadot overview, core concepts, and getting started guides for new developers."
+        "description": "What Parity builds, its role as an author of open-source software, core concepts, and getting started guides."
       },
       "smart_contracts": {
         "id": "smart_contracts",
         "name": "Smart Contracts",
-        "description": "Developing and deploying smart contracts on Polkadot Hub using Solidity, EVM, PolkaVM, and tools like Hardhat and Foundry."
+        "description": "The pallet-revive contract stack: REVM and PVM backends, the resolc compiler, the eth-rpc adapter, precompiles, and the Hardhat Polkadot plugin."
       },
-      "parachains": {
-        "id": "parachains",
-        "name": "Parachains",
-        "description": "Building and deploying parachains with the Polkadot SDK, including runtime development, pallets, and coretime."
+      "polkadot_sdk": {
+        "id": "polkadot_sdk",
+        "name": "Polkadot SDK",
+        "description": "Building, testing, and upgrading runtimes and parachains with the Polkadot SDK: FRAME, pallets, Cumulus, and chain specifications."
       },
       "chain_interactions": {
         "id": "chain_interactions",
         "name": "Chain Interactions",
-        "description": "How to query on-chain data, send transactions, communicate across chains, and manage tokens and accounts on Polkadot-based chains."
+        "description": "Querying state, submitting transactions, estimating fees, and managing accounts on Polkadot SDK-based chains with Subxt and other Parity client libraries."
       },
       "interoperability": {
         "id": "interoperability",
         "name": "Interoperability",
-        "description": "Cross-chain communication via XCM, asset transfers, HRMP channels, and bridging to external networks."
+        "description": "Configuring XCM in Polkadot SDK runtimes, and the XCM dry-run and fee estimation runtime APIs."
       },
-      "infrastructure": {
-        "id": "infrastructure",
-        "name": "Infrastructure",
-        "description": "Running validators, collators, and RPC nodes, plus staking mechanics and key management."
+      "nodes": {
+        "id": "nodes",
+        "name": "Nodes",
+        "description": "Installing and running the Polkadot SDK node binaries as full, archive, RPC, or collator nodes, plus monitoring and hardening."
       },
-      "polkadot_protocol": {
-        "id": "polkadot_protocol",
-        "name": "Polkadot Protocol",
-        "description": "Protocol internals covering consensus, coretime, block production, cryptography, and chain architecture."
+      "protocol_internals": {
+        "id": "protocol_internals",
+        "name": "Protocol Internals",
+        "description": "Consensus, block production, transactions, cryptography, and chain architecture as implemented in the Polkadot SDK."
       },
       "tooling": {
         "id": "tooling",
         "name": "Tooling",
-        "description": "Developer SDKs and tools including PAPI, Polkadot.js, subxt, light clients, and testing frameworks."
+        "description": "Parity developer tools and client libraries: Subxt, the Polkadot REST API, light clients, Zombienet, Polkadot Omni Node, and chain-spec-builder."
       },
       "reference": {
         "id": "reference",
         "name": "Reference",
-        "description": "Glossary, governance structures, origin tracks, and technical specifications."
+        "description": "Glossary and technical reference for Parity software."
       }
     },
     "exclusions": {
@@ -81,10 +81,11 @@
         "privacy-policy.md",
         "ai-resources.md"
       ],
-      "skip_paths": ["venv"]
+      "skip_paths": [
+        "venv"
+      ]
     }
   },
-
   "outputs": {
     "public_root": "/ai/",
     "files": {

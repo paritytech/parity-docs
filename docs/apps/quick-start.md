@@ -1,19 +1,16 @@
 ---
 title: Quick Start with the CLI
-description: Install playground-cli, pair it with the Polkadot App, build your Product, and deploy it to a live dotNS name from the terminal.
+description: Install the playground CLI, pair it with the Polkadot App, build your Product, and deploy it to a dotNS name from the terminal.
 categories: Apps
-toggle:
-  group: apps-quick-start
-  canonical: true
-  variant: cli
-  label: CLI
 ---
 
 # Quick Start with the CLI
 
-Deploy a Polkadot Product from your terminal with playground-cli. The `pg` command pairs with your [Polkadot App](/reference/apps/hosts/polkadot-app/), builds your Product, uploads the bundle, and publishes it to a dotNS name. No local host setup is required to reach a live deployment.
+## Introduction
 
-The CLI is the command-line counterpart to [Polkadot Desktop](/reference/apps/hosts/polkadot-desktop/): Desktop runs published Products by their dotNS names; `pg` takes a project on disk and turns it into one. By the end of this guide, you will have a Product live at its own name, reachable in any browser through the dotNS web gateway.
+Deploy a Polkadot Product from your terminal with playground-cli. The `pg` command pairs with your [Polkadot App](https://developers.polkadot.com/reference/apps/hosts/polkadot-app/), builds your Product, uploads the bundle, and binds it to a dotNS name on the environment the CLI targets. No local Host setup is required.
+
+The CLI is the command-line counterpart to [Polkadot Desktop](https://developers.polkadot.com/reference/apps/hosts/polkadot-desktop/): Desktop runs published Products by their dotNS names; `pg` takes a project on disk and turns it into one. By the end of this guide, you will have a Product deployed at its own name, reachable in a browser through the dotNS web gateway.
 
 --8<-- 'text/apps/network-tld.md'
 
@@ -24,19 +21,16 @@ The CLI is the command-line counterpart to [Polkadot Desktop](/reference/apps/ho
 
 Get these in order before your first deploy. The last two are easy to skip and fail silently later, so do not leave them out:
 
-1. **Install the [Polkadot App](/apps/)** on your phone and create an account. It pairs with `pg` and signs your deploy.
+1. **Install the Polkadot App** on your phone and create an account. See the [Polkadot App page on developers.polkadot.com](https://developers.polkadot.com/reference/apps/hosts/polkadot-app/) for installation options. It pairs with `pg` and signs your deploy.
 2. **Have a terminal** with `curl` available and permission to install CLI tools in your user shell.
 3. **Have a Product project** on disk with a package-manager build command.
-4. **Fund your account with PAS** from the [faucet](/apps/get-started/get-testnet-tokens/). PAS pays transaction fees and the name deposit.
-5. **Get a Bulletin Chain storage authorization** for the account that will sign. Without it, uploads are rejected at deploy time even when your balance is fine — a prerequisite that surfaces only as a failed publish. See [Get TestNet Tokens](/apps/get-started/get-testnet-tokens/).
+4. **Fund the signing account on the target environment.** The `playground` CLI targets Paseo Next v2, where PAS pays transaction fees and the name deposit. For TestNet funds, see [Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/) on developers.polkadot.com.
+5. **Get a [Bulletin Chain storage authorization](/apps/reference/infrastructure/bulletin-chain/authorization/)** for the account that will sign. Without it, uploads are rejected at deploy time even when your balance is fine, and the missing authorization surfaces only as a failed publish.
 
 !!! warning "Fund the account that actually signs"
     The PAS balance and the storage authorization are both per account, and the account that signs your deploy may not be the one you expect. If a deploy fails with `no allowance set for account`, see [Accounts and Signing](/apps/concepts/accounts/) and the [troubleshooting entry](/apps/troubleshooting/#no-allowance-set-for-account). Account mapping to an EVM address is handled for you for the product account you deploy with; a smart contract needs its signing account mapped explicitly, covered in [Add a Smart Contract to Your Product](/apps/build/deploy-a-smart-contract/).
 
-!!! note "What a first deploy costs"
-    In one test run, taking an app live cost about 10.4 PAS: roughly 10 PAS for the name and about 0.4 PAS for a 2.6 KB upload, with each on-chain step taking around a minute. Name cost depends on length and tier, so treat these as a ballpark. On TestNet, funding is rarely the constraint.
-
-!!! note "CLI version"
+!!! warning "Provisional"
     The CLI is in active development, and breaking changes between versions are expected. If a command below no longer matches, check this page's last update against the latest [playground-cli release](https://github.com/paritytech/playground-cli/releases).
 
 ## Install the CLI
@@ -95,7 +89,7 @@ Three things happen, and the first two run concurrently:
     - **Dev-only signer** (`--signer dev`): No phone needed; uses shared development keys (pair it with `--suri //Alice` to pin a known keypair). The deployed Product will be owned by the shared dev account, not by you.
 
 !!! note "Funding is opt-in"
-    `pg login` never sends tokens. If your product account needs a testnet balance, run `pg drip` to top it up (1 PAS per run, up to 10 PAS, from a shared dev funder), or use the [faucet](/apps/get-started/get-testnet-tokens/). Run `pg status` at any time to see your product account address, its balances, and your allowance state.
+    `pg login` never sends tokens. If your product account needs a testnet balance, run `pg drip` to request a small TestNet top-up (1 PAS per run, up to 10 PAS), or see [Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/). Whether a top-up is available depends on the target environment. Run `pg status` at any time to see your product account address, its balances, and your allowance state.
 
 ## Build
 
@@ -133,6 +127,8 @@ For the full interactive deploy walkthrough, including the domain-name rules, co
 
 ??? note "More CLI commands"
 
+    For every command and flag, see the [`playground` CLI reference](/apps/playground-cli/).
+
     **Account and session**
 
     - **`pg status`**: Prints your signed-in product account in both encodings (SS58 and H160), its PAS and PGAS balances, and the state of your Bulletin and smart-contract allowances. Read-only: it signs nothing and submits nothing, so it is safe to run at any time. With no session paired it prints a "log in first" notice and exits cleanly.
@@ -141,7 +137,7 @@ For the full interactive deploy walkthrough, including the domain-name rules, co
         pg status
         ```
 
-    - **`pg drip`**: Tops up your product account with a little TestNet PAS: 1 PAS per run, up to a 10 PAS cap, from a shared dev funder rather than the public faucet. It only ever funds the caller's own account, resolved from the active session, so there is no address flag. Login never calls it for you.
+    - **`pg drip`**: Requests a small TestNet PAS top-up for your product account: 1 PAS per run, up to a 10 PAS cap. Availability depends on the target environment. It only ever funds the caller's own account, resolved from the active session, so there is no address flag. Login never calls it for you.
 
         ```bash
         pg drip
@@ -194,7 +190,7 @@ For the full interactive deploy walkthrough, including the domain-name rules, co
         ```
 
 !!! tip "Scripting a deploy, or handing one to an agent"
-    `pg deploy -y` runs non-interactively using defaults, skipping every prompt. It requires `--domain`, and `--signer` defaults to `dev`. For full control in CI, pass `--signer`, `--domain`, `--buildDir`, and `--playground` explicitly; add `--suri //Alice` with `--signer dev` so the dev signer uses a known keypair. See [Set Up Your AI Agent](/apps/get-started/set-up-your-ai-agent/) for orienting a coding agent around this toolchain.
+    `pg deploy -y` runs non-interactively using defaults, skipping every prompt. It requires `--domain`, and `--signer` defaults to `dev`. For full control in CI, pass `--signer`, `--domain`, `--buildDir`, `--playground`, and `--contracts` or `--no-contracts` explicitly; add `--suri //Alice` with `--signer dev` so the dev signer uses a known keypair. The [`playground` CLI reference](/apps/playground-cli/) lists every command and flag. See [Set Up Your AI Agent](/apps/get-started/set-up-your-ai-agent/) for orienting a coding agent around this toolchain.
 
 You have deployed a Polkadot Product. To keep building it with your own editor and toolchain, head to the Build guides; they open with [project setup](/apps/build/#set-up-your-project) so Polkadot Desktop can load your Product from `localhost` while you iterate with live reload.
 

@@ -15,29 +15,30 @@ page_tests:
 
 ## Introduction
 
-A local development node provides an isolated blockchain environment where you can deploy, test, and debug smart contracts without incurring network fees or waiting for block confirmations. This guide demonstrates how to set up a local Polkadot SDK-based node with smart contract capabilities.
+A local development node provides an isolated blockchain environment where you can deploy, test, and debug smart contracts without incurring network fees or waiting for block confirmations. This guide demonstrates how to build and run the `pallet-revive` dev node and the [Ethereum JSON-RPC adapter](/smart-contracts/eth-rpc-adapter/) (`eth-rpc`) from the Polkadot SDK.
 
 By the end of this guide, you'll have:
 
 - A running node with smart contract support.
-- An ETH-RPC adapter for Ethereum-compatible tooling integration accessible at `http://localhost:8545`.
+- An ETH-RPC adapter for Ethereum-compatible tooling integration accessible at `{{ networks.local.eth_rpc_url }}`.
 
 !!! info "Tooling differences"
-    The local node exposes a subset of the Ethereum JSON-RPC API. Some methods used by Foundry, Hardhat, or other Ethereum-native tools (e.g., for time manipulation or debugging) may be missing or behave differently. See [Differences between Ethereum-native tools and Polkadot EVM networks](/smart-contracts/get-started/#differences-between-ethereum-native-tools-and-polkadot-evm-networks){target=\_blank} for implications when running tests and tools against Polkadot nodes.
+    The local node exposes a subset of the Ethereum JSON-RPC API. Some methods used by Foundry, Hardhat, or other Ethereum-native tools (for example, for time manipulation or debugging) may be missing or behave differently. See [Ethereum Tool Differences on Polkadot EVM](/smart-contracts/get-started/#ethereum-tool-differences-on-polkadot-evm) for implications when running tests and tools against Polkadot nodes.
 
 ## Prerequisites
 
 Before getting started, ensure you have done the following:
 
-- Completed the [Install Polkadot SDK Dependencies](/parachains/install-polkadot-sdk/){target=\_blank} guide and successfully installed [Rust](https://rust-lang.org/){target=\_blank} and the required packages to set up your development environment.
+- Completed the [Install Polkadot SDK Dependencies](/polkadot-sdk/install-polkadot-sdk/) guide and successfully installed [Rust](https://rust-lang.org/) and the required packages to set up your development environment.
 
 ## Install the Revive Dev Node and ETH-RPC Adapter
 
-The Polkadot SDK repository contains both the [Revive Dev node](https://github.com/paritytech/polkadot-sdk/tree/{{dependencies.repositories.polkadot_sdk_contracts_node.commit_dev_node}}/substrate/frame/revive/dev-node){target=\_blank} implementation and the [ETH-RPC adapter](https://github.com/paritytech/polkadot-sdk/tree/{{dependencies.repositories.polkadot_sdk_contracts_node.commit_dev_node}}/substrate/frame/revive/rpc){target=\_blank} required for Ethereum compatibility. Start by cloning the repository and navigating to the project directory:
+The Polkadot SDK repository contains both the [Revive Dev node](https://github.com/paritytech/polkadot-sdk/tree/{{dependencies.repositories.polkadot_sdk.version}}/substrate/frame/revive/dev-node) implementation and the [ETH-RPC adapter](https://github.com/paritytech/polkadot-sdk/tree/{{dependencies.repositories.polkadot_sdk.version}}/substrate/frame/revive/rpc) required for Ethereum compatibility. Start by cloning the repository and checking out the release these docs are written against:
 
 ```bash
 git clone https://github.com/paritytech/polkadot-sdk.git
 cd polkadot-sdk
+git checkout {{dependencies.repositories.polkadot_sdk.version}}
 ```
 
 Next, you need to compile the two essential components for your development environment. The Substrate node provides the core blockchain runtime with smart contract support, while the ETH-RPC adapter enables Ethereum JSON-RPC compatibility for existing tooling:
@@ -88,7 +89,7 @@ Similar to the Revive Dev node, you can enable detailed logging for the ETH-RPC 
 RUST_LOG="info,eth-rpc=debug" ./target/release/eth-rpc --dev
 ```
 
-Your local development environment is now active and accessible at `http://localhost:8545`. This endpoint accepts standard Ethereum JSON-RPC requests, enabling seamless integration with existing Ethereum development tools and workflows. 
+Your local development environment is now active and accessible at `{{ networks.local.eth_rpc_url }}`. This endpoint accepts standard Ethereum JSON-RPC requests, so it works with existing Ethereum development tools and workflows. 
 
-You can connect wallets, deploy contracts using Remix or Hardhat, and interact with your smart contracts as you would on any Ethereum-compatible network.
+You can connect wallets, deploy contracts using Remix or Hardhat, and interact with your smart contracts as you would on any Ethereum-compatible network. To compile contracts for the PVM backend, use the [`resolc` compiler](/smart-contracts/resolc/).
 

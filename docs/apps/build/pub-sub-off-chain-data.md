@@ -10,22 +10,22 @@ page_badges:
 
 ## Introduction
 
-This guide covers the [Statement Store](/reference/apps/infrastructure/statement-store/), a pub/sub primitive on Polkadot's People Chain for real-time signaling between users of your Product. Statements are small, signed payloads that propagate peer-to-peer via the node's gossip layer without entering chain storage, making them the right tool for chat messages, presence indicators, multiplayer cursors, and typing indicators. Submissions are allowance-gated (no fees); reading is permissionless. The guide covers four steps: setting up the client, subscribing to incoming statements, publishing a typed statement, and using a channel for last-write-wins state.
+This guide covers the [Statement Store](/apps/reference/infrastructure/statement-store/), a pub/sub primitive on Polkadot's People Chain for real-time signaling between users of your Product. Statements are small, signed payloads that propagate peer-to-peer via the node's gossip layer without entering chain storage, making them the right tool for chat messages, presence indicators, multiplayer cursors, and typing indicators. Submissions are allowance-gated (no fees); reading is permissionless. The guide covers four steps: setting up the client, subscribing to incoming statements, publishing a typed statement, and using a channel for last-write-wins state.
 
 --8<-- 'text/apps/storage-options.md'
 
-The Statement Store and Bulletin Chain compose well: [Polkadot App](/reference/apps/hosts/polkadot-app/)'s Chat uses the Statement Store for signaling (who's online, session handshakes) and the Bulletin Chain for the encrypted message content. Many Products follow the same split: Statement Store for ephemeral state, Bulletin Chain for content that needs to survive longer than a session.
+The Statement Store and Bulletin Chain compose well: [Polkadot App](https://developers.polkadot.com/reference/apps/hosts/polkadot-app/)'s Chat uses the Statement Store for signaling (who's online, session handshakes) and the Bulletin Chain for the encrypted message content. Many Products follow the same split: Statement Store for ephemeral state, Bulletin Chain for content that needs to survive longer than a session.
 
 ## Prerequisites
 
 Before starting, ensure you have:
 
-- Completed [Install Desktop and Pair](/apps/get-started/) so you have a paired [Polkadot Desktop](/reference/apps/hosts/polkadot-desktop/) and a signer for product-scoped accounts
+- Completed [Run a Host for Local Development](/apps/get-started/) so you have a paired [Polkadot Desktop](https://developers.polkadot.com/reference/apps/hosts/polkadot-desktop/) and a signer for product-scoped accounts
 - A Statement Store allowance for your account; the People Chain's `pallet-statement-store` gates submissions on a per-account allowance (`max_count` live statements and `max_size` total bytes)
 - A Polkadot Product project running locally (see [Set Up Your Project](/apps/build/#set-up-your-project) if you don't have one yet)
 
-!!! warning "Provisional: obtaining an allowance"
-    The process for obtaining a Statement Store allowance on TestNet is not yet documented. Ask in the developer community for the current access paths.
+!!! warning "Provisional"
+    How an account obtains a Statement Store allowance depends on the target environment and is not yet documented here. See [developers.polkadot.com](https://developers.polkadot.com/) for the current access paths.
 
 !!! note
     PAS funds are not required for the Statement Store itself; submissions don't pay transaction fees. The allowance is the gating mechanism; PAS is only relevant if your Product later interacts with chains that charge fees.
@@ -41,7 +41,7 @@ npm install @parity/product-sdk @parity/product-sdk-statement-store
 !!! note "Versions the snippets target"
     The snippets target `@parity/product-sdk` v0.30.0 and `@parity/product-sdk-statement-store` v0.6.11; every SDK surface they use is present on that line. If you pin an earlier release, pass `createApp` a `name` (required before v0.30.0) and check the return types first: v0.18.0 moved `StatementStoreClient.publish` and `ChannelStore.write` from `Promise<boolean>` to a typed `Result`. A `Result` object is always truthy, so code written for the older shape keeps compiling and stops working.
 
-See [Umbrella or Individual Packages](/apps/build/#umbrella-or-individual-packages) for how the install styles compare.
+See [Two Ways to Use the SDK](/apps/product-sdk/#two-ways-to-use-the-sdk) for how the install styles compare.
 
 ## Set Up Your Statement Store Client
 

@@ -6,6 +6,8 @@ on:
       - "**.md"
       - ".vale.ini"
       - "styles/StyleGuide/**"
+      - "styles/Parity/**"
+      - ".github/scripts/check_operator_language.py"
       - "styles/config/vocabularies/**"
       - ".github/scripts/sync-styleguide-vale.sh"
       - ".github/workflows/vale.yml"
@@ -46,3 +48,26 @@ jobs:
           reporter: github-pr-check
           filter_mode: added
           token: ${{ secrets.GITHUB_TOKEN }}
+
+  # Blocking check: Parity is an author, not an operator. Fails only on lines
+  # this PR adds, so existing wording does not block unrelated changes. Uses
+  # the patterns in styles/Parity/OperatorLanguage.yml, but also checks text
+  # Vale skips (admonitions, content tabs, snippets).
+  operator-language:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check added lines for operator language
+        run: |
+          python -m pip install --quiet pyyaml
+          python .github/scripts/check_operator_language.py --diff \
+            "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}"
+

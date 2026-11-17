@@ -81,6 +81,6 @@ Before granting an allowance, confirm which account will sign:
 
     Fund the signing account and grant it the service allowances it needs.
 
-    [:octicons-arrow-right-24: Get TestNet Tokens](/apps/get-started/get-testnet-tokens/)
+    [:octicons-arrow-right-24: Get TestNet Tokens](https://developers.polkadot.com/apps/get-started/get-testnet-tokens/)
 
 </div>

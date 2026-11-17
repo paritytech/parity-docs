@@ -1,7 +1,7 @@
 {#-
   Custom 404 page for the Parity Developer Docs.
   Links readers back to the homepage and, since this site no longer hosts
-  ecosystem-wide Polkadot content, to the same path on docs.polkadot.com.
+  ecosystem-wide Polkadot content, to the same path on developers.polkadot.com.
 -#}
 
 {% extends "main.html" %}
@@ -21,18 +21,18 @@
     </div>
     <p class="not-found-ecosystem">
       Looking for Polkadot ecosystem documentation?
-      <a id="polkadot-docs-link" href="https://docs.polkadot.com/">Check the Polkadot Developer Docs</a>.
+      <a id="polkadot-docs-link" href="https://developers.polkadot.com/">Check the Polkadot Developer Docs</a>.
     </p>
   </div>
   <script>
     (() => {
-      // Point the ecosystem link at the same path on docs.polkadot.com, minus
+      // Point the ecosystem link at the same path on developers.polkadot.com, minus
       // this site's base path (for example /parity-docs/ on GitHub Pages).
       const link = document.getElementById('polkadot-docs-link');
       const base = new URL({{ (config.site_url or '/') | tojson }}, location.origin).pathname;
       let path = location.pathname;
       if (path.startsWith(base)) path = path.slice(base.length);
-      if (link && path) link.href = 'https://docs.polkadot.com/' + path.replace(/^\/+/, '');
+      if (link && path) link.href = 'https://developers.polkadot.com/' + path.replace(/^\/+/, '');
     })();
   </script>
 {% endblock %}

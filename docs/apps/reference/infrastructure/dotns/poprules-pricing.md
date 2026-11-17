@@ -1,0 +1,97 @@
+---
+title: PopRules and dotNS Pricing
+description: How dotNS decides who may register a .dot name and what it costs, covering the three length bands, the deposit, and gateway-issued personhood names.
+categories: Apps, Reference
+---
+
+# PopRules and Pricing
+
+## Introduction
+
+`PopRules` decides which length band a `.dot` name falls in, and with it who may register the name. Proof of Personhood (PoP) gates the shorter bands. It does not change the amount charged.
+
+The amount comes from a separate cost model registered in the protocol registry. The deployed model charges one refundable deposit for every name it admits, whatever its length; the deposit is not a purchase price. The amount is fixed in the model contract rather than held as a settable value, so it changes only by registering a different model.
+
+This page documents the bands, the two PoP tiers `PopRules` recognizes, and how device and personhood names differ from a name bought on the public path.
+
+## The Three Registration Paths
+
+A name reaches an owner by one of three routes, and most of the rules on this page apply to only one of them:
+
+- **The public path**: The commit-reveal route the CLI and the deploy flow use. It charges the deposit, applies the length bands, rejects any label carrying a separator, and refuses a label shorter than three characters.
+- **The personhood gateway**: The route that issues device and personhood names. It charges no deposit and refuses a stem of five characters or fewer. Gateway names cannot be transferred; see [Name Transfers](/apps/reference/infrastructure/dotns/transfer/).
+- **The reserved path**: The governance route that puts names of five characters or fewer into circulation. It mints an available label at no cost and skips the personhood check. It requires a governance-issued grant naming the label and the intended owner, or a Substrate Root origin.
+
+## The Two Proof Tiers
+
+`PopRules` recognizes two proof tiers, registered separately on the People Chain:
+
+- **Personhood**: Proven personhood. The user completes the biometric verification flow in the Polkadot App and their key joins the membership ring on the People Chain.
+- **Devicehood**: Attested proof of a unique device, registered on a separate ring with a governance-bounded supply.
+
+[Proof of Personhood in the Polkadot App](https://developers.polkadot.com/reference/apps/hosts/polkadot-app/pop/) documents both mechanisms, where they are called PoP Full and PoP Lite.
+
+`PopRules` reads an account's tier from the personhood precompile on Polkadot Hub. It passes a dotNS-scoped context, so a person gets one stable identifier for dotNS that other applications cannot correlate. No tier is self-declared, and no contract holds a user-settable status.
+
+## Length Bands on the Public Path
+
+A name's band comes from its length, counted as written. Digits count like any other character, so `web3` is four characters and `hamilton01` is 10.
+
+| Length     | Who may register                                         | Deposit                 |
+|:-----------|:---------------------------------------------------------|:------------------------|
+| 5 or fewer | Nobody on the public path                                | Not sold                |
+| 6 to 8     | Closed by default; when open, an account with personhood | One deposit, refundable |
+| 9 or more  | Anyone                                                   | One deposit, refundable |
+
+The six-to-eight band is closed on the public path by default. `PopRules` admits it only while `shortNamesEnabled` is set, and only a Root origin can set it: governance on MainNet, and the sudo pallet on TestNets. The switch is off on Paseo, so a public registration of six to eight characters fails with `Short names are not for sale`, whatever tier the account holds. The gateway and the reserved path do not consult the switch, so personhood and device names of that length are still issued.
+
+The deposit is 10 units of the network's native token (10 PAS on Paseo), and it does not vary with the band. See [One Deployment per Network](/apps/reference/infrastructure/dotns/#one-deployment-per-network).
+
+Only the public path charges it. A gateway-issued name carries no deposit, whatever its length, and holding personhood does not make a public registration free.
+
+Devicehood does not open the six-to-eight band, even while the switch is set. An ordinary label of that length requires personhood, because devicehood applies only to the dotted gateway shape. An account with devicehood can therefore be issued `joseph.42` but cannot register `joseph` or `joseph01` on the public path.
+
+Two rules narrow the table:
+
+- **Names of five characters or fewer never reach the public path**: They enter circulation only through the reserved path.
+- **Nothing shorter than three characters reaches the public path or the gateway**: The public path rejects a shorter label outright. The gateway applies no length floor of its own, but a stem of five or fewer classifies as reserved, so it refuses one too.
+
+## Device and Personhood Names
+
+A gateway name is earned rather than bought, so it carries no deposit. Proving personhood earns a personhood name; proving a unique device (devicehood) earns a device name. The two shapes are distinct:
+
+- **Device name**: A stem of lowercase ASCII letters, one separator, then exactly two digits, as in `joseph.42`. The stem is the part the person chose; the gateway allocates the digits so people who chose the same stem get separate names. It is banded on the stem alone rather than on the whole name.
+- **Personhood name**: Lowercase ASCII letters only, as in `joseph`. No digits and no hyphens.
+
+Neither shape can be bought. A label with digits but no separator, like `joseph42`, is an ordinary public name.
+
+The shape alone does not prove personhood: provenance is not written into the characters. A client reads it from `isPopIssued(label)` on the PoP controller; see [Name Mechanism and Resolution](/apps/reference/infrastructure/dotns/name-mechanism/).
+
+## Migrating a Device Name to a Personhood Name
+
+A device-name issuance can reserve the matching stem for the same person to claim later as a personhood name, so that moving from devicehood to personhood does not cost them the name they are known by.
+
+The reservation is not automatic on a public registration, which reserves no stem at all. It is attached by the gateway, which names the base label to reserve alongside the device name it is issuing. A holder of `joseph.42` can therefore have `joseph` held for them, and claim it once they prove personhood. Claiming it from the device name carries the device name's chat key over and records a public link between the two names, so anyone can see that `joseph` and `joseph.42` belong together.
+
+Two clocks limit the reservation. `PopRules` holds the slot for at most 12 weeks, and the queue on the PoP controller applies its own duration, which governance can configure. Once either lapses, the stem becomes available again on whatever path its length allows.
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+- <span class="badge learn">Learn</span> **Proof of Personhood**
+
+    ---
+
+    Where the `PopRules` contract reads the PoP tier from — the App-side mechanism that produces Full and Lite registrations.
+
+    [:octicons-arrow-right-24: Reference](https://developers.polkadot.com/reference/apps/hosts/polkadot-app/pop/)
+
+- <span class="badge guide">Guide</span> **Register and Publish**
+
+    ---
+
+    The Product-side how-to that consumes the PopRules check: registering a `.dot` name and paying its deposit.
+
+    [:octicons-arrow-right-24: Get Started](/apps/deploy-your-app/)
+</div>

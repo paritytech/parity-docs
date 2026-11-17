@@ -26,7 +26,7 @@ The System precompile implements the `ISystem` interface, which is defined in th
 --8<-- "https://raw.githubusercontent.com/paritytech/polkadot-sdk/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi/sol/ISystem.sol"
 ```
 
-For the complete implementation, refer to the [ISystem.sol](https://github.com/paritytech/polkadot-sdk/blob/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi/sol/ISystem.sol){target=\_blank} file in the Polkadot SDK.
+For the complete implementation, refer to the [ISystem.sol](https://github.com/paritytech/polkadot-sdk/blob/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi/sol/ISystem.sol) file in the Polkadot SDK.
 
 ## Cryptographic Operations
 
@@ -263,7 +263,7 @@ system.terminate(beneficiary); // Contract is terminated after this call
 
 ## Interact with the System Precompile
 
-To interact with the System precompile in the [Remix IDE](/smart-contracts/dev-environments/remix/){target=\_blank}:
+To interact with the System precompile in the [Remix IDE](https://developers.polkadot.com/smart-contracts/dev-environments/remix/):
 
 1. Create a new file called `ISystem.sol` in Remix.
 2. Copy and paste the `ISystem` interface code into the file.
@@ -289,5 +289,5 @@ Whether you're building identity systems that verify sr25519 signatures, contrac
 
 ## Reference
 
-- [ISystem.sol source code](https://github.com/paritytech/polkadot-sdk/blob/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi/sol/ISystem.sol){target=\_blank}
-- [Revive uapi directory](https://github.com/paritytech/polkadot-sdk/tree/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi){target=\_blank}
+- [ISystem.sol source code](https://github.com/paritytech/polkadot-sdk/blob/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi/sol/ISystem.sol)
+- [Revive uapi directory](https://github.com/paritytech/polkadot-sdk/tree/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi)

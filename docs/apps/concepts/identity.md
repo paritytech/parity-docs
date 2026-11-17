@@ -31,13 +31,13 @@ Derivation follows a junction path of `["product", productId, derivationIndex]` 
 Your Product obtains this account through the [`signer`](/apps/product-sdk/signer/) package (`getProductAccount`) and signs with it; every approval routes to the user's phone. See [Sign and Submit Transactions](/apps/build/sign-and-submit/) for the working flow.
 
 !!! info "Why per-app derivation"
-    If every Product saw the same account for a user, any two Products could compare accounts and correlate the user across them. Per-Product derivation makes that impossible by default: different Products see different, unlinkable addresses for the same person. Sharing an account across your own Products is possible, but it requires an explicit permission grant; it is never the default. The same reasoning governs the sandbox model in the [TrUAPI reference](/reference/apps/protocol/truapi/sandbox/).
+    If every Product saw the same account for a user, any two Products could compare accounts and correlate the user across them. Per-Product derivation makes that impossible by default: different Products see different, unlinkable addresses for the same person. Sharing an account across your own Products is possible, but it requires an explicit permission grant; it is never the default. The same reasoning governs the sandbox model in the [TrUAPI reference](/apps/reference/protocol/truapi/sandbox/).
 
 ## Proof of Personhood
 
-[Proof of Personhood](/reference/apps/infrastructure/pop/) is a separate signal that a user is a unique human. It always has a tier and a per-app alias, and it sometimes has an earned name:
+[Proof of Personhood](/apps/reference/infrastructure/pop/) is a separate signal that a user is a unique human. It always has a tier and a per-app alias, and it sometimes has an earned name:
 
-- **A tier**: The strength of the proof, from none, through an attested proof of a unique device, to full personhood, proven in the Polkadot App. The [Proof of Personhood reference](/reference/apps/infrastructure/pop/) names the tiers.
+- **A tier**: The strength of the proof, from none, through an attested proof of a unique device, to full personhood, proven in the Polkadot App. The [Proof of Personhood reference](/apps/reference/infrastructure/pop/) names the tiers.
 - **A per-app alias**: A Ring-VRF-derived identifier that is deterministic for a given user and Product, and unlinkable across Products.
 - **An earned name**: The human-readable name the personhood gateway issues to a user who has proved a tier, such as `joseph.42`.
 
@@ -67,9 +67,9 @@ Following this pattern means Products converge on the same approach instead of e
 
 ## Your Product's `.dot` Address
 
-A [`.dot` name](/apps/register-dot-domain/) is registered with [dotNS](/reference/apps/infrastructure/dotns/) and resolves to a content record: the CID of a published Product bundle. Ownership of a name is held by a Polkadot Hub account, but the name is not an account and cannot sign.
+A [`.dot` name](/apps/register-dot-domain/) is registered with [dotNS](/apps/reference/infrastructure/dotns/) and resolves to a content record: the CID of a published Product bundle. Ownership of a name is held by a Polkadot Hub account, but the name is not an account and cannot sign.
 
-Transferability depends on how the name was acquired. A name anyone registered by paying the deposit can be transferred. A name earned through the personhood gateway, the route that grants device and personhood names, cannot move: it identifies the person or device that earned it, and it stays with them. Most names point at _content_ rather than at a user, but a gateway name identifies an identity (a personhood name names a person, and a device name names a unique device its holder proved), so a client that needs to tell the kinds apart should read `isPopIssued(label)` on the PoP controller rather than inspect the string. See [PopRules and Pricing](/reference/apps/infrastructure/dotns/poprules-pricing/).
+Transferability depends on how the name was acquired. A name anyone registered by paying the deposit can be transferred. A name earned through the personhood gateway, the route that grants device and personhood names, cannot move: it identifies the person or device that earned it, and it stays with them. Most names point at _content_ rather than at a user, but a gateway name identifies an identity (a personhood name names a person, and a device name names a unique device its holder proved), so a client that needs to tell the kinds apart should read `isPopIssued(label)` on the PoP controller rather than inspect the string. See [PopRules and Pricing](/apps/reference/infrastructure/dotns/poprules-pricing/).
 
 A name is how users reach your Product; it is not how your Product identifies a user. The confusion is that both live in the same namespace: a name registered by paying the deposit points at content, while a name earned through the gateway points at a person or a device.
 
@@ -99,7 +99,7 @@ None of these reveals the user's root key. The per-app account and the personhoo
 
     The Ring-VRF mechanism, tiers, and per-app aliases in depth.
 
-    [:octicons-arrow-right-24: Reference](/reference/apps/infrastructure/pop/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/infrastructure/pop/)
 
 -   <span class="badge learn">Learn</span> **The Sandbox Model**
 
@@ -107,6 +107,6 @@ None of these reveals the user's root key. The per-app account and the personhoo
 
     How the Host isolates each Product and derives its per-domain account.
 
-    [:octicons-arrow-right-24: Reference](/reference/apps/protocol/truapi/sandbox/)
+    [:octicons-arrow-right-24: Reference](/apps/reference/protocol/truapi/sandbox/)
 
 </div>
