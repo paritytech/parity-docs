@@ -62,7 +62,7 @@ While light clients still communicate with full nodes, they offer significant ad
 
 [smoldot](https://github.com/smol-dot/smoldot) is the light client implementation for Polkadot SDK-based chains. It connects to a chain from its chain specification, warp syncs, and serves the JSON-RPC interface to your application locally. smoldot is available in the following forms:
 
-- **JavaScript package**: The [`smoldot`](https://www.npmjs.com/package/smoldot) npm package runs in the browser and in Node.js or Deno. See the [JavaScript API documentation](https://smol-dot.github.io/smoldot/doc-javascript/).
+- **JavaScript package**: The [`smoldot`](https://www.npmjs.com/package/smoldot) npm package runs in the browser and in Node.js or Deno. See the [JavaScript API documentation](https://paritytech.github.io/smoldot/doc-javascript/).
 - **Rust library**: The [`smoldot-light`](https://crates.io/crates/smoldot-light) crate embeds a light client in a Rust application. See the [`smoldot-light` documentation](https://docs.rs/smoldot-light).
 - **Primitives**: The [`smoldot`](https://crates.io/crates/smoldot) crate provides lower-level Rust primitives that the other components build on.
 
