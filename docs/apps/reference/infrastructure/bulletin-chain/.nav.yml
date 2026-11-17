@@ -4,3 +4,4 @@ nav:
  - 'Chunked Uploads': chunked-upload.md
  - 'Renewal': renewal.md
  - 'Data Storage': data-storage.md
+ - 'Run a Node': run-a-node.md

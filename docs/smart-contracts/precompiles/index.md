@@ -53,7 +53,7 @@ The following table lists the addresses documented on the individual precompile 
 
 ## Runtime-Registered Precompiles
 
-Not every precompile is part of `pallet-revive` itself. A runtime can register additional precompiles implemented in other pallets, which is how the XCM precompile (from `pallet-xcm`) and the ERC-20 precompile (from the Assets pallet) are provided. Which of these precompiles are available, and at which addresses, depends on the runtime configuration of each chain.
+Not every precompile is part of `pallet-revive` itself. A runtime can [register additional precompiles](/smart-contracts/precompiles/custom-precompiles.md) implemented in other pallets, which is how the XCM precompile (from `pallet-xcm`) and the ERC-20 precompile (from the Assets pallet) are provided. Which of these precompiles are available, and at which addresses, depends on the runtime configuration of each chain.
 
 ## Conclusion
 

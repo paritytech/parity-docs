@@ -8,7 +8,7 @@ categories: Apps, Reference
 
 ## Introduction
 
-The Bulletin Chain is a Polkadot SDK runtime built around storage pallets (`TransactionStorage` and `DataRenewal`) that provide content-addressed storage for Products. The runtime is developed in the [`paritytech/polkadot-bulletin-chain`](https://github.com/paritytech/polkadot-bulletin-chain) repository. A Product's files and content are addressed by their hash, so anyone can verify what they fetched. A Product writes data; the chain returns a [Content Identifier (CID)](/get-started/glossary.md#content-identifier-cid), which is a Blake2b-256 hash of the bytes, and anyone with that CID can fetch the data back peer-to-peer from the network.
+The Bulletin Chain is a Polkadot SDK runtime built around storage pallets (`TransactionStorage` and `DataRenewal`) that provide content-addressed storage for Products. The runtime is developed in the [`paritytech/polkadot-bulletin-chain`](https://github.com/paritytech/polkadot-bulletin-chain) repository, and you can run it locally with `polkadot-omni-node`; see [Run a Bulletin Chain Node](/apps/reference/infrastructure/bulletin-chain/run-a-node.md). A Product's files and content are addressed by their hash, so anyone can verify what they fetched. A Product writes data; the chain returns a [Content Identifier (CID)](/get-started/glossary.md#content-identifier-cid), which is a Blake2b-256 hash of the bytes, and anyone with that CID can fetch the data back peer-to-peer from the network.
 
 If you have used IPFS, the mental model is the same: content addressed by hash, retrieved without a central host. The difference is that storage records and authorizations live natively on Polkadot.
 
@@ -80,4 +80,12 @@ For the storage-layer comparison (Bulletin vs Statement Store vs local `KvStore`
     The Product-side how-to: setting up the storage client, the Hello World write, retrieval, larger files, renewal.
 
     [:octicons-arrow-right-24: Get Started](/apps/build/store-data-on-chain.md)
+
+- <span class="badge guide">Guide</span> **Run a Bulletin Chain Node**
+
+    ---
+
+    Build a Bulletin Chain spec and run a local dev node or Zombienet network with IPFS serving enabled.
+
+    [:octicons-arrow-right-24: Get Started](/apps/reference/infrastructure/bulletin-chain/run-a-node.md)
 </div>

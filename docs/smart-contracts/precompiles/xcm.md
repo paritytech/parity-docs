@@ -137,3 +137,4 @@ The XCM precompile provides a low-level interface for cross-chain interactions f
 
 - Call the precompile from your own contracts using the [Hardhat Polkadot plugin](/smart-contracts/dev-environments/hardhat-polkadot.md), deploying to a chain that registers the XCM precompile.
 - Learn more about XCM in [Get Started with XCM](/polkadot-sdk/interoperability/get-started.md).
+- Expose your own runtime functionality to contracts in the same way with [Write a Custom Precompile](/smart-contracts/precompiles/custom-precompiles.md).

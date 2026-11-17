@@ -27,19 +27,6 @@ These docs follow the same principle. They describe software, not live networks.
 
 The Polkadot network and its ecosystem are documented by the Polkadot Community Foundation in the [Polkadot Developer Docs](https://developers.polkadot.com/). Pages on these topics used to live on this site; their old URLs now redirect there.
 
-| Topic | Where to find it |
-|:------|:-----------------|
-| Connect to Polkadot Hub, get test tokens, and find explorers | [Smart contracts: Connect](https://developers.polkadot.com/smart-contracts/connect/), [Faucet](https://developers.polkadot.com/smart-contracts/faucet/), [Explorers](https://developers.polkadot.com/smart-contracts/explorers/) |
-| Ethereum tools and libraries on Polkadot Hub (Remix, Foundry, ethers.js, viem) | [Development environments](https://developers.polkadot.com/smart-contracts/dev-environments/remix/), [Libraries](https://developers.polkadot.com/smart-contracts/libraries/ethers-js/) |
-| Smart contract tutorials and dApp examples | [Cookbook](https://developers.polkadot.com/smart-contracts/cookbook/dapps/zero-to-hero/) |
-| Deploy a parachain to a live network and obtain coretime | [Deploy to Polkadot](https://developers.polkadot.com/parachains/launch-a-parachain/deploy-to-polkadot/), [Obtain coretime](https://developers.polkadot.com/parachains/launch-a-parachain/obtain-coretime/) |
-| Open HRMP channels between parachains | [Channels between parachains](https://developers.polkadot.com/parachains/interoperability/channels-between-parachains/) |
-| Run a validator, staking, rewards, and slashing | [Validator requirements](https://developers.polkadot.com/node-infrastructure/run-a-validator/requirements/) |
-| Governance, origins, and tracks | [Governance](https://developers.polkadot.com/reference/governance/) |
-| Polkadot networks (Polkadot, Kusama, Paseo, Westend) | [Networks](https://developers.polkadot.com/reference/parachains/networks/) |
-| Assets and cross-chain transfers on live chains | [Register a local asset](https://developers.polkadot.com/chain-interactions/token-operations/register-local-asset/), [Transfer assets between parachains](https://developers.polkadot.com/chain-interactions/send-transactions/interoperability/transfer-assets-parachains/) |
-| Polkadot Hub architecture, consensus, and coretime | [Polkadot Hub](https://developers.polkadot.com/reference/polkadot-hub/) |
-| Third-party tools such as Chopsticks, Polkadot-API, and ParaSpell | [Tools](https://developers.polkadot.com/reference/tools/chopsticks/) |
-| Wallets, indexers, and oracles for parachains | [Integrations](https://developers.polkadot.com/parachains/integrations/wallets/) |
+[Polkadot Network Resources](polkadot-network-resources.md) maps every moved page to its new location, grouped by topic: smart contracts on Polkadot Hub, parachains on live networks, validators and staking, assets and cross-chain transfers, Polkadot Hub and governance, Polkadot products, and third-party tools.
 
 For background on the Polkadot protocol, see the [Polkadot Wiki](https://wiki.polkadot.com/).

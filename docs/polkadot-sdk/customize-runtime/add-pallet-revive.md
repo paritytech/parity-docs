@@ -301,7 +301,7 @@ Keep all the runtime API implementations you already have inside the macro call;
 
 ## Register Precompiles
 
-`pallet-revive` includes the standard Ethereum precompiles and its own system precompiles. To expose more runtime functionality to contracts, pass a tuple of types that implement the [`Precompile`](https://paritytech.github.io/polkadot-sdk/master/pallet_revive/precompiles/trait.Precompile.html) trait to `Config::Precompiles`. The type is usually provided by another pallet.
+`pallet-revive` includes the standard Ethereum precompiles and its own system precompiles. To expose more runtime functionality to contracts, pass a tuple of types that implement the [`Precompile`](https://paritytech.github.io/polkadot-sdk/master/pallet_revive/precompiles/trait.Precompile.html) trait to `Config::Precompiles`. The type is usually provided by another pallet. To write your own, see [Write a Custom Precompile](/smart-contracts/precompiles/custom-precompiles.md).
 
 For example, the [kitchensink runtime](https://github.com/paritytech/polkadot-sdk/blob/{{dependencies.repositories.polkadot_sdk.version}}/substrate/bin/node/runtime/src/lib.rs#L1567-L1571) registers ERC-20 precompiles for two instances of the Assets pallet and a vesting precompile:
 

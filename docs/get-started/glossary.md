@@ -19,7 +19,7 @@ A context-specific pseudonym derived from a user's [PoP](#proof-of-personhood-po
 
 ## Allowance
 
-An on-chain access-control grant. The chain-level permission that gates publishing or storing data. `pallet-statement-store` records per-account `StatementAllowance` entries (a `max_count` cap on live statements and a `max_size` cap on total bytes). [Bulletin Chain](#bulletin-chain) consumes per-account quotas of transactions and bytes for storage. [Coinage](#coinage) issues periodic free-token allowances to persons. Spam resistance comes from the allowance ceiling rather than from per-transaction fees.
+An on-chain access-control grant. The chain-level permission that gates publishing or storing data. The statement store records per-account `StatementAllowance` entries (a `max_count` cap on live statements and a `max_size` cap on total bytes). [Bulletin Chain](#bulletin-chain) consumes per-account quotas of transactions and bytes for storage. [Coinage](#coinage) issues periodic free-token allowances to persons. Spam resistance comes from the allowance ceiling rather than from per-transaction fees.
 
 ## Authority
 
@@ -82,7 +82,7 @@ A chain specification file defines the properties required to run a node in an a
 
 ## Chain State
 
-Chain state (also referred to as on-chain state) is the complete set of data stored in a Polkadot SDK-based blockchain's key-value database at any given point in time. It represents everything the runtime currently knows and manages about the network.
+Chain state (also referred to as on-chain state) is the complete set of data stored in a Polkadot SDK-based blockchain's key-value database at any given point in time. It represents everything the runtime knows and manages at that block.
 
 ## Chat
 
@@ -338,7 +338,7 @@ You can learn more about parachains on the [Polkadot Wiki](https://wiki.polkadot
 
 ## Pocket
 
-[Polkadot Desktop](#polkadot-desktop)'s peer-to-peer send flow. Two distinguishing properties. First, [personhood](#proof-of-personhood-pop)-aware addressing (the sender can address a recipient by their personhood, not just an account address). Second, two-sided confirmation (the recipient explicitly accepts or declines on their [App](#polkadot-app)).
+[Polkadot Desktop](#polkadot-desktop)'s peer-to-peer send flow. Two distinguishing properties. First, [personhood](#proof-of-personhood-pop)-aware addressing (the sender can address a recipient by their personhood, rather than only by an account address). Second, two-sided confirmation (the recipient explicitly accepts or declines on their [App](#polkadot-app)).
 
 ## Polkadot
 
@@ -362,7 +362,7 @@ The umbrella project that contains [Substrate](#substrate) (the blockchain frame
 
 ## Polkadot Virtual Machine (PVM)
 
-A custom virtual machine optimized for performance, leveraging a RISC-V-based architecture to support Solidity and any language that compiles to RISC-V. Specifically designed for the Polkadot ecosystem, enabling smart contract deployment and execution.
+A RISC-V-based virtual machine, implemented by PolkaVM, that runs smart contracts on the PVM backend of `pallet-revive`. Contracts reach it from Solidity through `resolc` or from Rust through `cargo-pvm-contract`. See [PolkaVM](/smart-contracts/polkavm.md).
 
 ## Polkadot Web
 
@@ -378,7 +378,7 @@ The on-ramp [personhood](#proof-of-personhood-pop) tier. Third-party attestation
 
 ## PoP Tier
 
-A user's level of [Proof of Personhood](#proof-of-personhood-pop). Currently one of three options: Full (cryptographically proven via biometric verification), Lite (third-party attested, governance-bounded supply), or none. The tier determines which features unlock, including short `.dot` names, UBI eligibility, and free unload tokens. Checked through [Ring-VRF](#ring-vrf) proofs against the corresponding members ring.
+A user's level of [Proof of Personhood](#proof-of-personhood-pop). One of three options: Full (cryptographically proven via biometric verification), Lite (third-party attested, governance-bounded supply), or none. The tier determines which features unlock, including short `.dot` names, UBI eligibility, and free unload tokens. Checked through [Ring-VRF](#ring-vrf) proofs against the corresponding members ring.
 
 ## Preimage
 

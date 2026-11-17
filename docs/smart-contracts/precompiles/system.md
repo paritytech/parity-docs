@@ -283,7 +283,7 @@ Once connected, you can interact with any of the System precompile functions dir
 
 ## Conclusion
 
-The System precompile provides essential building blocks for smart contracts that need to interact with Polkadot-native functionality. By offering access to cryptographic primitives, runtime queries, and system utilities, it enables developers to build sophisticated applications that leverage the full power of the Polkadot runtime.
+The System precompile provides essential building blocks for smart contracts that need to interact with Polkadot-native functionality. By offering access to cryptographic primitives, runtime queries, and system utilities, it lets contracts use runtime features that the EVM does not expose.
 
 Whether you're building identity systems that verify sr25519 signatures, contracts that need precise weight management, or applications that interact with Polkadot's native account system, the System precompile offers the necessary tools to bridge the gap between smart contract logic and runtime functionality.
 

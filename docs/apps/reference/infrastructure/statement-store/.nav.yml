@@ -4,3 +4,4 @@ nav:
  - 'Subscriptions': subscriptions.md
  - 'Channels': channels.md
  - 'Allowance': allowance.md
+ - 'Enable the Statement Store': enable.md

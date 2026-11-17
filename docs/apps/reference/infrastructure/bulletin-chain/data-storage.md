@@ -145,7 +145,7 @@ For the renewal lifecycle and its costs, see [Renewal](/apps/reference/infrastru
 The Bulletin Chain follows a "write-to-chain, read-from-network" architecture. Data is stored through on-chain transactions and retrieved directly from collator nodes using the CID. Bulletin Chain nodes are themselves participants in the [InterPlanetary File System (IPFS)](https://ipfs.tech/) network:
 
 1. **CID generation**: The chain computes an IPFS-compatible [Content Identifier (CID)](https://docs.ipfs.tech/concepts/content-addressing/) from your data using a cryptographic hash. This CID uniquely identifies the content regardless of where it is stored.
-2. **Bitswap serving**: Bulletin Chain collator nodes implement the IPFS [Bitswap](https://docs.ipfs.tech/concepts/bitswap/) wire protocol, the standard way IPFS nodes exchange data blocks. IPFS clients can request data directly from collator nodes using the CID.
+2. **Bitswap serving**: Bulletin Chain collator nodes implement the IPFS [Bitswap](https://docs.ipfs.tech/concepts/bitswap/) wire protocol, the standard way IPFS nodes exchange data blocks. IPFS clients can request data directly from collator nodes using the CID. For the node flags that enable this, see [Storage and IPFS Flags](/apps/reference/infrastructure/bulletin-chain/run-a-node.md#storage-and-ipfs-flags).
 
 The following retrieval methods are available:
 
@@ -201,5 +201,13 @@ The Bulletin SDKs chunk at most 64 MiB in a single operation. To store a larger 
     Authorize an account, store an image, retrieve it, and manage renewals with PAPI.
 
     [:octicons-arrow-right-24: Get Started](/tools/chain-interactions/store-data/bulletin-chain.md)
+
+-   <span class="badge guide">Guide</span> __Run a Bulletin Chain Node__
+
+    ---
+
+    Run a local Bulletin Chain dev node or network to store and retrieve data against.
+
+    [:octicons-arrow-right-24: Get Started](/apps/reference/infrastructure/bulletin-chain/run-a-node.md)
 
 </div>

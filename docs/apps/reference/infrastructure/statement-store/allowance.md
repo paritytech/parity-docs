@@ -14,12 +14,12 @@ The allowance is the spam-resistance mechanism. Without it, a misbehaving accoun
 
 ## What an Allowance Records
 
-`pallet-statement-store` stores a per-account `StatementAllowance` record with two limits:
+Each account's allowance is a `StatementAllowance` record with two limits, kept in runtime storage under the well-known `:statement_allowance:` key prefix:
 
 - **`max_count`**: The maximum number of statements the account may have live in the pool at once. As statements expire (TTL elapses, channel replacement evicts an older value), they free up count for new submissions.
-- **`max_size`**: The maximum total bytes across the account's currently-live statements. Each submission's payload counts against this; as statements expire, their bytes free up.
+- **`max_size`**: The maximum total bytes across the account's live statements. Each submission's payload counts against this; as statements expire, their bytes free up.
 
-Allowances are raised with the `increase_allowance_by` extrinsic, which is privileged, so a regular account cannot grant itself an allowance.
+The Polkadot SDK does not provide a call that grants allowances. The runtime decides who gets one, for example from a privileged call in one of its own pallets, using the `increase_allowance_by` helper from `sp-statement-store`. See [Grant Allowances from the Runtime](/apps/reference/infrastructure/statement-store/enable.md#grant-allowances-from-the-runtime).
 
 Both limits are checked at validation (step 2 of the [lifecycle](/apps/reference/infrastructure/statement-store/lifecycle.md)). A submission that would exceed either is rejected at the pallet boundary before it ever enters the gossip layer.
 

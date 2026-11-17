@@ -1,2 +1,4 @@
 nav:
  - 'Run a Parachain Network': run-a-parachain-network.md
+ - 'Test XCM': test-xcm.md
+ - 'Write Network Tests': zombienet-tests.md

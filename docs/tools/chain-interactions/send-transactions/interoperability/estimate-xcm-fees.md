@@ -36,7 +36,7 @@ The overall fees are `local_execution_fees` + `delivery_fees` + `remote_executio
 
 ## Runtime APIs for Fee Estimation
 
-The following runtime API methods provide the data you need. To expose them from your own runtime, see [Add the XCM Runtime APIs](/polkadot-sdk/interoperability/configure-xcm.md#add-the-xcm-runtime-apis):
+The following runtime API methods provide the data you need. To expose them from your own runtime, see [Add the XCM Runtime APIs](/polkadot-sdk/interoperability/configure-xcm.md#add-the-xcm-runtime-apis). To call them from Rust tests and check estimates against the fees a transfer actually charges, see [Use the XCM Runtime APIs in Tests](/polkadot-sdk/testing/test-xcm.md#use-the-xcm-runtime-apis-in-tests):
 
 | API | Method | Purpose |
 |-----|--------|---------|

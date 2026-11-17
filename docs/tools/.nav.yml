@@ -8,3 +8,4 @@ nav:
  - 'Polkadot Omni Node': omninode.md
  - 'Chain Spec Builder': chain-spec-builder.md
  - 'Utilities': utilities.md
+ - 'Works With: Third-Party Tools': third-party-tools.md

@@ -12,14 +12,14 @@ The Statement Store is Polkadot's publish/subscribe layer for short-lived, signe
 
 The split is the point: pallet rules on chain, payloads in gossip. The chain enforces who can publish and how much; the gossip layer carries the data. That is what makes the Statement Store the right tool for _real-time signaling between users_ (chat messages, presence, multiplayer cursors, typing indicators, "now playing" status), and for anything else that has to propagate fast and does not need to be permanent.
 
-For when to reach for this versus the [Bulletin Chain](/apps/reference/infrastructure/bulletin-chain/index.md) or local storage, see [Where to Store Data](/apps/concepts/data-placement.md).
+For when to reach for this versus the [Bulletin Chain](/apps/reference/infrastructure/bulletin-chain/index.md) or local storage, see [Where to Store Data](/apps/concepts/data-placement.md). To add the Statement Store to your own Polkadot SDK chain and run a node with it locally, see [Enable the Statement Store](/apps/reference/infrastructure/statement-store/enable.md).
 
 ## How a Statement Reaches Subscribers
 
 Three properties define the path from a publish call to a subscriber's callback firing:
 
 - **Signed at the source**: Every submission carries an authentication proof (Sr25519 by default). The Host requests the proof through the App; the Product never handles keys.
-- **Allowance-gated by the pallet**: The People Chain's `pallet-statement-store` enforces a per-account quota — `max_count` live statements and `max_size` total bytes. Submissions exceeding the quota are rejected at the pallet boundary, so spam does not reach subscribers. See [Allowance](/apps/reference/infrastructure/statement-store/allowance.md).
+- **Allowance-gated by the pallet**: The chain's `pallet-statement` enforces a per-account quota — `max_count` live statements and `max_size` total bytes. Submissions exceeding the quota are rejected at the pallet boundary, so spam does not reach subscribers. See [Allowance](/apps/reference/infrastructure/statement-store/allowance.md).
 - **Gossiped, not block-stored**: Once accepted into the node's statement pool, the submission propagates peer-to-peer through the People Chain network's gossip layer. Subscribers see it via their node's filtered statement subscription. See [Subscriptions](/apps/reference/infrastructure/statement-store/subscriptions.md).
 
 For the full statement lifecycle (validation, propagation, expiry, maintenance) see [Lifecycle](/apps/reference/infrastructure/statement-store/lifecycle.md).
@@ -73,4 +73,12 @@ If the content needs to outlive the TTL, store it on the Bulletin Chain and publ
     The Product-side how-to: setting up the client, subscribing, publishing typed statements, using channels.
 
     [:octicons-arrow-right-24: Get Started](/apps/build/pub-sub-off-chain-data.md)
+
+- <span class="badge guide">Guide</span> **Enable the Statement Store**
+
+    ---
+
+    Grant per-account allowances from your runtime and run `polkadot-omni-node` locally with the store enabled.
+
+    [:octicons-arrow-right-24: Get Started](/apps/reference/infrastructure/statement-store/enable.md)
 </div>

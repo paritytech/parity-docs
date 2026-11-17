@@ -6,3 +6,4 @@ nav:
  - 'Name Transfers': transfer.md
  - 'Escrow and Deposits': escrow.md
  - 'CLI': cli.md
+ - 'Deploy Your Own Instance': deploy-your-own.md

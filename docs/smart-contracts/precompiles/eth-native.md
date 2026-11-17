@@ -11,11 +11,11 @@ categories: Smart Contracts
 
 Ethereum-native precompiles are special contract implementations that provide essential cryptographic and utility functions at the runtime level. These precompiles are available at predefined addresses and offer optimized, native implementations of commonly used operations that would be computationally expensive or impractical to implement in pure contract code.
 
-In Polkadot Hub's Revive pallet, these precompiles maintain compatibility with standard Ethereum addresses, allowing developers familiar with Ethereum to seamlessly transition their smart contracts while benefiting from the performance optimizations of the PVM runtime.
+In `pallet-revive`, these precompiles keep the standard Ethereum addresses, so contracts written for Ethereum can call them without changes.
 
 ## How to Use Precompiles
 
-To use a precompile in your smart contract, simply call the precompile's address as you would any other contract. Each precompile has a specific address (shown in the table below) and expects input data in a particular format. The precompile executes natively at the runtime level and returns the result directly to your contract.
+To use a precompile in your smart contract, call the precompile's address as you would any other contract. Each precompile has a specific address (shown in the table below) and expects input data in a particular format. The precompile executes natively at the runtime level and returns the result directly to your contract.
 
 For example, to use the ECRecover precompile to verify a signature, you would call address `0x0000000000000000000000000000000000000001` with the properly formatted signature data. The precompile handles the complex cryptographic operations efficiently and returns the recovered public key.
 
@@ -39,4 +39,4 @@ Revive implements the standard set of Ethereum precompiles:
 
 ## Conclusion
 
-Ethereum-native precompiles provide a powerful foundation for smart contract development on Polkadot Hub, offering high-performance implementations of essential cryptographic and utility functions. By maintaining compatibility with standard Ethereum precompile addresses and interfaces, Revive ensures that developers can leverage existing knowledge and tools while benefiting from the enhanced performance of native execution.
+Ethereum-native precompiles give contracts on `pallet-revive` native implementations of common cryptographic and utility functions. Because they keep the standard Ethereum precompile addresses and interfaces, existing Ethereum knowledge and tools apply unchanged.

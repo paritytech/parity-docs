@@ -132,7 +132,7 @@ Now submit the new runtime to the chain using the Sudo pallet through Polkadot.j
     ![Sign and submit the transaction](/images/parachains/runtime-maintenance/runtime-upgrades/runtime-upgrade-06.webp)
 
 !!! info
-    On a governed chain, the same call goes through that chain's governance instead of Sudo.
+    On a governed chain, the same call goes through that chain's governance instead of Sudo. For the pallets that provide on-chain governance, see [Governance Pallets](/polkadot-sdk/reference/governance-pallets.md).
 
 After the transaction is included in a block, the runtime upgrade takes effect immediately.
 
@@ -184,6 +184,22 @@ Test the new functionality:
     Learn how to write and manage storage migrations when runtime upgrades change how data is stored on-chain.
 
     [:octicons-arrow-right-24: Get Started](/polkadot-sdk/runtime-maintenance/storage-migrations.md)
+
+-   <span class="badge guide">Guide</span> __Test Runtime Upgrades with try-runtime__
+
+    ---
+
+    Run your runtime upgrade and its migrations against a snapshot of real chain state before you submit it.
+
+    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/runtime-maintenance/test-runtime-upgrades.md)
+
+-   <span class="badge guide">Guide</span> __Write Multi-Block Migrations__
+
+    ---
+
+    Split large storage migrations across several blocks with `pallet-migrations` so they never exceed the block weight limit.
+
+    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/runtime-maintenance/multi-block-migrations.md)
 
 -   <span class="badge tutorial">Tutorial</span> __Create a Custom Pallet__
 

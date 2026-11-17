@@ -14,7 +14,6 @@ on:
 
 permissions:
   contents: read
-  checks: write
   pull-requests: read
 
 jobs:
@@ -41,11 +40,16 @@ jobs:
         uses: errata-ai/vale-action@reviewdog
         with:
           files: ${{ steps.changed.outputs.files }}
-          # Advisory only: surface findings in the Checks tab without blocking
-          # merge or spamming inline review comments. Reruns on every push, so
-          # the check status always reflects the latest commit.
+          # The list is space-separated; without a separator the action treats
+          # it as one path, finds no such file, and lints the whole repo.
+          separator: " "
+          # Advisory only: surface findings as annotations on the PR diff and
+          # in the job summary, without blocking merge. github-pr-annotations
+          # prints GitHub Actions workflow commands instead of calling the
+          # Checks API, so it needs no checks: write permission and also works
+          # for pull requests from forks, where GITHUB_TOKEN is read-only.
           fail_on_error: false
-          reporter: github-pr-check
+          reporter: github-pr-annotations
           filter_mode: added
           token: ${{ secrets.GITHUB_TOKEN }}
 
