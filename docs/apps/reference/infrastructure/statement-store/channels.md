@@ -8,7 +8,7 @@ categories: Apps, Reference
 
 ## Introduction
 
-`pallet-statement-store` supports an optional channel field on every statement. When a new submission carries the same `channel` as an existing live statement from the same account, the pallet replaces the older one in the node's pool — and the replacement propagates to subscribed peers, who drop the old statement in favor of the new one.
+`pallet-statement` supports an optional channel field on every statement. When a new submission carries the same `channel` as an existing live statement from the same account, the pallet replaces the older one in the node's pool — and the replacement propagates to subscribed peers, who drop the old statement in favor of the new one.
 
 The result is a last-write-wins primitive on top of the standard pub/sub: each channel name, scoped per-account, maps to a single live value at any moment.
 

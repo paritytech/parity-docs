@@ -5,3 +5,4 @@ nav:
  - 'System': system.md
  - 'Storage': storage.md
  - 'XCM': xcm.md
+ - 'Custom Precompiles': custom-precompiles.md

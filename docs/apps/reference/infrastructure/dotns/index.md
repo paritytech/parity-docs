@@ -29,7 +29,7 @@ dotNS is deployed separately on each network, and three things follow from that.
 - **The deposit is a deployment parameter**: The deployer sets the registration deposit, paid in the chain's native token, so the amount need not match between deployments. See [PopRules and Pricing](/apps/reference/infrastructure/dotns/poprules-pricing.md).
 - **Registrations do not cross networks**: Each deployment keeps its own registry, so holding a name on a TestNet grants no claim to the matching name on Polkadot. A name has to be registered on each network where it is needed.
 
-The contracts are the same in every deployment, but each deployer runs its own instance. The [Polkadot Community Foundation](https://docs.polkadotcommunity.foundation/) operates the Products Devnet deployment and the deployment on Polkadot. For the addresses of existing deployments, see [MainNet Contracts](https://developers.polkadot.com/reference/apps/infrastructure/dotns/mainnet-contracts/) and [TestNet Contracts](https://developers.polkadot.com/reference/apps/infrastructure/dotns/testnet-contracts/).
+The contracts are the same in every deployment, but each deployer runs its own instance. To build the contracts and deploy an instance to a local dev node, see [Deploy Your Own dotNS Instance](/apps/reference/infrastructure/dotns/deploy-your-own.md). The [Polkadot Community Foundation](https://docs.polkadotcommunity.foundation/) operates the Products Devnet deployment and the deployment on Polkadot. For the addresses of existing deployments, see [MainNet Contracts](https://developers.polkadot.com/reference/apps/infrastructure/dotns/mainnet-contracts/) and [TestNet Contracts](https://developers.polkadot.com/reference/apps/infrastructure/dotns/testnet-contracts/).
 
 !!! note "Scope"
     This reference covers the developer-facing surface. Operator-side procedures, such as migration, batch updates, and contract upgrade paths, are outside it.
@@ -69,4 +69,12 @@ The contracts are the same in every deployment, but each deployer runs its own i
     The Product-side how-to: registering a `.dot` name, attaching your published Product bundle, and going live.
 
     [:octicons-arrow-right-24: Get Started](/apps/deploy-your-app.md)
+
+- <span class="badge guide">Guide</span> **Deploy Your Own dotNS Instance**
+
+    ---
+
+    Build the dotNS contracts, deploy them to a local dev node with your own TLD and deposit, and point the CLI at them.
+
+    [:octicons-arrow-right-24: Get Started](/apps/reference/infrastructure/dotns/deploy-your-own.md)
 </div>

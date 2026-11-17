@@ -194,6 +194,14 @@ To stop the network, press **Ctrl + C** in the terminal where Zombienet is runni
 
 <div class="grid cards" markdown>
 
+-   <span class="badge guide">Guide</span> __Write Network Tests with Zombienet__
+
+    ---
+
+    Turn this network into an automated test with assertions on block production, metrics, and logs, using the Zombienet DSL or the Zombienet SDK.
+
+    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/testing/zombienet-tests.md)
+
 -   __Zombienet Reference__
 
     ---

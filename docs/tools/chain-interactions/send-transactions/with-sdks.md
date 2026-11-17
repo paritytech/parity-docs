@@ -60,7 +60,7 @@ Create a file at `src/bin/send_transfer.rs` and add the following code to it:
 
 Key aspects of the code:
 
-- **Development signer**: [`subxt_signer::sr25519::dev::alice()`](https://docs.rs/subxt-signer/{{ dependencies.crates.subxt_signer.version }}/subxt_signer/sr25519/dev/index.html) returns the `//Alice` development keypair. To sign with your own account on another chain, load it with `Keypair::from_phrase` instead.
+- **Development signer**: [`subxt_signer::sr25519::dev::alice()`](https://docs.rs/subxt-signer/{{ dependencies.crates.subxt_signer.version }}/subxt_signer/sr25519/dev/index.html) returns the `//Alice` development keypair. To sign with your own account on another chain, load it with `Keypair::from_phrase` instead. For all the ways to create a signer, see [Sign Transactions with subxt-signer](/tools/subxt.md#sign-transactions-with-subxt-signer).
 - **Transaction payload**: `runtime::transactions().balances().transfer_keep_alive()` builds a type-checked call from the generated interface.
 - **Submission**: `sign_and_submit_then_watch_default` signs the transaction with default parameters, submits it, and returns a progress handle. `wait_for_finalized_success` waits for finalization and returns the transaction's events.
 

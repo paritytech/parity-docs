@@ -813,53 +813,30 @@ Access the running nodes via the provided RPC endpoints (typically `ws://127.0.0
 
 ## Write Tests
 
-Zombienet provides a Domain Specific Language (DSL) for writing tests in `.zndsl` files. Tests can evaluate:
+Zombienet provides a Domain Specific Language (DSL) for writing tests in `.zndsl` files. A test file names the network configuration to spawn in its header and lists one assertion per line, covering node status, parachain registration and block height, Prometheus metrics, logs, system events, and custom JavaScript or TypeScript scripts:
 
-- Metrics from Prometheus
-- Log patterns
-- System events
-- On-chain storage
-- Custom JavaScript/TypeScript scripts
-
-### Test File Structure
-
-Test files contain a header and body:
-
-```toml title="example-test.zndsl"
+```text title="example-test.zndsl"
 Description: Example test suite
 Network: ./network.toml
 Creds: config
 
-# Test assertions
 alice: is up
 bob: is up
 alice: parachain 100 is registered within 200 seconds
 alice: parachain 100 block height is at least 10 within 300 seconds
 ```
 
-### Run Tests
-
-Execute tests using:
+Run a test with the `test` command:
 
 ```bash
 zombienet test example-test.zndsl --provider native
 ```
 
-The test runner will execute each assertion and report pass/fail status.
-
-### Common Assertions
-
-Some frequently used assertions include:
-
-- **Well-known functions**: `alice: is up`, `alice: parachain 100 is registered within 225 seconds`
-- **Metrics**: `alice: reports node_roles is 4`
-- **Logs**: `alice: log line matches glob "Imported #1" within 10 seconds`
-- **System events**: `alice: system event matches ""paraId":[0-9]+" within 10 seconds`
-- **Custom scripts**: `alice: js-script ./script.js return is greater than 1 within 200 seconds`
+For the header fields, the full list of assertions, custom scripts, and running tests in CI, see [Write Network Tests with Zombienet](/polkadot-sdk/testing/zombienet-tests.md).
 
 ## Zombienet SDK
 
-[`zombienet-sdk`](https://github.com/paritytech/zombienet-sdk) is a Rust library for spawning and interacting with Zombienet networks from code, using the same providers as the CLI. It is published as the [`zombienet-sdk`](https://crates.io/crates/zombienet-sdk) crate, with API documentation in the [Zombienet SDK Rust docs](https://paritytech.github.io/zombienet-sdk). Use it when you want to define network topologies and assertions in Rust tests instead of TOML and `.zndsl` files.
+[`zombienet-sdk`](https://github.com/paritytech/zombienet-sdk) is a Rust library for spawning and interacting with Zombienet networks from code, using the same providers as the CLI. It is published as the [`zombienet-sdk`](https://crates.io/crates/zombienet-sdk) crate, with API documentation in the [Zombienet SDK Rust docs](https://paritytech.github.io/zombienet-sdk). Use it when you want to define network topologies and assertions in Rust tests instead of TOML and `.zndsl` files. For a walkthrough that builds, spawns, and asserts on a network from a Rust test, see [Write Network Tests with Zombienet](/polkadot-sdk/testing/zombienet-tests.md#write-tests-with-the-zombienet-sdk).
 
 ## Configuration Reference
 
@@ -872,6 +849,14 @@ For detailed configuration options, see:
 ## Where to Go Next
 
 <div class="grid cards" markdown>
+
+-   <span class="badge guide">Guide</span> __Write Network Tests with Zombienet__
+
+    ---
+
+    Write and run network tests with the Zombienet DSL or the Zombienet SDK, locally and in CI.
+
+    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/testing/zombienet-tests.md)
 
 -   <span class="badge external">External</span> __Zombienet Support__
 

@@ -185,6 +185,22 @@ Test the new functionality:
 
     [:octicons-arrow-right-24: Get Started](/polkadot-sdk/runtime-maintenance/storage-migrations.md)
 
+-   <span class="badge guide">Guide</span> __Test Runtime Upgrades with try-runtime__
+
+    ---
+
+    Run your runtime upgrade and its migrations against a snapshot of real chain state before you submit it.
+
+    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/runtime-maintenance/test-runtime-upgrades.md)
+
+-   <span class="badge guide">Guide</span> __Write Multi-Block Migrations__
+
+    ---
+
+    Split large storage migrations across several blocks with `pallet-migrations` so they never exceed the block weight limit.
+
+    [:octicons-arrow-right-24: Get Started](/polkadot-sdk/runtime-maintenance/multi-block-migrations.md)
+
 -   <span class="badge tutorial">Tutorial</span> __Create a Custom Pallet__
 
     ---

@@ -19,7 +19,7 @@ A context-specific pseudonym derived from a user's [PoP](#proof-of-personhood-po
 
 ## Allowance
 
-An on-chain access-control grant. The chain-level permission that gates publishing or storing data. `pallet-statement-store` records per-account `StatementAllowance` entries (a `max_count` cap on live statements and a `max_size` cap on total bytes). [Bulletin Chain](#bulletin-chain) consumes per-account quotas of transactions and bytes for storage. [Coinage](#coinage) issues periodic free-token allowances to persons. Spam resistance comes from the allowance ceiling rather than from per-transaction fees.
+An on-chain access-control grant. The chain-level permission that gates publishing or storing data. The statement store records per-account `StatementAllowance` entries (a `max_count` cap on live statements and a `max_size` cap on total bytes). [Bulletin Chain](#bulletin-chain) consumes per-account quotas of transactions and bytes for storage. [Coinage](#coinage) issues periodic free-token allowances to persons. Spam resistance comes from the allowance ceiling rather than from per-transaction fees.
 
 ## Authority
 

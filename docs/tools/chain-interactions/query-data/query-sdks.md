@@ -13,7 +13,7 @@ page_badges:
 
 Polkadot SDK-based blockchains store data in a key-value database that external applications can query. This on-chain state includes account information, balances, asset information, and any other data the runtime manages.
 
-This guide uses [Subxt](/tools/subxt.md), Parity's Rust library for Polkadot SDK-based chains, to query a local development node for account information and asset data. Subxt generates type-safe interfaces from chain metadata, so storage queries are checked at compile time.
+This guide uses [Subxt](/tools/subxt.md), Parity's Rust library for Polkadot SDK-based chains, to query a local development node for account information and asset data. Subxt generates type-safe interfaces from chain metadata, so storage queries are checked at compile time. To query a chain without generated code, use Subxt's dynamic API instead; see [Static and Dynamic APIs](/tools/subxt.md#static-and-dynamic-apis).
 
 The same storage queries work with third-party client libraries, for example [Polkadot API (PAPI)](https://developers.polkadot.com/reference/tools/papi/), [Dedot](https://developers.polkadot.com/reference/tools/dedot/), [Polkadot.js API](https://developers.polkadot.com/reference/tools/polkadot-js-api/), and [Python Substrate Interface](https://developers.polkadot.com/reference/tools/py-substrate-interface/).
 
@@ -66,7 +66,7 @@ Replace the `ADDRESS` value with any SS58 address you want to query. Then run th
 cargo run --bin query_balance
 ```
 
-The script prints the account information and balance details described in the next section.
+The script prints the account information and balance details described in the next section. To read every account instead of a single one, iterate over the storage map as described in [Iterate over Storage](/tools/subxt.md#iterate-over-storage).
 
 ### Account Data Fields
 

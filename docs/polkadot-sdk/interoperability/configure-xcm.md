@@ -509,8 +509,11 @@ After you add the APIs, rebuild the runtime and confirm that they appear in its 
 
 To test XCM between chains, run your parachain with a local relay chain and a second parachain. [Run a Parachain Network](/polkadot-sdk/testing/run-a-parachain-network.md) shows how to start such a network with [Zombienet](/tools/zombienet.md). Once the APIs from the previous section are in place, use [Estimate XCM Fees](/tools/chain-interactions/send-transactions/interoperability/estimate-xcm-fees.md) to dry-run transfers and estimate fees against your local chains.
 
+To test your XCM configuration in Rust before you launch any nodes, see [Test XCM with the Emulator and Simulator](/polkadot-sdk/testing/test-xcm.md). It runs your runtimes in a single test process and exchanges messages between them.
+
 ## Where to Go Next
 
 - [XCM docs](https://paritytech.github.io/polkadot-sdk/master/xcm_docs/index.html): Read the Polkadot SDK reference for XCM, including the executor, the builder types, and worked examples.
 - [Estimate XCM Fees](/tools/chain-interactions/send-transactions/interoperability/estimate-xcm-fees.md): Use `DryRunApi` and `XcmPaymentApi` from a client.
+- [Test XCM with the Emulator and Simulator](/polkadot-sdk/testing/test-xcm.md): Test cross-chain messages between runtimes in Rust unit and integration tests.
 - [XCM Precompile](/smart-contracts/precompiles/xcm.md): Send and execute XCM from smart contracts.

@@ -21,7 +21,7 @@ The Statement Store and Bulletin Chain compose well: [Polkadot App](https://deve
 Before starting, ensure you have:
 
 - Completed [Run a Host for Local Development](/apps/get-started/index.md) so you have a paired [Polkadot Desktop](https://developers.polkadot.com/reference/apps/hosts/polkadot-desktop/) and a signer for product-scoped accounts
-- A Statement Store allowance for your account; the People Chain's `pallet-statement-store` gates submissions on a per-account allowance (`max_count` live statements and `max_size` total bytes)
+- A Statement Store allowance for your account; the chain's `pallet-statement` gates submissions on a per-account allowance (`max_count` live statements and `max_size` total bytes)
 - A Polkadot Product project running locally (see [Set Up Your Project](/apps/build/index.md#set-up-your-project) if you don't have one yet)
 
 !!! warning "Provisional"
@@ -91,7 +91,7 @@ The optional `topic2` is hashed with Blake2b-256 and added to the filter; scope 
 --8<-- "code/apps/build/pub-sub-off-chain-data/publish-statement.ts"
 ```
 
-`publish` returns a `Result`. Check `.ok` rather than the returned object: a `Result` is always truthy, so `if (accepted)` passes for a rejected publish as readily as an accepted one. On failure, `.error` carries the reason — a `StatementSubmitError` when `pallet-statement-store`'s validity check rejects it (typically allowance or proof failure), a `StatementDataTooLargeError` when the JSON-encoded payload exceeds the per-statement size limit of 512 bytes, and a `StatementConnectionError` when the client is not connected.
+`publish` returns a `Result`. Check `.ok` rather than the returned object: a `Result` is always truthy, so `if (accepted)` passes for a rejected publish as readily as an accepted one. On failure, `.error` carries the reason — a `StatementSubmitError` when `pallet-statement`'s validity check rejects it (typically allowance or proof failure), a `StatementDataTooLargeError` when the JSON-encoded payload exceeds the per-statement size limit of 512 bytes, and a `StatementConnectionError` when the client is not connected.
 
 Two limits worth designing around:
 
@@ -102,7 +102,7 @@ Two limits worth designing around:
 
 ## Use a Channel for Last-Write-Wins State
 
-`pallet-statement-store` supports an optional `channel` field on every statement: when a new submission carries the same `channel` as an existing live statement from the same account, the pallet replaces the older one in the node's pool. The gossip layer then propagates the replacement, and every subscribed peer drops the old statement in favor of the new one. The SDK abstracts this with `ChannelStore<T>`; each channel name maps to a single live value:
+`pallet-statement` supports an optional `channel` field on every statement: when a new submission carries the same `channel` as an existing live statement from the same account, the pallet replaces the older one in the node's pool. The gossip layer then propagates the replacement, and every subscribed peer drops the old statement in favor of the new one. The SDK abstracts this with `ChannelStore<T>`; each channel name maps to a single live value:
 
 ```typescript title="channel-presence.ts"
 --8<-- "code/apps/build/pub-sub-off-chain-data/channel-presence.ts"

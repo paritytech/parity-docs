@@ -97,6 +97,8 @@ The `OnRuntimeUpgrade` trait provides some functions designed specifically for t
 
 - **[`post_upgrade`](https://paritytech.github.io/polkadot-sdk/master/frame_support/traits/trait.Hooks.html#method.post_upgrade)**: After the migration completes, `post_upgrade` validates its success. It receives the state data captured by `pre_upgrade` to verify that the migration was executed correctly. This function checks for storage consistency and ensures all data transformations are completed as expected. Like `pre_upgrade`, it operates exclusively in testing environments and should not modify storage.
 
+To run these hooks against a snapshot of real chain state, use `try-runtime-cli`. See [Test Runtime Upgrades with try-runtime](/polkadot-sdk/runtime-maintenance/test-runtime-upgrades.md).
+
 ### Migration Structure
 
 There are two approaches to implementing storage migrations. The first method involves directly implementing `OnRuntimeUpgrade` on structs. This approach requires manually checking the on-chain storage version against the new [`StorageVersion`](https://paritytech.github.io/polkadot-sdk/master/frame_support/traits/struct.StorageVersion.html) and executing the transformation logic only when the check passes. This version verification prevents multiple executions of the migration during subsequent runtime upgrades.
@@ -178,18 +180,8 @@ Use single-block migrations only when you can guarantee:
 
 For a complete implementation example of a single-block migration, refer to the [single-block migration example]( https://paritytech.github.io/polkadot-sdk/master/pallet_example_single_block_migrations/index.html) in the Polkadot SDK documentation.
 
-## Multi Block Migrations
+## Multi-Block Migrations
 
-Multi-block migrations distribute the migration workload across multiple blocks, providing a safer approach for production environments. The migration state is tracked in storage, allowing the process to pause and resume across blocks.
+Multi-block migrations split the migration work into steps that run across as many blocks as needed, storing their progress between blocks. They remove the risk of exceeding a single block's weight limit, which makes them the safer choice for large or unbounded storage collections and for complex data whose weight is hard to predict. While they run, the chain only accepts inherents, so transactions are paused until the migrations complete.
 
-This approach is essential for production networks and parachains as the risk of exceeding block weight limits is eliminated. Multi-block migrations can safely handle large storage collections, unbounded data structures, and complex nested data types where weight consumption might be unpredictable.
-
-Multi-block migrations are ideal when dealing with:
-
-- Large-scale storage migrations.
-- Unbounded storage items or collections.
-- Complex data structures with uncertain weight costs.
-
-The primary trade-off is increased implementation complexity, as you must manage the migration state and handle partial completion scenarios. However, multi-block migrations' significant safety benefits and operational reliability are typically worth the increased complexity.
-
-For a complete implementation example of multi-block migrations, refer to the [official example](https://github.com/paritytech/polkadot-sdk/tree/{{dependencies.repositories.polkadot_sdk.version}}/substrate/frame/examples/multi-block-migrations) in the Polkadot SDK.
+Multi-block migrations are implemented with the [`SteppedMigration`](https://paritytech.github.io/polkadot-sdk/master/frame_support/migrations/trait.SteppedMigration.html) trait and executed by [`pallet-migrations`](https://paritytech.github.io/polkadot-sdk/master/pallet_migrations/index.html). To add `pallet-migrations` to a runtime, write a migration, and test it, see [Write Multi-Block Migrations](/polkadot-sdk/runtime-maintenance/multi-block-migrations.md).

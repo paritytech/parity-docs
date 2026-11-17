@@ -17,6 +17,12 @@ dependencies:
       repository_url: https://github.com/paritytech/polkadot-sdk
       version: polkadot-stable2609-1
       docker_image_version: stable2609-1
+    dotns:
+      repository_url: https://github.com/paritytech/dotns
+      version: v1.1.0
+    try_runtime_cli:
+      repository_url: https://github.com/paritytech/try-runtime-cli
+      version: v0.10.1
     open_zeppelin_contracts:
       repository_url: https://github.com/OpenZeppelin/openzeppelin-contracts
       version: v5.6.1
@@ -50,12 +56,33 @@ dependencies:
     polkadot_rest_api:
       name: polkadot-rest-api
       version: 0.3.3
+    xcm_simulator:
+      name: xcm-simulator
+      # Matches the crate version shipped in polkadot_sdk.version; update it with the SDK.
+      version: 32.0.0
+      ignore_updates: true
+    xcm_emulator:
+      name: xcm-emulator
+      # Matches the crate version shipped in polkadot_sdk.version; update it with the SDK.
+      version: 0.38.0
+      ignore_updates: true
+    emulated_integration_tests_common:
+      name: emulated-integration-tests-common
+      # Matches the crate version shipped in polkadot_sdk.version; update it with the SDK.
+      version: 41.0.0
+      ignore_updates: true
+    zombienet_sdk:
+      name: zombienet-sdk
+      version: 0.7.2
     polkadot_omni_node:
       name: polkadot-omni-node
       # Matches the crate version shipped in polkadot_sdk.version; update it with the SDK.
       version: 0.24.0
       ignore_updates: true
   javascript_packages:
+    dotns_cli:
+      name: '@parity/dotns-cli'
+      version: 2.0.0
     chopsticks:
       name: '@acala-network/chopsticks'
       version: 1.5.2

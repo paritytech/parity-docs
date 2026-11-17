@@ -32,7 +32,7 @@ In the [`@parity/truapi`](https://www.npmjs.com/package/@parity/truapi) client, 
 | What it is for         | Real-time signaling between users: chat, presence, typing indicators, multiplayer state | Off-chain content that an on-chain operation must dereference: governance proposals, scheduled call payloads |
 | Lifetime               | Short TTL (default 30 seconds, gossip-distributed)                                      | Lives until the referencing on-chain operation has completed (or until explicitly cleaned up)                |
 | Availability guarantee | Best-effort gossip; can be missed entirely if no peer was listening on the topic        | Must be available for the referencing operation to execute; storage is durable                               |
-| Validation gate        | Allowance-gated by `pallet-statement-store` (`max_count` and `max_size` per account)    | Gated by the `PreimageSubmit` permission                                                                     |
+| Validation gate        | Allowance-gated by `pallet-statement` (`max_count` and `max_size` per account)    | Gated by the `PreimageSubmit` permission                                                                     |
 | When to use            | Anything users observe in real time and accept losing if the network dropped it         | Anything an on-chain operation needs to read back later                                                      |
 
 A useful rule of thumb: if your Product would still be correct after the bytes expire from network gossip, it is a statement. If the bytes need to be there in 30 minutes for a referendum to execute, it is a preimage.
