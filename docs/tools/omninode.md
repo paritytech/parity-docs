@@ -115,7 +115,7 @@ Once started, the node connects to peers and syncs with the network. The termina
 
 By default, `polkadot-omni-node` exposes a WebSocket endpoint at `{{ networks.local.ws_url }}`, which you can use to interact with the running node. You can connect using:
 
-- Client libraries such as [Subxt](subxt.md), or the libraries listed in [Interact with a Chain](/tools/chain-interactions/index.md#development-tools-and-sdks).
+- Client libraries such as [Subxt](subxt.md), or the libraries listed in [Interact with a Chain](/tools/chain-interactions/index.md#parity-client-libraries).
 - A web interface that supports Polkadot SDK-based chains, for example, the community-maintained [Polkadot.js Apps](https://polkadot.js.org/apps/#/explorer).
 
 Once connected, you can review blocks, call extrinsics, inspect storage, and interact with the runtime.
