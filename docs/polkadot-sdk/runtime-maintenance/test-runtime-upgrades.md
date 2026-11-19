@@ -78,6 +78,8 @@ impl<T: Config> Hooks<BlockNumberFor<T>> for Pallet<T> {
 }
 ```
 
+The example uses `sp_runtime::TryRuntimeError`, which works in pallets that depend on `sp-runtime` directly. In a pallet that imports FRAME through the `frame` umbrella crate, such as the parachain template pallet, use `frame::try_runtime::TryRuntimeError` instead, because `sp_runtime` is not in scope there.
+
 `try-runtime` also runs these hooks in the `execute-block`, `follow-chain`, and `fast-forward` subcommands, so invariants you add here are checked well beyond upgrades.
 
 ## Enable the try-runtime Feature
@@ -146,6 +148,8 @@ Without `--at`, the CLI uses the latest finalized block. The snapshot keeps the 
 
 ### Test the Upgrade Against the Snapshot
 
+`on-runtime-upgrade` rejects a new runtime whose `spec_version` is not greater than the on-chain one, as a real upgrade would. Increase `spec_version` in your new runtime's `RuntimeVersion` before you build it. To rehearse with an unchanged version, add `--disable-spec-version-check` after `on-runtime-upgrade`.
+
 Run the migrations of your new runtime on top of the snapshot:
 
 ```bash
@@ -191,7 +195,7 @@ To rehearse an upgrade for a deployed chain, point `--uri` at a node of that net
 
 The `on-runtime-upgrade` command also accepts the following flags:
 
-- **`--disable-spec-version-check`**: Skips the requirement that the new `spec_version` is greater than or equal to the existing one.
+- **`--disable-spec-version-check`**: Skips the requirement that the new `spec_version` is greater than the existing one.
 - **`--disable-idempotency-checks`**: Skips running the migrations a second time.
 - **`--print-storage-diff`**: When the idempotency check fails, prints the storage keys that changed between the two runs.
 - **`--no-weight-warnings`**: Skips the weight and proof size analysis.

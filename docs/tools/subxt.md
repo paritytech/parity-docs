@@ -208,6 +208,8 @@ The following attributes change the generated code:
 - **`runtime_types_only`**: Generates only the runtime types, without the Subxt interface.
 - **`no_default_derives` and `no_default_substitutions`**: Turn off the default derives or the default type substitutions.
 
+Every `path` you pass must name a type in the metadata. Otherwise, the macro fails with an error such as ``Type `PalletId` does not exist at path `frame_support::PalletId` ``, so adjust the paths to the chain you target.
+
 For example, to add derives to generated types and substitute the `Perbill` type with your own `crate::Perbill` type:
 
 ```rust
