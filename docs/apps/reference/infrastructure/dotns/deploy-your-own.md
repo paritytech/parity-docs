@@ -73,7 +73,9 @@ The pipeline signs with a Foundry keystore account. On the first run it imports 
     - **`RPC_URL`**: Leave it as `paseo_local`. The alias resolves to `http://127.0.0.1:8545` in `foundry.toml`, which is the local adapter.
     - **`DOTNS_TLD`**: The bare TLD label for your instance.
 
-The Revive Dev node reports chain ID `420420420`, which the pipeline maps to the manifest folder `deployments/paseo-local/`. Set `DEPLOYMENT_NETWORK` in `.env` to write the manifest to a different folder.
+    - **`DEPLOYMENT_NETWORK`**: Set it to `paseo-local`, the manifest folder the pipeline uses for the Revive Dev node's chain ID `420420420`, or to another folder name of your choice.
+
+    Do not leave `DEPLOYMENT_NETWORK` empty. The runner treats an empty value as unset and falls back to the chain-ID folder, but `forge` loads `.env` itself and the deploy scripts read the empty string, so they write the manifest to `deployments//`. The runner then stops with `Manifest missing after stage` and restores the previous manifest.
 
 ## Build, Test, and Deploy
 
@@ -84,19 +86,23 @@ The Revive Dev node reports chain ID `420420420`, which the pipeline maps to the
     forge test --no-match-path 'test/fork/**'
     ```
 
-2. Run the deploy pipeline:
+2. Run the deploy pipeline with the runner script, passing `--skip-simulation` through to each `forge script` stage:
 
     ```bash
-    bun run deploy
+    ./scripts/deploy/run.sh '--skip-simulation'
     ```
+
+    `bun run deploy` runs the same script without extra flags. On `pallet-revive`, a transaction costs far more gas than Foundry's local EVM simulation predicts, so with simulation the stages send gas limits the node rejects with `Invalid Transaction` (error `1010`). With `--skip-simulation`, Foundry takes each transaction's gas limit from the node's `eth_estimateGas` instead.
 
     The runner imports the key, then runs five stages in order, each as a separate `forge script` invocation: `DeployCore`, `DeployRecords`, `DeployPolicy`, `DeployPopSystem`, and `WireDeployments`. After each stage it checks that every address in the manifest has bytecode; on a failure it restores the previous manifest and stops. A successful run ends with `=== Pipeline complete ===` and `Deleted one-off env file: .env`.
 
-    If transactions are dropped or a stage runs out of gas, rerun the runner with slower submission and a longer timeout:
+    The runner already submits transactions one at a time with `--slow`. If transactions time out, add a longer timeout:
 
     ```bash
-    ./scripts/deploy/run.sh '--slow --timeout 1000'
+    ./scripts/deploy/run.sh '--skip-simulation --timeout 1000'
     ```
+
+    After a stage fails partway, Foundry refuses to broadcast that stage again until you add `--resume` to continue the earlier broadcast or `--start-fresh` to discard it. On a dev node, restarting the node and deleting the `broadcast/` folder also gives you a clean run.
 
 3. Read the addresses from the manifest:
 
@@ -104,7 +110,7 @@ The Revive Dev node reports chain ID `420420420`, which the pipeline maps to the
     cat deployments/paseo-local/420420420.json
     ```
 
-    The manifest lists every contract, including `DotnsProtocolRegistry`, `DotnsRegistrar`, `DotnsRegistry`, `DotnsRegistrarController`, `DotnsPopController`, `PopRules`, the four resolvers, `DotnsNameEscrow`, `DotnsNameWhitelist`, `StoreFactory`, `Multicall3`, `DotnsCostModelRegistry`, and `DotnsFlatPricing`. For their roles, see [Architecture](/apps/reference/infrastructure/dotns/architecture.md).
+    The manifest lists every contract: `DotnsProtocolRegistry`, `DotnsRegistrar`, `DotnsRegistry`, `DotnsRegistrarController`, `DotnsPopController`, `DotnsPopLens`, `PopRules`, the four resolvers, `DotnsNameEscrow`, `DotnsNameWhitelist`, `StoreFactory` with its `UserStoreBeacon` and `LabelStoreBeacon`, `Multicall3`, `DotnsCostModelRegistry`, `DotnsFlatPricing`, and the `Create3Factory` the pipeline deploys through. For their roles, see [Architecture](/apps/reference/infrastructure/dotns/architecture.md).
 
 4. Confirm the escrow's redeem window is set, since a zero value makes every release revert:
 
@@ -145,8 +151,53 @@ dotns lookup name INSERT_LABEL --stack ./INSERT_STACK_FILE.json
 
 The descriptor follows the [Trinity stack descriptor format](https://github.com/paritytech/trinity-user-agents/blob/main/docs/rfcs/trinity-stack-descriptor.md). For a custom stack, the CLI (`@parity/dotns-cli` `{{ dependencies.javascript_packages.dotns_cli.version }}`) requires:
 
-- An `AssetHub` chain entry, the chain where you deployed the contracts.
-- A `dotns` address for each of these keys: `registrar`, `controller`, `registry`, `resolver`, `reverseResolver`, `popResolver`, `contentResolver`, `storeFactory`, `popRules`, `popController`, `nameEscrow`, and `multicall3`. Take them from your deployment manifest.
+- An `AssetHub` chain entry with a `paraId`, the chain where you deployed the contracts. Its `genesisHash` must match the chain's block 0 hash.
+- Exactly one `Relay` chain entry. The descriptor format requires it even for a solo dev chain; the dotNS commands that do not use the relay chain never connect to it.
+- A `dotns` address for each of these keys: `registrar`, `controller`, `registry`, `resolver`, `reverseResolver`, `popResolver`, `contentResolver`, `storeFactory`, `popRules`, `popController`, `nameEscrow`, and `multicall3`. Take them from your deployment manifest and write them in lowercase. The manifest uses mixed-case checksummed addresses, which the CLI rejects with `dotns is not 20 bytes of lowercase 0x-prefixed hex`.
+
+The following descriptor works with a Revive Dev node. Fill in the genesis hash, which `chain_getBlockHash` with block `0` returns, the TLD you deployed with, and the addresses from your manifest:
+
+```json title="local-stack.json"
+{
+  "$v": 1,
+  "id": "local-dotns",
+  "name": "Local dotNS",
+  "network": "local",
+  "tld": "INSERT_TLD",
+  "generation": "2026-01-01T00:00:00.000Z",
+  "sequence": 1,
+  "chains": [
+    {
+      "role": "Relay",
+      "genesisHash": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "rpc": ["ws://127.0.0.1:9945"]
+    },
+    {
+      "role": "AssetHub",
+      "paraId": 1000,
+      "genesisHash": "INSERT_GENESIS_HASH",
+      "rpc": ["{{ networks.local.ws_url }}"]
+    }
+  ],
+  "services": [],
+  "dotns": {
+    "registrar": "INSERT_DOTNS_REGISTRAR_ADDRESS",
+    "controller": "INSERT_DOTNS_REGISTRAR_CONTROLLER_ADDRESS",
+    "registry": "INSERT_DOTNS_REGISTRY_ADDRESS",
+    "resolver": "INSERT_DOTNS_RESOLVER_ADDRESS",
+    "reverseResolver": "INSERT_DOTNS_REVERSE_RESOLVER_ADDRESS",
+    "popResolver": "INSERT_DOTNS_POP_RESOLVER_ADDRESS",
+    "contentResolver": "INSERT_DOTNS_CONTENT_RESOLVER_ADDRESS",
+    "storeFactory": "INSERT_STORE_FACTORY_ADDRESS",
+    "popRules": "INSERT_POP_RULES_ADDRESS",
+    "popController": "INSERT_DOTNS_POP_CONTROLLER_ADDRESS",
+    "nameEscrow": "INSERT_DOTNS_NAME_ESCROW_ADDRESS",
+    "multicall3": "INSERT_MULTICALL3_ADDRESS"
+  }
+}
+```
+
+The relay chain values are placeholders. Commands that read the registry, such as `dotns lookup name` and `dotns lookup owner-of`, work against this stack. Commands that read personhood status, such as `dotns pop info` and `dotns register domain`, fail on a Revive Dev node, as described in [Known Limits on a Dev Node](#known-limits-on-a-dev-node).
 
 A stack without a Bulletin or People chain entry still runs the other commands; commands that need the missing chain fail and name it. A descriptor file is used as is, without a signature check. `--stack` cannot be combined with `--env`, and `--rpc` changes only the endpoint, not the contract addresses.
 

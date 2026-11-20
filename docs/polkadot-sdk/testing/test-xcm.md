@@ -273,7 +273,7 @@ Every chain type is generic over the network it belongs to. `decl_test_networks!
 
 Each emulated chain implements the emulator's `TestExt` trait. Its `execute_with` method runs a closure against that chain's storage, then lets the network deliver the messages the closure produced, and clears the chain's events. As a result, events you assert on inside a chain's `execute_with` are the events emitted while that chain processed the messages it received.
 
-The following excerpt is from `penpal_register_foreign_asset_on_asset_hub` in [`tests/assets/asset-hub-westend/src/tests/send.rs`](https://github.com/paritytech/polkadot-sdk/blob/{{ dependencies.repositories.polkadot_sdk.version }}/cumulus/parachains/integration-tests/emulated/tests/assets/asset-hub-westend/src/tests/send.rs). Penpal A sends an XCM program to Asset Hub with `pallet_xcm::send`, and the test then asserts on Asset Hub that the message was processed and the fee was withdrawn from Penpal A's sovereign account:
+The following excerpt is from `penpal_register_foreign_asset_on_asset_hub`, a helper function in [`tests/assets/asset-hub-westend/src/tests/send.rs`](https://github.com/paritytech/polkadot-sdk/blob/{{ dependencies.repositories.polkadot_sdk.version }}/cumulus/parachains/integration-tests/emulated/tests/assets/asset-hub-westend/src/tests/send.rs) that the `send_xcm_from_para_to_asset_hub_paying_fee_with_system_asset` test calls. Penpal A sends an XCM program to Asset Hub with `pallet_xcm::send`, and the test then asserts on Asset Hub that the message was processed and the fee was withdrawn from Penpal A's sovereign account:
 
 ```rust title="tests/assets/asset-hub-westend/src/tests/send.rs"
 PenpalA::execute_with(|| {

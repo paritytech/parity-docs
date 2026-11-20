@@ -168,7 +168,7 @@ smoldot connects to a chain through the peer-to-peer network, not through a node
 
 - **Raw genesis**: smoldot accepts only raw chain specs. Produce one with [`chain-spec-builder`](/tools/chain-spec-builder.md#produce-a-raw-chain-spec), or use the spec your network tool generated.
 - **Reachable bootnodes**: The `bootNodes` array must list multiaddresses, including the trailing `/p2p/<peer-id>`, that smoldot can dial from its environment. Local specs often ship with an empty `bootNodes` list. Each node returns its own addresses, in a form you can use as bootnodes, from the `system_localListenAddresses` JSON-RPC method.
-- **Parachain link**: A parachain spec must name its relay chain in `relay_chain` (or `relayChain`), and you must add that relay chain first.
+- **Parachain link**: A parachain spec must name its relay chain in `relay_chain` (or `relayChain`) and its parachain ID in `para_id`, and you must add that relay chain first. A spec with `"para_id": null` fails with `Failed to parse chain spec`.
 
 The transports smoldot can use depend on where it runs:
 
@@ -189,9 +189,10 @@ The realistic local setup is a relay chain with validators, plus any parachains,
 To connect to a local Zombienet network:
 
 1. Start the network as described in [Spawn a Network](/tools/zombienet.md#spawn-a-network).
-2. Copy the relay chain's raw chain spec, and the parachain's if you need one, from the directory where Zombienet writes network files (set it with `--dir`).
+2. Copy the relay chain's raw chain spec, and the parachain's if you need one, from the directory where Zombienet writes network files (set it with `--dir`). The Zombienet CLI names them after the chain, for example `rococo-local-raw.json` for the relay chain and `100-rococo-local-raw.json` for parachain 100.
 3. Call `system_localListenAddresses` on one or more nodes of each chain and put the `127.0.0.1` addresses into the `bootNodes` array of the matching spec. For a browser, use nodes that listen on WebSocket or WebRTC.
-4. Pass the specs to smoldot or Substrate Connect as shown in the previous sections.
+4. In the parachain spec, check that `para_id` holds the parachain's ID. Zombienet can write it as `null`, which smoldot rejects.
+5. Pass the specs to smoldot or Substrate Connect as shown in the previous sections.
 
 For Rust, Subxt also provides `subxt::utils::fetch_chainspec_from_rpc_node`, which fetches a chain spec from a running node's RPC endpoint, such as `{{ networks.local.ws_url }}`.
 
