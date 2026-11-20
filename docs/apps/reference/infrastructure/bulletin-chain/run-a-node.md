@@ -39,7 +39,7 @@ On macOS, a missing C++ header (`algorithm` file not found) or `libclang.dylib` 
     just binaries-polkadot
     ```
 
-    The recipe fetches `polkadot-omni-node`, plus the `polkadot` relay chain binary and its workers, into `./.polkadot-binaries/`. The version comes from `POLKADOT_NODE_VERSION` in the repository's `.github/env` file. For a release tag, the script downloads the prebuilt binary for Linux x86_64 or macOS arm64 and verifies its `.sha256` file; for a 40-character commit hash, it clones the Polkadot SDK and builds the binaries. To use another version for one session, set the variable on the command line, for example `POLKADOT_NODE_VERSION=INSERT_RELEASE_TAG just binaries-polkadot`.
+    The recipe fetches `polkadot-omni-node`, plus the `polkadot` relay chain binary and its workers, into a versioned folder under `./.polkadot-binaries/`, such as `polkadot-node/INSERT_VERSION/darwin-aarch64/`, and prints that folder's path. Later commands use the printed path. The version comes from `POLKADOT_NODE_VERSION` in the repository's `.github/env` file. For a release tag, the script downloads the prebuilt binary for Linux x86_64 or macOS arm64 and verifies its `.sha256` file; for a 40-character commit hash, it clones the Polkadot SDK and builds the binaries. To use another version for one session, set the variable on the command line, for example `POLKADOT_NODE_VERSION=INSERT_RELEASE_TAG just binaries-polkadot`.
 
 3. Build a chain spec for the Westend-flavored runtime:
 
@@ -87,12 +87,34 @@ The dev node command above enables only `--ipfs-server`. The repository's Zombie
 
 To run the Bulletin Chain as a parachain with a local relay chain, use the Zombienet configurations in the repository's `zombienet/` folder:
 
-- `bulletin-westend-local.toml`: A local relay chain with three validators and two collators running the Westend-flavored Bulletin runtime.
-- `bulletin-paseo-local.toml`: The same layout for the Paseo-flavored Bulletin runtime.
+- `bulletin-westend-local.toml`: A local relay chain with three validators and two collators running the Westend-flavored Bulletin runtime as parachain `1010`.
+- `bulletin-paseo-local.toml`: The same layout for the Paseo-flavored Bulletin runtime as parachain `1501`. Only its first collator enables HOP.
 
 Both files start the relay chain from the `westend-local` chain spec.
 
-Fetch the Zombienet binary with `just binaries-zombienet`, and generate the chain spec first. The header of each configuration file shows the spawn command and the binary path variables it expects. For Zombienet itself, see [Run a Parachain Network](/polkadot-sdk/testing/run-a-parachain-network.md).
+To start the Westend-flavored network:
+
+1. Fetch the Zombienet binary, and build the chain spec if you haven't already:
+
+    ```bash
+    just binaries-zombienet
+    just chain-spec westend
+    ```
+
+2. From the repository root, spawn the network. The configuration resolves `chain_spec_path` relative to the current directory and reads the binary paths from two environment variables:
+
+    ```bash
+    BIN_DIR="$(just binaries-polkadot)"
+    POLKADOT_BINARY_PATH="$BIN_DIR/polkadot" \
+    POLKADOT_PARACHAIN_BINARY_PATH="$BIN_DIR/polkadot-omni-node" \
+    "$(just binaries-zombienet)/zombienet" -p native spawn ./zombienet/bulletin-westend-local.toml
+    ```
+
+    Set `POLKADOT_PARACHAIN_BINARY_PATH` to `polkadot-omni-node`, as above. The comment at the top of each configuration file names a `polkadot-parachain` binary that `just binaries-polkadot` doesn't fetch.
+
+The relay chain validators serve RPC on ports `9942`, `9943`, and `9944`, and the two collators on `10000` and `12346`. Connect Bulletin tools to a collator, for example `ws://127.0.0.1:10000`, not to port `9944`, which is a relay chain validator in this network. The parachain produces its first block after it onboards, which takes a few minutes after the relay chain starts.
+
+For Zombienet itself, see [Run a Parachain Network](/polkadot-sdk/testing/run-a-parachain-network.md).
 
 For a full round trip without manual setup, the repository's examples start a local network and a Kubo IPFS node, authorize an account, store data, and read it back over IPFS:
 
