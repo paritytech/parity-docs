@@ -55,13 +55,8 @@ jobs:
       - name: Generate client-side redirect stubs (GH Pages has no server-side 301s)
         run: python scripts/gen_redirects.py --site-dir site --redirects redirects.json
 
-      # Custom domain is opt-in: set the repo variable CUSTOM_DOMAIN
-      # (e.g. docs.parity.io) to publish under it. Left unset, the site
-      # deploys to the *.github.io URL — useful for testing without claiming
-      # the production domain.
-      - name: Set custom domain
-        if: vars.CUSTOM_DOMAIN != ''
-        run: echo "${{ vars.CUSTOM_DOMAIN }}" > site/CNAME
+      # The custom domain (docs.parity.io) is set in Settings > Pages.
+      # Actions-based Pages deploys ignore a CNAME file, so none is written.
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

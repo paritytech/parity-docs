@@ -3,8 +3,6 @@
 User-agent: *
 Disallow:
 
-# Algolia-Crawler-Verif: 72603F6F9AD5378A
-
 # Search engines: block /ai/ to prevent duplicate content
 # and raw markdown from appearing in search results
 

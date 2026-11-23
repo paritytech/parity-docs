@@ -112,6 +112,18 @@ To resume work after closing your terminal:
 1. Navigate to the repo root.
 2. Run `make serve`.
 
+## Production Site
+
+The site is published at [docs.parity.io](https://docs.parity.io/). `.github/workflows/deploy-pages.yml` builds `main` and deploys it to GitHub Pages.
+
+The domain appears in the following files. Keep them in sync if it changes:
+
+- `site_url` in `mkdocs.yml`, which sets canonical URLs, the sitemap, and the `llms.txt` links.
+- `docs_base_url` in `llms_config.json`, which sets the URLs in the AI feed.
+- The `Sitemap` line in `docs/robots.txt`, and `BASE_URL` in `.github/workflows/pr-link-checker.yml`.
+
+The custom domain is set in the repository's **Settings** > **Pages** > **Custom domain**. Because the site deploys through a GitHub Actions workflow, GitHub ignores any `CNAME` file in the build. The domain's DNS also needs a `CNAME` record pointing `docs` at `paritytech.github.io`.
+
 ## Pull Request Previews
 
 Every pull request that changes the docs gets a rendered preview on Cloudflare Pages. A bot comments the link on the pull request, for example `https://pr-12.parity-docs.pages.dev`, and the preview updates on every push.
