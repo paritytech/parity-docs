@@ -5,27 +5,16 @@ dependencies:
       repository_url: https://github.com/paritytech/zombienet
       version: v1.3.140
       architecture: macos-arm64
-    polkadot_sdk_solochain_template:
-      repository_url: https://github.com/paritytech/polkadot-sdk-solochain-template
-      version: v0.0.2
-    srtool:
-      repository_url: https://github.com/paritytech/srtool
-      version: v0.18.4
-      docker_image_name: paritytech/srtool
-      docker_image_version: 1.93.0
     polkadot_sdk:
       repository_url: https://github.com/paritytech/polkadot-sdk
-      version: polkadot-stable2609-1
-      docker_image_version: stable2609-1
+      version: polkadot-stable2609-2
+      docker_image_version: stable2609-2
     dotns:
       repository_url: https://github.com/paritytech/dotns
       version: v1.1.0
     try_runtime_cli:
       repository_url: https://github.com/paritytech/try-runtime-cli
       version: v0.10.1
-    open_zeppelin_contracts:
-      repository_url: https://github.com/OpenZeppelin/openzeppelin-contracts
-      version: v5.6.1
     polkadot_sdk_parachain_template:
       repository_url: https://github.com/paritytech/polkadot-sdk-parachain-template
       version: v0.0.5
@@ -45,7 +34,7 @@ dependencies:
       version: 0.3.0
     pallet_revive_uapi:
       name: pallet-revive-uapi
-      version: 0.15.4
+      version: 0.15.7
       ignore_updates: true
     polkavm:
       name: polkavm
@@ -53,7 +42,7 @@ dependencies:
       ignore_updates: true
     smoldot_light:
       name: smoldot-light
-      version: 4.0.0
+      version: 5.0.0
     subxt:
       name: subxt
       version: 0.50.1
@@ -83,7 +72,7 @@ dependencies:
     emulated_integration_tests_common:
       name: emulated-integration-tests-common
       # Matches the crate version shipped in polkadot_sdk.version; update it with the SDK.
-      version: 41.0.0
+      version: 43.0.0
       ignore_updates: true
     zombienet_sdk:
       name: zombienet-sdk
@@ -91,12 +80,12 @@ dependencies:
     polkadot_omni_node:
       name: polkadot-omni-node
       # Matches the crate version shipped in polkadot_sdk.version; update it with the SDK.
-      version: 0.24.0
+      version: 0.25.0
       ignore_updates: true
   javascript_packages:
     smoldot:
       name: smoldot
-      version: 3.8.0
+      version: 3.9.0
     substrate_connect:
       name: '@substrate/connect'
       version: 2.1.8
@@ -106,15 +95,6 @@ dependencies:
     dotns_cli:
       name: '@parity/dotns-cli'
       version: 2.0.0
-    chopsticks:
-      name: '@acala-network/chopsticks'
-      version: 1.5.2
-    moonwall:
-      name: '@moonwall/cli'
-      version: 5.18.3
-    polkadot_js_api:
-      name: '@polkadot/api'
-      version: 17.0.2
     polkadot_api:
       name: polkadot-api
       version: 3.3.0
@@ -124,38 +104,12 @@ dependencies:
     hardhat_polkadot:
       name: '@parity/hardhat-polkadot'
       version: 0.3.0
-    solc:
-      name: 'solc'
-      # Used by the ethers.js, Web3.js, and viem pages, which compile EVM bytecode
-      # with plain solc. Not tied to resolc, which declares its own solc range.
-      version: 0.8.38
-    web3_js:
-      name: web3
-      version: 4.16.0
-    viem:
-      name: viem
-      version: 2.57.16
-    ethersjs:
-      name: ethers
-      version: 6.17.0
-    paraspell_sdk:
-      name: '@paraspell/sdk'
-      version: 14.5.2
     hdkd:
       name: '@polkadot-labs/hdkd'
       version: 0.0.32
     hdkd_helpers:
       name: '@polkadot-labs/hdkd-helpers'
       version: 0.0.34
-    polkadot_util:
-      name: '@polkadot/util'
-      version: 14.0.3
-    polkadot_util_crypto:
-      name: '@polkadot/util-crypto'
-      version: 14.0.3
-    polkadot_keyring:
-      name: '@polkadot/keyring'
-      version: 14.0.3
 #   python_packages:
 
 # Network values used in examples. Keep every RPC URL, chain ID and faucet here

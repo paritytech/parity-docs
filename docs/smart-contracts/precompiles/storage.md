@@ -23,7 +23,7 @@ This precompile is particularly useful for contracts that need fine-grained cont
 The Storage precompile implements the `IStorage` interface, which is defined in the Polkadot SDK. The source code for the interface is as follows:
 
 ```solidity title="IStorage.sol"
---8<-- "https://raw.githubusercontent.com/paritytech/polkadot-sdk/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi/sol/IStorage.sol"
+--8<-- "https://raw.githubusercontent.com/paritytech/polkadot-sdk/refs/tags/{{dependencies.repositories.polkadot_sdk.version}}/substrate/frame/revive/uapi/sol/IStorage.sol"
 ```
 
 For the complete implementation, refer to the [IStorage.sol](https://github.com/paritytech/polkadot-sdk/blob/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi/sol/IStorage.sol) file in the Polkadot SDK.

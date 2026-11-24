@@ -78,6 +78,8 @@ Before setting up Hardhat, make sure the following are installed:
 
 ## Compile Your Contract
 
+The generated `hardhat.config.js` includes a network entry that reads a `PRIVATE_KEY` configuration variable, and Hardhat stops with error `HH1201` while that variable is unset. Either set it as described in [Deploy to Any eth-rpc Endpoint](#deploy-to-any-eth-rpc-endpoint), or remove that network entry until you need it.
+
 The plugin compiles your Solidity contracts (version `0.8.0` and higher) to PVM bytecode using `resolc`:
 
 ```bash
@@ -115,6 +117,35 @@ The plugin needs a `pallet-revive` dev node binary and an `eth-rpc` binary. You 
     ```bash
     xattr -d com.apple.quarantine /path/to/your/binary
     ```
+
+By default, the plugin starts an Anvil-compatible node and passes it Anvil flags, which `revive-dev-node` rejects. Set `useAnvil: false` in the `hardhat` network's `nodeConfig` to run `revive-dev-node` with the `eth-rpc` adapter. Also set `ignition.requiredConfirmations` to `1`, because the dev node seals a block only when it receives a transaction:
+
+```javascript title="hardhat.config.js"
+module.exports = {
+  // ...
+  ignition: {
+    requiredConfirmations: 1,
+  },
+  networks: {
+    hardhat: {
+      polkadot: {
+        target: 'evm',
+      },
+      nodeConfig: {
+        nodeBinaryPath: 'INSERT_PATH_TO_REVIVE_DEV_NODE',
+        useAnvil: false,
+        rpcPort: 8000,
+        dev: true,
+      },
+      adapterConfig: {
+        adapterBinaryPath: 'INSERT_PATH_TO_ETH_RPC',
+        dev: true,
+      },
+    },
+    // ...
+  },
+};
+```
 
 Once you have set up the binaries, start your local testing node:
 
@@ -158,7 +189,7 @@ Deploy your contract to the local node using [Ignition](https://hardhat.org/igni
     ```
 
 !!! tip
-    The `ignition.requiredConfirmations: 1` setting in your config ensures that deployment doesn't hang on local nodes that only produce blocks when transactions are submitted.
+    The `ignition.requiredConfirmations: 1` setting from [Start a Local Node](#start-a-local-node) ensures that deployment doesn't hang on local nodes that only produce blocks when transactions are submitted.
 
 ## Deploy to Any eth-rpc Endpoint
 
