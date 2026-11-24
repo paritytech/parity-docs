@@ -23,7 +23,7 @@ This precompile is particularly useful for contracts that need to interact with 
 The System precompile implements the `ISystem` interface, which is defined in the Polkadot SDK. The source code for the interface is as follows:
 
 ```solidity title="ISystem.sol"
---8<-- "https://raw.githubusercontent.com/paritytech/polkadot-sdk/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi/sol/ISystem.sol"
+--8<-- "https://raw.githubusercontent.com/paritytech/polkadot-sdk/refs/tags/{{dependencies.repositories.polkadot_sdk.version}}/substrate/frame/revive/uapi/sol/ISystem.sol"
 ```
 
 For the complete implementation, refer to the [ISystem.sol](https://github.com/paritytech/polkadot-sdk/blob/62fa27df30d985600963fd5bcec1080e4c63fd4b/substrate/frame/revive/uapi/sol/ISystem.sol) file in the Polkadot SDK.
@@ -176,7 +176,22 @@ function callerIsRoot() external view returns (bool);
 
 **Returns:**
 
-- **`bool`**: `true` if the caller is root, `false` otherwise.
+- **`bool`**: `true` if the caller is root, `false` if the caller is a signed origin or another contract.
+
+### Check if Origin is Root
+
+Checks whether the origin of the entire call stack is root, regardless of how many contract or delegate calls lie between that origin and your contract. This is the equivalent of checking `tx.origin` for root.
+
+```solidity
+function originIsRoot() external view returns (bool);
+```
+
+**Returns:**
+
+- **`bool`**: `true` if the top-level call was dispatched with a root origin, `false` otherwise.
+
+!!!warning
+    Use `callerIsRoot()` when your contract must only accept calls made directly by root, including contracts behind an upgradeable proxy. `originIsRoot()` also returns `true` when root calls an intermediate contract that then calls yours.
 
 ### Get Minimum Balance
 
@@ -235,7 +250,7 @@ require(refTime > 1000000, "Insufficient weight remaining");
 
 ### Terminate Contract
 
-Terminates the calling contract and transfers its remaining balance to a specified beneficiary. This is useful for cleanup or when a contract has fulfilled its purpose.
+Transfers the calling contract's balance to a specified beneficiary and deletes the contract if the current transaction created it. This matches the behavior of the `SELFDESTRUCT` opcode as defined in [EIP-6780](https://eips.ethereum.org/EIPS/eip-6780).
 
 ```solidity
 function terminate(address beneficiary) external;
@@ -243,22 +258,28 @@ function terminate(address beneficiary) external;
 
 **Parameters:**
 
-- **`beneficiary`**: The address that will receive the contract's remaining balance.
+- **`beneficiary`**: The address that receives the contract's balance.
+
+The call has the following effects:
+
+- The contract's balance is transferred to `beneficiary` immediately.
+- The contract is deleted at the end of the transaction only if the same transaction created it. A contract created in an earlier transaction keeps its code and storage.
+- The storage deposit is not refunded.
 
 !!!warning
-    This function will revert if called from:
-    
+    This function reverts if called from:
+
     - A constructor
     - A static context
     - A delegate context
-    - A contract with balance locks
 
 **Example usage:**
 
 ```solidity
 ISystem system = ISystem(SYSTEM_ADDR);
 address beneficiary = 0x1234567890123456789012345678901234567890;
-system.terminate(beneficiary); // Contract is terminated after this call
+// Sends the balance to beneficiary; deletes the contract only if this transaction created it
+system.terminate(beneficiary);
 ```
 
 ## Interact with the System Precompile

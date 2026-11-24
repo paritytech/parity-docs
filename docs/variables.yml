@@ -7,8 +7,8 @@ dependencies:
       architecture: macos-arm64
     polkadot_sdk:
       repository_url: https://github.com/paritytech/polkadot-sdk
-      version: polkadot-stable2609-1
-      docker_image_version: stable2609-1
+      version: polkadot-stable2609-2
+      docker_image_version: stable2609-2
     dotns:
       repository_url: https://github.com/paritytech/dotns
       version: v1.1.0
@@ -34,7 +34,7 @@ dependencies:
       version: 0.3.0
     pallet_revive_uapi:
       name: pallet-revive-uapi
-      version: 0.15.4
+      version: 0.15.7
       ignore_updates: true
     polkavm:
       name: polkavm
@@ -42,7 +42,7 @@ dependencies:
       ignore_updates: true
     smoldot_light:
       name: smoldot-light
-      version: 4.0.0
+      version: 5.0.0
     subxt:
       name: subxt
       version: 0.50.1
@@ -72,7 +72,7 @@ dependencies:
     emulated_integration_tests_common:
       name: emulated-integration-tests-common
       # Matches the crate version shipped in polkadot_sdk.version; update it with the SDK.
-      version: 41.0.0
+      version: 43.0.0
       ignore_updates: true
     zombienet_sdk:
       name: zombienet-sdk
@@ -80,12 +80,12 @@ dependencies:
     polkadot_omni_node:
       name: polkadot-omni-node
       # Matches the crate version shipped in polkadot_sdk.version; update it with the SDK.
-      version: 0.24.0
+      version: 0.25.0
       ignore_updates: true
   javascript_packages:
     smoldot:
       name: smoldot
-      version: 3.8.0
+      version: 3.9.0
     substrate_connect:
       name: '@substrate/connect'
       version: 2.1.8

@@ -23,7 +23,7 @@ The [`Account` data type](https://paritytech.github.io/polkadot-sdk/master/frame
 The code snippet below shows how accounts are defined:
 
 ```rs
- --8<-- 'https://raw.githubusercontent.com/paritytech/polkadot-sdk/refs/tags/polkadot-stable2609-1/substrate/frame/system/src/lib.rs:974:983'
+ --8<-- 'https://raw.githubusercontent.com/paritytech/polkadot-sdk/refs/tags/{{dependencies.repositories.polkadot_sdk.version}}/substrate/frame/system/src/lib.rs:974:983'
 ```
 
 The preceding code block defines a storage map named `Account`. The `StorageMap` is a type of on-chain storage that maps keys to values. In the `Account` map, the key is an account ID, and the value is the account's information. Here, `T` represents the generic parameter for the runtime configuration, which is defined by the pallet's configuration trait (`Config`).
@@ -47,7 +47,7 @@ For a detailed explanation of storage maps, see the [`StorageMap`](https://parit
 The `AccountInfo` structure is another key element within the [System pallet](https://paritytech.github.io/polkadot-sdk/master/src/frame_system/lib.rs.html), providing more granular details about each account's state. This structure tracks vital data, such as the number of transactions and the account’s relationships with other modules.
 
 ```rs
---8<-- 'https://raw.githubusercontent.com/paritytech/polkadot-sdk/refs/tags/polkadot-stable2609-1/substrate/frame/system/src/lib.rs:1234:1251'
+--8<-- 'https://raw.githubusercontent.com/paritytech/polkadot-sdk/refs/tags/{{dependencies.repositories.polkadot_sdk.version}}/substrate/frame/system/src/lib.rs:1234:1251'
 ```
 
 The `AccountInfo` structure includes the following components:
