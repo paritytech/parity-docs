@@ -27,7 +27,7 @@ This guide demonstrates how to interact with the XCM precompile through Solidity
 The XCM precompile implements the `IXcm` interface, which defines the structure for interacting with XCM functionality. The source code for the interface is as follows:
 
 ```solidity title="IXcm.sol"
---8<-- "https://raw.githubusercontent.com/paritytech/polkadot-sdk/cb629d46ebf00aa65624013a61f9c69ebf02b0b4/polkadot/xcm/pallet-xcm/src/precompiles/IXcm.sol"
+--8<-- "https://raw.githubusercontent.com/paritytech/polkadot-sdk/refs/tags/{{dependencies.repositories.polkadot_sdk.version}}/polkadot/xcm/pallet-xcm/precompiles/src/interface/IXcm.sol"
 ```
 
 The interface defines a `Weight` struct that represents the computational cost of XCM operations. Weight has two components: 
@@ -37,7 +37,7 @@ The interface defines a `Weight` struct that represents the computational cost o
 
 All XCM messages must be encoded using the [SCALE codec](/polkadot-sdk/reference/data-encoding.md#data-encoding), Polkadot's standard serialization format.
 
-For further information, check the [`precompiles/IXCM.sol`](https://github.com/paritytech/polkadot-sdk/blob/cb629d46ebf00aa65624013a61f9c69ebf02b0b4/polkadot/xcm/pallet-xcm/src/precompiles/IXcm.sol) file present in `pallet-xcm`.
+For further information, see the [`IXcm.sol`](https://github.com/paritytech/polkadot-sdk/blob/{{dependencies.repositories.polkadot_sdk.version}}/polkadot/xcm/pallet-xcm/precompiles/src/interface/IXcm.sol) interface in the `pallet-xcm-precompiles` crate.
 
 ## Interact with the XCM Precompile
 
