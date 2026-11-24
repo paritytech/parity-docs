@@ -56,7 +56,12 @@ Before you begin, ensure you have the following:
 
 ## Configure Hardhat
 
-Open `hardhat.config.js` and update the binary paths to point at your `revive-dev-node` and `eth-rpc` binaries. For details on the plugin configuration, see [Hardhat Polkadot Plugin](/smart-contracts/dev-environments/hardhat-polkadot.md#start-a-local-node).
+Open `hardhat.config.js` and make the following changes. The [Hardhat Polkadot Plugin](/smart-contracts/dev-environments/hardhat-polkadot.md#start-a-local-node) page shows a complete example.
+
+- **Binary paths**: Point `nodeBinaryPath` and `adapterBinaryPath` at your `revive-dev-node` and `eth-rpc` binaries.
+- **Node type**: Add `useAnvil: false` to the `hardhat` network's `nodeConfig`, so the plugin runs `revive-dev-node` with the `eth-rpc` adapter.
+- **Confirmations**: Add `ignition: { requiredConfirmations: 1 }`, so the deployment doesn't wait for blocks that the dev node only seals when it receives transactions.
+- **Private key**: The generated config includes a network entry that reads a `PRIVATE_KEY` configuration variable, and Hardhat fails with error `HH1201` while it is unset. This tutorial deploys only to the local node, so remove that network entry, or set the variable with `npx hardhat vars set PRIVATE_KEY`.
 
 ## Create the Contract
 

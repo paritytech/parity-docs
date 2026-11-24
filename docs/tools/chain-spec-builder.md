@@ -172,6 +172,9 @@ patch patch.json
 
 The keys in a patch or full config file must match the runtime's genesis config. Run `display-preset` to see the structure your runtime expects.
 
+!!! note
+    `create patch` applies the patch to the runtime's default genesis config, not to a named preset. For the parachain template runtime, the default config has no collators or session keys, so a node started from this chain spec cannot produce blocks. To run the chain, copy the `collatorSelection` and `session` keys from the `development` preset into your patch, or create the chain spec with `named-preset` instead.
+
 ## Produce a Raw Chain Spec
 
 A raw chain spec stores the genesis state as encoded storage keys and values instead of a JSON genesis config. Nodes on the same network must share the same raw genesis, so distribute the raw chain spec when other people run nodes for your chain.
@@ -222,7 +225,7 @@ The following subcommands modify the runtime code in a chain spec and write the 
 
 ## Use the Chain Spec
 
-Start a node with the generated chain spec by passing it to the `--chain` flag of the [Polkadot Omni Node](omninode.md):
+Start a node with the generated chain spec by passing it to the `--chain` flag of the [Polkadot Omni Node](omninode.md). The following command expects a chain spec created from the `development` preset, as in [Generate a Plain Chain Spec](#generate-a-plain-chain-spec):
 
 ```bash
 polkadot-omni-node --chain ./chain_spec.json --dev
